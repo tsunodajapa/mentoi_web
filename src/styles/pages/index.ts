@@ -184,6 +184,7 @@ export const SectionFinal = styled.section`
     font-weight: 700;
     text-decoration: none;
     color: var(--color-secondary);
+    width: fit-content;
   }
 
   @media (max-width: 560px) {

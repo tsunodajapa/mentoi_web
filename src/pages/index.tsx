@@ -55,11 +55,11 @@ const Main: React.FC = () => {
               </Card>
               <Card>
                 <IconMortaboard />
-                <h3>Menotria</h3>
+                <h3>Mentoria</h3>
                 <p>
                   Estudantes e professores podem cadastrar a escola em que
                   atuam, compartilhando o mesmo espaço virtual para dúvidas e
-                  outras orinetações. Ou utilizarem o fórum geral.
+                  outras orientações. Ou utilizarem o fórum geral.
                 </p>
               </Card>
               <Card>
