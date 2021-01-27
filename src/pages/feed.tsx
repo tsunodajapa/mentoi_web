@@ -1,12 +1,17 @@
+import { useEffect } from 'react';
+
 import Header from '@/modules/common/components/Header';
 import Carousel from '@/shared/Carousel';
 import ContentBox from '@/shared/ContentBox';
 import MakeQuestionBox from '@/shared/MakeQuestionBox';
 import QuestionBox from '@/shared/QuestionBox';
 import SectionBordered, { BorderTypes } from '@/shared/SectionBordered';
+
 import { Container } from '@/styles/pages/feed';
 
-const feed: React.FC = () => {
+import subjects from 'data/subjects';
+
+const Feed: React.FC = () => {
   return (
     <>
       <Header />
@@ -16,7 +21,7 @@ const feed: React.FC = () => {
             <SectionBordered border={BorderTypes.TOP}>
               <MakeQuestionBox />
             </SectionBordered>
-            <Carousel />
+            <Carousel data={subjects} />
             <SectionBordered border={BorderTypes.BOTTOM}>
               <QuestionBox />
               <QuestionBox />
@@ -34,4 +39,4 @@ const feed: React.FC = () => {
   );
 };
 
-export default feed;
+export default Feed;

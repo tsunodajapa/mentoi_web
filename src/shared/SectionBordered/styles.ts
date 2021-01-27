@@ -9,7 +9,7 @@ interface ContainerProps {
 export const Container = styled.section<ContainerProps>`
   background: transparent;
 
-  border: 24px solid #dfefd9;
+  border: 24px solid var(--color-primary-light);
 
   ${({ border }) => {
     switch (border) {

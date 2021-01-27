@@ -1,10 +1,42 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState, Children } from 'react';
 import { IoIosArrowDropright, IoIosArrowDropleft } from 'react-icons/io';
 import ButtonIcon from '../ButtonIcon';
-import { Container } from './styles';
+import { Container, ButtonOption } from './styles';
 
-const Carousel: React.FC = () => {
+interface CarouselProps {
+  data?: {
+    name: string;
+    color: string;
+  }[];
+  arrowVisible?: boolean;
+}
+
+const Carousel: React.FC<CarouselProps> = ({
+  data,
+  arrowVisible = true,
+  children,
+}) => {
+  const ChildrenCount = Children.count(children);
+
   const wrapRef = useRef<HTMLDivElement>();
+  const [selectedOption, setSelectedOption] = useState<boolean[]>([]);
+  const [itemsLength, setItemsLength] = useState(ChildrenCount);
+  const [arrowVisibility, setArrowVisibility] = useState(false);
+
+  useEffect(() => {
+    if (data) {
+      const itemsOptions = data.map(() => false);
+
+      setSelectedOption([...itemsOptions, true]);
+      setItemsLength(data.length);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    const { scrollWidth, offsetWidth } = wrapRef.current;
+
+    if (scrollWidth > offsetWidth) setArrowVisibility(true);
+  }, []);
 
   function handleSlider(type: string): void {
     const { scrollWidth, childNodes } = wrapRef.current;
@@ -16,31 +48,53 @@ const Carousel: React.FC = () => {
     wrapRef.current.scrollBy(value, 0);
   }
 
+  function handleOption(position: number): void {
+    const itemsOptios = selectedOption.map((_, index) => index === position);
+
+    setSelectedOption(itemsOptios);
+  }
+
   return (
     <Container>
-      <ButtonIcon
-        type="button"
-        onClick={() => handleSlider('previous')}
-        icon={IoIosArrowDropleft}
-      />
+      {arrowVisible && (
+        <ButtonIcon
+          type="button"
+          onClick={() => handleSlider('previous')}
+          icon={IoIosArrowDropleft}
+          visible={arrowVisibility}
+        />
+      )}
 
       <div ref={wrapRef}>
-        <span>AREA INTERESSE</span>
-        <span>HISTÓRIA</span>
-        <span>INGLÊS</span>
-        <span>QUÍMICA</span>
-        <span>QUÍMICA</span>
-        <span>GEOGRAFIA</span>
-        <span>PORTUGUÊS</span>
-        <span>FÍSICA</span>
-        <span>ARTES</span>
+        {data && (
+          <ButtonOption
+            selected={selectedOption[itemsLength]}
+            onClick={() => handleOption(itemsLength)}
+          >
+            AREA INTERESSE
+          </ButtonOption>
+        )}
+        {data?.map((item, index) => (
+          <ButtonOption
+            key={item.name}
+            color={item.color}
+            selected={selectedOption[index]}
+            onClick={() => handleOption(index)}
+          >
+            {item.name}
+          </ButtonOption>
+        ))}
+        {!data && children}
       </div>
 
-      <ButtonIcon
-        type="button"
-        onClick={() => handleSlider('next')}
-        icon={IoIosArrowDropright}
-      />
+      {arrowVisible && (
+        <ButtonIcon
+          type="button"
+          onClick={() => handleSlider('next')}
+          icon={IoIosArrowDropright}
+          visible={arrowVisibility}
+        />
+      )}
     </Container>
   );
 };

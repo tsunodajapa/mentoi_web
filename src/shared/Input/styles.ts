@@ -17,9 +17,9 @@ export const Container = styled.div<ContainerProps>`
 
   border-radius: 15px;
   padding: 2px;
-  border: 2px solid #a3a3a2;
+  border: 2px solid var(--color-text-complement);
 
-  color: #a3a3a2;
+  color: var(--color-text-complement);
 
   & + div {
     margin-top: 8px;
@@ -28,21 +28,21 @@ export const Container = styled.div<ContainerProps>`
   ${props =>
     props.isErrored &&
     css`
-      border-color: #c53030;
+      border-color: var(--color-red);
     `}
 
   ${props =>
     props.isFocused &&
     css`
-      color: #ff9000;
+      color: var(--color-primary);
 
-      border-color: #ff9000;
+      border-color: var(--color-primary);
     `}
 
   ${props =>
     props.isField &&
     css`
-      /* color: #ff9000; */
+      /* color: var(--color-text-complement); */
     `}
 
   input {
@@ -52,7 +52,7 @@ export const Container = styled.div<ContainerProps>`
     color: #000;
 
     &::placeholder {
-      color: #a3a3a2;
+      color: var(--color-text-complement);
     }
 
     & + input {
@@ -75,11 +75,11 @@ export const Error = styled(Tooltip)`
   }
 
   span {
-    background: #c53030;
-    color: #fff;
+    background: var(--color-red);
+    color: var(--color-text-in-primary);
 
     &::before {
-      border-color: #c53030 transparent;
+      border-color: var(--color-red) transparent;
     }
   }
 `;

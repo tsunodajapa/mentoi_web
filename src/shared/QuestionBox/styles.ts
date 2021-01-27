@@ -1,21 +1,21 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background: #ffffff;
+  background: var(--color-background);
 
   border-radius: 12px;
   margin: 8px 8px 28px 8px;
   box-shadow: 0px 13px 81px -7px rgba(0, 0, 0, 0.15);
 
   > div:nth-child(1) {
-    background: linear-gradient(to right, #6cb059, #9a84b8 112%);
+    background: linear-gradient(to right, var(--color-primary), #9a84b8 112%);
 
     margin: 0;
     padding: 10px;
     border-radius: 12px 12px 0 0;
 
-    color: #ffffff;
-    font-weight: bold;
+    color: var(--color-text-in-primary);
+    font-weight: 700;
   }
 `;
 
@@ -27,13 +27,13 @@ export const Content = styled.div`
     justify-content: space-between;
 
     margin-top: 16px;
-    border-top: 1px solid #d3e2cd;
+    border-top: 1px solid var(--color-primary-light);
     padding-top: 10px;
 
     div {
       display: flex;
       align-items: center;
-      color: #a3a3a2;
+      color: var(--color-text-complement);
 
       svg {
         width: 20px;
@@ -50,9 +50,16 @@ export const Content = styled.div`
 
       padding: 5px 20px;
       border-radius: 15px;
-      border: 1px solid #64b447;
+      border: 1px solid var(--color-primary);
 
-      color: #64b447;
+      color: var(--color-primary);
+
+      transition: background-color 0.2s linear;
+    }
+
+    button:hover {
+      background: var(--color-primary);
+      color: var(--color-text-in-primary);
     }
   }
 `;
@@ -74,12 +81,12 @@ export const Header = styled.div`
       margin-left: 15px;
 
       span:nth-child(1) {
-        font-weight: bold;
+        font-weight: 700;
         font-size: 18px;
       }
 
       span:nth-child(2) {
-        color: #a3a3a2;
+        color: var(--color-text-complement);
         font-size: 14px;
       }
     }
@@ -95,6 +102,6 @@ export const Header = styled.div`
   }
 
   > span {
-    color: #a3a3a2;
+    color: var(--color-text-complement);
   }
 `;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.section`
-  background: #ffffff;
+  background: var(--color-background);
 
   border-radius: 12px;
   margin: -8px;
@@ -21,9 +21,9 @@ export const Container = styled.section`
     }
 
     label {
-      color: #3d3d3d;
+      color: var(--color-text);
       font-size: 24px;
-      font-weight: bold;
+      font-weight: 700;
     }
   }
 
@@ -31,7 +31,7 @@ export const Container = styled.section`
     width: 100%;
 
     margin-top: 8px;
-    border: 2px solid #a2a2a1;
+    border: 2px solid var(--color-text-complement);
     border-radius: 15px;
     resize: none;
   }
