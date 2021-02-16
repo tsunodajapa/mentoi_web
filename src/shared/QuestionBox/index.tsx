@@ -1,7 +1,7 @@
 import { FaComment } from 'react-icons/fa';
 import { Container, Content, Header } from './styles';
 
-const QuestionBox: React.FC = () => {
+const QuestionBox = () => {
   return (
     <Container>
       <div>

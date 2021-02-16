@@ -1,6 +1,6 @@
 import { Container } from './styles';
 
-const MakeQuestionBox: React.FC = () => {
+const MakeQuestionBox = () => {
   return (
     <Container>
       <div>

@@ -7,7 +7,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   visible?: boolean;
 };
 
-const Button = ({ text, visible, ...rest }: ButtonProps) => {
+const Button: React.FC<ButtonProps> = ({ text, visible, ...rest }) => {
   return (
     <Container type="button" {...rest} visible={visible}>
       {text}

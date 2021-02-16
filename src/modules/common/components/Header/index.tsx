@@ -14,7 +14,7 @@ import Logo from '@/assets/logo_mentoi.svg';
 
 import { Container, ContainerMobile } from './styles';
 
-const Header: React.FC = () => {
+const Header = () => {
   const formRef = useRef<FormHandles>(null);
 
   return (

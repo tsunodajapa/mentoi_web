@@ -3,10 +3,10 @@ import { useRef, useState } from 'react';
 import { IoSearch } from 'react-icons/io5';
 import Input from '../Input';
 
-import { Container, Select } from './styles';
+import { Container } from './styles';
 
-const InputAndSelect: React.FC = () => {
-  const [selectedOption, setSelectedOption] = useState('Selecione');
+const InputAndSelect = () => {
+  const [, setSelectedOption] = useState('Selecione');
   const [isCheched, setIsCheched] = useState(false);
   const formRef = useRef<FormHandles>(null);
 

@@ -19,7 +19,7 @@ import {
 import InputAndSelect from '@/shared/InputAndSelect';
 import Carousel from '@/shared/Carousel';
 
-const Main: React.FC = () => {
+const Main = () => {
   return (
     <>
       <Header />

@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { Container } from './styles';
 
 export enum BorderTypes {
@@ -8,12 +9,10 @@ export enum BorderTypes {
 
 interface SectionBorderedProps {
   border: BorderTypes;
+  children: ReactNode;
 }
 
-const SectionBordered: React.FC<SectionBorderedProps> = ({
-  border,
-  children,
-}) => {
+const SectionBordered = ({ border, children }: SectionBorderedProps) => {
   return <Container border={border}>{children}</Container>;
 };
 

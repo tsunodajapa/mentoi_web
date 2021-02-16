@@ -2,7 +2,7 @@ import Logo from '@/assets/logo_mentoi.svg';
 
 import { Container } from './styles';
 
-const Header: React.FC = () => {
+const Header = () => {
   return (
     <>
       <Container>

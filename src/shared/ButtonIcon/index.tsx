@@ -8,11 +8,7 @@ type ButtonIconProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   visible?: boolean;
 };
 
-const ButtonIcon: React.FC<ButtonIconProps> = ({
-  icon: Icon,
-  visible,
-  ...rest
-}) => {
+const ButtonIcon = ({ icon: Icon, visible, ...rest }: ButtonIconProps) => {
   return (
     <Container type="button" {...rest} visible={visible}>
       <Icon />

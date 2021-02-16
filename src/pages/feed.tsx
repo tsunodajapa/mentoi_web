@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 import Header from '@/modules/common/components/Header';
 import Carousel from '@/shared/Carousel';
 import ContentBox from '@/shared/ContentBox';
@@ -11,7 +9,7 @@ import { Container } from '@/styles/pages/feed';
 
 import subjects from 'data/subjects';
 
-const Feed: React.FC = () => {
+const Feed = () => {
   return (
     <>
       <Header />

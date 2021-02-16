@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, Children } from 'react';
+import { useEffect, useRef, useState, Children, ReactNode } from 'react';
 import { IoIosArrowDropright, IoIosArrowDropleft } from 'react-icons/io';
 import ButtonIcon from '../ButtonIcon';
 import { Container, ButtonOption } from './styles';
@@ -9,13 +9,10 @@ interface CarouselProps {
     color: string;
   }[];
   arrowVisible?: boolean;
+  children: ReactNode;
 }
 
-const Carousel: React.FC<CarouselProps> = ({
-  data,
-  arrowVisible = true,
-  children,
-}) => {
+const Carousel = ({ data, arrowVisible = true, children }: CarouselProps) => {
   const ChildrenCount = Children.count(children);
 
   const wrapRef = useRef<HTMLDivElement>();

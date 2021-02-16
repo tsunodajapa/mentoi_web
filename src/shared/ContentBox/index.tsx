@@ -1,6 +1,11 @@
+import { ReactNode } from 'react';
 import { Container } from './styles';
 
-const ContentBox: React.FC = ({ children }) => {
+interface ContentBoxProps {
+  children: ReactNode;
+}
+
+const ContentBox = ({ children }: ContentBoxProps) => {
   return <Container>{children}</Container>;
 };
 
