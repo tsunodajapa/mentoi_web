@@ -6,6 +6,8 @@ import IconMortaboard from '@/assets/icon_mortaboard.svg';
 import Logo from '@/assets/logo_mentoi_two_line.svg';
 
 import Header from '@/modules/logouted/Header';
+import InputAndSelect from '@/shared/InputAndSelect';
+import Carousel from '@/shared/Carousel';
 
 import {
   Container,
@@ -16,8 +18,6 @@ import {
   Card,
   Footer,
 } from '@/styles/pages/index';
-import InputAndSelect from '@/shared/InputAndSelect';
-import Carousel from '@/shared/Carousel';
 
 const Main = () => {
   return (

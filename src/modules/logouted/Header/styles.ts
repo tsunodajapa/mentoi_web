@@ -4,8 +4,6 @@ export const Container = styled.header`
   background-color: var(--color-background);
   box-shadow: 0px -1px 3px 2px rgba(0, 0, 0, 0.15);
 
-  width: 100vw;
-
   position: sticky;
   top: 0;
 

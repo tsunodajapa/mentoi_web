@@ -1,18 +1,26 @@
-import { ButtonHTMLAttributes } from 'react';
-
+import { useEffect } from 'react';
+import { IoMdClose } from 'react-icons/io';
+import ButtonIcon from '../ButtonIcon';
 import { Container } from './styles';
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  text: string;
-  visible?: boolean;
-};
+interface ModalProps {
+  isOpenModal: boolean;
+  handleToggleModal(): void;
+}
 
-const Button: React.FC<ButtonProps> = ({ text, visible, ...rest }) => {
+const Modal = ({ isOpenModal, handleToggleModal }: ModalProps) => {
+  useEffect(() => {
+    document.body.style.overflow = isOpenModal ? 'hidden' : 'auto';
+  }, [isOpenModal]);
+
   return (
-    <Container type="button" {...rest} visible={visible}>
-      {text}
+    <Container visible={isOpenModal}>
+      <div>
+        teste
+        <ButtonIcon icon={IoMdClose} onClick={handleToggleModal} />
+      </div>
     </Container>
   );
 };
 
-export default Button;
+export default Modal;

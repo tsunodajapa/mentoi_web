@@ -8,9 +8,14 @@ type ButtonIconProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   visible?: boolean;
 };
 
-const ButtonIcon = ({ icon: Icon, visible, ...rest }: ButtonIconProps) => {
+const ButtonIcon = ({
+  icon: Icon,
+  visible,
+  onClick,
+  ...rest
+}: ButtonIconProps) => {
   return (
-    <Container type="button" {...rest} visible={visible}>
+    <Container type="button" {...rest} visible={visible} onClick={onClick}>
       <Icon />
     </Container>
   );

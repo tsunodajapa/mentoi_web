@@ -1,26 +1,20 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-interface ContainerProps {
-  visible?: boolean;
-}
+export const Container = styled.button`
+  background: var(--color-primary);
+  color: var(--color-text-in-primary);
+  margin: 0 8px;
+  outline: none;
+  text-decoration: none;
+  border: 1px solid;
+  border-radius: 15px;
+  padding: 5px 15px;
 
-export const Container = styled.button<ContainerProps>`
-  background: transparent;
-  display: flex;
-  align-items: center;
-
-  border: 0;
-
-  ${({ visible }) =>
-    !visible &&
-    visible !== undefined &&
-    css`
-      display: none;
-    `}
-
-  > svg {
-    color: var(--color-text);
-    width: 36px;
-    height: 22px;
+  @media (max-width: 425px) {
+    border: none;
+    padding: 0;
+    background: none;
+    color: var(--color-primary);
+    font-weight: 700;
   }
 `;
