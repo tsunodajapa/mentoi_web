@@ -9,7 +9,7 @@ interface CarouselProps {
     color: string;
   }[];
   arrowVisible?: boolean;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const Carousel = ({ data, arrowVisible = true, children }: CarouselProps) => {
