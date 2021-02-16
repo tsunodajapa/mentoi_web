@@ -4,7 +4,8 @@ import Logo from '@/assets/logo_mentoi.svg';
 import Button from '@/shared/Button';
 import Modal from '@/shared/Modal';
 
-import { Container } from './styles';
+import { Container } from '../LoginModal/styles';
+import LoginModal from '../LoginModal';
 
 const Header = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -26,7 +27,9 @@ const Header = () => {
         </div>
       </Container>
 
-      <Modal isOpenModal={isOpenModal} handleToggleModal={handleToggleModal} />
+      <Modal isOpenModal={isOpenModal} handleToggleModal={handleToggleModal}>
+        <LoginModal />
+      </Modal>
     </>
   );
 };

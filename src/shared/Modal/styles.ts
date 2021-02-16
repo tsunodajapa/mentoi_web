@@ -19,10 +19,15 @@ export const Container = styled.div<ContainerProps>`
 
   overflow: hidden;
 
+  transition: opacity 300ms ease-in;
+  pointer-events: auto;
+  opacity: 1;
+
   ${({ visible }) =>
     !visible &&
     css`
-      display: none;
+      opacity: 0;
+      pointer-events: none;
     `}
 
   div {
@@ -39,12 +44,11 @@ export const Container = styled.div<ContainerProps>`
     > button {
       position: absolute;
       top: -5px;
-      right: -30px;
-
-      width: 25px;
-      height: 25px;
+      right: -35px;
 
       > svg {
+        width: 35px;
+        height: 35px;
         color: var(--color-text-in-primary);
       }
     }

@@ -1,3 +1,4 @@
+import AppProvider from '@/hooks';
 import { AppProps } from 'next/app';
 import GlobalStyle from '../styles/GlobalStyle';
 
@@ -6,7 +7,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     <>
       <GlobalStyle />
 
-      <Component {...pageProps} />
+      <AppProvider>
+        <Component {...pageProps} />
+      </AppProvider>
     </>
   );
 };
