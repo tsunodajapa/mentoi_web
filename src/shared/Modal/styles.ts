@@ -30,7 +30,7 @@ export const Container = styled.div<ContainerProps>`
       pointer-events: none;
     `}
 
-  div {
+  > div {
     position: relative;
 
     display: flex;

@@ -4,7 +4,7 @@ import Logo from '@/assets/logo_mentoi.svg';
 import Button from '@/shared/Button';
 import Modal from '@/shared/Modal';
 
-import { Container } from '../LoginModal/styles';
+import { Container } from './styles';
 import LoginModal from '../LoginModal';
 
 const Header = () => {

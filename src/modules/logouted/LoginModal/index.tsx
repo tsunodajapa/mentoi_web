@@ -1,12 +1,16 @@
 import { useCallback, useRef, useState } from 'react';
 import { FormHandles } from '@unform/core';
+import { Form } from '@unform/web';
 import * as Yup from 'yup';
 
 import getValidationErrors from '@/utils/getValidationErros';
 import { useAuth } from '@/hooks/auth';
 import { useToast } from '@/hooks/toast';
 
-import { Container } from '../Header/styles';
+import { FiLock, FiMail } from 'react-icons/fi';
+import Button from '@/shared/Button';
+import Input from '@/shared/Input';
+import { Container } from './styles';
 
 interface SignInFormData {
   email: string;
@@ -60,7 +64,24 @@ const LoginModal = () => {
     [signIn, addToast],
   );
 
-  return <>Teste</>;
+  return (
+    <Container>
+      <Form onSubmit={handleSubmit} ref={formRef}>
+        <h1>Faça seu logon</h1>
+
+        <Input name="email" icon={FiMail} type="text" placeholder="E-mail" />
+
+        <Input
+          name="password"
+          icon={FiLock}
+          type="password"
+          placeholder="Senha"
+        />
+
+        <Button type="submit" text="Entrar" />
+      </Form>
+    </Container>
+  );
 };
 
 export default LoginModal;

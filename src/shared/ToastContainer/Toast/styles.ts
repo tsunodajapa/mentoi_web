@@ -1,9 +1,9 @@
-import styled, { css } from 'styled-components';
-import { animated } from 'react-spring';
+import styled, { css, keyframes } from 'styled-components';
 
 interface ToastProps {
   type?: 'success' | 'error' | 'info';
   hasDescription: number;
+  isRemove: boolean;
 }
 
 const ToastTypeVariations = {
@@ -21,7 +21,30 @@ const ToastTypeVariations = {
   `,
 };
 
-export const Container = styled(animated.div)<ToastProps>`
+const translateXAnimationFrom = keyframes`
+  0% {
+    background-color: transparent;
+    transform: translateX(120%);
+  }
+  95% {
+    transform: translateX(-20px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+`;
+
+const translateXAnimationLeave = keyframes`
+  from {
+    transform: translateX(0);
+  }
+  to {
+    background-color: transparent;
+    transform: translateX(120%);
+  }
+`;
+
+export const Container = styled.div<ToastProps>`
   width: 360px;
 
   position: relative;
@@ -36,6 +59,14 @@ export const Container = styled(animated.div)<ToastProps>`
   }
 
   ${props => ToastTypeVariations[props.type || 'info']}
+
+  ${({ isRemove }) =>
+    css`
+      animation: ${isRemove
+          ? translateXAnimationLeave
+          : translateXAnimationFrom}
+        1s;
+    `}
 
   > svg {
     margin: 4px 12px 0 0;
