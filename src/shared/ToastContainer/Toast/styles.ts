@@ -44,6 +44,26 @@ const translateXAnimationLeave = keyframes`
   }
 `;
 
+const translateXAnimationMobileFrom = keyframes`
+  from {
+    background-color: transparent;
+    transform: translateY(-120%);
+  }
+  to {
+    transform: translateX(0);
+  }
+`;
+
+const translateXAnimationMobileLeave = keyframes`
+  from {
+    transform: translateY(0);
+  }
+  to {
+    background-color: transparent;
+    transform: translateY(-120%);
+  }
+`;
+
 export const Container = styled.div<ToastProps>`
   width: 360px;
 
@@ -65,7 +85,7 @@ export const Container = styled.div<ToastProps>`
       animation: ${isRemove
           ? translateXAnimationLeave
           : translateXAnimationFrom}
-        1s;
+        0.8s;
     `}
 
   > svg {
@@ -101,4 +121,16 @@ export const Container = styled.div<ToastProps>`
         margin-top: 0;
       }
     `}
+
+  @media(max-width: 420px) {
+    width: 100%;
+
+    ${({ isRemove }) =>
+      css`
+        animation: ${isRemove
+            ? translateXAnimationMobileLeave
+            : translateXAnimationMobileFrom}
+          0.8s;
+      `}
+  }
 `;

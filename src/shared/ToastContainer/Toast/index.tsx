@@ -24,12 +24,12 @@ const Toast: React.FC<ToastProps> = ({ message }) => {
   const [isRemove, setIsRemove] = useState(false);
 
   useEffect(() => {
-    let timer: number;
+    let timer: ReturnType<typeof setTimeout>;
 
     if (isRemove) {
       timer = setTimeout(() => {
         removeToast(message.id);
-      }, 900);
+      }, 700);
     } else {
       timer = setTimeout(() => {
         setIsRemove(true);

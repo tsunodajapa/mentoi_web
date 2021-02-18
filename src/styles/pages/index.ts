@@ -11,11 +11,11 @@ export const Container = styled.main`
   }
 
   h2 {
-    font-size: 36px;
+    font-size: 3.6rem;
   }
 
   h3 {
-    font-size: 22px;
+    font-size: 2.2rem;
   }
 
   h2,
@@ -30,7 +30,7 @@ export const SectionHome = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 30px 0;
+  padding: 3rem 0;
 
   > div {
     width: 40%;
@@ -38,18 +38,19 @@ export const SectionHome = styled.section`
     flex-direction: column;
 
     h1 {
-      font-size: 56px;
+      font-size: 5.6rem;
       font-weight: 700;
     }
 
     p {
-      margin: 10px 40px 10px 0;
-      font-size: 18px;
+      margin: 1rem 4rem 1rem 0;
+      font-size: 1.8rem;
       text-align: left;
     }
   }
+
   @media (max-width: 700px) {
-    padding: 5px 15px;
+    padding: 0.5rem 1.5rem;
 
     > svg {
       display: none;
@@ -71,7 +72,7 @@ export const SectionAbout = styled.section`
   justify-content: center;
   background-color: var(--color-primary-transparent);
 
-  padding: 30px 0;
+  padding: 3rem 0;
 
   article {
     margin: auto;
@@ -80,7 +81,7 @@ export const SectionAbout = styled.section`
   @media (max-width: 880px) {
     article {
       margin: 0;
-      margin-top: 30px;
+      margin-top: 3rem;
     }
   }
 `;
@@ -91,29 +92,29 @@ export const Card = styled.div`
   flex-direction: column;
   align-items: center;
 
-  width: 220px;
-  max-width: 220px;
-  min-width: 220px;
-  box-shadow: 0px 3px 10px 2px rgba(0, 0, 0, 0.15);
-  border-radius: 15px;
-  padding: 15px;
-  margin: 15px 36px;
+  width: 22rem;
+  max-width: 22rem;
+  min-width: 22rem;
+  box-shadow: 0rem 0.3rem 1rem 0.2rem rgba(0, 0, 0, 0.15);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  margin: 1.5rem 3.6rem;
 
   color: var(--color-text-complement);
   text-align: center;
   scroll-snap-align: center;
 
   svg {
-    margin: 10px 0;
+    margin: 1rem 0;
   }
 
   h3 {
-    margin: 10px 0;
-    font-size: 22px;
+    margin: 1rem 0;
+    font-size: 2.2rem;
   }
 
   @media (max-width: 500px) {
-    margin: 15px;
+    margin: 1.5rem;
   }
 `;
 
@@ -121,23 +122,23 @@ export const SectionAboutSecurity = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 30px 0;
+  padding: 3rem 0;
 
   article {
     display: flex;
     justify-content: center;
     align-items: center;
 
-    margin-top: 30px;
+    margin-top: 3rem;
 
     svg {
-      margin: 10px 40px;
+      margin: 1rem 4rem;
     }
 
     p {
       width: 40%;
       text-align: justify;
-      font-size: 18px;
+      font-size: 1.8rem;
     }
   }
 
@@ -148,7 +149,7 @@ export const SectionAboutSecurity = styled.section`
 
       p {
         width: 100%;
-        padding: 15px;
+        padding: 1.5rem;
       }
     }
   }
@@ -159,7 +160,7 @@ export const SectionFinal = styled.section`
   justify-content: center;
   align-items: center;
   background: var(--color-secondary);
-  padding: 10px 0;
+  padding: 1rem 0;
 
   span {
     display: block;
@@ -176,10 +177,10 @@ export const SectionFinal = styled.section`
   a {
     background-color: var(--color-background);
 
-    margin: 2px 18px;
+    margin: 0.2rem 1.8rem;
     outline: none;
-    border-radius: 15px;
-    padding: 8px 15px;
+    border-radius: 1.5rem;
+    padding: 0.8rem 1.5rem;
 
     font-weight: 700;
     text-decoration: none;
@@ -192,14 +193,14 @@ export const SectionFinal = styled.section`
     text-align: center;
 
     a {
-      margin-top: 10px;
+      margin-top: 1rem;
     }
   }
 `;
 
 export const Border = styled.div`
-  margin: 30px 0;
-  border-top: 1px solid var(--color-text-complement);
+  margin: 3rem 0;
+  border-top: 1rem solid var(--color-text-complement);
   opacity: 0.4;
 `;
 
@@ -208,7 +209,7 @@ export const Footer = styled.footer`
   justify-content: space-around;
   align-items: center;
 
-  padding: 15px;
+  padding: 1.5rem;
 
   div {
     display: flex;
@@ -217,11 +218,10 @@ export const Footer = styled.footer`
 
   ul {
     list-style-type: none;
-    margin: 0 10px;
-    /* text-align: center; */
+    margin: 0 1rem;
 
     li + li {
-      margin-top: 10px;
+      margin-top: 1rem;
     }
   }
 
@@ -231,7 +231,11 @@ export const Footer = styled.footer`
     }
 
     ul {
-      margin-top: 10px;
+      margin-top: 1rem;
+    }
+
+    svg {
+      width: 90%;
     }
   }
 `;
