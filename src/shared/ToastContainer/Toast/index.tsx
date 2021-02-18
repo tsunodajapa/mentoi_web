@@ -33,7 +33,7 @@ const Toast: React.FC<ToastProps> = ({ message }) => {
     } else {
       timer = setTimeout(() => {
         setIsRemove(true);
-      }, 5000);
+      }, 500000);
     }
 
     return () => {

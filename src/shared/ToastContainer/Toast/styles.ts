@@ -50,7 +50,7 @@ const translateXAnimationMobileFrom = keyframes`
     transform: translateY(-120%);
   }
   to {
-    transform: translateX(0);
+    transform: translateY(0);
   }
 `;
 
@@ -71,6 +71,7 @@ export const Container = styled.div<ToastProps>`
   padding: 1.6rem 3rem 1.6rem 1.6rem;
   border-radius: 1rem;
   box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.2);
+  margin: 1rem auto;
 
   display: flex;
 
@@ -123,7 +124,7 @@ export const Container = styled.div<ToastProps>`
     `}
 
   @media(max-width: 420px) {
-    width: 100%;
+    width: 90%;
 
     ${({ isRemove }) =>
       css`
