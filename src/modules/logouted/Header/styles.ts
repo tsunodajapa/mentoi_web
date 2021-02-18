@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.header`
   background-color: var(--color-background);
-  box-shadow: 0px -1px 3px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px -0.1rem 0.3rem 0.2rem rgba(0, 0, 0, 0.15);
 
   position: sticky;
   top: 0;
@@ -12,20 +12,20 @@ export const Container = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 auto 10px auto;
-    padding: 8px 5px;
+    margin: 0 auto 1rem auto;
+    padding: 0.8rem 0.5rem;
 
     div {
       display: flex;
       justify-content: space-between;
 
       a {
-        margin: 0 8px;
+        margin: 0 0.8rem;
         outline: none;
         text-decoration: none;
-        border: 1px solid;
-        border-radius: 15px;
-        padding: 5px 15px;
+        border: 0.1rem solid;
+        border-radius: 1.5rem;
+        padding: 0.5rem 1.5rem;
       }
 
       a:nth-child(1) {
@@ -38,12 +38,10 @@ export const Container = styled.header`
       }
 
       @media (max-width: 425px) {
-        a {
+        a,
+        button {
           border: none;
           padding: 0;
-        }
-
-        a:nth-child(2) {
           background: none;
           color: var(--color-primary);
           font-weight: 700;

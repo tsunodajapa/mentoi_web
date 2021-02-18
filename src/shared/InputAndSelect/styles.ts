@@ -8,20 +8,20 @@ export const Container = styled(Form)`
   display: flex;
   align-items: center;
 
-  border-radius: 35px;
-  padding: 2px;
-  border: 2px solid var(--color-primary);
+  border-radius: 3.5rem;
+  padding: 0.2rem;
+  border: 0.2rem solid var(--color-primary);
 
   color: var(--color-text-complement);
 
-  margin: 15px 0;
+  margin: 1.5rem 0;
 
   > input {
     flex: 1;
     background: transparent;
     border: 0;
     color: #000;
-    margin-left: 5px;
+    margin-left: 0.5rem;
 
     &::placeholder {
       color: var(--color-text-light);
@@ -40,10 +40,10 @@ export const Container = styled(Form)`
   }
 
   > button svg {
-    margin-right: 2px;
-    width: 35px;
-    height: 35px;
-    padding: 5px;
+    margin-right: 0.2rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    padding: 0.5rem;
     font-weight: 700;
     background-color: var(--color-primary);
     border-radius: 50%;
@@ -53,16 +53,15 @@ export const Container = styled(Form)`
   select {
     display: none;
     background: none;
-    border: 2px solid var(--color-text-complement);
+    border: 0.2rem solid var(--color-text-complement);
     width: 100%;
-    border-radius: 15px;
-    height: 35px;
+    border-radius: 1.5rem;
+    height: 3.5rem;
   }
 
   div:nth-of-type(2) {
     display: none;
   }
-
 `;
 
 export const Select = styled.div`
@@ -70,15 +69,15 @@ export const Select = styled.div`
   width: 30%;
   text-align: center;
 
-  border-right: 1.5px solid var(--color-text-complement);
-  margin: 5px;
+  border-right: 0.15rem solid var(--color-text-complement);
+  margin: 0.5rem;
 
   label:after {
     content: '\u203a';
-    font-size: 25px;
+    font-size: 2.5rem;
     position: absolute;
-    right: 10px;
-    top: -7px;
+    right: 1rem;
+    top: -0.7rem;
     transition: ease-in 0.2s;
   }
 
@@ -92,7 +91,7 @@ export const Select = styled.div`
 
   input:checked + label:after {
     transform: rotate(90deg);
-    top: -4px;
+    top: -0.4rem;
   }
 
   div {
@@ -102,20 +101,20 @@ export const Select = styled.div`
     width: 100%;
     flex-direction: column;
 
-    /* border: 2px solid var(--color-primary); */
-    border-radius: 15px;
-    padding: 5px;
+    /* border: 0.2rem solid var(--color-primary); */
+    border-radius: 1.5rem;
+    padding: 0.5rem;
     left: 0;
-    top: 32px;
+    top: 3.2rem;
     z-index: 1001;
 
-    box-shadow: 0px 13px 81px -7px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1.3rem 8.1rem -0.7rem rgba(0, 0, 0, 0.15);
   }
 
   button {
     background: none;
     border: none;
-    padding: 10px;
+    padding: 1rem;
 
     position: relative;
     cursor: pointer;
@@ -129,11 +128,11 @@ export const Select = styled.div`
     content: '';
     position: absolute;
     display: none;
-    height: 24px;
-    width: 2px;
+    height: 2.4rem;
+    width: 0.2rem;
     background-color: var(--color-primary);
     left: 0;
-    top: 10px;
+    top: 1rem;
     z-index: 1002;
   }
 

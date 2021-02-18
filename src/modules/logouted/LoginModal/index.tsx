@@ -67,7 +67,7 @@ const LoginModal = () => {
   return (
     <Container>
       <Form onSubmit={handleSubmit} ref={formRef}>
-        <h1>Faça seu logon</h1>
+        <h2>Faça seu logon</h2>
 
         <Input name="email" icon={FiMail} type="text" placeholder="E-mail" />
 
@@ -80,6 +80,12 @@ const LoginModal = () => {
 
         <Button type="submit" text="Entrar" />
       </Form>
+
+      <div>
+        <span>Ainda não é um mentoi?</span>
+        <br />
+        <a href="-#">CADASTRE-SE</a>
+      </div>
     </Container>
   );
 };

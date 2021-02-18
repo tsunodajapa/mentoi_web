@@ -35,7 +35,7 @@ export const Container = styled.div<ContainerProps>`
 
     display: flex;
     background-color: var(--color-background);
-    min-width: 200px;
+    min-width: 300px;
     min-height: 150px;
 
     border-radius: 15px;
@@ -43,14 +43,22 @@ export const Container = styled.div<ContainerProps>`
 
     > button {
       position: absolute;
-      top: -5px;
-      right: -35px;
+      top: -10px;
+      right: -10px;
 
       > svg {
-        width: 35px;
-        height: 35px;
+        background-color: var(--color-primary);
+        width: 25px;
+        height: 25px;
+
+        border-radius: 50%;
         color: var(--color-text-in-primary);
       }
+    }
+
+    @media (max-width: 420px) {
+      min-width: 200px;
+      min-height: 150px;
     }
   }
 `;

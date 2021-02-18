@@ -20,7 +20,7 @@ export const Container = styled.button<ContainerProps>`
 
   > svg {
     color: var(--color-text);
-    width: 36px;
-    height: 22px;
+    width: 3.6rem;
+    height: 2.2rem;
   }
 `;

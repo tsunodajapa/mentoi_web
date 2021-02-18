@@ -8,7 +8,7 @@ interface ButtonOptionProps {
 export const Container = styled.div`
   display: flex;
   width: 100%;
-  margin: 10px 0;
+  margin: 1rem 0;
   justify-content: space-between;
 
   div {
@@ -22,7 +22,6 @@ export const Container = styled.div`
 
     @media (hover: none), (max-width: 500px) {
       overflow-x: scroll;
-      /* touch-action: pan-x; */
 
       &::-webkit-scrollbar {
         display: none;
@@ -33,13 +32,13 @@ export const Container = styled.div`
 
 export const ButtonOption = styled.button<ButtonOptionProps>`
   background-color: transparent;
-  width: 140px;
-  min-width: 140px;
+  width: 14rem;
+  min-width: 14rem;
 
-  padding: 5px 10px;
-  margin: 0 5px;
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
 
-  border: 2px solid var(--color-primary);
+  border: 0.2rem solid var(--color-primary);
   color: var(--color-primary);
   font-weight: 700;
 
@@ -68,7 +67,7 @@ export const ButtonOption = styled.button<ButtonOptionProps>`
     `}
 
 
-  border-radius: 10px;
+  border-radius: 1rem;
   white-space: nowrap;
   scroll-snap-align: start;
   text-align: center;
@@ -76,7 +75,7 @@ export const ButtonOption = styled.button<ButtonOptionProps>`
   overflow: hidden;
 
   &:nth-child(1) {
-    width: 160px;
-    min-width: 160px;
+    width: 16rem;
+    min-width: 16rem;
   }
 `;

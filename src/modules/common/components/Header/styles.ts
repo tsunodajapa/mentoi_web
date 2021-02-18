@@ -5,13 +5,13 @@ export const Container = styled.header`
   justify-content: space-between;
   max-width: 1080px;
 
-  border-bottom: 1.5px solid var(--color-text-complement);
+  border-bottom: 0.15rem solid var(--color-text-complement);
 
-  padding: 8px 32px;
-  margin: 0 auto 10px auto;
+  padding: 0.8rem 3.2rem;
+  margin: 0 auto 1rem auto;
 
   form {
-    width: 350px;
+    width: 35rem;
   }
 
   > div {
@@ -25,17 +25,17 @@ export const ContainerMobile = styled.header`
   justify-content: space-between;
   max-width: 1080px;
   width: 100%;
-  height: 60px;
+  height: 6rem;
   position: fixed;
   bottom: 0;
   background-color: var(--color-background);
 
-  padding: 8px 32px;
+  padding: 0.8rem 3.2rem;
 
   button {
     svg {
-      width: 35px;
-      height: 35px;
+      width: 3.5rem;
+      height: 3.5rem;
     }
   }
 `;
