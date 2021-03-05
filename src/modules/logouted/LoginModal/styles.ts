@@ -11,12 +11,16 @@ export const Container = styled.div`
 
   text-align: center;
 
+  /* > div {
+    width: 100%;
+  } */
+
   h2 {
     margin-bottom: 1rem;
   }
 
   form {
-    width: 100%;
+    margin-top: 1rem;
 
     > button {
       width: 100%;
@@ -24,10 +28,11 @@ export const Container = styled.div`
     }
   }
 
-  div {
+  > div {
     display: flex;
 
-    font-size: 1.2rem;
+    margin-top: 1.4rem;
+    font-size: 1.3rem;
 
     a {
       color: var(--color-primary);

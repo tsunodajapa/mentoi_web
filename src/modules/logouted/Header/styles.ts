@@ -1,6 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Container = styled.header`
+interface ContainerProps {
+  onlyLogo: boolean;
+}
+
+export const Container = styled.header<ContainerProps>`
   background-color: var(--color-background);
   box-shadow: 0px -0.1rem 0.3rem 0.2rem rgba(0, 0, 0, 0.15);
 
@@ -14,6 +18,12 @@ export const Container = styled.header`
     align-items: center;
     margin: 0 auto 1rem auto;
     padding: 0.8rem 0.5rem;
+
+    ${({ onlyLogo }) =>
+      onlyLogo &&
+      css`
+        justify-content: center;
+      `}
 
     div {
       display: flex;

@@ -9,6 +9,8 @@ interface ContainerProps {
 }
 
 export const Container = styled.div<ContainerProps>`
+  position: relative;
+
   background: #fff;
   width: 100%;
 
@@ -75,15 +77,18 @@ export const Container = styled.div<ContainerProps>`
 `;
 
 export const Error = styled(Tooltip)`
+  position: absolute;
+  right: 5px;
+
   height: 2rem;
-  margin-left: 1.6rem;
+  background: var(--color-background);
+  padding-left: 0.2rem;
 
   svg {
     margin: 0;
   }
 
   span {
-    background: var(--color-red);
     color: var(--color-text-in-primary);
 
     &::before {

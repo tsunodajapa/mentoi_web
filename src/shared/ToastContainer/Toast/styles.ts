@@ -71,7 +71,7 @@ export const Container = styled.div<ToastProps>`
   padding: 1.6rem 3rem 1.6rem 1.6rem;
   border-radius: 1rem;
   box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.2);
-  margin: 1rem auto;
+  margin: 2rem 2.2rem 0;
 
   display: flex;
 
@@ -125,6 +125,7 @@ export const Container = styled.div<ToastProps>`
 
   @media(max-width: 420px) {
     width: 90%;
+    margin: 1rem auto;
 
     ${({ isRemove }) =>
       css`

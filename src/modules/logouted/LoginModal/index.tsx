@@ -10,6 +10,7 @@ import { useToast } from '@/hooks/toast';
 import { FiLock, FiMail } from 'react-icons/fi';
 import Button from '@/shared/Button';
 import Input from '@/shared/Input';
+import Logo from '@/assets/logo_mentoi.svg';
 import { Container } from './styles';
 
 interface SignInFormData {
@@ -66,6 +67,10 @@ const LoginModal = () => {
 
   return (
     <Container>
+      <div>
+        <Logo />
+      </div>
+
       <Form onSubmit={handleSubmit} ref={formRef}>
         <h2>Faça seu logon</h2>
 

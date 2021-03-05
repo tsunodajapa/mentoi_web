@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import Logo from '@/assets/logo_mentoi.svg';
 import Button from '@/shared/Button';
@@ -9,6 +11,9 @@ import LoginModal from '../LoginModal';
 
 const Header = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const router = useRouter();
+
+  const isSignUpRoute = router.pathname === '/signup';
 
   function handleToggleModal() {
     setIsOpenModal(!isOpenModal);
@@ -16,14 +21,22 @@ const Header = () => {
 
   return (
     <>
-      <Container>
+      <Container onlyLogo={isSignUpRoute}>
         <div>
-          <Logo />
+          <Link href="/">
+            <a>
+              <Logo />
+            </a>
+          </Link>
 
-          <div>
-            <a href="#_">CADASTRO</a>
-            <Button text="ENTRAR" onClick={handleToggleModal} />
-          </div>
+          {!isSignUpRoute && (
+            <div>
+              <Link href="/signup">
+                <a>CADASTRO</a>
+              </Link>
+              <Button text="ENTRAR" onClick={handleToggleModal} />
+            </div>
+          )}
         </div>
       </Container>
 
