@@ -15,12 +15,14 @@ import { useField } from '@unform/core';
 import { Container, Error } from './styles';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  id: string;
   name: string;
+  label?: string;
 
   icon?: React.ComponentType<IconBaseProps>;
 }
 
-const Input = ({ name, icon: Icon, ...rest }: InputProps) => {
+const Input = ({ id, label, name, icon: Icon, ...rest }: InputProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [isFocused, setIsFocused] = useState(false);
@@ -55,22 +57,28 @@ const Input = ({ name, icon: Icon, ...rest }: InputProps) => {
       isFocused={isFocused}
       isField={isField}
       data-testid="input-container"
+      hasLabel={!!label}
     >
-      {Icon && <Icon size={28} />}
+      {label && <label htmlFor={id}>{label}</label>}
 
-      <input
-        onFocus={handleInputFocus}
-        onBlur={handleInputBlur}
-        defaultValue={defaultValue}
-        ref={inputRef}
-        {...rest}
-      />
+      <div>
+        {Icon && <Icon size={28} />}
 
-      {error && (
-        <Error title={error}>
-          <FiAlertCircle color="#c53030" size={20} />
-        </Error>
-      )}
+        <input
+          id={id}
+          onFocus={handleInputFocus}
+          onBlur={handleInputBlur}
+          defaultValue={defaultValue}
+          ref={inputRef}
+          {...rest}
+        />
+
+        {error && (
+          <Error title={error}>
+            <FiAlertCircle color="#c53030" size={20} />
+          </Error>
+        )}
+      </div>
     </Container>
   );
 };

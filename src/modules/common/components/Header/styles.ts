@@ -1,20 +1,12 @@
 import styled from 'styled-components';
+import { Header } from '@/shared/Header/styles';
 
-export const Container = styled.header`
-  display: flex;
-  justify-content: space-between;
-  max-width: 1080px;
-
-  border-bottom: 0.15rem solid var(--color-text-complement);
-
-  padding: 0.8rem 3.2rem;
-  margin: 0 auto 1rem auto;
-
+export const Container = styled(Header)`
   form {
     width: 35rem;
   }
 
-  > div {
+  div > div {
     display: flex;
     justify-content: space-between;
   }

@@ -74,9 +74,16 @@ const LoginModal = () => {
       <Form onSubmit={handleSubmit} ref={formRef}>
         <h2>Faça seu logon</h2>
 
-        <Input name="email" icon={FiMail} type="text" placeholder="E-mail" />
+        <Input
+          id="email"
+          name="email"
+          icon={FiMail}
+          type="text"
+          placeholder="E-mail"
+        />
 
         <Input
+          id="password"
           name="password"
           icon={FiLock}
           type="password"
