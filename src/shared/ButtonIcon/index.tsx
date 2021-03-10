@@ -5,6 +5,7 @@ import { Container } from './styles';
 
 type ButtonIconProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   icon: React.ComponentType<IconBaseProps>;
+
   visible?: boolean;
 };
 

@@ -2,6 +2,7 @@ import Header from '@/modules/common/components/Header';
 import Carousel from '@/shared/Carousel';
 import ContentBox from '@/shared/ContentBox';
 import MakeQuestionBox from '@/shared/MakeQuestionBox';
+import Onboarding from '@/shared/Onboarding';
 import QuestionBox from '@/shared/QuestionBox';
 import SectionBordered, { BorderTypes } from '@/shared/SectionBordered';
 
@@ -33,6 +34,7 @@ const Feed = () => {
           </div>
         </div>
       </Container>
+      <Onboarding />
     </>
   );
 };

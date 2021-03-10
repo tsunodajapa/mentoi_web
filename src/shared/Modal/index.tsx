@@ -6,16 +6,22 @@ import { Container } from './styles';
 interface ModalProps {
   isOpenModal: boolean;
   handleToggleModal(): void;
+  background?: string;
   children: ReactNode;
 }
 
-const Modal = ({ isOpenModal, handleToggleModal, children }: ModalProps) => {
+const Modal = ({
+  isOpenModal,
+  handleToggleModal,
+  background,
+  children,
+}: ModalProps) => {
   useEffect(() => {
     document.body.style.overflow = isOpenModal ? 'hidden' : 'auto';
   }, [isOpenModal]);
 
   return (
-    <Container visible={isOpenModal}>
+    <Container visible={isOpenModal} background={background}>
       <div>
         {children}
         <ButtonIcon icon={IoMdClose} onClick={handleToggleModal} />

@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 interface ContainerProps {
   visible?: boolean;
+  background?: string;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -9,7 +10,15 @@ export const Container = styled.div<ContainerProps>`
   top: 0;
   z-index: 1001;
 
-  background: rgba(0, 0, 0, 0.9);
+  ${({ background }) =>
+    background
+      ? css`
+          background: ${background};
+        `
+      : css`
+          background: rgba(0, 0, 0, 0.9);
+        `}
+
   width: 100vw;
   height: 100vh;
 
