@@ -83,22 +83,18 @@ const SignUp = () => {
                 <span>Selecione seu Gênero</span>
                 <Genero>
                   <input type="radio" id="male" name="gender" />
-                  <div>
-                    <FaMars />
-                    <label htmlFor="male">Masculino</label>
-                  </div>
+                  <label htmlFor="male">
+                    <FaMars /> Masculino
+                  </label>
 
                   <input type="radio" id="female" name="gender" />
-                  <div>
+                  <label htmlFor="female">
                     <FaVenus />
-                    <label htmlFor="female">Feminino</label>
-                  </div>
+                    Feminino
+                  </label>
 
                   <input type="radio" id="other" name="gender" />
-                  <div>
-                    {/* <FaTransgenderAlt />ca */}
-                    <label htmlFor="other">Não declarar</label>
-                  </div>
+                  <label htmlFor="other">Não declarar</label>
                 </Genero>
 
                 <Input type="email" id="email" name="email" label="E-mail" />

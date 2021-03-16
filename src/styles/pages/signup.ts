@@ -123,8 +123,8 @@ export const Left = styled.div<StepProps>`
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      margin-bottom: 5rem;
-      font-size: 2.4rem;
+      margin-bottom: 4rem;
+      font-size: 2.2rem;
     }
 
     li:nth-child(${({ step }) => step}) {
@@ -132,7 +132,7 @@ export const Left = styled.div<StepProps>`
 
       div {
         background-color: var(--color-background);
-        box-shadow: 0px 0px 1px 5px rgb(255 255 255 / 50%);
+        box-shadow: 0px 0px 1px 3px rgb(255 255 255 / 50%);
       }
     }
 
@@ -149,25 +149,25 @@ export const Left = styled.div<StepProps>`
       margin-left: 1.4rem;
 
       svg {
-        width: 0.8em;
-        height: 0.8em;
+        width: 0.7em;
+        height: 0.7em;
       }
     }
 
     &:after {
       content: '';
       width: 0.3rem;
-      height: 5.2rem;
+      height: 4.4rem;
       position: absolute;
       background: var(--color-background);
-      top: 30px;
-      right: 15px;
+      top: 3rem;
+      right: 1.5rem;
     }
   }
 
   > svg {
     margin-bottom: 2rem;
-    transform: scale(1.2);
+    transform: scale(1.4);
   }
 `;
 
@@ -192,7 +192,7 @@ export const Right = styled.div<StepProps>`
       --selected-item: ${({ step }) => step - 1};
       --total-items: 2;
 
-      margin: 10px 0;
+      margin: 1rem 0;
       padding: 0;
       position: relative;
       display: grid;
@@ -261,26 +261,28 @@ export const Genero = styled.div`
   margin-bottom: 1.4rem;
   height: 3.8rem;
 
-  > div {
+  > label {
+    width: 13rem;
     display: flex;
     align-items: center;
     justify-content: center;
 
-    width: 13rem;
     padding: 0.5rem;
-    cursor: pointer;
-    color: var(--color-primary);
     margin-top: 0.4rem;
-
-    text-align: center;
     border: 1px solid var(--color-text-complement);
     border-radius: 0.5rem;
+
     cursor: pointer;
+    color: var(--color-primary);
+    text-align: center;
+
+    > svg {
+      margin-right: 0.4rem;
+    }
 
     &:hover {
       border-color: var(--color-primary);
       border-width: 0.2rem;
-      /* color: var(--color-text-in-primary); */
     }
   }
 
@@ -288,13 +290,8 @@ export const Genero = styled.div`
     display: none;
   }
 
-  input:checked + div {
+  input:checked + label {
     background-color: var(--color-primary);
     color: var(--color-text-in-primary);
-  }
-
-  label {
-    cursor: pointer;
-    margin-left: 0.3rem;
   }
 `;
