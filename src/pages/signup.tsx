@@ -1,89 +1,179 @@
-import Header from '@/modules/logouted/Header';
-import Button from '@/shared/Button';
-import Input from '@/shared/Input';
-import { Container, Border, Footer } from '@/styles/pages/signup';
+import { useState } from 'react';
 import { Form } from '@unform/web';
+import { FaCheck } from 'react-icons/fa';
+import { HiOutlineArrowLeft } from 'react-icons/hi';
+import { FaTransgenderAlt, FaMars, FaVenus } from 'react-icons/fa';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
-import Logo from '@/assets/logo_mentoi_two_line.svg';
+import Button from '@/shared/Button';
+import ButtonSecondary from '@/shared/ButtonSecondary';
+import Input from '@/shared/Input';
+
+import { Container, Left, Right, Genero, Footer } from '@/styles/pages/signup';
+
+import Logo from '@/assets/logo_mentoi_white.svg';
+import ButtonIcon from '@/shared/ButtonIcon';
 
 const SignUp = () => {
-  const text = `"Se a educação sozinha não transforma a sociedade, sem ela tampouco a sociedade muda"`;
+  const [actualStep, setActualStep] = useState(1);
+  const router = useRouter();
+
+  function handleChangeStep() {
+    setActualStep(state => (state === 1 ? 2 : 1));
+  }
 
   return (
     <>
-      {/* <Header /> */}
       <Container>
-        <span>
-          {/* <Image
-            src="/background_signup.jpg"
-            alt="Picture of the author"
-            width={500}
-            height={500}
-          /> */}
-          {text} <br /> <span>Paulo Freire</span>
-        </span>
-        <div>
+        <Left step={actualStep}>
+          <Image
+            src="/background_create_account.jpg"
+            alt="Background"
+            layout="fill"
+          />
+
+          <div>
+            <button type="button" onClick={() => router.back()}>
+              <HiOutlineArrowLeft />
+              Voltar
+            </button>
+
+            <ul>
+              <li>
+                Dados pessoais
+                <div>
+                  <FaCheck />
+                </div>
+              </li>
+              <li>
+                Escolaridade
+                <div>
+                  <FaCheck />
+                </div>
+              </li>
+            </ul>
+          </div>
+
           <Logo />
-          <h1>Crie sua conta</h1>
+        </Left>
 
+        <Right step={actualStep}>
           <Form onSubmit={() => console.log('aqui')}>
-            <Input
-              id="name"
-              name="name"
-              label="Nome"
-              placeholder="Digite seu nome completo"
-            />
+            <h1>CRIE SUA CONTA</h1>
 
-            <Input id="username" name="username" label="Username" />
-
-            <Input type="email" id="email" name="email" label="E-mail" />
-
-            <Input
-              type="password"
-              id="confirm-password"
-              name="confirm-password"
-              label="Confirmar sua senha"
-            />
-
-            <Input type="email" id="email" name="email" label="E-mail" />
-
-            <Input
-              type="date"
-              id="birthDate"
-              name="birthDate"
-              label="Data de nascimento (opcional)"
-            />
-
-            <Border />
-
-            <Input
-              type="text"
-              id="interest_area"
-              name="interest_area"
-              label="Área(s) de interesse (opcional)"
-            />
-
-            <Input
-              type="text"
-              id="scolarity"
-              name="scolarity"
-              label="Escolaridade (opcional)"
-            />
-
-            <Footer>
+            <div>
               <div>
+                <Input
+                  id="name"
+                  name="name"
+                  label="Nome"
+                  placeholder="Digite seu nome completo"
+                />
+
+                <Input id="username" name="username" label="Username" />
+
+                <Input
+                  type="date"
+                  id="birthDate"
+                  name="birthDate"
+                  label="Data de nascimento (opcional)"
+                />
+
+                <span>Selecione seu Gênero</span>
+                <Genero>
+                  <input type="radio" id="male" name="gender" />
+                  <div>
+                    <FaMars />
+                    <label htmlFor="male">Masculino</label>
+                  </div>
+
+                  <input type="radio" id="female" name="gender" />
+                  <div>
+                    <FaVenus />
+                    <label htmlFor="female">Feminino</label>
+                  </div>
+
+                  <input type="radio" id="other" name="gender" />
+                  <div>
+                    {/* <FaTransgenderAlt />ca */}
+                    <label htmlFor="other">Não declarar</label>
+                  </div>
+                </Genero>
+
+                <Input type="email" id="email" name="email" label="E-mail" />
+
+                <Input
+                  type="password"
+                  id="password"
+                  name="password"
+                  label="Senha"
+                />
+
+                <Input
+                  type="password"
+                  id="confirm-password"
+                  name="confirm-password"
+                  label="Confirmar sua senha"
+                />
+              </div>
+
+              <div>
+                <Input
+                  type="text"
+                  id="interest_area"
+                  name="interest_area"
+                  label="Área(s) de interesse (opcional)"
+                />
+
+                <Input
+                  type="text"
+                  id="scolarity"
+                  name="scolarity"
+                  label="Escolaridade (opcional)"
+                />
+
                 <input type="checkbox" name="" id="termos" />
                 <label htmlFor="termos">Concordo com os termos de uso</label>
               </div>
+            </div>
+            <Footer>
               <div>
-                <a href="_#">Já sou cadastrado</a>
+                {actualStep === 2 && (
+                  <>
+                    <ButtonSecondary
+                      type="button"
+                      text="Voltar"
+                      onClick={handleChangeStep}
+                    />
 
-                <Button text="CADASTRAR" />
+                    <Button
+                      type="button"
+                      text="Cadastrar"
+                      onClick={handleChangeStep}
+                    />
+                  </>
+                )}
+
+                {actualStep === 1 && (
+                  <>
+                    <a href="_#">Já sou cadastrado</a>
+
+                    <Button
+                      type="button"
+                      text="Próximo"
+                      onClick={handleChangeStep}
+                    />
+                  </>
+                )}
               </div>
             </Footer>
           </Form>
-        </div>
+
+          <a>
+            Precisa de <b>AJUDA?</b>
+          </a>
+        </Right>
       </Container>
     </>
   );
