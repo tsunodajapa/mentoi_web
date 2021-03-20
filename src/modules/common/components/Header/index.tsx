@@ -7,7 +7,7 @@ import { IoChatbubblesOutline, IoSearch, IoBookOutline } from 'react-icons/io5';
 import { BsPersonFill, BsGearWide } from 'react-icons/bs';
 import { AiFillHome, AiFillQuestionCircle } from 'react-icons/ai';
 
-import Input from '@/shared/Input';
+import Input from '@/shared/FormElements/Input';
 import ButtonIcon from '@/shared/ButtonIcon';
 
 import Logo from '@/assets/logo_mentoi.svg';

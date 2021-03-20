@@ -9,12 +9,12 @@ interface ContainerProps {
   hasLabel: boolean;
 }
 
-export const Container = styled.div<ContainerProps>`
+export const ContainerDefault = styled.div<ContainerProps>`
   label {
     color: var(--color-text);
   }
 
-  label + div {
+  label ~ div {
     margin-top: 0.3rem;
   }
 
@@ -34,16 +34,15 @@ export const Container = styled.div<ContainerProps>`
     padding: 0.2rem;
 
     border-radius: 1.5rem;
-    border: 0.2rem solid var(--color-text-complement);
+    border: 0.1rem solid var(--color-text-complement);
+
+    color: var(--color-text-complement);
 
     ${({ hasLabel }) =>
       hasLabel &&
       css`
         border-radius: 0.5rem;
-        border: 0.1rem solid var(--color-text-complement);
       `}
-
-    color: var(--color-text-complement);
 
     ${props =>
       props.isErrored &&
@@ -97,14 +96,13 @@ export const Container = styled.div<ContainerProps>`
     }
 
     svg {
-      /* margin: 0 1.6rem 0 0.6rem; */
       margin-left: 0.6rem;
       width: 2rem;
     }
   }
 `;
 
-export const Error = styled(Tooltip)`
+export const ErrorDefault = styled(Tooltip)`
   position: absolute;
   right: 5px;
 

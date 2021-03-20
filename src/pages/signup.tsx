@@ -2,21 +2,23 @@ import { useState } from 'react';
 import { Form } from '@unform/web';
 import { FaCheck } from 'react-icons/fa';
 import { HiOutlineArrowLeft } from 'react-icons/hi';
-import { FaTransgenderAlt, FaMars, FaVenus } from 'react-icons/fa';
+import { FaMars, FaVenus } from 'react-icons/fa';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 import Button from '@/shared/Button';
 import ButtonSecondary from '@/shared/ButtonSecondary';
-import Input from '@/shared/Input';
 
 import { Container, Left, Right, Genero, Footer } from '@/styles/pages/signup';
 
 import Logo from '@/assets/logo_mentoi_white.svg';
-import ButtonIcon from '@/shared/ButtonIcon';
+import { Input, Select } from '@/shared/FormElements';
+
+import scolarity from '@/data/scolarity';
+import subjects from '@/data/subjects';
 
 const SignUp = () => {
-  const [actualStep, setActualStep] = useState(1);
+  const [actualStep, setActualStep] = useState(2);
   const router = useRouter();
 
   function handleChangeStep() {
@@ -115,18 +117,18 @@ const SignUp = () => {
               </div>
 
               <div>
-                <Input
-                  type="text"
-                  id="interest_area"
-                  name="interest_area"
-                  label="Área(s) de interesse (opcional)"
-                />
-
-                <Input
-                  type="text"
+                <Select
                   id="scolarity"
                   name="scolarity"
                   label="Escolaridade (opcional)"
+                  data={scolarity}
+                />
+
+                <Select
+                  id="interest_area"
+                  name="interest_area"
+                  label="Área(s) de interesse (opcional)"
+                  data={subjects}
                 />
 
                 <input type="checkbox" name="" id="termos" />

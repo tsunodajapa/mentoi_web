@@ -6,7 +6,7 @@ import IconMortaboard from '@/assets/icon_mortaboard.svg';
 import Logo from '@/assets/logo_mentoi_two_line.svg';
 
 import Header from '@/modules/logouted/Header';
-import InputAndSelect from '@/shared/InputAndSelect';
+import InputAndSelect from '@/shared/FormElements/InputAndSelect';
 import Carousel from '@/shared/Carousel';
 
 import {

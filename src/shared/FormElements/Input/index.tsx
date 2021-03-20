@@ -44,9 +44,7 @@ const Input = ({ id, label, name, icon: Icon, ...rest }: InputProps) => {
   useEffect(() => {
     registerField({
       name: fieldName,
-
       ref: inputRef.current,
-
       path: 'value',
     });
   }, [fieldName, registerField]);

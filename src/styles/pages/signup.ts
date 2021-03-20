@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 interface StepProps {
   step: number;
@@ -21,31 +21,6 @@ export const Container = styled.main`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-
-    form {
-      margin: 2.5rem auto;
-      width: 41.5rem;
-      max-width: 80%;
-      color: var(--color-text);
-
-      > div:nth-child() {
-        display: block;
-      }
-
-      label + div {
-        margin-bottom: 1rem;
-      }
-
-      button {
-        border-radius: 1.8rem;
-        padding: 0.8rem 1.5rem;
-      }
-    }
-
-    > a {
-      color: var(--color-text);
-      margin-bottom: 2rem;
-    }
   }
 
   h1 {
@@ -68,7 +43,7 @@ export const Left = styled.div<StepProps>`
     z-index: 999;
 
     img {
-      object-fit: fill;
+      object-fit: cover;
       transform: scaleX(-1);
     }
   }
@@ -187,6 +162,7 @@ export const Right = styled.div<StepProps>`
     max-width: 80%;
     color: var(--color-text);
     overflow: hidden;
+    margin: 2.5rem auto;
 
     > div {
       --selected-item: ${({ step }) => step - 1};

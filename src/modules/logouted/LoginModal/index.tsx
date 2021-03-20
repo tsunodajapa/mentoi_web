@@ -9,7 +9,7 @@ import { useToast } from '@/hooks/toast';
 
 import { FiLock, FiMail } from 'react-icons/fi';
 import Button from '@/shared/Button';
-import Input from '@/shared/Input';
+import Input from '@/shared/FormElements/Input';
 import Logo from '@/assets/logo_mentoi.svg';
 import { Container } from './styles';
 
