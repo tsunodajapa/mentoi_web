@@ -1,28 +1,76 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Form } from '@unform/web';
+import { FormHandles } from '@unform/core';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import * as Yup from 'yup';
+
 import { FaCheck } from 'react-icons/fa';
 import { HiOutlineArrowLeft } from 'react-icons/hi';
 import { FaMars, FaVenus } from 'react-icons/fa';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
 
 import Button from '@/shared/Button';
 import ButtonSecondary from '@/shared/ButtonSecondary';
+import { Input, Select } from '@/shared/FormElements';
 
 import { Container, Left, Right, Genero, Footer } from '@/styles/pages/signup';
 
 import Logo from '@/assets/logo_mentoi_white.svg';
-import { Input, Select } from '@/shared/FormElements';
 
 import scolarity from '@/data/scolarity';
 import subjects from '@/data/subjects';
+import getValidationErrors from '@/utils/getValidationErros';
 
 const SignUp = () => {
-  const [actualStep, setActualStep] = useState(2);
+  const formRef = useRef<FormHandles>(null);
+  const [actualStep, setActualStep] = useState(1);
   const router = useRouter();
 
   function handleChangeStep() {
     setActualStep(state => (state === 1 ? 2 : 1));
+  }
+
+  async function handleSubmit(data) {
+    try {
+      formRef.current?.setErrors({});
+
+      console.log(data);
+      const schema = Yup.object().shape({
+        name: Yup.string().required('Nome Obrigatório'),
+        email: Yup.string()
+          .required('E-mail obrigatório')
+          .email('Digite um e-mail válido'),
+        password: Yup.string().min(6, 'No mínimo 6 dígitos'),
+      });
+
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
+      // await api.post('/users', data);
+
+      // addToast({
+      //   type: 'success',
+      //   title: 'Cadastro realizado!',
+      //   description: 'Você já pode fazer seu logon no GoBarber!',
+      // });
+
+      // history.push('/');
+    } catch (error) {
+      if (error instanceof Yup.ValidationError) {
+        const erros = getValidationErrors(error);
+
+        console.log(erros);
+        setActualStep(1);
+        formRef.current?.setErrors(erros);
+      }
+
+      // addToast({
+      //   type: 'error',
+      //   title: 'Erro na cadastro',
+      //   description: 'Ocorreu um erro ao fazer cadastro, tente novamente',
+      // });
+    }
   }
 
   return (
@@ -61,7 +109,7 @@ const SignUp = () => {
         </Left>
 
         <Right step={actualStep}>
-          <Form onSubmit={() => console.log('aqui')}>
+          <Form onSubmit={handleSubmit} ref={formRef}>
             <h1>CRIE SUA CONTA</h1>
 
             <div>
@@ -70,6 +118,7 @@ const SignUp = () => {
                   id="name"
                   name="name"
                   label="Nome"
+                  type="text"
                   placeholder="Digite seu nome completo"
                 />
 
@@ -86,7 +135,8 @@ const SignUp = () => {
                 <Genero>
                   <input type="radio" id="male" name="gender" />
                   <label htmlFor="male">
-                    <FaMars /> Masculino
+                    <FaMars />
+                    Masculino
                   </label>
 
                   <input type="radio" id="female" name="gender" />
@@ -99,7 +149,7 @@ const SignUp = () => {
                   <label htmlFor="other">Não declarar</label>
                 </Genero>
 
-                <Input type="email" id="email" name="email" label="E-mail" />
+                <Input type="text" id="email" name="email" label="E-mail" />
 
                 <Input
                   type="password"
@@ -129,6 +179,7 @@ const SignUp = () => {
                   name="interest_area"
                   label="Área(s) de interesse (opcional)"
                   data={subjects}
+                  multiSelect
                 />
 
                 <input type="checkbox" name="" id="termos" />
@@ -145,11 +196,7 @@ const SignUp = () => {
                       onClick={handleChangeStep}
                     />
 
-                    <Button
-                      type="button"
-                      text="Cadastrar"
-                      onClick={handleChangeStep}
-                    />
+                    <Button type="submit" text="Cadastrar" />
                   </>
                 )}
 

@@ -69,7 +69,7 @@ export const ContainerDefault = styled.div<ContainerProps>`
       cursor: pointer;
     }
 
-    input {
+    > input {
       max-height: 3rem;
 
       flex: 1;

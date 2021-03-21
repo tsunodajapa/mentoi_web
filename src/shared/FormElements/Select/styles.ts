@@ -1,5 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { ContainerDefault } from '../styles';
+
+interface MultiSelectInputProps {
+  width: number;
+  background: string;
+}
 
 export const Container = styled(ContainerDefault)`
   select {
@@ -19,11 +24,13 @@ export const SelectDesktop = styled.div`
 
   label {
     width: 100%;
+    max-height: 3rem;
+    overflow: hidden;
     padding: 0.5rem;
     cursor: pointer;
   }
 
-  label:after {
+  > label:after {
     content: '\u203a';
     font-size: 2.5rem;
     position: absolute;
@@ -33,7 +40,7 @@ export const SelectDesktop = styled.div`
     transition: ease-in 0.2s;
   }
 
-  input {
+  & > input {
     display: none;
   }
 
@@ -72,10 +79,6 @@ export const SelectDesktop = styled.div`
     cursor: pointer;
   }
 
-  button + button {
-    /* border-top: 1px solid var(--color-primary); */
-  }
-
   button:after {
     content: '';
     position: absolute;
@@ -90,5 +93,30 @@ export const SelectDesktop = styled.div`
 
   button:hover::after {
     display: block;
+  }
+
+  button svg {
+    color: var(--color-primary);
+    margin-right: 0.4rem;
+  }
+`;
+
+export const MultiSelectInput = styled.input<MultiSelectInputProps>`
+  ${({ width, background }) =>
+    css`
+      width: ${width}ch;
+      background-color: ${background};
+    `}
+
+  text-overflow: ellipsis;
+  border: none;
+  border-radius: 1.2rem;
+  color: #fff;
+  padding: 0.2rem 0.6rem;
+  text-align: center;
+  margin-bottom: 1rem;
+
+  & + input {
+    margin-left: 0.5rem;
   }
 `;

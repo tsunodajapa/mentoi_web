@@ -5,18 +5,19 @@ export const Container = styled.div`
 
   span {
     width: 16rem;
-    background: #ff9000;
+    background: var(--color-red);
     padding: 0.8rem;
-    border-radius: 0.4rem;
+    border-radius: 0.4rem 0.4rem 0 0.4rem;
     font-size: 1.4rem;
     font-weight: 500;
+    text-align: center;
     opacity: 0;
     transition: opacity 0.4s;
     visibility: hidden;
 
     position: absolute;
-    bottom: calc(100% + 1.2rem);
-    left: 50%;
+    bottom: calc(100% + 0.8rem);
+    right: -7.5rem;
     transform: translateX(-50%);
 
     color: #312e38;
@@ -24,12 +25,12 @@ export const Container = styled.div`
     &::before {
       content: '';
       border-style: solid;
-      border-color: #ff9000 transparent;
+      border-color: var(--color-red) transparent;
       border-width: 0.6rem 0.6rem 0 0.6rem;
       bottom: 2rem;
       top: 100%;
       position: absolute;
-      left: 50%;
+      left: 96.5%;
       transform: translateX(-50%);
     }
   }
