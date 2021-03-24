@@ -3,10 +3,10 @@ import styled, { css } from 'styled-components';
 import Tooltip from '../Tooltip';
 
 interface ContainerProps {
-  isFocused: boolean;
-  isField: boolean;
-  isErrored: boolean;
-  hasLabel: boolean;
+  isFocused?: boolean;
+  isField?: boolean;
+  isErrored?: boolean;
+  hasLabel?: boolean;
 }
 
 export const ContainerDefault = styled.div<ContainerProps>`
