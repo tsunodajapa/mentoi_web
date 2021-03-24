@@ -25,7 +25,7 @@ export const Container = styled(Header)`
     }
 
     @media (max-width: 425px) {
-      a,
+      > div a,
       button {
         border: none;
         padding: 0;

@@ -200,6 +200,10 @@ export const Right = styled.div<StepProps>`
     margin-bottom: 2rem;
     width: 100%;
     text-align: center;
+
+    b {
+      margin-left: 0.4rem;
+    }
   }
 
   h1 {
