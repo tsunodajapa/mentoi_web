@@ -34,6 +34,7 @@
       { "caseSensitive": false }
     ],
     "no-shadow": "off",
+    "no-return-assign":"off",
     "@typescript-eslint/no-shadow": ["error"],
     "camelcase": "off",
     "no-unused-expressions":"off",

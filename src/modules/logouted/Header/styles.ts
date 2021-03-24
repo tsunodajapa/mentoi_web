@@ -1,17 +1,7 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Header } from '@/shared/Header/styles';
 
-interface ContainerProps {
-  onlyLogo: boolean;
-}
-
-export const Container = styled(Header)<ContainerProps>`
-  ${({ onlyLogo }) =>
-    onlyLogo &&
-    css`
-      justify-content: center;
-    `}
-
+export const Container = styled(Header)`
   div {
     display: flex;
     justify-content: space-between;

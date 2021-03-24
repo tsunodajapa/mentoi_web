@@ -12,26 +12,18 @@ export const Container = styled.main`
 
   display: flex;
 
-  > div {
-    background-color: #fff;
-    width: 50%;
-    max-height: 100vh;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-  }
-
   h1 {
     text-align: center;
     color: var(--color-primary);
+  }
+
+  @media (max-width: 860px) {
+    justify-content: center;
   }
 `;
 
 export const Left = styled.div<StepProps>`
   position: relative;
-  height: 100vh;
   z-index: 1000;
 
   display: flex;
@@ -144,17 +136,25 @@ export const Left = styled.div<StepProps>`
     margin-bottom: 2rem;
     transform: scale(1.4);
   }
+
+  @media (max-width: 860px) {
+    display: none;
+  }
 `;
 
 export const Right = styled.div<StepProps>`
-  background-color: #fff;
+  background-color: var(--color-backgrounf);
   width: 50%;
-  max-height: 100vh;
+  min-height: 100vh;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+
+  > svg {
+    display: none;
+  }
 
   form {
     margin: 2.5rem auto;
@@ -199,6 +199,21 @@ export const Right = styled.div<StepProps>`
     color: var(--color-primary);
     margin-bottom: 1rem;
   }
+
+  @media (max-width: 860px) {
+    width: 95vw;
+
+    form {
+      width: auto;
+      margin: auto;
+      max-width: 100%;
+    }
+
+    > svg {
+      display: initial;
+      margin-top: 0.5rem;
+    }
+  }
 `;
 
 export const Footer = styled.footer`
@@ -208,13 +223,8 @@ export const Footer = styled.footer`
     align-items: center;
 
     button {
-      width: 12rem;
+      min-width: 12rem;
     }
-  }
-
-  a {
-    text-decoration: none;
-    color: var(--color-primary);
   }
 
   > button {
@@ -237,7 +247,7 @@ export const Genero = styled.div`
   margin-bottom: 1.4rem;
   height: 3.8rem;
 
-  > label {
+  div > label {
     width: 13rem;
     display: flex;
     align-items: center;
@@ -269,5 +279,11 @@ export const Genero = styled.div`
   input:checked + label {
     background-color: var(--color-primary);
     color: var(--color-text-in-primary);
+  }
+
+  @media (max-width: 998px) {
+    div > label {
+      width: 11rem;
+    }
   }
 `;
