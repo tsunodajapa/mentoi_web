@@ -1,3 +1,2 @@
 slsNextApp:
   component: '@sls-next/serverless-component@1.19.0-alpha.37'
-  
