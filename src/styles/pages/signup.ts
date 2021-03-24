@@ -26,9 +26,11 @@ export const Left = styled.div<StepProps>`
   position: relative;
   z-index: 1000;
 
+  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 
   > div:nth-child(1) {
     position: absolute;
@@ -150,7 +152,6 @@ export const Right = styled.div<StepProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
 
   > svg {
     display: none;
@@ -190,8 +191,15 @@ export const Right = styled.div<StepProps>`
   }
 
   a {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex: 1;
+
     color: var(--color-text);
     margin-bottom: 2rem;
+    width: 100%;
+    text-align: center;
   }
 
   h1 {
@@ -205,7 +213,6 @@ export const Right = styled.div<StepProps>`
 
     form {
       width: auto;
-      margin: auto;
       max-width: 100%;
     }
 
