@@ -1,8 +1,14 @@
 import styled, { css } from 'styled-components';
 
+export interface ModalStyles {
+  background?: string;
+  left?: number;
+  top?: number;
+}
+
 interface ContainerProps {
   visible?: boolean;
-  background?: string;
+  styles: ModalStyles;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -10,10 +16,15 @@ export const Container = styled.div<ContainerProps>`
   top: 0;
   z-index: 1001;
 
-  ${({ background }) =>
-    background
+  ${({ styles }) =>
+    styles
       ? css`
-          background: ${background};
+          position: absolute;
+          width: auto !important;
+          height: auto !important;
+          background: ${styles.background};
+          top: ${styles.top}px;
+          left: ${styles.left}px;
         `
       : css`
           background: rgba(0, 0, 0, 0.9);

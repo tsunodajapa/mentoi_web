@@ -3,6 +3,7 @@ import Carousel from '@/shared/Carousel';
 import ContentBox from '@/shared/ContentBox';
 import MakeQuestionBox from '@/shared/MakeQuestionBox';
 import Onboarding from '@/shared/Onboarding';
+import OnboardingTemplate from '@/shared/Onboarding/OnboardingTemplate';
 import QuestionBox from '@/shared/QuestionBox';
 import SectionBordered, { BorderTypes } from '@/shared/SectionBordered';
 
@@ -24,7 +25,12 @@ const Feed = () => {
             <SectionBordered border={BorderTypes.BOTTOM}>
               <QuestionBox />
               <QuestionBox />
-              <QuestionBox />
+              <OnboardingTemplate
+                title="Teste Card"
+                description="teste mensagem 2"
+              >
+                <QuestionBox />
+              </OnboardingTemplate>
             </SectionBordered>
           </div>
           <div>

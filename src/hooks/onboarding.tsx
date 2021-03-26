@@ -1,15 +1,24 @@
-import { createContext, useContext, useCallback, useState } from 'react';
+import { ModalStyles } from '@/shared/Modal/styles';
+import { ItemProps } from '@/shared/Onboarding/styles';
+import { createContext, useCallback, useContext, useState } from 'react';
 import { uuid } from 'uuidv4';
 
 export interface OnboardingStep {
   id: string;
   title: string;
   description?: string;
+  cardStyles: Omit<ItemProps, 'isVisible'>;
+  modalStyles: ModalStyles;
+}
+
+interface OnboardingTemplate {
+  title: string;
+  description?: string;
   component: any;
 }
 
 interface OnboardingContextData {
-  addOnboarding(step: Omit<OnboardingStep, 'id'>): void;
+  addOnboarding(step: OnboardingTemplate): void;
   removeOnboarding(id: string): void;
   steps: OnboardingStep[];
 }
@@ -22,14 +31,46 @@ const OnboardingProvider: React.FC = ({ children }) => {
   const [steps, setSteps] = useState<OnboardingStep[]>([]);
 
   const addOnboarding = useCallback(
-    ({ title, description, component }: Omit<OnboardingStep, 'id'>) => {
+    ({ title, description, component }: OnboardingTemplate) => {
       const id = uuid();
+
+      const { offsetTop, offsetLeft, clientWidth, clientHeight } = component;
+
+      const width = clientWidth + 5;
+      const height = clientHeight + 5;
+
+      const top =
+        offsetTop - (height / 2 + offsetTop - (clientHeight / 2 + offsetTop));
+
+      const left =
+        offsetLeft -
+        (width / 2 + offsetLeft - (clientWidth / 2 + offsetLeft)) +
+        8;
+
+      const cardStyles = {
+        width,
+        height,
+        top,
+        left,
+      };
+
+      const topModal =
+        document.body.offsetHeight < top + clientHeight + 160
+          ? top - clientHeight + 10
+          : top + clientHeight + 10;
+
+      const modalStyles = {
+        background: 'none',
+        top: topModal,
+        left: left + clientWidth - 300,
+      };
 
       const Onboarding = {
         id,
         title,
         description,
-        component,
+        cardStyles,
+        modalStyles,
       };
 
       setSteps(state => [...state, Onboarding]);
@@ -37,9 +78,9 @@ const OnboardingProvider: React.FC = ({ children }) => {
     [],
   );
 
-  const removeOnboarding = useCallback((id: string) => {
+  const removeOnboarding = (id: string) => {
     setSteps(state => state.filter(step => step.id !== id));
-  }, []);
+  };
 
   return (
     <OnboardingContext.Provider

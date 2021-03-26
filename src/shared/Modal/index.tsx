@@ -1,19 +1,19 @@
 import { ReactNode, useEffect } from 'react';
 import { IoMdClose } from 'react-icons/io';
 import ButtonIcon from '../ButtonIcon';
-import { Container } from './styles';
+import { Container, ModalStyles } from './styles';
 
 interface ModalProps {
   isOpenModal: boolean;
   handleToggleModal(): void;
-  background?: string;
+  styles?: ModalStyles;
   children: ReactNode;
 }
 
 const Modal = ({
   isOpenModal,
   handleToggleModal,
-  background,
+  styles,
   children,
 }: ModalProps) => {
   useEffect(() => {
@@ -21,7 +21,7 @@ const Modal = ({
   }, [isOpenModal]);
 
   return (
-    <Container visible={isOpenModal} background={background}>
+    <Container visible={isOpenModal} styles={styles}>
       <div>
         {children}
         <ButtonIcon icon={IoMdClose} onClick={handleToggleModal} />

@@ -39,7 +39,7 @@ const Header = () => {
           </Form>
 
           <div>
-            <OnboardingTemplate>
+            <OnboardingTemplate title="Teste" description="teste mensagem 1">
               <ButtonIcon icon={VscBell} />
             </OnboardingTemplate>
             <ButtonIcon icon={IoChatbubblesOutline} />
