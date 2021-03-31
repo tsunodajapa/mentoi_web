@@ -13,6 +13,7 @@ export default createGlobalStyle`
     --color-text-light: #C9C9C9;
     --color-red: #B4423E; 
     --color-secondary: #464745;
+    --color-tertiary: #EDB12A;
 
     font-size: 60%;   
   }

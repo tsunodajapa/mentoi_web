@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import Header from '@/modules/common/components/Header';
 import Carousel from '@/shared/Carousel';
 import ContentBox from '@/shared/ContentBox';
@@ -7,9 +9,10 @@ import OnboardingTemplate from '@/shared/Onboarding/OnboardingTemplate';
 import QuestionBox from '@/shared/QuestionBox';
 import SectionBordered, { BorderTypes } from '@/shared/SectionBordered';
 
-import { Container } from '@/styles/pages/feed';
+import { Container, Profile, Circle } from '@/styles/pages/feed';
 
 import subjects from 'data/subjects';
+import ProgressCircle from '@/shared/ProgressCircle';
 
 const Feed = () => {
   return (
@@ -35,7 +38,24 @@ const Feed = () => {
           </div>
           <div>
             <ContentBox>
-              <h1>Teste</h1>
+              <Profile>
+                <div>
+                  <ProgressCircle percentage={65.8} />
+
+                  <Image
+                    src="/test_profile.jpg"
+                    alt="Professor CZ"
+                    layout="fill"
+                  />
+
+                  {/* <Circle /> */}
+                </div>
+                <span>Professor CZ</span>
+                <span>@professorcz</span>
+              </Profile>
+
+              <div>Avaliações</div>
+              <div>Prêmios</div>
             </ContentBox>
           </div>
         </div>
