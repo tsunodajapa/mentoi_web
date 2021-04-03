@@ -1,4 +1,6 @@
+import Image from 'next/image';
 import { FaComment } from 'react-icons/fa';
+import { Circle } from '../Circle';
 import { Container, Content, Header } from './styles';
 
 const QuestionBox = () => {
@@ -11,7 +13,10 @@ const QuestionBox = () => {
       <Content>
         <Header>
           <div>
-            <img src="" alt="" />
+            <div>
+              <Image src="/test_profile.jpg" alt="Professor CZ" layout="fill" />
+              {/* <Circle size={100} /> */}
+            </div>
             <div>
               <span>Arielle Tsunoda</span>
               <span>@arielleft</span>

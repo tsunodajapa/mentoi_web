@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 interface ContainerProps {
   visible?: boolean;
+  color?: string;
 }
 
 export const Container = styled.button<ContainerProps>`
@@ -20,6 +21,12 @@ export const Container = styled.button<ContainerProps>`
 
   > svg {
     color: var(--color-text);
+
+    ${({ color }) =>
+      css`
+        color: var(${color || '--color-text'});
+      `}
+
     width: 3.6rem;
     height: 2.2rem;
   }

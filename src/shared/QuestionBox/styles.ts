@@ -11,11 +11,12 @@ export const Container = styled.div`
     background: linear-gradient(to right, var(--color-primary), #9a84b8 112%);
 
     margin: 0;
-    padding: 0.1rem;
+    padding: 0.6rem;
     border-radius: 1.2rem 1.2rem 0 0;
 
     color: var(--color-text-in-primary);
     font-weight: 700;
+    font-size: 2rem;
   }
 `;
 
@@ -28,7 +29,7 @@ export const Content = styled.div`
 
     margin-top: 1.6rem;
     border-top: 0.1rem solid var(--color-primary-light);
-    padding-top: 0.1rem;
+    padding: 1rem 0;
 
     div {
       display: flex;
@@ -75,7 +76,13 @@ export const Header = styled.div`
     display: flex;
     align-items: center;
 
-    > div {
+    > div:nth-child(1) {
+      position: relative;
+      width: 4.5rem;
+      height: 4.5rem;
+    }
+
+    > div:nth-child(2) {
       display: flex;
       flex-direction: column;
       margin-left: 1.5rem;
@@ -102,6 +109,8 @@ export const Header = styled.div`
   }
 
   > span {
+    align-self: flex-start;
+
     color: var(--color-text-complement);
   }
 `;

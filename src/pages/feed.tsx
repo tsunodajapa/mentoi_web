@@ -9,10 +9,11 @@ import OnboardingTemplate from '@/shared/Onboarding/OnboardingTemplate';
 import QuestionBox from '@/shared/QuestionBox';
 import SectionBordered, { BorderTypes } from '@/shared/SectionBordered';
 
-import { Container, Profile, Circle } from '@/styles/pages/feed';
+import { Container, Profile, Row } from '@/styles/pages/feed';
 
 import subjects from 'data/subjects';
 import ProgressCircle from '@/shared/ProgressCircle';
+import { Circle } from '@/shared/Circle';
 
 const Feed = () => {
   return (
@@ -42,20 +43,24 @@ const Feed = () => {
                 <div>
                   <ProgressCircle percentage={65.8} />
 
-                  <Image
-                    src="/test_profile.jpg"
+                  {/* <Image
+                    src="/test_profile_.jpg"
                     alt="Professor CZ"
                     layout="fill"
-                  />
+                  /> */}
 
-                  {/* <Circle /> */}
+                  <Circle size={70} />
                 </div>
                 <span>Professor CZ</span>
                 <span>@professorcz</span>
               </Profile>
 
-              <div>Avaliações</div>
-              <div>Prêmios</div>
+              <Row>
+                <span>Avaliações</span>
+              </Row>
+              <Row>
+                <span>Prêmios</span>
+              </Row>
             </ContentBox>
           </div>
         </div>

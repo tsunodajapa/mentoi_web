@@ -7,6 +7,8 @@ interface ProgressCircleProps {
 }
 
 const ProgressCircle = ({ percentage }: ProgressCircleProps) => {
+  const TWO_PI = Math.PI * 100 * 2;
+
   const circle = useMemo(() => ((200 - percentage * 2) / 100) * 100 * Math.PI, [
     percentage,
   ]);
@@ -14,7 +16,7 @@ const ProgressCircle = ({ percentage }: ProgressCircleProps) => {
   const degrees = useMemo(() => (360 / 100) * percentage, [percentage]);
 
   return (
-    <Container width="226" height="226" viewBox="0 0 226 226" degrees={degrees}>
+    <Container viewBox="0 0 226 226" degrees={degrees}>
       <circle
         cx="113"
         cy="113"
@@ -32,19 +34,11 @@ const ProgressCircle = ({ percentage }: ProgressCircleProps) => {
         fill="none"
         stroke="#64b447"
         strokeWidth="5"
-        strokeDasharray="628.3185307179587"
+        strokeDasharray={TWO_PI}
         strokeDashoffset={circle}
         strokeLinecap="round"
-        className="RCP__progress"
       />
-      <circle
-        cx="200"
-        cy="50%"
-        r="8"
-        fill="#64b447"
-        strokeWidth="5"
-        className="RCP__pointer"
-      />
+      <circle cx="200" cy="50%" r="8" fill="#64b447" strokeWidth="5" />
     </Container>
   );
 };

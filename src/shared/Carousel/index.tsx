@@ -59,6 +59,7 @@ const Carousel = ({ data, arrowVisible = true, children }: CarouselProps) => {
           onClick={() => handleSlider('previous')}
           icon={IoIosArrowDropleft}
           visible={arrowVisibility}
+          color="--color-secondary"
         />
       )}
 
@@ -90,6 +91,7 @@ const Carousel = ({ data, arrowVisible = true, children }: CarouselProps) => {
           onClick={() => handleSlider('next')}
           icon={IoIosArrowDropright}
           visible={arrowVisibility}
+          color="--color-secondary"
         />
       )}
     </Container>

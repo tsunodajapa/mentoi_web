@@ -42,7 +42,7 @@ const Header = () => {
             <OnboardingTemplate title="Teste" description="teste mensagem 1">
               <ButtonIcon icon={VscBell} />
             </OnboardingTemplate>
-            <ButtonIcon icon={IoChatbubblesOutline} />
+            {/* <ButtonIcon icon={IoChatbubblesOutline} /> */}
             <ButtonIcon icon={BsPersonFill} />
             <ButtonIcon icon={BsGearWide} />
           </div>

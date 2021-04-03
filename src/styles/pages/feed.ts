@@ -37,9 +37,6 @@ export const Profile = styled.div`
       width: 100%;
     }
 
-    > div:nth-of-type(1) {
-    }
-
     img {
       border-radius: 50%;
       max-width: 70% !important;
@@ -48,12 +45,27 @@ export const Profile = styled.div`
       min-height: 70% !important;
     }
   }
+
+  span:nth-of-type(1) {
+    font-weight: bold;
+    font-size: 2rem;
+  }
+
+  span:nth-of-type(2) {
+    color: var(--color-text-complement);
+    font-size: 1.4rem;
+  }
 `;
 
-export const Circle = styled.div`
-  position: absolute !important;
-  width: 70% !important;
-  height: 70% !important;
-  background: var(--color-tertiary);
-  border-radius: 50%;
+export const Row = styled.div`
+  border-top: 1px solid var(--color-text-light);
+  margin: 0.8rem;
+  padding-top: 0.4rem;
+
+  min-height: 4rem;
+
+  span {
+    font-weight: bold;
+    font-size: 1.4rem;
+  }
 `;
