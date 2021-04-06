@@ -46,19 +46,24 @@ export const ContainerMobile = styled.footer`
 
   > button {
     background-color: var(--color-background);
+    width: 16rem;
+    display: flex;
+    justify-content: center;
+
     position: relative;
     border: 0.3rem solid var(--color-text-complement);
     border-top: 0;
     margin-top: 1.3rem;
     margin-bottom: 0.5rem;
     border-radius: 0 0 5rem 5rem;
-    padding: 0 0.8rem;
+    padding: 0 0.1rem;
     box-shadow: 0 138px 14px 160px #fff;
 
     svg {
       width: 4.8rem;
       height: 4.8rem;
       margin-bottom: 2rem;
+      position: absolute;
     }
 
     &:after {
@@ -69,9 +74,9 @@ export const ContainerMobile = styled.footer`
       border-radius: 0 100% 0 0;
       border-right: 0.3rem solid var(--color-text-complement);
       border-top: 0.3rem solid var(--color-text-complement);
-      top: -1.3rem;
-      left: -1.5rem;
-      position: absolute;
+      top: -2.5rem;
+      left: -4.6rem;
+      position: relative;
       background: #ffffff;
     }
     &:before {
@@ -82,9 +87,9 @@ export const ContainerMobile = styled.footer`
       border-radius: 100% 0 0 0;
       border-left: 0.3rem solid var(--color-text-complement);
       border-top: 0.3rem solid var(--color-text-complement);
-      top: -1.3rem;
-      left: 6.4rem;
-      position: absolute;
+      top: -2.5rem;
+      left: 4.6rem;
+      position: relative;
       background: #ffffff;
     }
   }
