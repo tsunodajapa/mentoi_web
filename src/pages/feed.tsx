@@ -53,7 +53,7 @@ const Feed = () => {
                   <Circle size={70} />
                 </div>
                 <strong>Professor CZ</strong>
-                <span>@professorcz</span>
+                <span>@professorczx</span>
               </Profile>
 
               <Row>
