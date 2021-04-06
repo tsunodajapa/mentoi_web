@@ -52,7 +52,7 @@ export const ContainerMobile = styled.footer`
     margin-top: 1.3rem;
     margin-bottom: 0.5rem;
     border-radius: 0 0 5rem 5rem;
-    padding: 0 0.5rem;
+    padding: 0 0.8rem;
     box-shadow: 0 138px 14px 160px #fff;
 
     svg {
@@ -63,14 +63,14 @@ export const ContainerMobile = styled.footer`
 
     &:after {
       content: '';
-      padding: 0.6rem;
+      padding: 0.5rem;
       width: 0.2rem;
       height: 0.2rem;
       border-radius: 0 100% 0 0;
       border-right: 0.3rem solid var(--color-text-complement);
       border-top: 0.3rem solid var(--color-text-complement);
       top: -1.3rem;
-      left: -1.8rem;
+      left: -1.5rem;
       position: absolute;
       background: #ffffff;
     }
@@ -83,7 +83,7 @@ export const ContainerMobile = styled.footer`
       border-left: 0.3rem solid var(--color-text-complement);
       border-top: 0.3rem solid var(--color-text-complement);
       top: -1.3rem;
-      left: 5.9rem;
+      left: 6.4rem;
       position: absolute;
       background: #ffffff;
     }
