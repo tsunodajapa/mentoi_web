@@ -14,6 +14,7 @@ import { Container, Profile, Row } from '@/styles/pages/feed';
 import subjects from 'data/subjects';
 import ProgressCircle from '@/shared/ProgressCircle';
 import { Circle } from '@/shared/Circle';
+import Footer from '@/modules/common/components/Footer';
 
 const Feed = () => {
   return (
@@ -41,7 +42,7 @@ const Feed = () => {
             <ContentBox>
               <Profile>
                 <div>
-                  <ProgressCircle percentage={65.8} />
+                  <ProgressCircle percentage={90} />
 
                   {/* <Image
                     src="/test_profile_.jpg"
@@ -51,7 +52,7 @@ const Feed = () => {
 
                   <Circle size={70} />
                 </div>
-                <span>Professor CZ</span>
+                <strong>Professor CZ</strong>
                 <span>@professorcz</span>
               </Profile>
 
@@ -64,8 +65,10 @@ const Feed = () => {
             </ContentBox>
           </div>
         </div>
+
+        <Footer />
       </Container>
-      <Onboarding />
+      {/* <Onboarding /> */}
     </>
   );
 };

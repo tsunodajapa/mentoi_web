@@ -46,12 +46,12 @@ export const Profile = styled.div`
     }
   }
 
-  span:nth-of-type(1) {
+  strong {
     font-weight: bold;
     font-size: 2rem;
   }
 
-  span:nth-of-type(2) {
+  span {
     color: var(--color-text-complement);
     font-size: 1.4rem;
   }

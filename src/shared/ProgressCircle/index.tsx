@@ -25,7 +25,6 @@ const ProgressCircle = ({ percentage }: ProgressCircleProps) => {
         stroke="#C9C9C9"
         strokeWidth="5"
         strokeLinecap="round"
-        className="RCP__track"
       />
       <circle
         cx="113"

@@ -2,6 +2,10 @@ import styled from 'styled-components';
 import { Header } from '@/shared/Header/styles';
 
 export const Container = styled(Header)`
+  @media (max-width: 998px) {
+    display: none;
+  }
+
   form {
     width: 35rem;
   }
@@ -13,21 +17,41 @@ export const Container = styled(Header)`
 `;
 
 export const ContainerMobile = styled.header`
+  @media (min-width: 425px) {
+    display: none;
+  }
+
+  position: sticky;
+  top: 0;
+  z-index: 1001;
+
+  background: var(--color-primary);
+  height: 5rem;
+
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  max-width: 1080px;
-  width: 100%;
-  height: 6rem;
-  position: fixed;
-  bottom: 0;
-  background-color: var(--color-background);
 
-  padding: 0.8rem 3.2rem;
+  padding: 0 1rem;
+  color: var(--color-text-in-primary);
 
-  button {
+  div {
+    display: flex;
+    align-items: center;
+
     svg {
-      width: 3.5rem;
-      height: 3.5rem;
+      transform: scale(1.5);
     }
+
+    span {
+      font-weight: bold;
+      font-size: 2rem;
+      margin-left: 1.6rem;
+    }
+  }
+
+  > svg {
+    width: 3.5rem;
+    height: 3.5rem;
   }
 `;

@@ -3,14 +3,14 @@ import { Form } from '@unform/web';
 import { useRef } from 'react';
 
 import { VscBell } from 'react-icons/vsc';
-import { IoChatbubblesOutline, IoSearch, IoBookOutline } from 'react-icons/io5';
+import { IoSearch } from 'react-icons/io5';
 import { BsPersonFill, BsGearWide } from 'react-icons/bs';
-import { AiFillHome, AiFillQuestionCircle } from 'react-icons/ai';
 
 import Input from '@/shared/FormElements/Input';
 import ButtonIcon from '@/shared/ButtonIcon';
 
 import Logo from '@/assets/logo_mentoi.svg';
+import MentoiIcon from '@/assets/icon_mentoi.svg';
 
 import OnboardingTemplate from '@/shared/Onboarding/OnboardingTemplate';
 import { Container, ContainerMobile } from './styles';
@@ -49,13 +49,13 @@ const Header = () => {
         </div>
       </Container>
 
-      {/* <ContainerMobile>
-        <ButtonIcon icon={AiFillHome} />
-        <ButtonIcon icon={IoBookOutline} />
-        <ButtonIcon icon={AiFillQuestionCircle} />
-        <ButtonIcon icon={IoChatbubblesOutline} />
-        <ButtonIcon icon={BsPersonFill} />
-      </ContainerMobile> */}
+      <ContainerMobile>
+        <div>
+          <MentoiIcon />
+          <span>AREA INTERESSE</span>
+        </div>
+        <IoSearch />
+      </ContainerMobile>
     </>
   );
 };
