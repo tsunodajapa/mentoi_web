@@ -1,6 +1,7 @@
 import { Form } from '@unform/web';
 
 import subjects from '@/data/subjects';
+import Dropzone from '@/shared/Dropzone';
 import { Input, Select, TextArea } from '../FormElements';
 import Button from '../Button';
 
@@ -28,6 +29,7 @@ const MakeQuestionMobile = () => {
           multiSelect
         />
 
+        <Dropzone onFileUploaded={() => console.log()} />
         <Button text="PUBLICAR" />
       </Form>
     </Container>
