@@ -26,7 +26,7 @@ const Feed = () => {
             <SectionBordered border={BorderTypes.TOP}>
               <MakeQuestionBox />
             </SectionBordered>
-            <Carousel data={subjects} />
+            <Carousel data={subjects} onlyWeb />
             <SectionBordered border={BorderTypes.BOTTOM}>
               <QuestionBox />
               <QuestionBox />

@@ -1,11 +1,15 @@
 import styled, { css } from 'styled-components';
 
+interface ContainerProps {
+  onlyWeb: boolean;
+}
+
 interface ButtonOptionProps {
   color?: string;
   selected: boolean;
 }
 
-export const Container = styled.div`
+export const Container = styled.div<ContainerProps>`
   display: flex;
   width: 100%;
   margin: 1rem 0;
@@ -28,6 +32,14 @@ export const Container = styled.div`
       }
     }
   }
+
+  ${({ onlyWeb }) =>
+    onlyWeb &&
+    css`
+      @media (max-width: 475px) {
+        display: none;
+      }
+    `}
 `;
 
 export const ButtonOption = styled.button<ButtonOptionProps>`

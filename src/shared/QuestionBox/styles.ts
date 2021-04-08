@@ -18,10 +18,18 @@ export const Container = styled.div`
     font-weight: 700;
     font-size: 2rem;
   }
+
+  @media (max-width: 475px) {
+    margin-bottom: 1.8rem;
+
+    > div:nth-child(1) {
+      display: none;
+    }
+  }
 `;
 
 export const Content = styled.div`
-  padding: 1.5rem 1.5rem 1rem 1.5rem;
+  padding: 1.5rem 1.5rem 0 1.5rem;
 
   > div:last-child {
     display: flex;
@@ -110,6 +118,8 @@ export const Header = styled.div`
 
   > span {
     align-self: flex-start;
+
+    margin-top: 0.4rem;
 
     color: var(--color-text-complement);
   }

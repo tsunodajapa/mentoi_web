@@ -9,10 +9,16 @@ interface CarouselProps {
     color: string;
   }[];
   arrowVisible?: boolean;
+  onlyWeb?: boolean;
   children?: ReactNode;
 }
 
-const Carousel = ({ data, arrowVisible = true, children }: CarouselProps) => {
+const Carousel = ({
+  data,
+  arrowVisible = true,
+  onlyWeb = false,
+  children,
+}: CarouselProps) => {
   const ChildrenCount = Children.count(children);
 
   const wrapRef = useRef<HTMLDivElement>();
@@ -52,7 +58,7 @@ const Carousel = ({ data, arrowVisible = true, children }: CarouselProps) => {
   }
 
   return (
-    <Container>
+    <Container onlyWeb={onlyWeb}>
       {arrowVisible && (
         <ButtonIcon
           type="button"

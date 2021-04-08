@@ -15,6 +15,16 @@ export const Container = styled.main`
     > div:nth-child(2) {
       width: 20%;
     }
+
+    @media (max-width: 475px) {
+      > div:nth-child(1) {
+        width: 100%;
+      }
+
+      > div:nth-child(2) {
+        display: none;
+      }
+    }
   }
 `;
 

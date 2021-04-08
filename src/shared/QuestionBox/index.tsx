@@ -26,8 +26,8 @@ const QuestionBox = () => {
         </Header>
 
         <span>
-          O que é o 'genocídio branco' que a Stormfront fala no último ep de The
-          Boys?
+          {`O que é o 'genocídio branco' que a Stormfront fala no último ep de The
+          Boys?`}
         </span>
 
         <div>

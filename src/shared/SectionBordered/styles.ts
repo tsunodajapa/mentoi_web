@@ -34,4 +34,8 @@ export const Container = styled.section<ContainerProps>`
         `;
     }
   }}
+
+  @media (max-width: 475px) {
+    border: none;
+  }
 `;

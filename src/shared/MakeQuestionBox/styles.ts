@@ -35,4 +35,8 @@ export const Container = styled.section`
     border-radius: 1.5rem;
     resize: none;
   }
+
+  @media (max-width: 475px) {
+    display: none;
+  }
 `;
