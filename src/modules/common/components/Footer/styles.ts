@@ -84,7 +84,7 @@ export const ContainerMobile = styled.footer`
     &:before {
       content: '';
       padding: 0.5rem;
-      width: 0.2rem;
+      width: 0.3rem;
       height: 0.2rem;
       border-radius: 100% 0 0 0;
       border-left: 0.3rem solid var(--color-text-complement);
