@@ -26,7 +26,7 @@ const QuestionBox = () => {
         </Header>
 
         <span>
-          {`O que é o 'genocídio branco' que a Stormfront fala no último episódio de The
+          {`O que é o 'genocídio branco' que a Stormfront fala no último ep de The
           Boys?`}
         </span>
 
