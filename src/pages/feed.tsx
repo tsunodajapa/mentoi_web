@@ -23,7 +23,7 @@ import MakeQuestionMobile from '@/shared/MakeQuestionMobile';
 const Feed = () => {
   const [actualStep, setActualStep] = useState(0);
   const actualNameStep = [
-    'ÁREA INTERESSE',
+    'ÁREA DE INTERESSE',
     'ATUALIZAÇÕES',
     'PUBLICAR PERGUNTA',
     'MENSAGENS',
