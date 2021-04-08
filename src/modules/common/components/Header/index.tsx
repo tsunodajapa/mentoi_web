@@ -15,7 +15,11 @@ import MentoiIcon from '@/assets/icon_mentoi.svg';
 import OnboardingTemplate from '@/shared/Onboarding/OnboardingTemplate';
 import { Container, ContainerMobile } from './styles';
 
-const Header = () => {
+interface HeaderProps {
+  actualNameStep: string;
+}
+
+const Header = ({ actualNameStep }: HeaderProps) => {
   const formRef = useRef<FormHandles>(null);
 
   return (
@@ -52,7 +56,7 @@ const Header = () => {
       <ContainerMobile>
         <div>
           <MentoiIcon />
-          <span>AREA INTERESSE</span>
+          <span>{actualNameStep}</span>
         </div>
         <IoSearch />
       </ContainerMobile>

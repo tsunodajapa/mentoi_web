@@ -11,16 +11,35 @@ import SectionBordered, { BorderTypes } from '@/shared/SectionBordered';
 
 import { Container, Profile, Row } from '@/styles/pages/feed';
 
-import subjects from 'data/subjects';
+import { useState } from 'react';
+
 import ProgressCircle from '@/shared/ProgressCircle';
 import { Circle } from '@/shared/Circle';
 import Footer from '@/modules/common/components/Footer';
 
+import subjects from 'data/subjects';
+import { Input, TextArea } from '@/shared/FormElements';
+import { Form } from '@unform/web';
+import Button from '@/shared/Button';
+
 const Feed = () => {
+  const [actualStep, setActualStep] = useState(2);
+  const actualNameStep = [
+    'ÁREA INTERESSE',
+    'ATUALIZAÇÕES',
+    'PUBLICAR PERGUNTA',
+    'MENSAGENS',
+    'PERFIL',
+  ];
+
+  function handleChangeStep(step: number): void {
+    setActualStep(step);
+  }
+
   return (
     <>
-      <Header />
-      <Container>
+      <Header actualNameStep={actualNameStep[actualStep]} />
+      <Container step={actualStep}>
         <div>
           <div>
             <SectionBordered border={BorderTypes.TOP}>
@@ -38,6 +57,23 @@ const Feed = () => {
               </OnboardingTemplate>
             </SectionBordered>
           </div>
+          <div />
+          <div>
+            <Form onSubmit={() => console.log('enviar')}>
+              <Input id="title" name="title" placeholder="TÍTULO" />
+
+              <TextArea
+                name="question"
+                id="question"
+                cols={30}
+                rows={10}
+                placeholder="PERGUNTA"
+              />
+
+              <Button text="PUBLICAR" />
+            </Form>
+          </div>
+          <div />
           <div>
             <ContentBox>
               <Profile>
@@ -66,7 +102,7 @@ const Feed = () => {
           </div>
         </div>
 
-        <Footer />
+        <Footer changeStep={handleChangeStep} />
       </Container>
       {/* <Onboarding /> */}
     </>

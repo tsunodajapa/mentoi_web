@@ -158,7 +158,6 @@ export const Right = styled.div<StepProps>`
   }
 
   form {
-    margin: 2.5rem auto;
     width: 41.5rem;
     max-width: 80%;
     color: var(--color-text);
