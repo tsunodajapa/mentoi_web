@@ -21,7 +21,7 @@ import subjects from 'data/subjects';
 import MakeQuestionMobile from '@/shared/MakeQuestionMobile';
 
 const Feed = () => {
-  const [actualStep, setActualStep] = useState(2);
+  const [actualStep, setActualStep] = useState(0);
   const actualNameStep = [
     'ÁREA INTERESSE',
     'ATUALIZAÇÕES',
