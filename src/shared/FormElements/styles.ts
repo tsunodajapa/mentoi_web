@@ -71,7 +71,10 @@ export const ContainerDefault = styled.div<ContainerProps>`
 
     > input {
       max-height: 3rem;
+    }
 
+    > input,
+    > textArea {
       flex: 1;
       background: transparent;
       border: 0;

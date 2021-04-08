@@ -6,7 +6,8 @@ import { Container, SelectDesktop, MultiSelectInput } from './styles';
 
 interface SelectProps {
   id: string;
-  label: string;
+  label?: string;
+  placeHolder?: string;
   name: string;
   data: {
     name: string;
@@ -22,8 +23,15 @@ interface Option {
   selectedSize?: number;
 }
 
-const Select = ({ id, label, name, data, multiSelect }: SelectProps) => {
-  const [selectedOption, setSelectedOption] = useState('Selecione');
+const Select = ({
+  id,
+  label,
+  name,
+  data,
+  multiSelect,
+  placeHolder = 'Selecione',
+}: SelectProps) => {
+  const [selectedOption, setSelectedOption] = useState(placeHolder);
   const [multiSelectedOptions, setMultiSelectedOptions] = useState<Option[]>(
     [] as Option[],
   );

@@ -18,9 +18,7 @@ import { Circle } from '@/shared/Circle';
 import Footer from '@/modules/common/components/Footer';
 
 import subjects from 'data/subjects';
-import { Input, TextArea } from '@/shared/FormElements';
-import { Form } from '@unform/web';
-import Button from '@/shared/Button';
+import MakeQuestionMobile from '@/shared/MakeQuestionMobile';
 
 const Feed = () => {
   const [actualStep, setActualStep] = useState(2);
@@ -58,21 +56,7 @@ const Feed = () => {
             </SectionBordered>
           </div>
           <div />
-          <div>
-            <Form onSubmit={() => console.log('enviar')}>
-              <Input id="title" name="title" placeholder="TÍTULO" />
-
-              <TextArea
-                name="question"
-                id="question"
-                cols={30}
-                rows={10}
-                placeholder="PERGUNTA"
-              />
-
-              <Button text="PUBLICAR" />
-            </Form>
-          </div>
+          <MakeQuestionMobile />
           <div />
           <div>
             <ContentBox>
