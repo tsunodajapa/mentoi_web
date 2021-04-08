@@ -46,9 +46,9 @@ export const ContainerMobile = styled.footer`
 
   > button {
     background-color: var(--color-background);
-    width: 6.5rem;
-    max-width: 6.5rem;
-    min-width: 6.5rem;
+    width: 6.7rem;
+    max-width: 6.7rem;
+    min-width: 6.7rem;
     display: flex;
     justify-content: center;
 
