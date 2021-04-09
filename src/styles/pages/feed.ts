@@ -28,6 +28,9 @@ export const Container = styled.main<StepProps>`
     }
   }
   @media (max-width: 475px) {
+    /* padding-top: 5rem; */
+    margin-top: -1rem;
+
     > div {
       --selected-item: ${({ step }) => step};
       --total-items: 5;
@@ -44,7 +47,7 @@ export const Container = styled.main<StepProps>`
 
       > div {
         width: 100% !important;
-        display: initial;
+        display: block;
         max-height: calc(100vh);
         overflow: auto;
         padding-bottom: 12rem;

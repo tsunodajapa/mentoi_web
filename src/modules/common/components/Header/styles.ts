@@ -21,7 +21,8 @@ export const ContainerMobile = styled.header`
     display: none;
   }
 
-  position: sticky;
+  position: inherit;
+  margin-top: 0.8rem;
   top: 0;
   z-index: 1001;
 

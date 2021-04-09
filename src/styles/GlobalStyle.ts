@@ -31,6 +31,11 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
+  body,html{
+    width: 100vw;
+   height: 100vh;
+  }
+
   body {
     background: var(--color-background);
     color: var(--color-text);
