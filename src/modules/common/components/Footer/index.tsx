@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { IoChatbubblesOutline, IoBookOutline } from 'react-icons/io5';
 import { BsPersonFill } from 'react-icons/bs';
 import { FaQuestionCircle } from 'react-icons/fa';
@@ -5,7 +7,6 @@ import { AiFillHome } from 'react-icons/ai';
 
 import ButtonIcon from '@/shared/ButtonIcon';
 
-import { useState } from 'react';
 import { ContainerMobile } from './styles';
 
 interface FooterProps {
@@ -21,6 +22,8 @@ const Footer = ({ changeStep }: FooterProps) => {
     '--color-text-complement',
   ]);
 
+  const isSamsungBrowser = navigator.userAgent.indexOf('SamsungBrowser') > -1;
+
   function handleChangeStep(step: number): void {
     const newButtonColors = buttonsColors.map((_, index) => {
       if (step === index) return '--color-primary';
@@ -32,7 +35,7 @@ const Footer = ({ changeStep }: FooterProps) => {
   }
 
   return (
-    <ContainerMobile>
+    <ContainerMobile isSamsungBrowser={isSamsungBrowser}>
       <div>
         <ButtonIcon
           icon={AiFillHome}

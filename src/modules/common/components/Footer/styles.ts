@@ -1,6 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const ContainerMobile = styled.footer`
+interface ContainerMobileProps {
+  isSamsungBrowser?: boolean;
+}
+
+export const ContainerMobile = styled.div<ContainerMobileProps>`
   @media (min-width: 425px) {
     display: none;
   }
@@ -95,4 +99,11 @@ export const ContainerMobile = styled.footer`
       background: #ffffff;
     }
   }
+
+  ${({ isSamsungBrowser }) =>
+    isSamsungBrowser &&
+    css`
+      margin-top: -0.8em;
+      margin-bottom: 0;
+    `}
 `;
