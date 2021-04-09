@@ -60,8 +60,8 @@ export const ContainerMobile = styled.footer`
     border-radius: 0 0 5rem 5rem;
     padding: 0 0.1rem;
     box-shadow: 0 138px 14px 160px #fff;
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
+    margin-bottom: 0.8rem;
+    padding-bottom: 2rem;
 
     svg {
       width: 4.8rem;
@@ -78,7 +78,7 @@ export const ContainerMobile = styled.footer`
       border-radius: 0 100% 0 0;
       border-right: 0.3rem solid var(--color-text-complement);
       border-top: 0.3rem solid var(--color-text-complement);
-      top: -0.6rem;
+      top: -1.35rem;
       left: -4.6rem;
       position: relative;
       background: #ffffff;
@@ -91,7 +91,7 @@ export const ContainerMobile = styled.footer`
       border-radius: 100% 0 0 0;
       border-left: 0.3rem solid var(--color-text-complement);
       border-top: 0.3rem solid var(--color-text-complement);
-      top: -0.6rem;
+      top: -1.35rem;
       left: 4.6rem;
       position: relative;
       background: #ffffff;
