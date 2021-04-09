@@ -49,6 +49,14 @@ const Feed = () => {
               <QuestionBox />
               <QuestionBox />
               <QuestionBox />
+              <QuestionBox />
+              <QuestionBox />
+              <QuestionBox />
+              <QuestionBox />
+              <QuestionBox />
+              <QuestionBox />
+              <QuestionBox />
+              <QuestionBox />
               <OnboardingTemplate
                 title="Teste Card"
                 description="teste mensagem 2"

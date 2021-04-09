@@ -22,7 +22,6 @@ export const ContainerMobile = styled.header`
   }
 
   position: inherit;
-  margin-top: 0.8rem;
   top: 0;
   z-index: 1001;
 
