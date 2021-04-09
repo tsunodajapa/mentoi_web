@@ -66,7 +66,6 @@ export const ContainerMobile = styled.footer`
     svg {
       width: 4.8rem;
       height: 4.8rem;
-      /* margin-bottom: 2rem; */
       position: absolute;
     }
 
