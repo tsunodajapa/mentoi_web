@@ -1,10 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-interface ContainerMobileProps {
-  isSamsungBrowser?: boolean;
-}
-
-export const ContainerMobile = styled.div<ContainerMobileProps>`
+export const ContainerMobile = styled.footer`
   @media (min-width: 425px) {
     display: none;
   }
@@ -64,11 +60,13 @@ export const ContainerMobile = styled.div<ContainerMobileProps>`
     border-radius: 0 0 5rem 5rem;
     padding: 0 0.1rem;
     box-shadow: 0 138px 14px 160px #fff;
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
 
     svg {
       width: 4.8rem;
       height: 4.8rem;
-      margin-bottom: 2rem;
+      /* margin-bottom: 2rem; */
       position: absolute;
     }
 
@@ -80,7 +78,7 @@ export const ContainerMobile = styled.div<ContainerMobileProps>`
       border-radius: 0 100% 0 0;
       border-right: 0.3rem solid var(--color-text-complement);
       border-top: 0.3rem solid var(--color-text-complement);
-      top: -2.5rem;
+      top: -0.6rem;
       left: -4.6rem;
       position: relative;
       background: #ffffff;
@@ -93,17 +91,10 @@ export const ContainerMobile = styled.div<ContainerMobileProps>`
       border-radius: 100% 0 0 0;
       border-left: 0.3rem solid var(--color-text-complement);
       border-top: 0.3rem solid var(--color-text-complement);
-      top: -2.5rem;
+      top: -0.6rem;
       left: 4.6rem;
       position: relative;
       background: #ffffff;
     }
   }
-
-  ${({ isSamsungBrowser }) =>
-    isSamsungBrowser &&
-    css`
-      margin-top: -0.8em;
-      margin-bottom: 0;
-    `}
 `;

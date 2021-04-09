@@ -22,8 +22,6 @@ const Footer = ({ changeStep }: FooterProps) => {
     '--color-text-complement',
   ]);
 
-  const isSamsungBrowser = navigator.userAgent.indexOf('SamsungBrowser') > -1;
-
   function handleChangeStep(step: number): void {
     const newButtonColors = buttonsColors.map((_, index) => {
       if (step === index) return '--color-primary';
@@ -35,7 +33,7 @@ const Footer = ({ changeStep }: FooterProps) => {
   }
 
   return (
-    <ContainerMobile isSamsungBrowser={isSamsungBrowser}>
+    <ContainerMobile>
       <div>
         <ButtonIcon
           icon={AiFillHome}
