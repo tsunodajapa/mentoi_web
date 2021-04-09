@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { IoChatbubblesOutline, IoBookOutline } from 'react-icons/io5';
 import { BsPersonFill } from 'react-icons/bs';
@@ -21,6 +21,11 @@ const Footer = ({ changeStep }: FooterProps) => {
     '--color-text-complement',
     '--color-text-complement',
   ]);
+
+  useEffect(() => {
+    document.body.style.overflow =
+      window.screen.width < 475 ? 'hidden' : 'auto';
+  }, []);
 
   function handleChangeStep(step: number): void {
     const newButtonColors = buttonsColors.map((_, index) => {

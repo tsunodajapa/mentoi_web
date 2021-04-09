@@ -47,6 +47,8 @@ const Feed = () => {
             <SectionBordered border={BorderTypes.BOTTOM}>
               <QuestionBox />
               <QuestionBox />
+              <QuestionBox />
+              <QuestionBox />
               <OnboardingTemplate
                 title="Teste Card"
                 description="teste mensagem 2"
