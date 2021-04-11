@@ -4,9 +4,8 @@ import {
   useRef,
   useState,
   useCallback,
+  ReactNode,
 } from 'react';
-
-import { IconBaseProps } from 'react-icons';
 
 import { FiAlertCircle } from 'react-icons/fi';
 
@@ -18,11 +17,10 @@ interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   id: string;
   name: string;
   label?: string;
-
-  icon?: React.ComponentType<IconBaseProps>;
+  children?: ReactNode;
 }
 
-const TextArea = ({ id, label, name, icon: Icon, ...rest }: TextAreaProps) => {
+const TextArea = ({ id, label, name, children, ...rest }: TextAreaProps) => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
   const [isFocused, setIsFocused] = useState(false);
@@ -60,8 +58,6 @@ const TextArea = ({ id, label, name, icon: Icon, ...rest }: TextAreaProps) => {
       {label && <label htmlFor={id}>{label}</label>}
 
       <div>
-        {/* {Icon && <Icon size={28} />} */}
-
         <textarea
           id={id}
           onFocus={handleInputFocus}
@@ -76,6 +72,7 @@ const TextArea = ({ id, label, name, icon: Icon, ...rest }: TextAreaProps) => {
             <FiAlertCircle color="#c53030" size={20} />
           </Error>
         )}
+        {children}
       </div>
     </Container>
   );

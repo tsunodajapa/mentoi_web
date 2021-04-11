@@ -19,7 +19,9 @@ const MakeQuestionMobile = () => {
           cols={30}
           rows={10}
           placeholder="PERGUNTA"
-        />
+        >
+          <Dropzone onFileUploaded={() => console.log()} />
+        </TextArea>
 
         <Select
           id="interest_area"
@@ -29,7 +31,6 @@ const MakeQuestionMobile = () => {
           multiSelect
         />
 
-        <Dropzone onFileUploaded={() => console.log()} />
         <Button text="PUBLICAR" />
       </Form>
     </Container>

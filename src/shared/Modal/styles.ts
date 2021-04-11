@@ -42,6 +42,7 @@ export const Container = styled.div<ContainerProps>`
   transition: opacity 300ms ease-in;
   pointer-events: auto;
   opacity: 1;
+  padding: 1.5rem;
 
   ${({ visible }) =>
     !visible &&

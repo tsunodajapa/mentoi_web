@@ -1,39 +1,72 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  height: 300px;
-  background: #e1faec;
-  border-radius: 10px;
+  div {
+  }
+`;
 
+export const FilesPreviewContainer = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 48px;
-  outline: 0;
+  flex-wrap: wrap;
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  padding-right: 4.2rem;
+  margin: 1rem;
+
+  img,
+  div,
+  button {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    background: var(--color-primary);
+
+    color: var(--color-text-in-primary);
+    font-size: 2rem;
+
+    border: 2px solid var(--color-primary);
+    border-radius: 0.8rem;
   }
 
-  p {
-    width: calc(100% - 60px);
-    height: calc(100% - 60px);
-    border-radius: 10px;
-    border: 1px dashed #4ecb79;
+  button:after {
+    content: '';
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    background: #0000002b;
+    top: -3px;
+    left: -2px;
+    border-radius: 0.8rem;
+  }
 
+  > div {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #333;
+
+    svg:first-child {
+      width: 75% !important;
+      height: 75%;
+      margin-left: 0 !important;
+    }
+
+    svg:last-child {
+      position: absolute;
+      top: -8px;
+      right: -11px;
+      background: var(--color-red);
+      border-radius: 50%;
+      transform: scale(0.8);
+    }
   }
 
-  p svg {
-    color: #4ecb79;
-    width: 24px;
-    height: 24px;
-    margin-bottom: 8px;
+  > div:not(:first-child),
+  > div:not(:nth-child(5n)),
+  button:not(:nth-child(5n)) {
+    margin-left: 1rem;
+  }
+  > div:nth-child(n + 5) {
+    margin-top: 1rem;
   }
 `;
