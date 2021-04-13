@@ -60,6 +60,7 @@ const OnboardingProvider: React.FC = ({ children }) => {
           : top + clientHeight + 10;
 
       const modalStyles = {
+        position: 'absolute',
         background: 'none',
         top: topModal,
         left: left + clientWidth - 300,

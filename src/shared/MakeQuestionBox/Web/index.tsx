@@ -18,7 +18,11 @@ const MakeQuestionWeb = () => {
         QUAL SUA DÚVIDA?
       </Container>
 
-      <Modal isOpenModal={isOpenModal} handleToggleModal={handleToggleModal}>
+      <Modal
+        isOpenModal={isOpenModal}
+        handleToggleModal={handleToggleModal}
+        styles={{ width: '45rem' }}
+      >
         <MakeQuestionBox />
       </Modal>
     </>

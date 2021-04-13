@@ -1,13 +1,14 @@
 import subjects from '@/data/subjects';
-import { Form } from '@unform/web';
 
 import Button from '../Button';
 import { Input, TextArea, Select } from '../FormElements';
 import Dropzone from '../Dropzone';
 
+import { FormQuestion } from './styles';
+
 const MakeQuestionBox = () => {
   return (
-    <Form onSubmit={() => console.log('enviar')}>
+    <FormQuestion onSubmit={() => console.log('enviar')}>
       <Input id="title" name="title" placeholder="TÍTULO" />
 
       <TextArea
@@ -29,7 +30,7 @@ const MakeQuestionBox = () => {
       />
 
       <Button text="PUBLICAR" />
-    </Form>
+    </FormQuestion>
   );
 };
 

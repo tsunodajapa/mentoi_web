@@ -4,6 +4,8 @@ export interface ModalStyles {
   background?: string;
   left?: number;
   top?: number;
+  width?: number | string;
+  position?: string;
 }
 
 interface ContainerProps {
@@ -18,19 +20,17 @@ export const Container = styled.div<ContainerProps>`
   z-index: 1001;
 
   ${({ styles }) =>
-    styles
-      ? css`
-          position: absolute;
-          width: auto !important;
-          height: auto !important;
-          background: ${styles.background};
-          top: ${styles.top}px;
-          left: ${styles.left}px;
-        `
-      : css`
-          background: rgba(0, 0, 0, 0.9);
-        `}
+    styles &&
+    css`
+      position: ${styles.position} !important;
+      width: ${styles.position && 'auto'} !important;
+      height: ${styles.position && 'auto'} !important;
+      background: ${styles.background} !important;
+      top: ${styles.top}px !important;
+      left: ${styles.left}px !important;
+    `}
 
+  background: rgba(0, 0, 0, 0.9);
   width: 100vw;
   height: 100vh;
 
@@ -59,6 +59,12 @@ export const Container = styled.div<ContainerProps>`
     background-color: var(--color-background);
     min-width: 30rem;
     min-height: 15rem;
+
+    ${({ styles }) =>
+      styles &&
+      css`
+        min-width: ${styles.width};
+      `}
 
     border-radius: 1.5rem;
     padding: 1.5rem;
