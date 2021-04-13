@@ -14,6 +14,7 @@ interface ContainerProps {
 export const Container = styled.div<ContainerProps>`
   position: fixed;
   top: 0;
+  left: 0;
   z-index: 1001;
 
   ${({ styles }) =>
@@ -56,11 +57,11 @@ export const Container = styled.div<ContainerProps>`
 
     display: flex;
     background-color: var(--color-background);
-    min-width: 300px;
-    min-height: 150px;
+    min-width: 30rem;
+    min-height: 15rem;
 
-    border-radius: 15px;
-    padding: 15px;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
 
     > button {
       position: absolute;
@@ -69,8 +70,8 @@ export const Container = styled.div<ContainerProps>`
 
       > svg {
         background-color: var(--color-primary);
-        width: 25px;
-        height: 25px;
+        width: 2.5rem;
+        height: 2.5rem;
 
         border-radius: 50%;
         color: var(--color-text-in-primary);
@@ -78,8 +79,8 @@ export const Container = styled.div<ContainerProps>`
     }
 
     @media (max-width: 420px) {
-      min-width: 200px;
-      min-height: 150px;
+      min-width: 20rem;
+      min-height: 15rem;
     }
   }
 `;

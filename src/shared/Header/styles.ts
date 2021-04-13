@@ -8,7 +8,7 @@ export const Header = styled.header`
   position: sticky;
   top: 0;
 
-  > div {
+  > div:first-child {
     max-width: 1080px;
 
     display: flex;

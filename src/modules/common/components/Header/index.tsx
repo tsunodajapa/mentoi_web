@@ -13,7 +13,7 @@ import Logo from '@/assets/logo_mentoi.svg';
 import MentoiIcon from '@/assets/icon_mentoi.svg';
 
 import OnboardingTemplate from '@/shared/Onboarding/OnboardingTemplate';
-import { Container, ContainerMobile } from './styles';
+import { Container } from './styles';
 
 interface HeaderProps {
   actualNameStep: string;
@@ -23,44 +23,42 @@ const Header = ({ actualNameStep }: HeaderProps) => {
   const formRef = useRef<FormHandles>(null);
 
   return (
-    <>
-      <Container>
+    <Container>
+      <div>
+        <Logo />
+        <Form
+          onSubmit={() => {
+            console.log('TEste');
+          }}
+          ref={formRef}
+        >
+          <Input
+            id="search"
+            type="text"
+            name="search"
+            placeholder="PESQUISAR"
+            icon={IoSearch}
+          />
+        </Form>
+
         <div>
-          <Logo />
-          <Form
-            onSubmit={() => {
-              console.log('TEste');
-            }}
-            ref={formRef}
-          >
-            <Input
-              id="search"
-              type="text"
-              name="search"
-              placeholder="PESQUISAR"
-              icon={IoSearch}
-            />
-          </Form>
-
-          <div>
-            <OnboardingTemplate title="Teste" description="teste mensagem 1">
-              <ButtonIcon icon={VscBell} />
-            </OnboardingTemplate>
-            {/* <ButtonIcon icon={IoChatbubblesOutline} /> */}
-            <ButtonIcon icon={BsPersonFill} />
-            <ButtonIcon icon={BsGearWide} />
-          </div>
+          <OnboardingTemplate title="Teste" description="teste mensagem 1">
+            <ButtonIcon icon={VscBell} />
+          </OnboardingTemplate>
+          {/* <ButtonIcon icon={IoChatbubblesOutline} /> */}
+          <ButtonIcon icon={BsPersonFill} />
+          <ButtonIcon icon={BsGearWide} />
         </div>
-      </Container>
+      </div>
 
-      <ContainerMobile>
+      <div>
         <div>
           <MentoiIcon />
           <span>{actualNameStep}</span>
         </div>
         <IoSearch />
-      </ContainerMobile>
-    </>
+      </div>
+    </Container>
   );
 };
 

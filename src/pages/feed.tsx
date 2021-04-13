@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Header from '@/modules/common/components/Header';
 import Carousel from '@/shared/Carousel';
 import ContentBox from '@/shared/ContentBox';
-import MakeQuestionBox from '@/shared/MakeQuestionBox';
 import Onboarding from '@/shared/Onboarding';
 import OnboardingTemplate from '@/shared/Onboarding/OnboardingTemplate';
 import QuestionBox from '@/shared/QuestionBox';
@@ -18,7 +17,8 @@ import { Circle } from '@/shared/Circle';
 import Footer from '@/modules/common/components/Footer';
 
 import subjects from 'data/subjects';
-import MakeQuestionMobile from '@/shared/MakeQuestionMobile';
+import MakeQuestionWeb from '@/shared/MakeQuestionBox/Web';
+import MakeQuestionMobile from '@/shared/MakeQuestionBox/Mobile';
 
 const Feed = () => {
   const [actualStep, setActualStep] = useState(0);
@@ -41,7 +41,7 @@ const Feed = () => {
         <div>
           <div>
             <SectionBordered border={BorderTypes.TOP}>
-              <MakeQuestionBox />
+              <MakeQuestionWeb />
             </SectionBordered>
             <Carousel data={subjects} onlyWeb />
             <SectionBordered border={BorderTypes.BOTTOM}>
