@@ -5,6 +5,13 @@ export const Container = styled.button`
     display: none;
   }
 
+  > div {
+    position: relative;
+    width: 4rem;
+    height: 4rem;
+    margin-right: 0.8rem;
+  }
+
   width: 100%;
   background: var(--color-background);
 

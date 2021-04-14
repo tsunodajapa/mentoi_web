@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { Circle } from '@/shared/Circle';
 import Modal from '../../Modal';
 import { Container } from './styles';
 import MakeQuestionBox from '..';
@@ -14,7 +15,9 @@ const MakeQuestionWeb = () => {
   return (
     <>
       <Container type="button" onClick={handleToggleModal}>
-        <div />
+        <div>
+          <Circle size={100} />
+        </div>
         QUAL SUA DÚVIDA?
       </Container>
 

@@ -37,6 +37,10 @@ const Select = ({
   );
   const [options, setOptions] = useState<Option[]>(data);
   const [isChecked, setIsChecked] = useState(false);
+  const [optionsPosition, setOptionsPosition] = useState<'bottom' | 'top'>(
+    'top',
+  );
+
   const { fieldName, defaultValue, error, registerField } = useField(name);
   const labelRef = useRef<HTMLLabelElement>(null);
 
@@ -52,6 +56,14 @@ const Select = ({
       },
     });
   }, [fieldName, registerField, multiSelect, multiSelectedOptions]);
+
+  useEffect(() => {
+    const maxOptionsPosition = labelRef.current.getBoundingClientRect().y + 250;
+
+    if (maxOptionsPosition > document.body.offsetHeight) {
+      setOptionsPosition('bottom');
+    }
+  }, []);
 
   const handleChangeChecked = useCallback((action: boolean): void => {
     setIsChecked(action);
@@ -128,12 +140,7 @@ const Select = ({
     <Container hasLabel={!!label}>
       {label && <label htmlFor={id}>{label}</label>}
 
-      <select name="" id={`select-mobile-${id}`}>
-        <option value="">Português</option>
-        <option value="">Matematica</option>
-      </select>
-
-      <SelectDesktop>
+      <SelectDesktop optionsPosition={optionsPosition}>
         <input
           type="checkbox"
           id={id}
