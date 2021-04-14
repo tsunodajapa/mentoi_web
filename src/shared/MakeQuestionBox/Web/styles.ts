@@ -24,3 +24,31 @@ export const Container = styled.button`
   font-size: 2.4rem;
   font-weight: 700;
 `;
+
+export const ModalHeader = styled.div`
+  display: flex;
+  margin-bottom: 0.8rem;
+
+  div:first-child {
+    position: relative;
+    width: 4rem;
+    height: 4rem;
+
+    margin-right: 0.8rem;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  strong {
+    font-weight: bold;
+    font-size: 1.6rem;
+  }
+
+  span {
+    color: var(--color-text-complement);
+    font-size: 1.4rem;
+  }
+`;

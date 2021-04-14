@@ -56,6 +56,7 @@ export const Container = styled.div<ContainerProps>`
     position: relative;
 
     display: flex;
+    flex-direction: column;
     background-color: var(--color-background);
     min-width: 30rem;
     min-height: 15rem;

@@ -6,14 +6,22 @@ import Dropzone from '../Dropzone';
 
 import { FormQuestion } from './styles';
 
-const MakeQuestionBox = () => {
+interface MakeQuestionBoxProps {
+  alternativeId?: string;
+}
+
+const MakeQuestionBox = ({ alternativeId = 'web' }: MakeQuestionBoxProps) => {
+  function handleSubmit(data) {
+    console.log(data);
+  }
+
   return (
-    <FormQuestion onSubmit={() => console.log('enviar')}>
+    <FormQuestion onSubmit={handleSubmit}>
       <Input id="title" name="title" placeholder="TÍTULO" />
 
       <TextArea
         name="question"
-        id="question"
+        id={`question-${alternativeId}`}
         cols={30}
         rows={10}
         placeholder="PERGUNTA"
@@ -22,14 +30,14 @@ const MakeQuestionBox = () => {
       </TextArea>
 
       <Select
-        id="interest_area"
+        id={`interest_area-${alternativeId}`}
         name="interest_area"
         placeHolder="Selecione área de interesse"
         data={subjects}
         multiSelect
       />
 
-      <Button text="PUBLICAR" />
+      <Button type="submit" text="PUBLICAR" />
     </FormQuestion>
   );
 };

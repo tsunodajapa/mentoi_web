@@ -172,7 +172,7 @@ const Select = ({
           </label>
         )}
 
-        <div id="selectOptions">
+        <div>
           {options.map(item => (
             <button
               key={item.name}

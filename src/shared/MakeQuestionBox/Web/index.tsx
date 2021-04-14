@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { Circle } from '@/shared/Circle';
 import Modal from '../../Modal';
-import { Container } from './styles';
+import { Container, ModalHeader } from './styles';
 import MakeQuestionBox from '..';
 
 const MakeQuestionWeb = () => {
@@ -26,6 +26,15 @@ const MakeQuestionWeb = () => {
         handleToggleModal={handleToggleModal}
         styles={{ width: '45rem' }}
       >
+        <ModalHeader>
+          <div>
+            <Circle size={100} />
+          </div>
+          <div>
+            <strong>Professor CZ</strong>
+            <span>@professorczx</span>
+          </div>
+        </ModalHeader>
         <MakeQuestionBox />
       </Modal>
     </>

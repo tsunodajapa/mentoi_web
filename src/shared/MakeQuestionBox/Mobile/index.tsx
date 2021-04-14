@@ -4,7 +4,7 @@ import MakeQuestionBox from '..';
 const MakeQuestionMobile = () => {
   return (
     <Container>
-      <MakeQuestionBox />
+      <MakeQuestionBox alternativeId="mob" />
     </Container>
   );
 };
