@@ -1,6 +1,6 @@
 import { Container } from './styles';
 
-import { ToastMessage } from '../../hooks/toast';
+import { ToastMessage } from '../../../hooks/toast';
 import Toast from './Toast';
 
 interface ToastContainerProps {

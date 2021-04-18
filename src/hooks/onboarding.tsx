@@ -1,5 +1,5 @@
-import { ModalStyles } from '@/shared/Modal/styles';
-import { ItemProps } from '@/shared/Onboarding/styles';
+import { ModalStyles } from '@/shared/components/Modal/styles';
+import { ItemProps } from '@/shared/components/Onboarding/styles';
 import { createContext, useCallback, useContext, useState } from 'react';
 import { uuid } from 'uuidv4';
 

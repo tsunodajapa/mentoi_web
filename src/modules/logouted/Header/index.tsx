@@ -2,8 +2,8 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 import Logo from '@/assets/logo_mentoi.svg';
-import Button from '@/shared/Button';
-import Modal from '@/shared/Modal';
+import Button from '@/shared/components/Button';
+import Modal from '@/shared/components/Modal';
 
 import { Container } from './styles';
 import LoginModal from '../LoginModal';

@@ -8,8 +8,8 @@ import { useAuth } from '@/hooks/auth';
 import { useToast } from '@/hooks/toast';
 
 import { FiLock, FiMail } from 'react-icons/fi';
-import Button from '@/shared/Button';
-import Input from '@/shared/FormElements/Input';
+import Button from '@/shared/components/Button';
+import { Input } from '@/shared/components/FormElements';
 import Logo from '@/assets/logo_mentoi.svg';
 import { Container } from './styles';
 

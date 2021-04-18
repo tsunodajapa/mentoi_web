@@ -4,8 +4,9 @@ import styled from 'styled-components';
 export const FormQuestion = styled(Form)`
   width: 100%;
 
-  button {
+  > button {
     width: 100%;
+    padding: 0.6rem 1.5rem;
     margin-top: 0.8rem;
   }
 

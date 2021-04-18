@@ -8,10 +8,10 @@ import * as Yup from 'yup';
 import { HiOutlineArrowLeft } from 'react-icons/hi';
 import { FaMars, FaVenus } from 'react-icons/fa';
 
-import Button from '@/shared/Button';
-import ButtonSecondary from '@/shared/ButtonSecondary';
-import { Input, Radio, Select } from '@/shared/FormElements';
-import Modal from '@/shared/Modal';
+import Button from '@/shared/components/Button';
+import ButtonSecondary from '@/shared/components/ButtonSecondary';
+import { Input, Radio, Select } from '@/shared/components/FormElements';
+import Modal from '@/shared/components/Modal';
 
 import { Container, Left, Right, Genero, Footer } from '@/styles/pages/signup';
 

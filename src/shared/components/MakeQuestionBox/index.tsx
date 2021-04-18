@@ -20,8 +20,8 @@ const MakeQuestionBox = ({ alternativeId = 'web' }: MakeQuestionBoxProps) => {
       <Input id="title" name="title" placeholder="TÍTULO" />
 
       <TextArea
-        name="question"
-        id={`question-${alternativeId}`}
+        name="description"
+        id={`description-${alternativeId}`}
         cols={30}
         rows={10}
         placeholder="PERGUNTA"

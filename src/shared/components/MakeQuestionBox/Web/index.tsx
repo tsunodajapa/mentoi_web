@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Circle } from '@/shared/Circle';
+import { Circle } from '@/shared/components/Circle';
 import Modal from '../../Modal';
 import { Container, ModalHeader } from './styles';
 import MakeQuestionBox from '..';

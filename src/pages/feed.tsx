@@ -1,24 +1,26 @@
 import Image from 'next/image';
 
 import Header from '@/modules/common/components/Header';
-import Carousel from '@/shared/Carousel';
-import ContentBox from '@/shared/ContentBox';
-import Onboarding from '@/shared/Onboarding';
-import OnboardingTemplate from '@/shared/Onboarding/OnboardingTemplate';
-import QuestionBox from '@/shared/QuestionBox';
-import SectionBordered, { BorderTypes } from '@/shared/SectionBordered';
+import Carousel from '@/shared/components/Carousel';
+import ContentBox from '@/shared/components/ContentBox';
+import Onboarding from '@/shared/components/Onboarding';
+import OnboardingTemplate from '@/shared/components/Onboarding/OnboardingTemplate';
+import QuestionBox from '@/shared/components/QuestionBox';
+import SectionBordered, {
+  BorderTypes,
+} from '@/shared/components/SectionBordered';
 
 import { Container, Profile, Row } from '@/styles/pages/feed';
 
 import { useState } from 'react';
 
-import ProgressCircle from '@/shared/ProgressCircle';
-import { Circle } from '@/shared/Circle';
+import ProgressCircle from '@/shared/components/ProgressCircle';
+import { Circle } from '@/shared/components/Circle';
 import Footer from '@/modules/common/components/Footer';
 
 import subjects from 'data/subjects';
-import MakeQuestionWeb from '@/shared/MakeQuestionBox/Web';
-import MakeQuestionMobile from '@/shared/MakeQuestionBox/Mobile';
+import MakeQuestionWeb from '@/shared/components/MakeQuestionBox/Web';
+import MakeQuestionMobile from '@/shared/components/MakeQuestionBox/Mobile';
 
 const Feed = () => {
   const [actualStep, setActualStep] = useState(0);
