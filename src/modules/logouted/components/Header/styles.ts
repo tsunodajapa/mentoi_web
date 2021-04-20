@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Header } from '@/shared/Header/styles';
+import { Header } from '@/shared/components/Header/styles';
 
 export const Container = styled(Header)`
   div {

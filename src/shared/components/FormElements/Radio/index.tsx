@@ -33,7 +33,7 @@ const Radio = ({
       getValue(refs: HTMLInputElement[]) {
         const checked = refs.find(ref => ref.checked);
 
-        return checked ? checked.value : null;
+        return checked ? checked.id : null;
       },
       setValue(refs: HTMLInputElement[], value: string) {
         const item = refs.find(ref => ref.value === value);

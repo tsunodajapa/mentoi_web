@@ -1,4 +1,5 @@
 import { useCallback, useRef } from 'react';
+import { useRouter } from 'next/router';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
@@ -12,6 +13,7 @@ import Button from '@/shared/components/Button';
 import { Input } from '@/shared/components/FormElements';
 import Logo from '@/assets/logo_mentoi.svg';
 import { Container } from './styles';
+import { CreateSessionValidator } from '../../validators/CreateSession';
 
 interface SignInFormData {
   email: string;
@@ -21,49 +23,37 @@ interface SignInFormData {
 const LoginModal = () => {
   const formRef = useRef<FormHandles>(null);
 
+  const router = useRouter();
   const { signIn } = useAuth();
   const { addToast } = useToast();
 
-  const handleSubmit = useCallback(
-    async (data: SignInFormData) => {
-      try {
-        formRef.current?.setErrors({});
+  async function handleSubmit(data: SignInFormData) {
+    try {
+      formRef.current?.setErrors({});
 
-        const schema = Yup.object().shape({
-          email: Yup.string()
-            .required('E-mail obrigatório')
-            .email('Digite um e-mail válido'),
-          password: Yup.string().required('Senha obrigatória'),
-        });
+      CreateSessionValidator().validate(data, {
+        abortEarly: false,
+      });
 
-        await schema.validate(data, {
-          abortEarly: false,
-        });
+      await signIn(data);
 
-        await signIn({
-          email: data.email,
-          password: data.password,
-        });
+      router.push('feed');
+    } catch (error) {
+      if (error instanceof Yup.ValidationError) {
+        const erros = getValidationErrors(error);
 
-        alert('login sucesso');
-      } catch (error) {
-        if (error instanceof Yup.ValidationError) {
-          const erros = getValidationErrors(error);
+        formRef.current?.setErrors(erros);
 
-          formRef.current?.setErrors(erros);
-
-          return;
-        }
-
-        addToast({
-          type: 'error',
-          title: 'Erro na autenticação',
-          description: 'Ocorreu um erro ao fazer login, cheque as credenciais',
-        });
+        return;
       }
-    },
-    [signIn, addToast],
-  );
+
+      addToast({
+        type: 'error',
+        title: 'Erro na autenticação',
+        description: 'Ocorreu um erro ao fazer login, cheque as credenciais',
+      });
+    }
+  }
 
   return (
     <Container>

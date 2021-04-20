@@ -96,10 +96,14 @@ export const Container = styled.div<ToastProps>`
   div {
     flex: 1;
 
+    strong {
+      font-weight: bold;
+    }
+
     p {
       margin-top: 0.4rem;
       font-size: 1rem.4rem;
-      opacity: 0.8;
+
       line-height: 2rem;
     }
   }

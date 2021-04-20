@@ -5,9 +5,9 @@ import IconKnowledge from '@/assets/icon_knowledge.svg';
 import IconMortaboard from '@/assets/icon_mortaboard.svg';
 import Logo from '@/assets/logo_mentoi_two_line.svg';
 
-import Header from '@/modules/logouted/Header';
-import InputAndSelect from '@/shared/FormElements/InputAndSelect';
-import Carousel from '@/shared/Carousel';
+import Header from '@/modules/logouted/components/Header';
+import InputAndSelect from '@/shared/components/FormElements/InputAndSelect';
+import Carousel from '@/shared/components/Carousel';
 
 import {
   Container,

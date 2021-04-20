@@ -3,7 +3,7 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import * as Yup from 'yup';
+import { ValidationError } from 'yup';
 
 import { HiOutlineArrowLeft } from 'react-icons/hi';
 import { FaMars, FaVenus } from 'react-icons/fa';
@@ -18,12 +18,15 @@ import { Container, Left, Right, Genero, Footer } from '@/styles/pages/signup';
 import Logo from '@/assets/logo_mentoi_white.svg';
 import LogoWithColor from '@/assets/logo_mentoi_two_line.svg';
 
-import scolarity from '@/data/scolarity';
+import { Scholarity } from '@/shared/data/Scholarity';
 import subjects from '@/data/subjects';
 import getValidationErrors from '@/utils/getValidationErros';
 
 import { useToast } from '@/hooks/toast';
-import LoginModal from '@/modules/logouted/LoginModal';
+import LoginModal from '@/modules/logouted/components/LoginModal';
+
+import { CreateUserValidator } from '@/modules/logouted/validators/CreateUser';
+import { CreateUserData, useAuth } from '@/hooks/auth';
 
 const SignUp = () => {
   const formRef = useRef<FormHandles>(null);
@@ -32,6 +35,7 @@ const SignUp = () => {
 
   const router = useRouter();
   const { addToast } = useToast();
+  const { createUser } = useAuth();
 
   function handleToggleModal() {
     setIsOpenModal(!isOpenModal);
@@ -49,37 +53,15 @@ const SignUp = () => {
     return someDate;
   }, []);
 
-  async function handleSubmit(data) {
+  async function handleSubmit(data: CreateUserData) {
     try {
       formRef.current?.setErrors({});
 
-      const schema = Yup.object().shape({
-        name: Yup.string().required('Nome Obrigatório'),
-        username: Yup.string()
-          .min(5, 'No mínimo 5 digitos')
-          .required('Username Obrigatório'),
-        birthDate: Yup.date()
-          .max(birthDateMax, 'Você deve ter no mínimo 6 anos')
-          .typeError('Data de nascimento obrigatório'),
-        gender: Yup.string().oneOf(
-          ['male', 'female', 'other'],
-          'Selecione uma opção',
-        ),
-        email: Yup.string()
-          .required('E-mail obrigatório')
-          .email('Digite um e-mail válido'),
-        password: Yup.string().min(6, 'No mínimo 6 dígitos'),
-        confirm_password: Yup.string().oneOf(
-          [Yup.ref('password'), undefined],
-          'Confirmação incorreta',
-        ),
-      });
-
-      await schema.validate(data, {
+      CreateUserValidator(birthDateMax).validate(data, {
         abortEarly: false,
       });
 
-      // await api.post('/users', data);
+      await createUser(data);
 
       addToast({
         type: 'success',
@@ -87,28 +69,45 @@ const SignUp = () => {
         description: 'Você será redirecionado para nossa página inicial!',
       });
 
-      // history.push('/');
+      router.push('feed');
     } catch (error) {
-      if (error instanceof Yup.ValidationError) {
+      let description: string;
+      let title: string;
+
+      if (error instanceof ValidationError) {
         const erros = getValidationErrors(error);
 
         formRef.current?.setErrors(erros);
 
-        addToast({
-          type: 'error',
-          title: 'Campos obrigatórios',
-          description:
-            'Preencha todos campos obrigatórios para concluir o cadastro',
-        });
-
-        setActualStep(1);
+        title = 'Campos obrigatórios';
+        description =
+          'Preencha todos campos obrigatórios para concluir o cadastro';
       } else {
-        addToast({
-          type: 'error',
-          title: 'Erro na cadastro',
-          description: 'Ocorreu um erro ao fazer cadastro, tente novamente',
-        });
+        console.log(error.response);
+
+        const message = error.response?.data?.message || 'error';
+
+        title = 'Erro na cadastro';
+
+        switch (true) {
+          case message.includes('Email'):
+            description = 'O e-mail informado já esta sendo utilizado';
+            break;
+          case message.includes('NickName'):
+            description = 'O Nick Name informado já esta sendo utilizado';
+            break;
+          default:
+            description = 'Ocorreu um erro ao fazer cadastro, tente novamente';
+        }
       }
+
+      addToast({
+        type: 'error',
+        title,
+        description,
+      });
+
+      setActualStep(1);
     }
   }
 
@@ -159,12 +158,12 @@ const SignUp = () => {
                   placeholder="Digite seu nome completo"
                 />
 
-                <Input id="username" name="username" label="Username" />
+                <Input id="nickName" name="nickName" label="Nick name" />
 
                 <Input
                   type="date"
-                  id="birthDate"
-                  name="birthDate"
+                  id="dateBirth"
+                  name="dateBirth"
                   label="Data de nascimento (opcional)"
                 />
 
@@ -173,9 +172,9 @@ const SignUp = () => {
                   customComponent={Genero}
                   name="gender"
                   items={[
-                    { id: 'male', descrption: 'Masculino', icon: FaMars },
-                    { id: 'female', descrption: 'Feminino', icon: FaVenus },
-                    { id: 'other', descrption: 'Não declarar' },
+                    { id: 'MALE', descrption: 'Masculino', icon: FaMars },
+                    { id: 'FEMALE', descrption: 'Feminino', icon: FaVenus },
+                    { id: 'OTHER', descrption: 'Não declarar' },
                   ]}
                 />
 
@@ -190,23 +189,23 @@ const SignUp = () => {
 
                 <Input
                   type="password"
-                  id="confirm_password"
-                  name="confirm_password"
+                  id="passwordConfirmation"
+                  name="passwordConfirmation"
                   label="Confirmar sua senha"
                 />
               </div>
 
               <div>
                 <Select
-                  id="scolarity"
-                  name="scolarity"
+                  id="scholarity"
+                  name="scholarity"
                   label="Escolaridade (opcional)"
-                  data={scolarity}
+                  data={Scholarity}
                 />
 
                 <Select
-                  id="interest_area"
-                  name="interest_area"
+                  id="areasInterest"
+                  name="areasInterest"
                   label="Área(s) de interesse (opcional)"
                   data={subjects}
                   multiSelect

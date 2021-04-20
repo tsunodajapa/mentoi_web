@@ -11,6 +11,7 @@ interface SelectProps {
   name: string;
   data: {
     name: string;
+    key?: string;
     color?: string;
   }[];
   multiSelect?: boolean;
@@ -18,6 +19,7 @@ interface SelectProps {
 
 interface Option {
   name: string;
+  key?: string;
   color?: string;
   selected?: boolean;
   selectedSize?: number;
@@ -31,7 +33,9 @@ const Select = ({
   multiSelect,
   placeHolder = 'Selecione',
 }: SelectProps) => {
-  const [selectedOption, setSelectedOption] = useState(placeHolder);
+  const [selectedOption, setSelectedOption] = useState<Option>({
+    name: placeHolder,
+  });
   const [multiSelectedOptions, setMultiSelectedOptions] = useState<Option[]>(
     [] as Option[],
   );
@@ -45,25 +49,30 @@ const Select = ({
   const labelRef = useRef<HTMLLabelElement>(null);
 
   useEffect(() => {
-    registerField({
-      name: fieldName,
-      ref: labelRef.current,
-      getValue: ref => {
-        if (multiSelect) {
-          return multiSelectedOptions.map(item => item.name);
-        }
-        return ref.innerHTML;
-      },
-    });
-  }, [fieldName, registerField, multiSelect, multiSelectedOptions]);
-
-  useEffect(() => {
     const maxOptionsPosition = labelRef.current.getBoundingClientRect().y + 250;
 
     if (maxOptionsPosition > document.body.offsetHeight) {
       setOptionsPosition('bottom');
     }
-  }, []);
+  }, [placeHolder]);
+
+  useEffect(() => {
+    registerField({
+      name: fieldName,
+      ref: labelRef.current,
+      getValue: () => {
+        if (multiSelect) return multiSelectedOptions.map(item => item.name);
+        if ('key' in selectedOption) return selectedOption.key;
+        return null;
+      },
+    });
+  }, [
+    fieldName,
+    registerField,
+    multiSelect,
+    multiSelectedOptions,
+    selectedOption,
+  ]);
 
   const handleChangeChecked = useCallback((action: boolean): void => {
     setIsChecked(action);
@@ -132,7 +141,7 @@ const Select = ({
 
       selected ? removeItemMultiSelect(selected) : addItemMultiSelect(item);
     } else {
-      setSelectedOption(item.name);
+      setSelectedOption(item);
     }
   }
 
@@ -150,12 +159,14 @@ const Select = ({
 
         {!multiSelect && (
           <label ref={labelRef} htmlFor={id}>
-            {selectedOption}
+            {selectedOption && selectedOption.name}
           </label>
         )}
         {multiSelect && (
           <label ref={labelRef} htmlFor={id}>
-            {!multiSelectedOptions.length && selectedOption}
+            {!multiSelectedOptions.length &&
+              selectedOption &&
+              selectedOption.name}
 
             {multiSelectedOptions.map(item => (
               <MultiSelectInput

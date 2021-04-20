@@ -1,14 +1,38 @@
-import { createContext, useCallback, useState, useContext } from 'react';
+import { createContext, useState, useContext, useEffect } from 'react';
+import Cookies from 'js-cookie';
+
+import * as authServices from '../modules/logouted/services/authServices';
 import api from '../shared/services/api';
 
-interface User {
+export interface User {
   id: string;
   name: string;
-  avatar_url: string;
   email: string;
+  nickName: string;
+  displayName?: string;
+  verified?: boolean;
+  scholarity: string;
+  permission: string;
+  areasINterest: {
+    id: string;
+    name: string;
+  }[];
+  // avatar_url: string;
 }
 
-interface AuthState {
+export interface CreateUserData {
+  name: string;
+  email: string;
+  nickname: string;
+  password: string;
+  passwordConfirmation: string;
+  scolarity: string;
+  gender: 'MALE' | 'FEMALE' | 'OTHER';
+  dateBirth?: Date;
+  areasInterest?: string[];
+}
+
+export interface AuthState {
   token: string;
   user: User;
 }
@@ -20,7 +44,9 @@ interface SignInCredentials {
 
 interface AuthContextData {
   user: User;
+  loading: boolean;
   signIn(credentials: SignInCredentials): Promise<void>;
+  createUser(data: CreateUserData): Promise<void>;
   signOut(): void;
   updateUser(user: User): void;
 }
@@ -34,54 +60,62 @@ export function useAuth(): AuthContextData {
 }
 
 export const AuthProvider: React.FC = ({ children }) => {
-  const [data, setData] = useState<AuthState>(() => {
-    // const token = localStorage.getItem('@GoBarber:token');
-    // const user = localStorage.getItem('@GoBarber:user');
+  const [user, setUser] = useState<User>();
+  const [loading, setLoading] = useState(true);
 
-    // if (token && user) {
-    //   api.defaults.headers.authorization = `Bearer ${token}`;
+  useEffect(() => {
+    async function loadUserFromCookies() {
+      const token = Cookies.get('token');
+      if (token) {
+        api.defaults.headers.Authorization = `Bearer ${token}`;
 
-    //   return { token, user: JSON.parse(user) };
-    // }
+        const userResponse = await authServices.getUser();
 
-    return {} as AuthState;
-  });
+        if (userResponse) setUser(userResponse);
+      }
+      setLoading(false);
+    }
+    loadUserFromCookies();
+  }, []);
 
-  const signIn = useCallback(async ({ email, password }) => {
-    const response = await api.post('sessions', { email, password });
-
-    const { token, user } = response.data;
-
-    // localStorage.setItem('@GoBarber:token', token);
-    // localStorage.setItem('@GoBarber:user', JSON.stringify(user));
+  const setAuthState = (token, userResponse) => {
+    Cookies.set('token', token, { expires: 1 });
 
     api.defaults.headers.authorization = `Bearer ${token}`;
 
-    setData({ token, user });
-  }, []);
+    setUser(userResponse);
+  };
 
-  const signOut = useCallback(() => {
-    // localStorage.removeItem('@GoBarber:token');
-    // localStorage.removeItem('@GoBarber:user');
+  const createUser = async (data: CreateUserData) => {
+    const { token, user: userResponse } = await authServices.createUser(data);
 
-    setData({} as AuthState);
-  }, []);
+    setAuthState(token, userResponse);
+  };
 
-  const updateUser = useCallback(
-    (user: User) => {
-      // localStorage.setItem('@GoBarber:user', JSON.stringify(user));
+  const signIn = async ({ email, password }) => {
+    const { token, user: userResponse } = await authServices.createSession({
+      email,
+      password,
+    });
 
-      setData({
-        token: data.token,
-        user,
-      });
-    },
-    [setData, data.token],
-  );
+    setAuthState(token, userResponse);
+  };
+
+  const signOut = () => {
+    Cookies.remove('token');
+    delete api.defaults.headers.Authorization;
+    window.location.pathname = '/';
+
+    setUser({} as User);
+  };
+
+  const updateUser = (userData: User) => {
+    setUser(userData);
+  };
 
   return (
     <AuthContext.Provider
-      value={{ user: data.user, signIn, signOut, updateUser }}
+      value={{ user, loading, createUser, signIn, signOut, updateUser }}
     >
       {children}
     </AuthContext.Provider>
