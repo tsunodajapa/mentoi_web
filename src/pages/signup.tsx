@@ -57,9 +57,15 @@ const SignUp = () => {
     try {
       formRef.current?.setErrors({});
 
-      CreateUserValidator(birthDateMax).validate(data, {
+      console.log(birthDateMax);
+      await CreateUserValidator(birthDateMax).validate(data, {
         abortEarly: false,
       });
+
+      if (!data.dateBirth) {
+        // eslint-disable-next-line no-param-reassign
+        delete data.dateBirth;
+      }
 
       await createUser(data);
 
@@ -83,8 +89,6 @@ const SignUp = () => {
         description =
           'Preencha todos campos obrigatórios para concluir o cadastro';
       } else {
-        console.log(error.response);
-
         const message = error.response?.data?.message || 'error';
 
         title = 'Erro na cadastro';

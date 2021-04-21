@@ -27,7 +27,7 @@ export const Container = styled.button<ContainerProps>`
         color: var(${color || '--color-text'});
       `}
 
-    width: 3.6rem;
-    height: 2.2rem;
+    width: 4.6rem;
+    height: 2.8rem;
   }
 `;

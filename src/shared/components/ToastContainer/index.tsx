@@ -7,7 +7,7 @@ interface ToastContainerProps {
   messages: ToastMessage[];
 }
 
-const ToastContainer: React.FC<ToastContainerProps> = ({ messages }) => {
+const ToastContainer = ({ messages }: ToastContainerProps) => {
   return (
     <Container>
       {messages.map(message => (

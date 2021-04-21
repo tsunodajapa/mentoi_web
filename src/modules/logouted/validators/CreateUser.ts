@@ -6,9 +6,12 @@ export const CreateUserValidator = (birthDateMax: Date) =>
     nickName: Yup.string()
       .min(5, 'No mínimo 5 digitos')
       .required('Username Obrigatório'),
-    birthDate: Yup.date()
+    dateBirth: Yup.date()
       .max(birthDateMax, 'Você deve ter no mínimo 6 anos')
-      .notRequired(),
+      .nullable()
+      .optional()
+      .transform((curr, origin) => (origin === '' ? null : curr))
+      .default(null),
     gender: Yup.string().oneOf(
       ['MALE', 'FEMALE', 'OTHER'],
       'Selecione uma opção',

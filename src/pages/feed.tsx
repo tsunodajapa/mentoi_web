@@ -21,8 +21,10 @@ import Footer from '@/modules/common/components/Footer';
 import subjects from 'data/subjects';
 import MakeQuestionWeb from '@/shared/components/MakeQuestionBox/Web';
 import MakeQuestionMobile from '@/shared/components/MakeQuestionBox/Mobile';
+import { useAuth } from '@/hooks/auth';
 
 const Feed = () => {
+  const { user } = useAuth();
   const [actualStep, setActualStep] = useState(0);
   const actualNameStep = [
     'ÁREA DE INTERESSE',
@@ -71,30 +73,32 @@ const Feed = () => {
           <MakeQuestionMobile />
           <div />
           <div>
-            <ContentBox>
-              <Profile>
-                <div>
-                  <ProgressCircle percentage={90} />
+            {user && (
+              <ContentBox>
+                <Profile>
+                  <div>
+                    <ProgressCircle percentage={90} />
 
-                  {/* <Image
+                    {/* <Image
                     src="/test_profile_.jpg"
                     alt="Professor CZ"
                     layout="fill"
                   /> */}
 
-                  <Circle size={70} />
-                </div>
-                <strong>Professor CZ</strong>
-                <span>@professorczx</span>
-              </Profile>
+                    <Circle size={70} />
+                  </div>
+                  <strong>{user.name}</strong>
+                  <span>@{user.nickName}</span>
+                </Profile>
 
-              <Row>
-                <span>Avaliações</span>
-              </Row>
-              <Row>
-                <span>Prêmios</span>
-              </Row>
-            </ContentBox>
+                <Row>
+                  <span>Avaliações</span>
+                </Row>
+                <Row>
+                  <span>Prêmios</span>
+                </Row>
+              </ContentBox>
+            )}
           </div>
         </div>
 

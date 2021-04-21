@@ -1,3 +1,7 @@
+import { useEffect } from 'react';
+import { useAuth } from '@/hooks/auth';
+import { useRouter } from 'next/router';
+
 import Background from '@/assets/background_home.svg';
 import BackgroundSecurity from '@/assets/background_security.svg';
 import IconHands from '@/assets/icon_hands.svg';
@@ -20,6 +24,15 @@ import {
 } from '@/styles/pages/index';
 
 const Main = () => {
+  const { user } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (user) {
+      router.push('feed');
+    }
+  }, [user, router]);
+
   return (
     <>
       <Header />

@@ -40,6 +40,8 @@ export default createGlobalStyle`
     background: var(--color-background);
     color: var(--color-text);
     -webkit-font-smoothing: antialiased;
+
+    overflow-x: hidden;
   }
 
   body, input, button {

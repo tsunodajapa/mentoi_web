@@ -31,7 +31,7 @@ const LoginModal = () => {
     try {
       formRef.current?.setErrors({});
 
-      CreateSessionValidator().validate(data, {
+      await CreateSessionValidator().validate(data, {
         abortEarly: false,
       });
 

@@ -1,6 +1,7 @@
 import { createContext, useState, useContext, useEffect } from 'react';
 import Cookies from 'js-cookie';
 
+import { useRouter } from 'next/router';
 import * as authServices from '../modules/logouted/services/authServices';
 import api from '../shared/services/api';
 
@@ -63,22 +64,26 @@ export const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<User>();
   const [loading, setLoading] = useState(true);
 
+  const router = useRouter();
+
   useEffect(() => {
     async function loadUserFromCookies() {
       const token = Cookies.get('token');
       if (token) {
-        api.defaults.headers.Authorization = `Bearer ${token}`;
+        api.defaults.headers.authorization = `Bearer ${token}`;
 
         const userResponse = await authServices.getUser();
 
         if (userResponse) setUser(userResponse);
+
+        // router.push('/feed');
       }
       setLoading(false);
     }
     loadUserFromCookies();
-  }, []);
+  }, [router]);
 
-  const setAuthState = (token, userResponse) => {
+  const setAuthState = (token: string, userResponse: User) => {
     Cookies.set('token', token, { expires: 1 });
 
     api.defaults.headers.authorization = `Bearer ${token}`;

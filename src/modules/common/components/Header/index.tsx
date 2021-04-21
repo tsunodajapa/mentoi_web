@@ -4,7 +4,8 @@ import { useRef } from 'react';
 
 import { VscBell } from 'react-icons/vsc';
 import { IoSearch } from 'react-icons/io5';
-import { BsPersonFill, BsGearWide } from 'react-icons/bs';
+import { BsPersonFill } from 'react-icons/bs';
+import { GoGear } from 'react-icons/go';
 
 import { Input } from '@/shared/components/FormElements';
 import ButtonIcon from '@/shared/components/ButtonIcon';
@@ -47,7 +48,7 @@ const Header = ({ actualNameStep }: HeaderProps) => {
           </OnboardingTemplate>
           {/* <ButtonIcon icon={IoChatbubblesOutline} /> */}
           <ButtonIcon icon={BsPersonFill} />
-          <ButtonIcon icon={BsGearWide} />
+          <ButtonIcon icon={GoGear} />
         </div>
       </div>
 
