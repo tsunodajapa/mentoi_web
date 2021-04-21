@@ -58,6 +58,7 @@ export const FilesPreviewContainer = styled.div`
       background: var(--color-red);
       border-radius: 50%;
       transform: scale(0.8);
+      cursor: pointer;
     }
   }
 

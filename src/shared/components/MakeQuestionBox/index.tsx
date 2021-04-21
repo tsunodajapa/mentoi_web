@@ -1,8 +1,17 @@
-import subjects from '@/data/subjects';
+import { useRef } from 'react';
+import { FormHandles } from '@unform/core';
 
+import subjects from '@/data/subjects';
+import { useToast } from '@/hooks/toast';
+import { useQuestion } from '@/modules/common/hooks/question';
+
+import { CreateQuestionData } from '@/modules/common/hooks/question';
+import { CreateQuestionValidator } from '@/modules/common/validators/CreateQuestion';
+import { ValidationError } from 'yup';
+import getValidationErrors from '@/utils/getValidationErros';
 import Button from '../Button';
 import { Input, TextArea, Select } from '../FormElements';
-import Dropzone from '../Dropzone';
+import Dropzone from '../FormElements/Dropzone';
 
 import { FormQuestion } from './styles';
 
@@ -11,12 +20,56 @@ interface MakeQuestionBoxProps {
 }
 
 const MakeQuestionBox = ({ alternativeId = 'web' }: MakeQuestionBoxProps) => {
-  function handleSubmit(data) {
-    console.log(data);
+  const formRef = useRef<FormHandles>(null);
+  const { addToast } = useToast();
+  const { createQuestion } = useQuestion();
+
+  async function handleSubmit(data: CreateQuestionData) {
+    try {
+      formRef.current?.setErrors({});
+
+      await CreateQuestionValidator().validate(data, {
+        abortEarly: false,
+      });
+
+      const formData = new FormData();
+
+      Object.keys(data).forEach(key => {
+        if (key === 'files') {
+          data[key].map(file => formData.append(`files`, file, file.name));
+        } else if (key === 'areasInterest') {
+          formData.append(key, JSON.stringify(data[key]));
+        } else {
+          formData.append(key, data[key]);
+        }
+      });
+
+      await createQuestion(formData);
+
+      addToast({
+        type: 'success',
+        title: 'Sua pergunta foi publicada!',
+      });
+    } catch (error) {
+      let description =
+        'Ocorreu um erro ao publicar a pergunta, tente novamente';
+      let title = 'Erro ao publicar!';
+
+      if (error instanceof ValidationError) {
+        title = 'Campos obrigatórios!';
+        description = 'Os campos Título e Pergunta, são obrigatórios.';
+      }
+
+      addToast({
+        type: 'error',
+        title,
+        description,
+      });
+    }
   }
 
   return (
-    <FormQuestion onSubmit={handleSubmit}>
+    <FormQuestion onSubmit={handleSubmit} ref={formRef}>
       <Input id="title" name="title" placeholder="TÍTULO" />
 
       <TextArea
@@ -26,12 +79,12 @@ const MakeQuestionBox = ({ alternativeId = 'web' }: MakeQuestionBoxProps) => {
         rows={10}
         placeholder="PERGUNTA"
       >
-        <Dropzone onFileUploaded={() => console.log()} />
+        <Dropzone name="files" />
       </TextArea>
 
       <Select
-        id={`interest_area-${alternativeId}`}
-        name="interest_area"
+        id={`areasInterest-${alternativeId}`}
+        name="areasInterest"
         placeHolder="Selecione área de interesse"
         data={subjects}
         multiSelect

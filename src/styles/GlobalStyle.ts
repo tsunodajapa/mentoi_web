@@ -44,7 +44,7 @@ export default createGlobalStyle`
     overflow-x: hidden;
   }
 
-  body, input, button {
+  body, input, button, textarea {
     font-family: 'Roboto';
     font-size: 1.6rem;
   }

@@ -2,7 +2,13 @@ import { useField } from '@unform/core';
 import { useCallback, useEffect, useState, useRef } from 'react';
 import { ImCheckboxChecked, ImCheckboxUnchecked } from 'react-icons/im';
 
-import { Container, SelectDesktop, MultiSelectInput } from './styles';
+import {
+  Container,
+  SelectDesktop,
+  MultiSelect,
+  MultiSelectInput,
+  Options,
+} from './styles';
 
 interface SelectProps {
   id: string;
@@ -45,7 +51,7 @@ const Select = ({
     'top',
   );
 
-  const { fieldName, defaultValue, error, registerField } = useField(name);
+  const { fieldName, registerField } = useField(name);
   const labelRef = useRef<HTMLLabelElement>(null);
 
   useEffect(() => {
@@ -149,7 +155,7 @@ const Select = ({
     <Container hasLabel={!!label}>
       {label && <label htmlFor={id}>{label}</label>}
 
-      <SelectDesktop optionsPosition={optionsPosition}>
+      <SelectDesktop>
         <input
           type="checkbox"
           id={id}
@@ -163,27 +169,30 @@ const Select = ({
           </label>
         )}
         {multiSelect && (
-          <label ref={labelRef} htmlFor={id}>
-            {!multiSelectedOptions.length &&
-              selectedOption &&
-              selectedOption.name}
-
-            {multiSelectedOptions.map(item => (
-              <MultiSelectInput
-                key={item.name}
-                type="text"
-                title={item.name}
-                value={item.name}
-                width={item.selectedSize}
-                background={item.color}
-                readOnly
-                disabled
-              />
-            ))}
-          </label>
+          <>
+            <MultiSelect>
+              {multiSelectedOptions.map(item => (
+                <MultiSelectInput
+                  key={item.name}
+                  type="text"
+                  title={item.name}
+                  value={item.name}
+                  width={item.selectedSize}
+                  background={item.color}
+                  readOnly
+                  disabled
+                />
+              ))}
+            </MultiSelect>
+            <label ref={labelRef} htmlFor={id}>
+              {!multiSelectedOptions.length &&
+                selectedOption &&
+                selectedOption.name}
+            </label>
+          </>
         )}
 
-        <div>
+        <Options optionsPosition={optionsPosition}>
           {options.map(item => (
             <button
               key={item.name}
@@ -201,7 +210,7 @@ const Select = ({
               {item.name}
             </button>
           ))}
-        </div>
+        </Options>
       </SelectDesktop>
     </Container>
   );

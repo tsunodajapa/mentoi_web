@@ -11,11 +11,11 @@ export const FormQuestion = styled(Form)`
   }
 
   @media (max-width: 475px) {
-    button {
+    > button {
       width: 12rem;
       display: flex;
       justify-content: center;
-      margin-top: 1.5rem;
+      margin: 2rem auto;
     }
   }
 `;

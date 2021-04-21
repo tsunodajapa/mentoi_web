@@ -12,17 +12,18 @@ interface MultiSelectInputProps {
 
 export const Container = styled(ContainerDefault)``;
 
-export const SelectDesktop = styled.div<SelectProps>`
+export const SelectDesktop = styled.div`
   :hover {
     border-color: var(--color-primary);
   }
 
   label {
     width: 100%;
-    max-height: 3rem;
+    height: 2.9rem;
     overflow: hidden;
     padding: 0.5rem;
     cursor: pointer;
+    z-index: 1000;
   }
 
   > label:after {
@@ -46,28 +47,6 @@ export const SelectDesktop = styled.div<SelectProps>`
   input:checked + label:after {
     transform: rotate(90deg);
     top: 0.2rem;
-  }
-
-  div {
-    display: none;
-    position: absolute;
-    background-color: var(--color-background);
-    width: 100%;
-    max-height: 20rem;
-    overflow: auto;
-    flex-direction: column;
-
-    border-radius: 0.6rem;
-    padding: 0.5rem;
-    left: 0;
-    z-index: 1001;
-
-    ${({ optionsPosition }) => css`
-      ${optionsPosition}: 3.6rem;
-    `}
-    /* top: 3.6rem; */
-
-    box-shadow: 0 0px 2px 0px rgb(0 0 0 / 44%);
   }
 
   button {
@@ -102,6 +81,37 @@ export const SelectDesktop = styled.div<SelectProps>`
   }
 `;
 
+export const Options = styled.div<SelectProps>`
+  display: none;
+  position: absolute;
+  background-color: var(--color-background);
+  width: 100%;
+  max-height: 20rem;
+  overflow: auto;
+  flex-direction: column;
+
+  border-radius: 0.6rem;
+  /* padding: 0.5rem; */
+  left: 0;
+  z-index: 1001;
+
+  ${({ optionsPosition }) => css`
+    ${optionsPosition}: 3.6rem;
+  `}
+
+  box-shadow: 0 0px 2px 0px rgb(0 0 0 / 44%);
+`;
+
+export const MultiSelect = styled.div`
+  display: flex;
+  max-height: 2.9rem;
+  max-width: 90%;
+  position: absolute;
+  z-index: 999;
+  overflow: hidden;
+  padding: 0.3rem;
+`;
+
 export const MultiSelectInput = styled.input<MultiSelectInputProps>`
   ${({ width, background }) =>
     css`
@@ -115,7 +125,6 @@ export const MultiSelectInput = styled.input<MultiSelectInputProps>`
   color: #fff;
   padding: 0.2rem 0.6rem;
   text-align: center;
-  margin-bottom: 1rem;
 
   & + input {
     margin-left: 0.5rem;

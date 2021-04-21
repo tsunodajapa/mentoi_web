@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { FiPaperclip } from 'react-icons/fi';
 import {
@@ -10,8 +10,9 @@ import {
 } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
 
+import { useField } from '@unform/core';
 import { Container, FilesPreviewContainer } from './styles';
-import Modal from '../Modal';
+import Modal from '../../Modal';
 
 const IconsFile = {
   powerPoint: <FaFilePowerpoint />,
@@ -21,8 +22,8 @@ const IconsFile = {
   default: <FaFileAlt />,
 };
 
-interface Props {
-  onFileUploaded: (files: File[]) => void;
+interface DropzoneProps {
+  name: string;
 }
 
 type FilePreviwProps =
@@ -31,6 +32,10 @@ type FilePreviwProps =
       type: string;
       name: string;
     };
+
+interface InputRefProps extends HTMLInputElement {
+  acceptedFiles: File[];
+}
 
 function whateFileType(fileName: string): string {
   const fileType = fileName.split('.')[1];
@@ -49,8 +54,12 @@ function whateFileType(fileName: string): string {
   }
 }
 
-const Dropzone = ({ onFileUploaded }: Props) => {
-  const [selectedFilesUrl, setSelectedFilesUrl] = useState<FilePreviwProps[]>();
+const Dropzone = ({ name }: DropzoneProps) => {
+  const inputRef = useRef<InputRefProps>(null);
+  const { fieldName, registerField, defaultValue = [] } = useField(name);
+  const [selectedFilesUrl, setSelectedFilesUrl] = useState<FilePreviwProps[]>(
+    defaultValue,
+  );
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   function handleToggleModal() {
@@ -58,8 +67,8 @@ const Dropzone = ({ onFileUploaded }: Props) => {
   }
 
   const onDrop = useCallback(
-    (acceptedFiles: File[]) => {
-      const filesPreview = acceptedFiles.map(file => {
+    (onDropAcceptedFiles: File[]) => {
+      const filesPreview = onDropAcceptedFiles.map(file => {
         return file.type.includes('image')
           ? URL.createObjectURL(file)
           : { type: whateFileType(file.name), name: file.name };
@@ -70,22 +79,45 @@ const Dropzone = ({ onFileUploaded }: Props) => {
       } else {
         setSelectedFilesUrl([...filesPreview]);
       }
-      onFileUploaded(acceptedFiles);
+
+      if (inputRef.current) {
+        console.log(inputRef.current.acceptedFiles);
+        !inputRef.current.acceptedFiles
+          ? (inputRef.current.acceptedFiles = onDropAcceptedFiles)
+          : inputRef.current.acceptedFiles.push(...onDropAcceptedFiles);
+      }
     },
-    [onFileUploaded, selectedFilesUrl],
+    [selectedFilesUrl],
   );
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: '.xlsx, .xls, image/*, .doc, .docx, .ppt, .pptx, .txt, .pdf',
   });
 
+  useEffect(() => {
+    registerField({
+      name: fieldName,
+      ref: inputRef.current,
+      getValue: (ref: InputRefProps) => {
+        return ref.acceptedFiles || [];
+      },
+      clearValue: (ref: InputRefProps) => {
+        ref.acceptedFiles = [];
+      },
+      setValue: (ref: InputRefProps, value) => {
+        ref.acceptedFiles = value;
+      },
+    });
+  }, [fieldName, registerField]);
+
   return (
     <>
-      <Container {...getRootProps()}>
+      <Container {...getRootProps()} onClick={() => inputRef.current?.click()}>
         <input
           {...getInputProps()}
           accept=".xlsx, .xls, image/*, .doc, .docx, .ppt, .pptx, .txt, .pdf"
           multiple
+          ref={inputRef}
         />
 
         <FiPaperclip />
@@ -93,8 +125,9 @@ const Dropzone = ({ onFileUploaded }: Props) => {
 
       {selectedFilesUrl && (
         <FilesPreviewContainer>
-          {selectedFilesUrl.slice(0, 3).map(file => (
-            <div key={`img-${file}`}>
+          {selectedFilesUrl.slice(0, 3).map((file, index) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <div key={`img-${new Date().getTime()}-${index}`}>
               {typeof file === 'string' ? (
                 <img src={file} alt="Point thumbnail" />
               ) : (

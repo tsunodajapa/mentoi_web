@@ -75,8 +75,6 @@ export const AuthProvider: React.FC = ({ children }) => {
         const userResponse = await authServices.getUser();
 
         if (userResponse) setUser(userResponse);
-
-        // router.push('/feed');
       }
       setLoading(false);
     }

@@ -14,6 +14,10 @@ export const Container = styled(ContainerDefault)`
         bottom: 10px;
         right: 10px;
         transform: scale(1.8);
+        cursor: pointer;
+      }
+      > svg:hover {
+        color: var(--color-primary);
       }
     }
   }
@@ -21,8 +25,7 @@ export const Container = styled(ContainerDefault)`
   textarea {
     width: 100%;
     height: 100%;
-
-    font-size: 2.2rem;
+    resize: none;
   }
 `;
 

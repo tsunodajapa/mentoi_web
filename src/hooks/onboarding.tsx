@@ -1,7 +1,7 @@
 import { ModalStyles } from '@/shared/components/Modal/styles';
 import { ItemProps } from '@/shared/components/Onboarding/styles';
 import { createContext, useCallback, useContext, useState } from 'react';
-import { uuid } from 'uuidv4';
+import { v4 as uuid } from 'uuid';
 
 export interface OnboardingStep {
   id: string;

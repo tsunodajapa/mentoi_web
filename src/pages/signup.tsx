@@ -57,7 +57,6 @@ const SignUp = () => {
     try {
       formRef.current?.setErrors({});
 
-      console.log(birthDateMax);
       await CreateUserValidator(birthDateMax).validate(data, {
         abortEarly: false,
       });
