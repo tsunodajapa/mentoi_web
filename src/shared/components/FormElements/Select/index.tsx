@@ -71,6 +71,18 @@ const Select = ({
         if ('key' in selectedOption) return selectedOption.key;
         return null;
       },
+      clearValue: () => {
+        if (multiSelect) {
+          setOptions(data);
+          setMultiSelectedOptions([]);
+        }
+        if ('key' in selectedOption) {
+          setSelectedOption({
+            name: placeHolder,
+          });
+        }
+        return null;
+      },
     });
   }, [
     fieldName,
@@ -78,6 +90,8 @@ const Select = ({
     multiSelect,
     multiSelectedOptions,
     selectedOption,
+    placeHolder,
+    data,
   ]);
 
   const handleChangeChecked = useCallback((action: boolean): void => {

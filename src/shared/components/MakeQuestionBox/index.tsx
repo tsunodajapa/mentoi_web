@@ -8,7 +8,6 @@ import { useQuestion } from '@/modules/common/hooks/question';
 import { CreateQuestionData } from '@/modules/common/hooks/question';
 import { CreateQuestionValidator } from '@/modules/common/validators/CreateQuestion';
 import { ValidationError } from 'yup';
-import getValidationErrors from '@/utils/getValidationErros';
 import Button from '../Button';
 import { Input, TextArea, Select } from '../FormElements';
 import Dropzone from '../FormElements/Dropzone';
@@ -50,6 +49,8 @@ const MakeQuestionBox = ({ alternativeId = 'web' }: MakeQuestionBoxProps) => {
         type: 'success',
         title: 'Sua pergunta foi publicada!',
       });
+
+      formRef.current.reset();
     } catch (error) {
       let description =
         'Ocorreu um erro ao publicar a pergunta, tente novamente';

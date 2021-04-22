@@ -81,7 +81,6 @@ const Dropzone = ({ name }: DropzoneProps) => {
       }
 
       if (inputRef.current) {
-        console.log(inputRef.current.acceptedFiles);
         !inputRef.current.acceptedFiles
           ? (inputRef.current.acceptedFiles = onDropAcceptedFiles)
           : inputRef.current.acceptedFiles.push(...onDropAcceptedFiles);
@@ -102,6 +101,7 @@ const Dropzone = ({ name }: DropzoneProps) => {
         return ref.acceptedFiles || [];
       },
       clearValue: (ref: InputRefProps) => {
+        setSelectedFilesUrl([]);
         ref.acceptedFiles = [];
       },
       setValue: (ref: InputRefProps, value) => {
