@@ -1,6 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Container = styled.div`
+interface ContainerProps {
+  titleColor: [string, string];
+}
+
+export const Container = styled.div<ContainerProps>`
   background: var(--color-background);
 
   border-radius: 1.2rem;
@@ -8,7 +12,14 @@ export const Container = styled.div`
   box-shadow: 0 1.3rem 8.1rem -0.7rem rgba(0, 0, 0, 0.15);
 
   > div:nth-child(1) {
-    background: linear-gradient(to right, var(--color-primary), #9a84b8 112%);
+    ${({ titleColor }) =>
+      css`
+        background: linear-gradient(
+          to right,
+          ${titleColor ? titleColor[0] : 'var(--color-primary)'},
+          ${titleColor ? titleColor[1] : 'var(--color-primary)'} 112%
+        );
+      `}
 
     margin: 0;
     padding: 0.6rem;

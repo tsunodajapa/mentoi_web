@@ -23,7 +23,7 @@ const Footer = ({ changeStep }: FooterProps) => {
   ]);
 
   useEffect(() => {
-    document.body.style.overflow =
+    document.body.style.overflowY =
       window.screen.width < 475 ? 'hidden' : 'auto';
   }, []);
 

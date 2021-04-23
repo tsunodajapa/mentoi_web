@@ -1,6 +1,10 @@
 import api from '@/shared/services/api';
 import { Question } from '../hooks/question';
-import { CreateQuestionData } from '../hooks/question';
+
+interface FilterToGetQuestion {
+  page?: number;
+  pageSize?: number;
+}
 
 export async function createQuestion(data: FormData): Promise<Question> {
   return (
@@ -10,6 +14,12 @@ export async function createQuestion(data: FormData): Promise<Question> {
   ).data;
 }
 
-export async function getQuestions(): Promise<Question[]> {
-  return (await api.get<Question[]>('questions')).data;
+export async function getQuestions(
+  params?: FilterToGetQuestion,
+): Promise<Question[]> {
+  return (
+    await api.get<Question[]>('questions', {
+      params,
+    })
+  ).data;
 }

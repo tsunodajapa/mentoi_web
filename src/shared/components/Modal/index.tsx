@@ -17,7 +17,7 @@ const Modal = ({
   children,
 }: ModalProps) => {
   useEffect(() => {
-    document.body.style.overflow = isOpenModal ? 'hidden' : 'auto';
+    document.body.style.overflowY = isOpenModal ? 'hidden' : 'auto';
   }, [isOpenModal]);
 
   return (

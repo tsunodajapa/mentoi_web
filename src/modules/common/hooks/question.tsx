@@ -1,5 +1,5 @@
-import { createContext, useContext, useState } from 'react';
-import { v4 as uuid } from 'uuid';
+import { User } from '@/hooks/auth';
+import { createContext, useCallback, useContext, useState } from 'react';
 import * as questionsServices from '../services/questionsServices';
 
 export interface CreateQuestionData {
@@ -23,12 +23,13 @@ export interface Question {
     mimeType: string;
     fileUrl: string;
   }[];
+  user: Omit<User, 'id' | 'email' | 'permission' | 'areasInterest'>;
 }
 
 interface QuestionContextData {
   questions: Question[];
   createQuestion(message: FormData): Promise<void>;
-  getQuestions(): void;
+  getQuestions(page: number): Promise<number>;
 }
 
 const QuestionContext = createContext<QuestionContextData>(
@@ -44,11 +45,16 @@ const QuestionProvider: React.FC = ({ children }) => {
     setQuestions(state => [question, ...state]);
   };
 
-  const getQuestions = async () => {
-    const questionsFound = await questionsServices.getQuestions();
+  const getQuestions = useCallback(async (page: number) => {
+    const questionsFound = await questionsServices.getQuestions({
+      page,
+      pageSize: 10,
+    });
 
-    setQuestions(questionsFound);
-  };
+    setQuestions(state => [...state, ...questionsFound]);
+
+    return questionsFound.length;
+  }, []);
 
   return (
     <QuestionContext.Provider

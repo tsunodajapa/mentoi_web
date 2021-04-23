@@ -10,22 +10,16 @@ import SectionBordered, {
   BorderTypes,
 } from '@/shared/components/SectionBordered';
 
-import { Container, Profile, Row } from '@/styles/pages/feed';
+import { Container } from '@/styles/pages/feed';
 
 import { useState } from 'react';
 
-import ProgressCircle from '@/shared/components/ProgressCircle';
-import { Circle } from '@/shared/components/Circle';
 import Footer from '@/modules/common/components/Footer';
 
-import subjects from 'data/subjects';
-import MakeQuestionWeb from '@/shared/components/MakeQuestionBox/Web';
-import MakeQuestionMobile from '@/shared/components/MakeQuestionBox/Mobile';
-import { useAuth } from '@/hooks/auth';
 import { QuestionProvider } from '@/modules/common/hooks/question';
+import { QuestionSection } from '@/modules/common/components/QuestionSection';
 
 const Feed = () => {
-  const { user } = useAuth();
   const [actualStep, setActualStep] = useState(0);
   const actualNameStep = [
     'ÁREA DE INTERESSE',
@@ -41,73 +35,14 @@ const Feed = () => {
 
   return (
     <>
-      <QuestionProvider>
-        <Header actualNameStep={actualNameStep[actualStep]} />
-        <Container step={actualStep}>
-          <div>
-            <div>
-              <SectionBordered border={BorderTypes.TOP}>
-                <MakeQuestionWeb />
-              </SectionBordered>
-              <Carousel data={subjects} onlyWeb />
-              <SectionBordered border={BorderTypes.BOTTOM}>
-                <QuestionBox />
-                <QuestionBox />
-                <QuestionBox />
-                <QuestionBox />
-                <QuestionBox />
-                <QuestionBox />
-                <QuestionBox />
-                <QuestionBox />
-                <QuestionBox />
-                <QuestionBox />
-                <QuestionBox />
-                <QuestionBox />
-                <OnboardingTemplate
-                  title="Teste Card"
-                  description="teste mensagem 2"
-                >
-                  <QuestionBox />
-                </OnboardingTemplate>
-              </SectionBordered>
-            </div>
-            <div />
-            <MakeQuestionMobile />
-            <div />
-            <div>
-              {user && (
-                <ContentBox>
-                  <Profile>
-                    <div>
-                      <ProgressCircle percentage={90} />
-
-                      {/* <Image
-                    src="/test_profile_.jpg"
-                    alt="Professor CZ"
-                    layout="fill"
-                  /> */}
-
-                      <Circle size={70} />
-                    </div>
-                    <strong>{user.name}</strong>
-                    <span>@{user.nickName}</span>
-                  </Profile>
-
-                  <Row>
-                    <span>Avaliações</span>
-                  </Row>
-                  <Row>
-                    <span>Prêmios</span>
-                  </Row>
-                </ContentBox>
-              )}
-            </div>
-          </div>
-
-          <Footer changeStep={handleChangeStep} />
-        </Container>
-        {/* <Onboarding /> */}
-      </QuestionProvider>
+      <Header actualNameStep={actualNameStep[actualStep]} />
+      <Container>
+        <QuestionProvider>
+          <QuestionSection step={actualStep} />
+        </QuestionProvider>
+        <Footer changeStep={handleChangeStep} />
+      </Container>
+      {/* <Onboarding /> */}
     </>
   );
 };

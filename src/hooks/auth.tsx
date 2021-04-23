@@ -14,11 +14,11 @@ export interface User {
   verified?: boolean;
   scholarity: string;
   permission: string;
-  areasINterest: {
+  areasInterest: {
     id: string;
     name: string;
   }[];
-  // avatar_url: string;
+  avatarUrl: string;
 }
 
 export interface CreateUserData {

@@ -1,34 +1,75 @@
 import Image from 'next/image';
 import { FaComment } from 'react-icons/fa';
+import { Question } from '@/modules/common/hooks/question';
+
+import { useMemo, useState } from 'react';
+import subjects from '@/data/subjects';
 import { Circle } from '../Circle';
+
 import { Container, Content, Header } from './styles';
 
-const QuestionBox = () => {
+interface QuestionBoxProps {
+  data: Question;
+}
+
+const QuestionBox = ({
+  data: { description, title, areasInterest, files, user },
+}: QuestionBoxProps) => {
+  const [titleColor, setTitleColor] = useState<[string, string]>();
+
+  const Title = useMemo(() => {
+    if (areasInterest.length > 1) {
+      const [color1, color2] = subjects
+        .filter(
+          subject =>
+            subject.name === areasInterest[0].name ||
+            subject.name === areasInterest[1].name,
+        )
+        .map(subject => subject.color);
+
+      setTitleColor([color1, color2]);
+
+      return `# ${areasInterest[0].name.toUpperCase()} + # ${areasInterest[1].name.toUpperCase()}`;
+    }
+    if (areasInterest.length) {
+      const subjectFound = subjects.find(
+        subject => subject.name === areasInterest[0].name,
+      );
+
+      if (subjectFound) {
+        const { color } = subjectFound;
+        setTitleColor([color, color]);
+      }
+      return `# ${areasInterest[0].name.toUpperCase()}`;
+    }
+    return title;
+  }, [areasInterest, title]);
+
   return (
-    <Container>
+    <Container titleColor={titleColor}>
       <div>
-        <span># AREA INTERESSE + #HISTÓRIA</span>
+        <span>{Title}</span>
       </div>
 
       <Content>
         <Header>
           <div>
             <div>
-              <Image src="/test_profile.jpg" alt="Professor CZ" layout="fill" />
-              {/* <Circle size={100} /> */}
+              {user.avatarUrl ? (
+                <Image src={user.avatarUrl} alt={user.name} layout="fill" />
+              ) : (
+                <Circle size={100} />
+              )}
             </div>
             <div>
-              <span>Arielle Tsunoda</span>
-              <span>@arielleft</span>
+              <span>{user.displayName || user.name}</span>
+              <span>@{user.nickName}</span>
             </div>
           </div>
           <span>há 5 minutos</span>
         </Header>
 
-        <span>
-          {`O que é o 'genocídio branco' que a Stormfront fala no último ep de The
-          Boys?`}
-        </span>
+        <span>{description}</span>
 
         <div>
           <div>

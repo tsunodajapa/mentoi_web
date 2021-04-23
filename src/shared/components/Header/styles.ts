@@ -7,6 +7,7 @@ export const Header = styled.header`
 
   position: sticky;
   top: 0;
+  z-index: 1001;
 
   > div:first-child {
     max-width: 1080px;
