@@ -7,13 +7,14 @@ import subjects from '@/data/subjects';
 import { Circle } from '../Circle';
 
 import { Container, Content, Header } from './styles';
+import { Link } from '../Buttons/Link';
 
 interface QuestionBoxProps {
   data: Question;
 }
 
 const QuestionBox = ({
-  data: { description, title, areasInterest, files, user },
+  data: { id, description, title, areasInterest, files, user },
 }: QuestionBoxProps) => {
   const [titleColor, setTitleColor] = useState<[string, string]>();
 
@@ -76,7 +77,11 @@ const QuestionBox = ({
             <FaComment />
             <span>2</span>
           </div>
-          <button type="button">Responder</button>
+          <Link
+            href={`questions/${id}`}
+            text="Ver Pergunta"
+            variant="outlinePrimary"
+          />
         </div>
       </Content>
     </Container>

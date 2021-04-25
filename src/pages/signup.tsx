@@ -8,8 +8,7 @@ import { ValidationError } from 'yup';
 import { HiOutlineArrowLeft } from 'react-icons/hi';
 import { FaMars, FaVenus } from 'react-icons/fa';
 
-import Button from '@/shared/components/Button';
-import ButtonSecondary from '@/shared/components/ButtonSecondary';
+import Button from '@/shared/components/Buttons/Button';
 import { Input, Radio, Select } from '@/shared/components/FormElements';
 import Modal from '@/shared/components/Modal';
 
@@ -222,7 +221,8 @@ const SignUp = () => {
               <div>
                 {actualStep === 2 && (
                   <>
-                    <ButtonSecondary
+                    <Button
+                      variant="secondary"
                       type="button"
                       text="Voltar"
                       onClick={handleChangeStep}
@@ -235,9 +235,9 @@ const SignUp = () => {
                 {actualStep === 1 && (
                   <>
                     <Button
+                      variant="inlinePrimary"
                       text="Já sou cadastrado"
                       onClick={handleToggleModal}
-                      inline
                     />
 
                     <Button

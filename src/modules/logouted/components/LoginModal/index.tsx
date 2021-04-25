@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react';
+import { useRef } from 'react';
 import { useRouter } from 'next/router';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
@@ -9,7 +9,7 @@ import { useAuth } from '@/hooks/auth';
 import { useToast } from '@/hooks/toast';
 
 import { FiLock, FiMail } from 'react-icons/fi';
-import Button from '@/shared/components/Button';
+import Button from '@/shared/components/Buttons/Button';
 import { Input } from '@/shared/components/FormElements';
 import Logo from '@/assets/logo_mentoi.svg';
 import { Container } from './styles';

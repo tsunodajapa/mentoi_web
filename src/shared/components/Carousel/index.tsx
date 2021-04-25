@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, Children, ReactNode } from 'react';
 import { IoIosArrowDropright, IoIosArrowDropleft } from 'react-icons/io';
-import ButtonIcon from '../ButtonIcon';
+import ButtonIcon from '../Buttons/ButtonIcon';
 import { Container, ButtonOption } from './styles';
 
 interface CarouselProps {

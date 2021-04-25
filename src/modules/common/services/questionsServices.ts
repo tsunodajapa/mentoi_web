@@ -7,11 +7,7 @@ interface FilterToGetQuestion {
 }
 
 export async function createQuestion(data: FormData): Promise<Question> {
-  return (
-    await api.post('questions', data, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    })
-  ).data;
+  return (await api.post('questions', data)).data;
 }
 
 export async function getQuestions(
@@ -22,4 +18,8 @@ export async function getQuestions(
       params,
     })
   ).data;
+}
+
+export async function showQuestion(id: string): Promise<Question> {
+  return (await api.get<Question>(`questions${id}`)).data;
 }

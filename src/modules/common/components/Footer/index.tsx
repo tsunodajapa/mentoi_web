@@ -5,7 +5,7 @@ import { BsPersonFill } from 'react-icons/bs';
 import { FaQuestionCircle } from 'react-icons/fa';
 import { AiFillHome } from 'react-icons/ai';
 
-import ButtonIcon from '@/shared/components/ButtonIcon';
+import ButtonIcon from '@/shared/components/Buttons/ButtonIcon';
 
 import { ContainerMobile } from './styles';
 

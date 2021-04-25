@@ -3,7 +3,7 @@ import { useOnboarding } from '@/hooks/onboarding';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
 import Modal from '../Modal';
-import ButtonIcon from '../ButtonIcon';
+import ButtonIcon from '../Buttons/ButtonIcon';
 import { ModalStyles } from '../Modal/styles';
 
 import { Item, Container, Main, Footer, ItemProps } from './styles';

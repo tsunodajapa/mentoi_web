@@ -48,7 +48,7 @@ export const ButtonOption = styled.button<ButtonOptionProps>`
   min-width: 14rem;
 
   padding: 0.5rem 1rem;
-  margin: 0 0.2rem;
+  margin: 0 0.8rem;
 
   border: 0.2rem solid var(--color-primary);
   color: var(--color-primary);

@@ -8,7 +8,7 @@ import { useQuestion } from '@/modules/common/hooks/question';
 import { CreateQuestionData } from '@/modules/common/hooks/question';
 import { CreateQuestionValidator } from '@/modules/common/validators/CreateQuestion';
 import { ValidationError } from 'yup';
-import Button from '../Button';
+import Button from '../Buttons/Button';
 import { Input, TextArea, Select } from '../FormElements';
 import Dropzone from '../FormElements/Dropzone';
 

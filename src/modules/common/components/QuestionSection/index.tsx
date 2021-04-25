@@ -3,28 +3,24 @@ import { useEffect, useRef, useState } from 'react';
 import subjects from '@/data/subjects';
 
 import Carousel from '@/shared/components/Carousel';
-import { Circle } from '@/shared/components/Circle';
-import ContentBox from '@/shared/components/ContentBox';
 import MakeQuestionMobile from '@/shared/components/MakeQuestionBox/Mobile';
 import MakeQuestionWeb from '@/shared/components/MakeQuestionBox/Web';
 import OnboardingTemplate from '@/shared/components/Onboarding/OnboardingTemplate';
-import ProgressCircle from '@/shared/components/ProgressCircle';
 import QuestionBox from '@/shared/components/QuestionBox';
 import SectionBordered, {
   BorderTypes,
 } from '@/shared/components/SectionBordered';
 
-import { useAuth } from '@/hooks/auth';
 import { useQuestion } from '../../hooks/question';
 
-import { Container, Profile, Row } from './styles';
+import { Container } from './styles';
+import { UserSection } from '../UserSection';
 
 interface QuestionSectionProps {
   step: number;
 }
 
 const QuestionSection = ({ step }: QuestionSectionProps) => {
-  const { user } = useAuth();
   const { getQuestions, questions } = useQuestion();
   const divInfiteScrollRef = useRef<HTMLDivElement>();
   const [page, setPage] = useState(0);
@@ -33,7 +29,7 @@ const QuestionSection = ({ step }: QuestionSectionProps) => {
   useEffect(() => {
     const intersectionObserver = new IntersectionObserver(async ([entries]) => {
       const ratio = entries.intersectionRatio;
-      console.log(ratio, notFoundQuestions);
+
       if (ratio > 0 && !notFoundQuestions) {
         setPage(state => state + 1);
       }
@@ -91,32 +87,7 @@ const QuestionSection = ({ step }: QuestionSectionProps) => {
       <MakeQuestionMobile />
       <div />
       <div>
-        {user && (
-          <ContentBox>
-            <Profile>
-              <div>
-                <ProgressCircle percentage={90} />
-
-                {/* <Image
-                    src="/test_profile_.jpg"
-                    alt="Professor CZ"
-                    layout="fill"
-                  /> */}
-
-                <Circle size={70} />
-              </div>
-              <strong>{user.name}</strong>
-              <span>@{user.nickName}</span>
-            </Profile>
-
-            <Row>
-              <span>Avaliações</span>
-            </Row>
-            <Row>
-              <span>Prêmios</span>
-            </Row>
-          </ContentBox>
-        )}
+        <UserSection />
       </div>
     </Container>
   );

@@ -8,7 +8,7 @@ import { BsPersonFill } from 'react-icons/bs';
 import { GoGear } from 'react-icons/go';
 
 import { Input } from '@/shared/components/FormElements';
-import ButtonIcon from '@/shared/components/ButtonIcon';
+import ButtonIcon from '@/shared/components/Buttons/ButtonIcon';
 
 import Logo from '@/assets/logo_mentoi.svg';
 import MentoiIcon from '@/assets/icon_mentoi.svg';

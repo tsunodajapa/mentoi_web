@@ -2,7 +2,8 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 import Logo from '@/assets/logo_mentoi.svg';
-import Button from '@/shared/components/Button';
+import Button from '@/shared/components/Buttons/Button';
+import { Link as LinkAction } from '@/shared/components/Buttons/Link';
 import Modal from '@/shared/components/Modal';
 
 import { Container } from './styles';
@@ -26,9 +27,11 @@ const Header = () => {
           </Link>
 
           <div>
-            <Link href="/signup">
-              <a>CADASTRO</a>
-            </Link>
+            <LinkAction
+              href="/signup"
+              text="CADASTRO"
+              variant="outlineSecondary"
+            />
             <Button text="ENTRAR" onClick={handleToggleModal} />
           </div>
         </div>

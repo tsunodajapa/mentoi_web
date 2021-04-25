@@ -1,6 +1,6 @@
 import { ReactNode, useEffect } from 'react';
 import { IoMdClose } from 'react-icons/io';
-import ButtonIcon from '../ButtonIcon';
+import ButtonIcon from '../Buttons/ButtonIcon';
 import { Container, ModalStyles } from './styles';
 
 interface ModalProps {

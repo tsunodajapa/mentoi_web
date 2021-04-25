@@ -4,12 +4,12 @@ import { Container } from './styles';
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   text: string;
-  inline?: boolean;
+  variant?: 'primary' | 'secondary' | 'inlinePrimary' | 'inlineSecondary';
 };
 
-const Button = ({ text, inline = false, ...rest }: ButtonProps) => {
+const Button = ({ text, variant, ...rest }: ButtonProps) => {
   return (
-    <Container type="button" inline={inline} {...rest}>
+    <Container type="button" variant={variant} {...rest}>
       {text}
     </Container>
   );
