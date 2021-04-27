@@ -58,7 +58,8 @@ const MakeQuestionBox = ({ alternativeId = 'web' }: MakeQuestionBoxProps) => {
 
       if (error instanceof ValidationError) {
         title = 'Campos obrigatórios!';
-        description = 'Os campos Título e Pergunta, são obrigatórios.';
+        description =
+          'Os campos Título, Pergunta e Área de interesse, são obrigatórios.';
       }
 
       addToast({

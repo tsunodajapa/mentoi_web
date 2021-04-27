@@ -21,5 +21,5 @@ export async function getQuestions(
 }
 
 export async function showQuestion(id: string): Promise<Question> {
-  return (await api.get<Question>(`questions${id}`)).data;
+  return (await api.get<Question>(`questions/${id}`)).data;
 }

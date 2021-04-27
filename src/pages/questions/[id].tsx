@@ -27,7 +27,7 @@ const QuestionPage = ({ question }: QuestionPageProps) => {
       <Main>
         <div>
           <SectionBordered border={BorderTypes.FULL}>
-            <QuestionBox data={question} />
+            {question && <QuestionBox data={question} isQuestionPage />}
           </SectionBordered>
           <UserSection />
         </div>
@@ -58,5 +58,6 @@ export const getStaticProps: GetStaticProps = async ({
     props: {
       question,
     },
+    revalidate: 60,
   };
 };

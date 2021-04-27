@@ -29,5 +29,6 @@ export const Container = styled.button<ContainerProps>`
 
     width: 4.6rem;
     height: 2.8rem;
+    transition: background-color 0.2s linear;
   }
 `;

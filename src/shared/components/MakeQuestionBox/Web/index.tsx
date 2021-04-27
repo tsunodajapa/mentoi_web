@@ -1,12 +1,14 @@
 import { useState } from 'react';
 
 import { Circle } from '@/shared/components/Circle';
+import { useAuth } from '@/hooks/auth';
 import Modal from '../../Modal';
 import { Container, ModalHeader } from './styles';
 import MakeQuestionBox from '..';
 
 const MakeQuestionWeb = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const { user } = useAuth();
 
   function handleToggleModal() {
     setIsOpenModal(!isOpenModal);
@@ -26,15 +28,17 @@ const MakeQuestionWeb = () => {
         handleToggleModal={handleToggleModal}
         styles={{ width: '45rem' }}
       >
-        <ModalHeader>
-          <div>
-            <Circle size={100} />
-          </div>
-          <div>
-            <strong>Professor CZ</strong>
-            <span>@professorczx</span>
-          </div>
-        </ModalHeader>
+        {user && (
+          <ModalHeader>
+            <div>
+              <Circle size={100} />
+            </div>
+            <div>
+              <strong>{user.displayName || user.name}</strong>
+              <span>@{user.nickName}</span>
+            </div>
+          </ModalHeader>
+        )}
         <MakeQuestionBox />
       </Modal>
     </>

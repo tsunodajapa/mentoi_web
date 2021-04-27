@@ -2,8 +2,9 @@ import styled from 'styled-components';
 import { Main as MainDefault } from '../../../shared/components/Main/styles';
 
 export const Main = styled(MainDefault)`
-  div {
+  > div {
     display: flex;
+    justify-content: space-evenly;
 
     > section:first-child {
       width: 75%;

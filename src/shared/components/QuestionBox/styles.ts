@@ -2,14 +2,23 @@ import styled, { css } from 'styled-components';
 
 interface ContainerProps {
   titleColor: [string, string];
+  isQuestionPage: boolean;
 }
 
 export const Container = styled.div<ContainerProps>`
   background: var(--color-background);
 
   border-radius: 1.2rem;
-  margin: 0.8rem 0.8rem 2.8rem 0.8rem;
   box-shadow: 0 1.3rem 8.1rem -0.7rem rgba(0, 0, 0, 0.15);
+
+  ${({ isQuestionPage }) =>
+    isQuestionPage
+      ? css`
+          margin: -0.4rem;
+        `
+      : css`
+          margin: 0.8rem 0.8rem 2.8rem 0.8rem;
+        `}
 
   > div:nth-child(1) {
     ${({ titleColor }) =>
@@ -47,7 +56,7 @@ export const Content = styled.div`
     justify-content: space-between;
 
     margin-top: 1.6rem;
-    border-top: 0.1rem solid var(--color-primary-light);
+    border-bottom: 0.1rem solid var(--color-primary-light);
     padding: 1rem 0;
 
     div {
@@ -63,18 +72,6 @@ export const Content = styled.div`
       span {
         margin-left: 0.3rem;
       }
-    }
-
-    button {
-      background: transparent;
-
-      padding: 0.5rem 2rem;
-      border-radius: 1.5rem;
-      border: 0.1rem solid var(--color-primary);
-
-      color: var(--color-primary);
-
-      transition: background-color 0.2s linear;
     }
 
     button:hover {
@@ -134,4 +131,22 @@ export const Header = styled.div`
 
     color: var(--color-text-complement);
   }
+`;
+
+export const AnswersContainer = styled.div`
+  padding: 3rem 5rem;
+
+  > div {
+    border-top: 0.1rem solid var(--color-primary-light);
+
+    > div:last-child > button {
+      padding: 0.4rem 1rem;
+      font-size: 1.4rem;
+      border-radius: 1rem;
+    }
+  }
+`;
+
+export const EvaluateContainer = styled.div`
+  display: flex;
 `;

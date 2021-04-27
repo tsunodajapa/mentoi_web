@@ -1,4 +1,4 @@
-import { User } from '@/hooks/auth';
+import { useAuth, User } from '@/hooks/auth';
 import { createContext, useCallback, useContext, useState } from 'react';
 import * as questionsServices from '../services/questionsServices';
 
@@ -38,11 +38,12 @@ const QuestionContext = createContext<QuestionContextData>(
 
 const QuestionProvider: React.FC = ({ children }) => {
   const [questions, setQuestions] = useState<Question[]>([]);
+  const { user } = useAuth();
 
   const createQuestion = async (data: FormData) => {
     const question = await questionsServices.createQuestion(data);
 
-    setQuestions(state => [question, ...state]);
+    setQuestions(state => [{ ...question, user }, ...state]);
   };
 
   const getQuestions = useCallback(async (page: number) => {

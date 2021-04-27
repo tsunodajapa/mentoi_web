@@ -4,7 +4,13 @@ import { Container } from './styles';
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   text: string;
-  variant?: 'primary' | 'secondary' | 'inlinePrimary' | 'inlineSecondary';
+  variant?:
+    | 'primary'
+    | 'secondary'
+    | 'error'
+    | 'outlineError'
+    | 'inlinePrimary'
+    | 'inlineSecondary';
 };
 
 const Button = ({ text, variant, ...rest }: ButtonProps) => {

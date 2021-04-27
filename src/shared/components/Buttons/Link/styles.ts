@@ -15,6 +15,11 @@ const LinkTypeVariations = {
     background: var(--color-primary);
     color: var(--color-text-in-primary);
     border: 0.1rem solid;
+
+    &:hover {
+      background: var(--color-primary-dark);
+      color: var(--color-text-in-primary);
+    }
   `,
   secondary: css`
     background: var(--color-secondary);
@@ -40,6 +45,11 @@ const LinkTypeVariations = {
     background: none;
     color: var(--color-secondary);
     border: 0.1rem solid var(--color-secondary);
+
+    &:hover {
+      background: var(--color-secondary);
+      color: var(--color-text-in-primary);
+    }
   `,
 };
 export const Container = styled.a<ContainerProps>`
@@ -51,9 +61,4 @@ export const Container = styled.a<ContainerProps>`
   border-radius: 1.5rem;
   padding: 0.5rem 1.5rem;
   cursor: pointer;
-
-  &:hover {
-    background: var(--color-primary);
-    color: var(--color-text-in-primary);
-  }
 `;
