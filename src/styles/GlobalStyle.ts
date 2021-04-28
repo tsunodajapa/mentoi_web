@@ -12,6 +12,7 @@ export default createGlobalStyle`
     --color-text-complement: #A3A3A2;
     --color-text-light: #C9C9C9;
     --color-red: #B4423E; 
+    --color-tertiary: #EDB12A;
     --color-secondary: #464745;
     --color-success: #7CC39C;
     --color-warning: #FBEA85;

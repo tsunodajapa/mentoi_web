@@ -6,6 +6,7 @@ interface ContainerProps {
     | 'secondary'
     | 'error'
     | 'outlineError'
+    | 'outlinePrimary'
     | 'inlinePrimary'
     | 'inlineSecondary';
 }
@@ -31,10 +32,25 @@ const ButtonTypeVariations = {
     color: var(--color-text-in-primary);
     border: 0.1rem solid;
   `,
+  outlinePrimary: css`
+    background: none;
+    color: var(--color-primary);
+    border: 0.1rem solid var(--color-primary);
+
+    &:hover {
+      background: var(--color-primary);
+      color: var(--color-text-in-primary);
+    }
+  `,
   outlineError: css`
     background: none;
     color: var(--color-red);
     border: 0.1rem solid var(--color-red);
+
+    &:hover {
+      background: var(--color-red);
+      color: var(--color-text-in-primary);
+    }
   `,
   inlinePrimary: css`
     background: none;

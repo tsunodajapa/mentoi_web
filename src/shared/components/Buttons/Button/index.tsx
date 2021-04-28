@@ -9,6 +9,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     | 'secondary'
     | 'error'
     | 'outlineError'
+    | 'outlinePrimary'
     | 'inlinePrimary'
     | 'inlineSecondary';
 };

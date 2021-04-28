@@ -9,8 +9,15 @@ export const Main = styled(MainDefault)`
     > section:first-child {
       width: 75%;
     }
-    > section:last-child {
-      width: min(22rem, 20%);
+    > div {
+      display: flex;
+      justify-content: center;
+      width: 30%;
+
+      > section:last-child {
+        position: fixed;
+        width: min(22rem, 20%);
+      }
     }
   }
 `;

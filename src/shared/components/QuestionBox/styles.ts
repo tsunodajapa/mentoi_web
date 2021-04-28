@@ -73,11 +73,6 @@ export const Content = styled.div`
         margin-left: 0.3rem;
       }
     }
-
-    button:hover {
-      background: var(--color-primary);
-      color: var(--color-text-in-primary);
-    }
   }
 `;
 
@@ -147,6 +142,27 @@ export const AnswersContainer = styled.div`
   }
 `;
 
+export const AnswersFooter = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 0 5rem;
+  padding: 2rem 0;
+
+  button svg {
+    color: var(--color-text-complement);
+    transform: scale(1.2);
+  }
+`;
+
 export const EvaluateContainer = styled.div`
   display: flex;
+
+  svg {
+    transform: scale(1.2);
+    margin-right: 0.6rem;
+  }
+
+  span {
+    font-size: 1.5rem;
+  }
 `;

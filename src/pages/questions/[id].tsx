@@ -29,7 +29,9 @@ const QuestionPage = ({ question }: QuestionPageProps) => {
           <SectionBordered border={BorderTypes.FULL}>
             {question && <QuestionBox data={question} isQuestionPage />}
           </SectionBordered>
-          <UserSection />
+          <div>
+            <UserSection />
+          </div>
         </div>
       </Main>
     </>
