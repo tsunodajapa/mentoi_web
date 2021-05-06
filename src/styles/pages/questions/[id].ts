@@ -6,7 +6,7 @@ export const Main = styled(MainDefault)`
     display: flex;
     justify-content: space-evenly;
 
-    > section:first-child {
+    > section {
       width: 75%;
     }
     > div {
@@ -17,6 +17,18 @@ export const Main = styled(MainDefault)`
       > section:last-child {
         position: fixed;
         width: min(22rem, 20%);
+      }
+    }
+  }
+
+  @media (max-width: 425px) {
+    > div {
+      > section {
+        width: 100%;
+        margin: 2.5rem;
+      }
+      > div {
+        display: none;
       }
     }
   }

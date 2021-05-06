@@ -17,10 +17,18 @@ interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   id: string;
   name: string;
   label?: string;
+  rows?: number;
   children?: ReactNode;
 }
 
-const TextArea = ({ id, label, name, children, ...rest }: TextAreaProps) => {
+const TextArea = ({
+  id,
+  label,
+  name,
+  children,
+  rows = 1,
+  ...rest
+}: TextAreaProps) => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
   const [isFocused, setIsFocused] = useState(false);
@@ -28,6 +36,19 @@ const TextArea = ({ id, label, name, children, ...rest }: TextAreaProps) => {
   const [isField, setIsField] = useState(false);
 
   const { fieldName, defaultValue, error, registerField } = useField(name);
+
+  const [textAreaHeight, setTextAreaHeight] = useState('auto');
+  const [parentHeight, setParentHeight] = useState('auto');
+
+  useEffect(() => {
+    setParentHeight(`${textAreaRef.current?.scrollHeight}px`);
+    setTextAreaHeight(`${textAreaRef.current?.scrollHeight}px`);
+  }, [textAreaHeight]);
+
+  const onChangeHandler = () => {
+    setTextAreaHeight('auto');
+    setParentHeight(`${textAreaRef.current?.scrollHeight}px`);
+  };
 
   const handleInputFocus = useCallback(() => {
     setIsFocused(true);
@@ -57,13 +78,22 @@ const TextArea = ({ id, label, name, children, ...rest }: TextAreaProps) => {
     >
       {label && <label htmlFor={id}>{label}</label>}
 
-      <div>
+      <div
+        style={{
+          minHeight: parentHeight,
+        }}
+      >
         <textarea
           id={id}
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
           defaultValue={defaultValue}
           ref={textAreaRef}
+          rows={rows}
+          style={{
+            height: textAreaHeight,
+          }}
+          onChange={onChangeHandler}
           {...rest}
         />
 

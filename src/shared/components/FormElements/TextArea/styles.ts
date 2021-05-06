@@ -26,6 +26,7 @@ export const Container = styled(ContainerDefault)`
     width: 100%;
     height: 100%;
     resize: none;
+    overflow: hidden;
   }
 `;
 

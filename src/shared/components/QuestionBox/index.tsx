@@ -11,6 +11,7 @@ import { Question } from '@/modules/common/hooks/question';
 
 import { useMemo, useState } from 'react';
 import subjects from '@/data/subjects';
+import { Form } from '@unform/web';
 import { Circle } from '../Circle';
 
 import {
@@ -24,6 +25,7 @@ import {
 import { Link } from '../Buttons/Link';
 import Button from '../Buttons/Button';
 import ButtonIcon from '../Buttons/ButtonIcon';
+import { Input, TextArea } from '../FormElements';
 
 interface QuestionBoxProps {
   data: Question;
@@ -72,8 +74,235 @@ const QuestionBox = ({
         <span>{Title}</span>
       </div>
 
-      <Content>
-        <Header>
+      <div>
+        <Content>
+          <Header>
+            <div>
+              <div>
+                {user.avatarUrl ? (
+                  <Image src={user.avatarUrl} alt={user.name} layout="fill" />
+                ) : (
+                  <Circle size={100} />
+                )}
+              </div>
+              <div>
+                <span>{user.displayName || user.name}</span>
+                <span>@{user.nickName}</span>
+              </div>
+            </div>
+            <span>há 5 minutos</span>
+          </Header>
+
+          <span>{description}</span>
+          {!isQuestionPage && (
+            <div>
+              <div>
+                <FaComment />
+                <span>2</span>
+              </div>
+              {id && (
+                <Link
+                  href={`questions/${id}`}
+                  text="Ver Pergunta"
+                  variant="outlinePrimary"
+                />
+              )}
+            </div>
+          )}
+        </Content>
+        {isQuestionPage && (
+          <>
+            <AnswersContainer>
+              <Content>
+                <Header>
+                  <div>
+                    <div>
+                      {user.avatarUrl ? (
+                        <Image
+                          src={user.avatarUrl}
+                          alt={user.name}
+                          layout="fill"
+                        />
+                      ) : (
+                        <Circle size={100} />
+                      )}
+                    </div>
+                    <div>
+                      <span>{user.displayName || user.name}</span>
+                      <span>@{user.nickName}</span>
+                    </div>
+                  </div>
+                  <span>há 5 minutos</span>
+                </Header>
+
+                <span>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Deleniti, quis iure cumque quae ducimus tempore esse nobis.
+                  Dignissimos nemo maxime, mollitia nihil delectus corporis
+                  maiores, amet optio pariatur expedita quibusdam?
+                </span>
+
+                <div>
+                  <EvaluateContainer>
+                    <ButtonIcon icon={RiEmotionLine} color="--color-success" />
+                    <ButtonIcon
+                      icon={RiEmotionHappyLine}
+                      color="--color-warning"
+                    />
+                    <ButtonIcon
+                      icon={RiEmotionNormalLine}
+                      color="--color-error"
+                    />
+                    <span>Avalie a resposta</span>
+                  </EvaluateContainer>
+
+                  <Button text="DENUNCIAR" variant="outlineError" />
+                </div>
+              </Content>
+              <Content>
+                <Header>
+                  <div>
+                    <div>
+                      {user.avatarUrl ? (
+                        <Image
+                          src={user.avatarUrl}
+                          alt={user.name}
+                          layout="fill"
+                        />
+                      ) : (
+                        <Circle size={100} />
+                      )}
+                    </div>
+                    <div>
+                      <span>{user.displayName || user.name}</span>
+                      <span>@{user.nickName}</span>
+                    </div>
+                  </div>
+                  <span>há 5 minutos</span>
+                </Header>
+
+                <span>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Deleniti, quis iure cumque quae ducimus tempore esse nobis.
+                  Dignissimos nemo maxime, mollitia nihil delectus corporis
+                  maiores, amet optio pariatur expedita quibusdam?
+                </span>
+
+                <div>
+                  <EvaluateContainer>
+                    <ButtonIcon icon={RiEmotionLine} color="--color-success" />
+                    <ButtonIcon
+                      icon={RiEmotionHappyLine}
+                      color="--color-warning"
+                    />
+                    <ButtonIcon
+                      icon={RiEmotionNormalLine}
+                      color="--color-error"
+                    />
+                    <span>Avalie a resposta</span>
+                  </EvaluateContainer>
+
+                  <Button text="DENUNCIAR" variant="outlineError" />
+                </div>
+              </Content>
+              <Content>
+                <Header>
+                  <div>
+                    <div>
+                      {user.avatarUrl ? (
+                        <Image
+                          src={user.avatarUrl}
+                          alt={user.name}
+                          layout="fill"
+                        />
+                      ) : (
+                        <Circle size={100} />
+                      )}
+                    </div>
+                    <div>
+                      <span>{user.displayName || user.name}</span>
+                      <span>@{user.nickName}</span>
+                    </div>
+                  </div>
+                  <span>há 5 minutos</span>
+                </Header>
+
+                <span>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Deleniti, quis iure cumque quae ducimus tempore esse nobis.
+                  Dignissimos nemo maxime, mollitia nihil delectus corporis
+                  maiores, amet optio pariatur expedita quibusdam?
+                </span>
+
+                <div>
+                  <EvaluateContainer>
+                    <ButtonIcon icon={RiEmotionLine} color="--color-success" />
+                    <ButtonIcon
+                      icon={RiEmotionHappyLine}
+                      color="--color-warning"
+                    />
+                    <ButtonIcon
+                      icon={RiEmotionNormalLine}
+                      color="--color-error"
+                    />
+                    <span>Avalie a resposta</span>
+                  </EvaluateContainer>
+
+                  <Button text="DENUNCIAR" variant="outlineError" />
+                </div>
+              </Content>
+              <Content>
+                <Header>
+                  <div>
+                    <div>
+                      {user.avatarUrl ? (
+                        <Image
+                          src={user.avatarUrl}
+                          alt={user.name}
+                          layout="fill"
+                        />
+                      ) : (
+                        <Circle size={100} />
+                      )}
+                    </div>
+                    <div>
+                      <span>{user.displayName || user.name}</span>
+                      <span>@{user.nickName}</span>
+                    </div>
+                  </div>
+                  <span>há 5 minutos</span>
+                </Header>
+
+                <span>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Deleniti, quis iure cumque quae ducimus tempore esse nobis.
+                  Dignissimos nemo maxime, mollitia nihil delectus corporis
+                  maiores, amet optio pariatur expedita quibusdam?
+                </span>
+
+                <div>
+                  <EvaluateContainer>
+                    <ButtonIcon icon={RiEmotionLine} color="--color-success" />
+                    <ButtonIcon
+                      icon={RiEmotionHappyLine}
+                      color="--color-warning"
+                    />
+                    <ButtonIcon
+                      icon={RiEmotionNormalLine}
+                      color="--color-error"
+                    />
+                    <span>Avalie a resposta</span>
+                  </EvaluateContainer>
+
+                  <Button text="DENUNCIAR" variant="outlineError" />
+                </div>
+              </Content>
+            </AnswersContainer>
+          </>
+        )}
+      </div>
+      <AnswersFooter>
+        <Form onSubmit={() => console.log('aqui')}>
           <div>
             <div>
               {user.avatarUrl ? (
@@ -82,181 +311,17 @@ const QuestionBox = ({
                 <Circle size={100} />
               )}
             </div>
-            <div>
-              <span>{user.displayName || user.name}</span>
-              <span>@{user.nickName}</span>
-            </div>
+
+            <TextArea
+              id="answers-input"
+              name="answers"
+              placeholder="RESPONDER"
+            />
           </div>
-          <span>há 5 minutos</span>
-        </Header>
 
-        <span>{description}</span>
-        {!isQuestionPage && (
-          <div>
-            <div>
-              <FaComment />
-              <span>2</span>
-            </div>
-            {id && (
-              <Link
-                href={`questions/${id}`}
-                text="Ver Pergunta"
-                variant="outlinePrimary"
-              />
-            )}
-          </div>
-        )}
-      </Content>
-      {isQuestionPage && (
-        <>
-          <AnswersContainer>
-            <Content>
-              <Header>
-                <div>
-                  <div>
-                    {user.avatarUrl ? (
-                      <Image
-                        src={user.avatarUrl}
-                        alt={user.name}
-                        layout="fill"
-                      />
-                    ) : (
-                      <Circle size={100} />
-                    )}
-                  </div>
-                  <div>
-                    <span>{user.displayName || user.name}</span>
-                    <span>@{user.nickName}</span>
-                  </div>
-                </div>
-                <span>há 5 minutos</span>
-              </Header>
-
-              <span>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Deleniti, quis iure cumque quae ducimus tempore esse nobis.
-                Dignissimos nemo maxime, mollitia nihil delectus corporis
-                maiores, amet optio pariatur expedita quibusdam?
-              </span>
-
-              <div>
-                <EvaluateContainer>
-                  <ButtonIcon icon={RiEmotionLine} color="--color-success" />
-                  <ButtonIcon
-                    icon={RiEmotionHappyLine}
-                    color="--color-warning"
-                  />
-                  <ButtonIcon
-                    icon={RiEmotionNormalLine}
-                    color="--color-error"
-                  />
-                  <span>Avalie a resposta</span>
-                </EvaluateContainer>
-
-                <Button text="DENUNCIAR" variant="outlineError" />
-              </div>
-            </Content>
-            <Content>
-              <Header>
-                <div>
-                  <div>
-                    {user.avatarUrl ? (
-                      <Image
-                        src={user.avatarUrl}
-                        alt={user.name}
-                        layout="fill"
-                      />
-                    ) : (
-                      <Circle size={100} />
-                    )}
-                  </div>
-                  <div>
-                    <span>{user.displayName || user.name}</span>
-                    <span>@{user.nickName}</span>
-                  </div>
-                </div>
-                <span>há 5 minutos</span>
-              </Header>
-
-              <span>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Deleniti, quis iure cumque quae ducimus tempore esse nobis.
-                Dignissimos nemo maxime, mollitia nihil delectus corporis
-                maiores, amet optio pariatur expedita quibusdam?
-              </span>
-
-              <div>
-                <EvaluateContainer>
-                  <ButtonIcon icon={RiEmotionLine} color="--color-success" />
-                  <ButtonIcon
-                    icon={RiEmotionHappyLine}
-                    color="--color-warning"
-                  />
-                  <ButtonIcon
-                    icon={RiEmotionNormalLine}
-                    color="--color-error"
-                  />
-                  <span>Avalie a resposta</span>
-                </EvaluateContainer>
-
-                <Button text="DENUNCIAR" variant="outlineError" />
-              </div>
-            </Content>
-            <Content>
-              <Header>
-                <div>
-                  <div>
-                    {user.avatarUrl ? (
-                      <Image
-                        src={user.avatarUrl}
-                        alt={user.name}
-                        layout="fill"
-                      />
-                    ) : (
-                      <Circle size={100} />
-                    )}
-                  </div>
-                  <div>
-                    <span>{user.displayName || user.name}</span>
-                    <span>@{user.nickName}</span>
-                  </div>
-                </div>
-                <span>há 5 minutos</span>
-              </Header>
-
-              <span>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Deleniti, quis iure cumque quae ducimus tempore esse nobis.
-                Dignissimos nemo maxime, mollitia nihil delectus corporis
-                maiores, amet optio pariatur expedita quibusdam?
-              </span>
-
-              <div>
-                <EvaluateContainer>
-                  <ButtonIcon icon={RiEmotionLine} color="--color-success" />
-                  <ButtonIcon
-                    icon={RiEmotionHappyLine}
-                    color="--color-warning"
-                  />
-                  <ButtonIcon
-                    icon={RiEmotionNormalLine}
-                    color="--color-error"
-                  />
-                  <span>Avalie a resposta</span>
-                </EvaluateContainer>
-
-                <Button text="DENUNCIAR" variant="outlineError" />
-              </div>
-            </Content>
-          </AnswersContainer>
-
-          <AnswersFooter>
-            <ButtonIcon icon={RiArrowLeftCircleFill} />
-            <Button text="Responder" variant="outlinePrimary" />
-            <ButtonIcon icon={RiArrowRightCircleFill} />
-          </AnswersFooter>
-        </>
-      )}
+          <Button type="submit" text="PUBLICAR" />
+        </Form>
+      </AnswersFooter>
     </Container>
   );
 };
