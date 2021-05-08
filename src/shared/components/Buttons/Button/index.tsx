@@ -12,11 +12,12 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     | 'outlinePrimary'
     | 'inlinePrimary'
     | 'inlineSecondary';
+  styles?: object;
 };
 
-const Button = ({ text, variant, ...rest }: ButtonProps) => {
+const Button = ({ text, variant, styles, ...rest }: ButtonProps) => {
   return (
-    <Container type="button" variant={variant} {...rest}>
+    <Container type="button" variant={variant} style={styles} {...rest}>
       {text}
     </Container>
   );

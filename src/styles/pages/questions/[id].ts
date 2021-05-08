@@ -25,7 +25,7 @@ export const Main = styled(MainDefault)`
     > div {
       > section {
         width: 100%;
-        margin: 2.5rem;
+        margin: 1.5rem;
       }
       > div {
         display: none;

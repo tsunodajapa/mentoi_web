@@ -140,6 +140,10 @@ export const Header = styled.div`
       }
     }
   }
+  @media (max-width: 425px) {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 
   img {
     width: 4.5rem;
@@ -160,7 +164,7 @@ export const Header = styled.div`
 `;
 
 export const AnswersContainer = styled.div`
-  padding: 3rem 5rem;
+  padding: 3rem;
 
   > div {
     border-top: 0.1rem solid var(--color-primary-light);
@@ -169,6 +173,12 @@ export const AnswersContainer = styled.div`
       padding: 0.4rem 1rem;
       font-size: 1.4rem;
       border-radius: 1rem;
+    }
+  }
+
+  @media (max-width: 425px) {
+    > div div:last-child {
+      /* flex-direction: column; */
     }
   }
 `;
@@ -202,7 +212,7 @@ export const AnswersFooter = styled.div`
       }
 
       > div:nth-of-type(2) {
-        width: 100%;
+        width: 85%;
 
         div {
           border-radius: 0.2rem;
@@ -211,7 +221,7 @@ export const AnswersFooter = styled.div`
     }
 
     button {
-      margin-top: 0.5rem;
+      margin-top: 1.4rem;
       width: 30%;
     }
   }
@@ -246,5 +256,39 @@ export const EvaluateContainer = styled.div`
 
   span {
     font-size: 1.5rem;
+  }
+
+  @media (max-width: 425px) {
+    display: grid !important;
+    grid-template-areas:
+      'button-one button-two button-three'
+      'texto texto texto';
+
+    > button {
+      width: fit-content;
+      margin: auto;
+    }
+
+    > button:nth-child(1) {
+      grid-area: button-one;
+    }
+
+    > button:nth-child(2) {
+      grid-area: button-two;
+    }
+
+    > button:nth-child(3) {
+      grid-area: button-three;
+    }
+
+    svg {
+      margin: 0;
+    }
+
+    > span {
+      grid-area: texto;
+      margin-top: 0.8rem;
+      font-size: 1.3rem;
+    }
   }
 `;

@@ -156,7 +156,11 @@ const QuestionBox = ({
                     <span>Avalie a resposta</span>
                   </EvaluateContainer>
 
-                  <Button text="DENUNCIAR" variant="outlineError" />
+                  <Button
+                    text="DENUNCIAR"
+                    variant="outlineError"
+                    styles={{ maxHeight: '2.8rem', alignSelf: 'flex-end' }}
+                  />
                 </div>
               </Content>
               <Content>
@@ -301,27 +305,29 @@ const QuestionBox = ({
           </>
         )}
       </div>
-      <AnswersFooter>
-        <Form onSubmit={() => console.log('aqui')}>
-          <div>
+      {isQuestionPage && (
+        <AnswersFooter>
+          <Form onSubmit={() => console.log('aqui')}>
             <div>
-              {user.avatarUrl ? (
-                <Image src={user.avatarUrl} alt={user.name} layout="fill" />
-              ) : (
-                <Circle size={100} />
-              )}
+              <div>
+                {user.avatarUrl ? (
+                  <Image src={user.avatarUrl} alt={user.name} layout="fill" />
+                ) : (
+                  <Circle size={100} />
+                )}
+              </div>
+
+              <TextArea
+                id="answers-input"
+                name="answers"
+                placeholder="RESPONDER"
+              />
             </div>
 
-            <TextArea
-              id="answers-input"
-              name="answers"
-              placeholder="RESPONDER"
-            />
-          </div>
-
-          <Button type="submit" text="PUBLICAR" />
-        </Form>
-      </AnswersFooter>
+            <Button type="submit" text="PUBLICAR" />
+          </Form>
+        </AnswersFooter>
+      )}
     </Container>
   );
 };
