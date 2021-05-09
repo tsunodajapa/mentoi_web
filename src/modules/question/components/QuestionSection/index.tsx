@@ -3,18 +3,19 @@ import { useEffect, useRef, useState } from 'react';
 import subjects from '@/data/subjects';
 
 import Carousel from '@/shared/components/Carousel';
-import MakeQuestionMobile from '@/shared/components/MakeQuestionBox/Mobile';
-import MakeQuestionWeb from '@/shared/components/MakeQuestionBox/Web';
+import MakeQuestionMobile from '@/modules/question/components/MakeQuestionBox/Mobile';
 import OnboardingTemplate from '@/shared/components/Onboarding/OnboardingTemplate';
-import QuestionBox from '@/shared/components/QuestionBox';
+import QuestionBox from '@/modules/question/components/QuestionBox';
 import SectionBordered, {
   BorderTypes,
 } from '@/shared/components/SectionBordered';
+import InfiniteScroll from '@/shared/components/InfiniteScroll';
+import MakeQuestionWeb from '../MakeQuestionBox/Web';
 
 import { useQuestion } from '../../hooks/question';
 
 import { Container } from './styles';
-import { UserSection } from '../UserSection';
+import { UserSection } from '../../../common/components/UserSection';
 
 interface QuestionSectionProps {
   step: number;
@@ -22,40 +23,6 @@ interface QuestionSectionProps {
 
 const QuestionSection = ({ step }: QuestionSectionProps) => {
   const { getQuestions, questions } = useQuestion();
-  const divInfiteScrollRef = useRef<HTMLDivElement>();
-  const [page, setPage] = useState(0);
-  const [notFoundQuestions, setNotFoundQuestions] = useState(false);
-
-  useEffect(() => {
-    const intersectionObserver = new IntersectionObserver(async ([entries]) => {
-      const ratio = entries.intersectionRatio;
-
-      if (ratio > 0 && !notFoundQuestions) {
-        setPage(state => state + 1);
-      }
-    });
-
-    if (divInfiteScrollRef.current)
-      intersectionObserver.observe(divInfiteScrollRef.current);
-
-    return () => {
-      intersectionObserver.disconnect();
-    };
-  }, [divInfiteScrollRef, notFoundQuestions]);
-
-  useEffect(() => {
-    async function searchQuestions() {
-      if (page > 0) {
-        const quantityFound = await getQuestions(page);
-
-        if (!quantityFound) {
-          setNotFoundQuestions(true);
-        }
-      }
-    }
-
-    searchQuestions();
-  }, [getQuestions, page]);
 
   return (
     <Container step={step}>
@@ -81,7 +48,7 @@ const QuestionSection = ({ step }: QuestionSectionProps) => {
               return <QuestionBox key={question.id} data={question} />;
             })}
         </SectionBordered>
-        <div ref={divInfiteScrollRef} />
+        <InfiniteScroll getService={getQuestions} />
       </div>
       <div />
       <MakeQuestionMobile />

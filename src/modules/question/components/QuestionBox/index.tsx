@@ -7,12 +7,15 @@ import {
   RiArrowRightCircleFill,
   RiArrowLeftCircleFill,
 } from 'react-icons/ri';
-import { Question } from '@/modules/common/hooks/question';
+import { Question } from '@/modules/question/hooks/question';
 
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import subjects from '@/data/subjects';
 import { Form } from '@unform/web';
-import { Circle } from '../Circle';
+import { FormHandles } from '@unform/core';
+import getValidationErrors from '@/utils/getValidationErros';
+import { useToast } from '@/hooks/toast';
+import { Circle } from '../../../../shared/components/Circle';
 
 import {
   Container,
@@ -22,10 +25,10 @@ import {
   AnswersFooter,
   EvaluateContainer,
 } from './styles';
-import { Link } from '../Buttons/Link';
-import Button from '../Buttons/Button';
-import ButtonIcon from '../Buttons/ButtonIcon';
-import { Input, TextArea } from '../FormElements';
+import { Link } from '../../../../shared/components/Buttons/Link';
+import Button from '../../../../shared/components/Buttons/Button';
+import ButtonIcon from '../../../../shared/components/Buttons/ButtonIcon';
+import { Input, TextArea } from '../../../../shared/components/FormElements';
 
 interface QuestionBoxProps {
   data: Question;
@@ -36,7 +39,10 @@ const QuestionBox = ({
   data: { id, description, title, areasInterest, files, user },
   isQuestionPage = false,
 }: QuestionBoxProps) => {
+  const formRef = useRef<FormHandles>(null);
   const [titleColor, setTitleColor] = useState<[string, string]>();
+
+  const { addToast } = useToast();
 
   const Title = useMemo(() => {
     if (areasInterest.length > 1) {
@@ -67,6 +73,20 @@ const QuestionBox = ({
     }
     return title;
   }, [areasInterest, title]);
+
+  async function handleSubmitAnswer(data: { answer: string }) {
+    try {
+      formRef.current?.setErrors({});
+
+      console.log(data);
+    } catch (error) {
+      addToast({
+        type: 'error',
+        title: 'Erro na autenticação',
+        description: 'Ocorreu um erro ao fazer login, cheque as credenciais',
+      });
+    }
+  }
 
   return (
     <Container titleColor={titleColor} isQuestionPage={isQuestionPage}>
@@ -307,7 +327,7 @@ const QuestionBox = ({
       </div>
       {isQuestionPage && (
         <AnswersFooter>
-          <Form onSubmit={() => console.log('aqui')}>
+          <Form ref={formRef} onSubmit={handleSubmitAnswer}>
             <div>
               <div>
                 {user.avatarUrl ? (
@@ -319,7 +339,7 @@ const QuestionBox = ({
 
               <TextArea
                 id="answers-input"
-                name="answers"
+                name="answer"
                 placeholder="RESPONDER"
               />
             </div>

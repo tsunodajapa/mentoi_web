@@ -6,9 +6,11 @@ import SectionBordered, {
 import { GetStaticPaths, GetStaticProps, GetStaticPropsResult } from 'next';
 
 import { Main } from '@/styles/pages/questions/[id]';
-import QuestionBox from '@/shared/components/QuestionBox';
-import { Question } from '@/modules/common/hooks/question';
-import * as questionsServices from '../../modules/common/services/questionsServices';
+import QuestionBox from '@/modules/question/components/QuestionBox';
+import { Question } from '@/modules/question/hooks/question';
+import { useEffect } from 'react';
+import { AnswerProvider } from '@/modules/question/hooks/answer';
+import * as questionsServices from '../../modules/question/services/questionsServices';
 
 interface QuestionPageProps {
   question: Question;
@@ -21,19 +23,29 @@ type NextGetStaticPropsCtx = {
 };
 
 const QuestionPage = ({ question }: QuestionPageProps) => {
+  useEffect(() => {
+    document.body.style.overflowY = 'auto';
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflowY = 'auto';
+  }, []);
+
   return (
     <>
-      <Header actualNameStep="Teste" />
-      <Main>
-        <div>
-          <SectionBordered border={BorderTypes.FULL}>
-            {question && <QuestionBox data={question} isQuestionPage />}
-          </SectionBordered>
+      <AnswerProvider>
+        <Header actualNameStep="Teste" />
+        <Main>
           <div>
-            <UserSection />
+            <SectionBordered border={BorderTypes.FULL}>
+              {question && <QuestionBox data={question} isQuestionPage />}
+            </SectionBordered>
+            <div>
+              <UserSection />
+            </div>
           </div>
-        </div>
-      </Main>
+        </Main>
+      </AnswerProvider>
     </>
   );
 };

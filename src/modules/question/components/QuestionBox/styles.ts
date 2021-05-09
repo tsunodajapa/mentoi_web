@@ -71,7 +71,12 @@ export const Container = styled.div<ContainerProps>`
 
   @media (max-width: 475px) {
     margin-bottom: 1.8rem;
-    padding-bottom: 6rem;
+
+    ${({ isQuestionPage }) =>
+      isQuestionPage &&
+      css`
+        padding-bottom: 6rem;
+      `}
 
     > div:nth-child(1) {
       display: none;
@@ -173,12 +178,6 @@ export const AnswersContainer = styled.div`
       padding: 0.4rem 1rem;
       font-size: 1.4rem;
       border-radius: 1rem;
-    }
-  }
-
-  @media (max-width: 425px) {
-    > div div:last-child {
-      /* flex-direction: column; */
     }
   }
 `;

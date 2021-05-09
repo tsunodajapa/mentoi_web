@@ -3,14 +3,18 @@ import { FormHandles } from '@unform/core';
 
 import subjects from '@/data/subjects';
 import { useToast } from '@/hooks/toast';
-import { useQuestion } from '@/modules/common/hooks/question';
+import { useQuestion } from '@/modules/question/hooks/question';
 
-import { CreateQuestionData } from '@/modules/common/hooks/question';
-import { CreateQuestionValidator } from '@/modules/common/validators/CreateQuestion';
+import { CreateQuestionData } from '@/modules/question/hooks/question';
+import { CreateQuestionValidator } from '@/modules/question/validators/CreateQuestion';
 import { ValidationError } from 'yup';
-import Button from '../Buttons/Button';
-import { Input, TextArea, Select } from '../FormElements';
-import Dropzone from '../FormElements/Dropzone';
+import Button from '@/shared/components/Buttons/Button';
+import {
+  Input,
+  TextArea,
+  Select,
+  Dropzone,
+} from '@/shared/components/FormElements';
 
 import { FormQuestion } from './styles';
 

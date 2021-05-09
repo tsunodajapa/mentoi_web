@@ -4,8 +4,8 @@ import { useState } from 'react';
 
 import Footer from '@/modules/common/components/Footer';
 
-import { QuestionProvider } from '@/modules/common/hooks/question';
-import { QuestionSection } from '@/modules/common/components/QuestionSection';
+import { QuestionProvider } from '@/modules/question/hooks/question';
+import { QuestionSection } from '@/modules/question/components/QuestionSection';
 import { Main } from '@/shared/components/Main/styles';
 
 const Feed = () => {

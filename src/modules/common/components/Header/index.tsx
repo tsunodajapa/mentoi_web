@@ -78,7 +78,11 @@ const Header = ({ actualNameStep }: HeaderProps) => {
 
       <div>
         <div>
-          <MentoiIcon />
+          <Link href="/feed">
+            <a>
+              <MentoiIcon />
+            </a>
+          </Link>
           <span>{actualNameStep}</span>
         </div>
         <IoSearch />
