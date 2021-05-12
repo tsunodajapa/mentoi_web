@@ -5,8 +5,8 @@ import { Form } from '@unform/web';
 import * as Yup from 'yup';
 
 import getValidationErrors from '@/utils/getValidationErros';
-import { useAuth } from '@/hooks/auth';
-import { useToast } from '@/hooks/toast';
+import { useAuth } from '@/shared/hooks/auth';
+import { useToast } from '@/shared/hooks/toast';
 
 import { FiLock, FiMail } from 'react-icons/fi';
 import Button from '@/shared/components/Buttons/Button';

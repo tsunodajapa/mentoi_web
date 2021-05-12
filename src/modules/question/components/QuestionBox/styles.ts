@@ -41,7 +41,7 @@ export const Container = styled.div<ContainerProps>`
 
   @media (min-width: 475px) {
     > div:nth-of-type(2) {
-      max-height: calc(100vh - 26rem);
+      max-height: calc(100vh - 16rem);
 
       overflow-y: scroll;
       /* width */
@@ -189,7 +189,7 @@ export const AnswersFooter = styled.div`
 
   display: flex;
   justify-content: space-between;
-  margin: 0 5rem;
+  margin: 0 4rem;
   padding: 2rem 0;
 
   > form {
@@ -211,7 +211,7 @@ export const AnswersFooter = styled.div`
       }
 
       > div:nth-of-type(2) {
-        width: 85%;
+        width: 100%;
 
         div {
           border-radius: 0.2rem;
@@ -238,6 +238,10 @@ export const AnswersFooter = styled.div`
     width: 90%;
     margin: 0 2.1rem;
     padding: 1.5rem;
+
+    > form > div > div:nth-of-type(2) {
+      width: 85%;
+    }
 
     form button {
       width: 45%;

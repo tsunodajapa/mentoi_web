@@ -1,4 +1,4 @@
-import { useAuth, User } from '@/hooks/auth';
+import { useAuth, User } from '@/shared/hooks/auth';
 import { createContext, useCallback, useContext, useState } from 'react';
 import * as questionsServices from '../services/questionsServices';
 
@@ -24,6 +24,7 @@ export interface Question {
     fileUrl: string;
   }[];
   user: Omit<User, 'id' | 'email' | 'permission' | 'areasInterest'>;
+  elapsedTime: string;
 }
 
 interface QuestionContextData {

@@ -21,11 +21,11 @@ import { Scholarity } from '@/shared/data/Scholarity';
 import subjects from '@/data/subjects';
 import getValidationErrors from '@/utils/getValidationErros';
 
-import { useToast } from '@/hooks/toast';
+import { useToast } from '@/shared/hooks/toast';
 import LoginModal from '@/modules/logouted/components/LoginModal';
 
 import { CreateUserValidator } from '@/modules/logouted/validators/CreateUser';
-import { CreateUserData, useAuth } from '@/hooks/auth';
+import { CreateUserData, useAuth } from '@/shared/hooks/auth';
 
 const SignUp = () => {
   const formRef = useRef<FormHandles>(null);

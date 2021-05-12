@@ -1,5 +1,5 @@
 import api from '@/shared/services/api';
-import { CreateUserData, User, AuthState } from '../../../hooks/auth';
+import { CreateUserData, User, AuthState } from '../../../shared/hooks/auth';
 
 export async function createUser(data: CreateUserData): Promise<AuthState> {
   return (await api.post('users', data)).data;

@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useRef } from 'react';
-import { useOnboarding } from '@/hooks/onboarding';
+import { useOnboarding } from '@/shared/hooks/onboarding';
 
 interface OnboardingTemplateProps {
   title: string;

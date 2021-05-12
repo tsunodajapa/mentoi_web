@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { Circle } from '@/shared/components/Circle';
-import { useAuth } from '@/hooks/auth';
+import { useAuth } from '@/shared/hooks/auth';
 import Modal from '@/shared/components/Modal';
 import { Container, ModalHeader } from './styles';
 import MakeQuestionBox from '..';

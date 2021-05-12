@@ -2,8 +2,8 @@ import { createContext, useState, useContext, useEffect } from 'react';
 import Cookies from 'js-cookie';
 
 import { useRouter } from 'next/router';
-import * as authServices from '../modules/logouted/services/authServices';
-import api from '../shared/services/api';
+import * as authServices from '../../modules/logouted/services/authServices';
+import api from '../services/api';
 
 export interface User {
   id: string;

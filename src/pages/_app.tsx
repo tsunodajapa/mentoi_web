@@ -1,4 +1,4 @@
-import AppProvider from '@/hooks';
+import AppProvider from '@/shared/hooks';
 import { AppProps } from 'next/app';
 import GlobalStyle from '../styles/GlobalStyle';
 

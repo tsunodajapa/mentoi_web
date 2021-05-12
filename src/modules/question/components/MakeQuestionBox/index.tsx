@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { FormHandles } from '@unform/core';
 
 import subjects from '@/data/subjects';
-import { useToast } from '@/hooks/toast';
+import { useToast } from '@/shared/hooks/toast';
 import { useQuestion } from '@/modules/question/hooks/question';
 
 import { CreateQuestionData } from '@/modules/question/hooks/question';

@@ -1,4 +1,5 @@
-import { useAuth, User } from '@/hooks/auth';
+import { useAuth, User } from '@/shared/hooks/auth';
+import { useRouter } from 'next/router';
 import { createContext, useCallback, useContext, useState } from 'react';
 import * as questionsServices from '../services/questionsServices';
 
@@ -6,6 +7,7 @@ export interface Answer {
   id: string;
   text: string;
   user: Omit<User, 'id' | 'email' | 'permission' | 'areasInterest'>;
+  elapsedTime: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -16,8 +18,8 @@ export interface CreateAnswer {
 
 interface AnswerContextData {
   answers: Answer[];
-  createAnswer(questionId: string, data: CreateAnswer): Promise<void>;
-  getAnswers(id: string, page: number): Promise<number>;
+  createAnswer(data: CreateAnswer): Promise<void>;
+  getAnswers(page: number): Promise<number>;
 }
 
 const AnswerContext = createContext<AnswerContextData>({} as AnswerContextData);
@@ -25,23 +27,37 @@ const AnswerContext = createContext<AnswerContextData>({} as AnswerContextData);
 const AnswerProvider: React.FC = ({ children }) => {
   const [answers, setAnswers] = useState<Answer[]>([]);
   const { user } = useAuth();
+  const router = useRouter();
 
-  const createAnswer = async (questionId: string, data: CreateAnswer) => {
-    const answer = await questionsServices.createAnswer(questionId, data);
+  const createAnswer = async (data: CreateAnswer) => {
+    const { id: questionId } = router.query;
+
+    const answer = await questionsServices.createAnswer(
+      questionId as string,
+      data,
+    );
 
     setAnswers(state => [{ ...answer, user }, ...state]);
   };
 
-  const getAnswers = useCallback(async (questionId: string, page: number) => {
-    const answersFound = await questionsServices.getAnswers(questionId, {
-      page,
-      pageSize: 10,
-    });
+  const getAnswers = useCallback(
+    async (page: number) => {
+      const { id: questionId } = router.query;
 
-    setAnswers(state => [...state, ...answersFound]);
+      const answersFound = await questionsServices.getAnswers(
+        questionId as string,
+        {
+          page,
+          pageSize: 10,
+        },
+      );
 
-    return answersFound.length;
-  }, []);
+      setAnswers(state => [...state, ...answersFound]);
+
+      return answersFound.length;
+    },
+    [router.query],
+  );
 
   return (
     <AnswerContext.Provider value={{ createAnswer, getAnswers, answers }}>

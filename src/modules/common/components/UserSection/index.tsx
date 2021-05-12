@@ -1,6 +1,6 @@
 // import { Container } from './styles';
 
-import { useAuth } from '@/hooks/auth';
+import { useAuth } from '@/shared/hooks/auth';
 import { Circle } from '@/shared/components/Circle';
 import ContentBox from '@/shared/components/ContentBox';
 import ProgressCircle from '@/shared/components/ProgressCircle';

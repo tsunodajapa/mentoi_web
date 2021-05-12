@@ -36,6 +36,7 @@
     "no-shadow": "off",
     "no-param-reassign":"off",
     "no-return-assign":"off",
+    "no-case-declarations":"off",
     "@typescript-eslint/no-shadow": ["error"],
     "camelcase": "off",
     "no-unused-expressions":"off",

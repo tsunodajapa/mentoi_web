@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useAuth } from '@/hooks/auth';
+import { useAuth } from '@/shared/hooks/auth';
 import { useRouter } from 'next/router';
 
 import Background from '@/assets/background_home.svg';

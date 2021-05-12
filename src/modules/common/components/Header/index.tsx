@@ -15,7 +15,7 @@ import Logo from '@/assets/logo_mentoi.svg';
 import MentoiIcon from '@/assets/icon_mentoi.svg';
 
 import OnboardingTemplate from '@/shared/components/Onboarding/OnboardingTemplate';
-import { useAuth } from '@/hooks/auth';
+import { useAuth } from '@/shared/hooks/auth';
 import { Container, Nav } from './styles';
 
 interface HeaderProps {

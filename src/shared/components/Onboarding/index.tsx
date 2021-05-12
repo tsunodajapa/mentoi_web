@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useOnboarding } from '@/hooks/onboarding';
+import { useOnboarding } from '@/shared/hooks/onboarding';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
 import Modal from '../Modal';
