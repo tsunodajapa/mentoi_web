@@ -35,6 +35,7 @@ import {
   EvaluateContainer,
 } from './style';
 import { Content, Header as HeaderAnswer } from '../QuestionBox/styles';
+import ModalBeAMentoi from '../ModalBeAMentoi';
 
 interface QuestionPageTemplateProps {
   question: Question;
@@ -181,8 +182,12 @@ const QuestionPageTemplate = ({ question }: QuestionPageTemplateProps) => {
           </div>
         </div>
       </Main>
-      <Modal isOpenModal={isOpenModal} handleToggleModal={handleToggleModal}>
-        <span>Teste</span>
+      <Modal
+        isOpenModal={isOpenModal}
+        handleToggleModal={handleToggleModal}
+        styles={{ width: '40rem' }}
+      >
+        <ModalBeAMentoi />
       </Modal>
     </>
   );

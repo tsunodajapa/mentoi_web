@@ -64,7 +64,8 @@ export const Container = styled.div<ContainerProps>`
     ${({ styles }) =>
       styles &&
       css`
-        min-width: ${styles.width};
+        width: ${styles.width};
+        max-width: ${styles.width};
       `}
 
     border-radius: 1.5rem;
@@ -88,6 +89,12 @@ export const Container = styled.div<ContainerProps>`
     @media (max-width: 420px) {
       min-width: 20rem;
       min-height: 15rem;
+
+      ${({ styles }) =>
+        styles &&
+        css`
+          width: ${styles.width};
+        `}
     }
   }
 `;
