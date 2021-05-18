@@ -30,7 +30,7 @@ export const Container = styled.div`
   }
   > div:last-child {
     position: relative;
-    min-width: 8.8rem;
+    min-height: 8.8rem;
 
     svg {
       position: absolute;
