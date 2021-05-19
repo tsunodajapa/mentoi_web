@@ -35,7 +35,7 @@ export const Container = styled.div`
     svg {
       position: absolute;
       transform: scale(0.8);
-      top: 50%;
+      top: 48%;
       left: 50%;
       transform: translate(-50%, -50%) scale(0.8);
     }

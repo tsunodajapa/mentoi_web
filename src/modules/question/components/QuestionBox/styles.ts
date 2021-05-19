@@ -9,7 +9,7 @@ export const Container = styled.div<ContainerProps>`
   background: var(--color-background);
 
   border-radius: 1.2rem;
-  box-shadow: 0 1.3rem 8.1rem -0.7rem rgba(0, 0, 0, 0.15);
+  box-shadow: -3px 1rem 3rem 0rem rgb(0 0 0 / 14%);
 
   ${({ isQuestionPage }) =>
     isQuestionPage
@@ -66,6 +66,16 @@ export const Container = styled.div<ContainerProps>`
       ::-webkit-scrollbar-thumb:hover {
         background: var(--color-primary);
       }
+
+      > span {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        margin: 2rem 0;
+        color: #64b447;
+        font-size: 1.8rem;
+      }
     }
   }
 
@@ -79,6 +89,10 @@ export const Container = styled.div<ContainerProps>`
       `}
 
     > div:nth-child(1) {
+      display: none;
+    }
+
+    > div:nth-child(2) > span {
       display: none;
     }
   }

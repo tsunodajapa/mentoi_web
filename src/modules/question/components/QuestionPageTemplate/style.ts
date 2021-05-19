@@ -2,6 +2,10 @@ import styled from 'styled-components';
 import { Main as MainDefault } from '@/shared/components/Main/styles';
 
 export const Main = styled(MainDefault)`
+  display: flex;
+  flex-direction: column;
+  min-height: 90vh;
+
   > div {
     display: flex;
     justify-content: space-evenly;
@@ -21,7 +25,13 @@ export const Main = styled(MainDefault)`
     }
   }
 
+  > span {
+    display: none;
+  }
+
   @media (max-width: 425px) {
+    margin-top: 1px;
+
     > div {
       > section {
         width: 100%;
@@ -30,6 +40,16 @@ export const Main = styled(MainDefault)`
       > div {
         display: none;
       }
+    }
+
+    > span {
+      display: flex;
+      align-items: center;
+      flex: none;
+      margin: auto;
+
+      font-size: 2.4rem;
+      color: #64b447;
     }
   }
 `;

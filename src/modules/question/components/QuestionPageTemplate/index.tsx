@@ -5,6 +5,7 @@ import {
   RiEmotionLine,
   RiEmotionHappyLine,
   RiEmotionNormalLine,
+  RiEmotionSadLine,
 } from 'react-icons/ri';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
@@ -79,9 +80,9 @@ const QuestionPageTemplate = ({ question }: QuestionPageTemplateProps) => {
           <SectionBordered border={BorderTypes.FULL}>
             {question && (
               <QuestionBox data={question}>
-                <AnswersContainer>
-                  {answers &&
-                    answers.map(answer => (
+                {!!answers.length && (
+                  <AnswersContainer>
+                    {answers.map(answer => (
                       <Content key={answer.id}>
                         <HeaderAnswer>
                           <div>
@@ -137,8 +138,14 @@ const QuestionPageTemplate = ({ question }: QuestionPageTemplateProps) => {
                         </div>
                       </Content>
                     ))}
-                  <InfiniteScroll getService={getAnswers} />
-                </AnswersContainer>
+                    <InfiniteScroll getService={getAnswers} />
+                  </AnswersContainer>
+                )}
+                {!answers.length && (
+                  <span>
+                    <RiEmotionSadLine /> Não há respostas ainda
+                  </span>
+                )}
                 <AnswersFooter>
                   {useCanAnswerQuestion && user && (
                     <Form ref={formRef} onSubmit={handleSubmitAnswer}>
@@ -181,6 +188,11 @@ const QuestionPageTemplate = ({ question }: QuestionPageTemplateProps) => {
             <UserSection />
           </div>
         </div>
+        {!answers.length && (
+          <span>
+            <RiEmotionSadLine /> Não há respostas ainda
+          </span>
+        )}
       </Main>
       <Modal
         isOpenModal={isOpenModal}
