@@ -80,9 +80,9 @@ const QuestionPageTemplate = ({ question }: QuestionPageTemplateProps) => {
           <SectionBordered border={BorderTypes.FULL}>
             {question && (
               <QuestionBox data={question}>
-                {!!answers.length && (
-                  <AnswersContainer>
-                    {answers.map(answer => (
+                <AnswersContainer>
+                  {!!answers.length &&
+                    answers.map(answer => (
                       <Content key={answer.id}>
                         <HeaderAnswer>
                           <div>
@@ -138,9 +138,8 @@ const QuestionPageTemplate = ({ question }: QuestionPageTemplateProps) => {
                         </div>
                       </Content>
                     ))}
-                    <InfiniteScroll getService={getAnswers} />
-                  </AnswersContainer>
-                )}
+                  <InfiniteScroll getService={getAnswers} />
+                </AnswersContainer>
                 {!answers.length && (
                   <span>
                     <RiEmotionSadLine /> Não há respostas ainda
