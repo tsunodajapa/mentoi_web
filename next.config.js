@@ -8,6 +8,7 @@ module.exports = {
     return config;
   },
   env: {
-    MENTOI_API_URL: 'http://ec2-3-88-159-111.compute-1.amazonaws.com'
+    MENTOI_API_URL: 'https://api.mentoi.app'
+    // MENTOI_API_URL: 'http://localhost:3333'
   }
 };
