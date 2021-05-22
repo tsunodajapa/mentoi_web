@@ -80,7 +80,7 @@ const QuestionPageTemplate = ({ question }: QuestionPageTemplateProps) => {
           <SectionBordered border={BorderTypes.FULL}>
             {question && (
               <QuestionBox data={question}>
-                <AnswersContainer>
+                <AnswersContainer useCanAnswerQuestion={useCanAnswerQuestion}>
                   {!!answers.length &&
                     answers.map(answer => (
                       <Content key={answer.id}>

@@ -1,5 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Main as MainDefault } from '@/shared/components/Main/styles';
+
+interface AnswerContainerProps {
+  useCanAnswerQuestion: boolean;
+}
 
 export const Main = styled(MainDefault)`
   display: flex;
@@ -54,7 +58,7 @@ export const Main = styled(MainDefault)`
   }
 `;
 
-export const AnswersContainer = styled.div`
+export const AnswersContainer = styled.div<AnswerContainerProps>`
   padding: 3rem;
 
   > div {
@@ -68,7 +72,14 @@ export const AnswersContainer = styled.div`
   }
 
   @media (max-width: 425px) {
-    height: calc(100vh - 30rem);
+    height: calc(100vh - 25rem);
+
+    ${({ useCanAnswerQuestion }) =>
+      useCanAnswerQuestion &&
+      css`
+        height: calc(100vh - 30rem);
+      `}
+
     overflow: auto;
   }
 `;
