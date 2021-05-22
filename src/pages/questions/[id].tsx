@@ -4,6 +4,7 @@ import { Question } from '@/modules/question/hooks/question';
 import { useEffect } from 'react';
 import { AnswerProvider } from '@/modules/question/hooks/answer';
 import QuestionPageTemplate from '@/modules/question/components/QuestionPageTemplate';
+import SEO from '@/shared/components/SEO';
 import * as questionsServices from '../../modules/question/services/questionsServices';
 
 interface QuestionPageProps {
@@ -23,6 +24,7 @@ const QuestionPage = ({ question }: QuestionPageProps) => {
 
   return (
     <>
+      <SEO title={question.title} description={question.description} />
       <AnswerProvider>
         <QuestionPageTemplate question={question} />
       </AnswerProvider>

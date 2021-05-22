@@ -17,7 +17,7 @@ const ModalBeAMentoi = () => {
           perguntas, personalizar seu perfil, ganhar &apos;badges&apos;
           personalizados, se destacando na comunidade acadêmica
         </p>
-        <Link text="VERIFICAR CONTA" href="/" />
+        <Link text="VERIFICAR CONTA" href="/become-mentoi" />
         <div>
           <BackgroudBeAMentoi />
         </div>
