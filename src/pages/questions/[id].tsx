@@ -24,7 +24,9 @@ const QuestionPage = ({ question }: QuestionPageProps) => {
 
   return (
     <>
-      <SEO title={question.title} description={question.description} />
+      {question && (
+        <SEO title={question.title} description={question.description} />
+      )}
       <AnswerProvider>
         <QuestionPageTemplate question={question} />
       </AnswerProvider>
