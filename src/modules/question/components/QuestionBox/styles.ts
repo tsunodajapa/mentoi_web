@@ -9,7 +9,7 @@ export const Container = styled.div<ContainerProps>`
   background: var(--color-background);
 
   border-radius: 1.2rem;
-  box-shadow: -3px 1rem 3rem 0rem rgb(0 0 0 / 14%);
+  box-shadow: -5px 0rem 2rem 0rem rgb(0 0 0 / 14%);
 
   ${({ isQuestionPage }) =>
     isQuestionPage
@@ -37,6 +37,20 @@ export const Container = styled.div<ContainerProps>`
     color: var(--color-text-in-primary);
     font-weight: 700;
     font-size: 2rem;
+  }
+
+  > div:nth-child(2) {
+    position: relative;
+
+    > span {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+
+      margin: 2rem 0;
+      color: #64b447;
+      font-size: 1.8rem;
+    }
   }
 
   @media (min-width: 475px) {
@@ -80,20 +94,13 @@ export const Container = styled.div<ContainerProps>`
   }
 
   @media (max-width: 475px) {
-    margin-bottom: 1.8rem;
-
-    ${({ isQuestionPage }) =>
-      isQuestionPage &&
-      css`
-        padding-bottom: 6rem;
-      `}
-
     > div:nth-child(1) {
       display: none;
     }
 
     > div:nth-child(2) > span {
-      display: none;
+      position: absolute;
+      top: 50%;
     }
   }
 `;
@@ -106,7 +113,7 @@ export const Content = styled.div`
     justify-content: space-between;
 
     margin-top: 1.6rem;
-    border-bottom: 0.1rem solid var(--color-primary-light);
+    /* border-bottom: 0.1rem solid var(--color-primary-light); */
     padding: 1rem 0;
 
     div {
@@ -249,8 +256,8 @@ export const AnswersFooter = styled.div`
     bottom: 0;
     left: 0;
     background: #fff;
-    width: 90%;
-    margin: 0 2.1rem;
+    width: 95%;
+    margin: 0;
     padding: 1.5rem;
 
     > form > div > div:nth-of-type(2) {

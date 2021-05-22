@@ -187,11 +187,6 @@ const QuestionPageTemplate = ({ question }: QuestionPageTemplateProps) => {
             <UserSection />
           </div>
         </div>
-        {!answers.length && (
-          <span>
-            <RiEmotionSadLine /> Não há respostas ainda
-          </span>
-        )}
       </Main>
       <Modal
         isOpenModal={isOpenModal}
