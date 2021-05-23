@@ -10,6 +10,9 @@ const SEO = ({ title, description }: SEOProps) => {
     <Head>
       <title>{title}</title>
       <meta name="description" content={description} />
+      <meta property="og:title" content={title} key="ogtitle" />
+      <meta property="og:description" content={description} key="ogdesc" />
+      <meta name="theme-color" content="#64B447" />
     </Head>
   );
 };
