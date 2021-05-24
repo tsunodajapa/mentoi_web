@@ -26,7 +26,7 @@ const Feed = () => {
   return (
     <>
       <SEO
-        title="Aprenda com os melhores | Mentoi"
+        title="Plataforma Educacional para Professores e Alunos | Mentoi"
         description="Plataforma educacional para interação entre estudantes e professores com atuação verificada, garantindo responsabilidade e evitando respostas com erros ou Fake News."
       />
       <Header actualNameStep={actualNameStep[actualStep]} />

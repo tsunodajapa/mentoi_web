@@ -26,6 +26,7 @@ import LoginModal from '@/modules/logouted/components/LoginModal';
 
 import { CreateUserValidator } from '@/modules/logouted/validators/CreateUser';
 import { CreateUserData, useAuth } from '@/shared/hooks/auth';
+import SEO from '@/shared/components/SEO';
 
 const SignUp = () => {
   const formRef = useRef<FormHandles>(null);
@@ -115,6 +116,10 @@ const SignUp = () => {
 
   return (
     <>
+      <SEO
+        title="Plataforma Educacional para Professores e Alunos | Mentoi"
+        description="Plataforma educacional para interação entre estudantes e professores com atuação verificada, garantindo responsabilidade e evitando respostas com erros ou Fake News."
+      />
       <Container>
         <Left step={actualStep}>
           <Image

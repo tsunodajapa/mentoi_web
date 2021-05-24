@@ -37,7 +37,7 @@ const Main = () => {
   return (
     <>
       <SEO
-        title="Aprenda com os melhores | Mentoi"
+        title="Mentoi | Plataforma Educacional para Professores e Alunos"
         description="Plataforma educacional para interação entre estudantes e professores com atuação verificada, garantindo responsabilidade e evitando respostas com erros ou Fake News."
       />
       <Header />
