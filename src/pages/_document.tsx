@@ -45,6 +45,7 @@ export default class MyDocument extends Document {
         <Head>
           <meta charSet="utf-8" content="text/html" />
           <meta name="theme-color" content="#64B447" />
+          <meta property="og:site_name" content="Mentoi" />
           <meta httpEquiv="content-language" content="pt-br" />
           <link
             rel="apple-touch-icon"

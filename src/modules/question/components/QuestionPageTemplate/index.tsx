@@ -18,7 +18,6 @@ import SectionBordered, {
 import Button from '@/shared/components/Buttons/Button';
 import ButtonIcon from '@/shared/components/Buttons/ButtonIcon';
 import { TextArea } from '@/shared/components/FormElements';
-import getValidationErrors from '@/utils/getValidationErros';
 import { Circle } from '@/shared/components/Circle';
 import { useToast } from '@/shared/hooks/toast';
 import { useAuth } from '@/shared/hooks/auth';
