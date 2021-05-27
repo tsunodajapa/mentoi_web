@@ -19,7 +19,7 @@ import LogoWithColor from '@/assets/logo_mentoi_two_line.svg';
 
 import { Scholarity } from '@/shared/data/Scholarity';
 import subjects from '@/data/subjects';
-import getValidationErrors from '@/utils/getValidationErros';
+import getValidationErrors from '@/shared/utils/getValidationErros';
 
 import { useToast } from '@/shared/hooks/toast';
 import LoginModal from '@/modules/logouted/components/LoginModal';
