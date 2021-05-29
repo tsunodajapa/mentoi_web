@@ -5,7 +5,7 @@ import { FormHandles } from '@unform/core';
 import { RiShieldCheckLine } from 'react-icons/ri';
 import { ValidationError } from 'yup';
 
-import { Input, InputMask, Dropzone } from '@/shared/components/FormElements';
+import { Input, Dropzone } from '@/shared/components/FormElements';
 import { Main } from '@/styles/pages/become-mentoi';
 import Button from '@/shared/components/Buttons/Button';
 import Header from '@/modules/logouted/components/Header';
@@ -15,6 +15,10 @@ import { useToast } from '@/shared/hooks/toast';
 
 import getValidationErrors from '@/shared/utils/getValidationErros';
 import { CreateSolicitation } from '@/modules/logouted/validators/CreateSolicitation';
+import {
+  Solicitation,
+  createSolicitation,
+} from '@/modules/logouted/services/solicitationServices';
 
 const Feed = () => {
   const formRef = useRef<FormHandles>(null);
@@ -22,7 +26,7 @@ const Feed = () => {
   const router = useRouter();
   const { addToast } = useToast();
 
-  async function handleSubmit(data: object) {
+  async function handleSubmit(data: Solicitation) {
     try {
       formRef.current?.setErrors({});
 
@@ -31,16 +35,39 @@ const Feed = () => {
       });
 
       console.log(data);
-      // await createUser(data);
+
+      if (!data.documents.length) {
+        addToast({
+          type: 'error',
+          title: 'Campos obrigatórios!',
+          description: 'É necessário anexar no mínimo um arquivo',
+        });
+
+        return;
+      }
+
+      const formData = new FormData();
+
+      Object.keys(data).forEach(key => {
+        if (key === 'documents') {
+          data[key].map(file => formData.append(`documents`, file, file.name));
+        } else {
+          formData.append(key, data[key]);
+        }
+      });
+
+      formData.append('type', 'BE_MENTOI');
+
+      await createSolicitation(formData);
 
       addToast({
         type: 'success',
         title: 'Solicitação enviada!',
         description:
-          'Sua solicitação foi enviada com sucesso, em breve etaremos retornado!',
+          'Sua solicitação foi enviada com sucesso, em breve estaremos retornado!',
       });
 
-      // router.push('feed');
+      router.push('feed');
     } catch (error) {
       let description: string;
       let title: string;
@@ -60,13 +87,11 @@ const Feed = () => {
 
         switch (true) {
           case message.includes('Email'):
-            description = 'O e-mail informado já esta sendo utilizado';
-            break;
-          case message.includes('NickName'):
-            description = 'O Nick Name informado já esta sendo utilizado';
+            description = 'O e-mail informado não esta vinculado a um usuário';
             break;
           default:
-            description = 'Ocorreu um erro ao fazer cadastro, tente novamente';
+            description =
+              'Ocorreu um erro ao enviar solicitação, tente novamente';
         }
       }
 
@@ -106,24 +131,10 @@ const Feed = () => {
         <section>
           <Form onSubmit={handleSubmit} ref={formRef}>
             <Input
-              id="name"
-              name="name"
-              label="Nome"
-              placeholder="Nome completo"
-            />
-            <Input
               id="email"
               name="email"
               label="E-mail cadastrado"
               placeholder="example@example.com"
-            />
-
-            <InputMask
-              id="cpf"
-              name="cpf"
-              label="CPF"
-              placeholder="Digite seu CPF"
-              mask="999.999.999-99"
             />
 
             <Dropzone name="documents" label="Anexo de documentos" />

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Main as MainDefault } from '@/shared/components/Main/styles';
 
 export const Main = styled(MainDefault)`
-  max-width: 450px;
+  max-width: 450px !important;
   padding: 1.2rem;
 
   section:first-child {

@@ -57,7 +57,7 @@ export const Container = styled.div<ContainerProps>`
     > div:nth-of-type(2) {
       max-height: calc(100vh - 16rem);
 
-      overflow-y: scroll;
+      overflow-y: auto;
       /* width */
       ::-webkit-scrollbar {
         width: 10px;
