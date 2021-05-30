@@ -16,6 +16,7 @@ import MentoiIcon from '@/assets/icon_mentoi.svg';
 
 import OnboardingTemplate from '@/shared/components/Onboarding/OnboardingTemplate';
 import { useAuth } from '@/shared/hooks/auth';
+import WindowSelect from '@/shared/components/WindowSelect';
 import { Container, Nav } from './styles';
 
 interface HeaderProps {
@@ -57,18 +58,13 @@ const Header = ({ actualNameStep }: HeaderProps) => {
               </OnboardingTemplate>
             </li>
             <li>
-              <input id="signout-button" type="checkbox" name="menu" />
-              <label htmlFor="signout-button">
-                <BsPersonFill />
-                {/* <ButtonIcon icon={BsPersonFill} /> */}
-              </label>
-              <div>
+              <WindowSelect id="signout-button" icon={BsPersonFill}>
                 <a href="#_">Ver Perfil</a>
 
                 <button type="button" onClick={signOut}>
                   Sair
                 </button>
-              </div>
+              </WindowSelect>
             </li>
           </ul>
           {/* <ButtonIcon icon={IoChatbubblesOutline} /> */}

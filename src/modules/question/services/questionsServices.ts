@@ -32,3 +32,7 @@ export async function getAnswers(
 ): Promise<Answer[]> {
   return (await api.get<Answer[]>(`questions/${id}/answers`, { params })).data;
 }
+
+export async function deleteQuestion(id: string): Promise<void> {
+  return api.delete(`questions/${id}`);
+}

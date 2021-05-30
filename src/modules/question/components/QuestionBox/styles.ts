@@ -134,6 +134,8 @@ export const Content = styled.div`
 `;
 
 export const Header = styled.div`
+  position: relative;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -166,10 +168,9 @@ export const Header = styled.div`
       }
     }
   }
-  @media (max-width: 425px) {
-    align-items: flex-start;
-    flex-direction: column;
-  }
+
+  align-items: flex-start;
+  flex-direction: column;
 
   img {
     width: 4.5rem;
@@ -184,9 +185,20 @@ export const Header = styled.div`
     align-self: flex-start;
 
     margin-top: 0.4rem;
+    margin-right: 1rem;
 
     color: var(--color-text-complement);
   }
+
+  > div:last-child {
+    position: absolute;
+    right: 0;
+  }
+`;
+
+export const WindowSelectStyles = css`
+  top: 24px;
+  right: -6px;
 `;
 
 export const AnswersContainer = styled.div`
@@ -314,5 +326,24 @@ export const EvaluateContainer = styled.div`
       margin-top: 0.8rem;
       font-size: 1.3rem;
     }
+  }
+`;
+
+export const ModalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+  padding: 0.5rem 0;
+
+  svg {
+    color: var(--color-red);
+    transform: scale(2);
+    margin: 0.5rem;
+  }
+
+  p {
+    margin: 2rem 0;
   }
 `;

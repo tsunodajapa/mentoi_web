@@ -31,6 +31,7 @@ interface QuestionContextData {
   questions: Question[];
   createQuestion(message: FormData): Promise<void>;
   getQuestions(page: number): Promise<number>;
+  removeQuestion(id: string): void;
 }
 
 const QuestionContext = createContext<QuestionContextData>(
@@ -58,9 +59,17 @@ const QuestionProvider: React.FC = ({ children }) => {
     return questionsFound.length;
   }, []);
 
+  const removeQuestion = (id: string) => {
+    const questionsWithoutDeleted = questions.filter(
+      question => question.id !== id,
+    );
+
+    setQuestions(questionsWithoutDeleted);
+  };
+
   return (
     <QuestionContext.Provider
-      value={{ createQuestion, getQuestions, questions }}
+      value={{ createQuestion, getQuestions, removeQuestion, questions }}
     >
       {children}
     </QuestionContext.Provider>

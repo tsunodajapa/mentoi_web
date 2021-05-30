@@ -210,7 +210,7 @@ const Select = ({
           {options.map(item => (
             <button
               key={item.name}
-              id={`option-${item.name}`}
+              id={`option-${item.name}-${id}`}
               type="button"
               onClick={() => handleChangeOption(item)}
             >

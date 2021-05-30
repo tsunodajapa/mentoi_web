@@ -11,15 +11,16 @@ interface ContainerProps {
     | 'inlineSecondary';
 }
 
-const ButtonTypeVariations = {
+export const ButtonTypeVariations = {
   primary: css`
     background: var(--color-primary);
     color: var(--color-text-in-primary);
-    border: 0.1rem solid;
+    border: 0.2rem solid var(--color-primary);
 
     &:hover {
-      background: var(--color-primary-dark);
-      color: var(--color-text-in-primary);
+      background: var(--color-primary-light);
+      border: 0.2rem solid var(--color-primary);
+      color: var(--color-primary);
     }
   `,
   secondary: css`
@@ -38,8 +39,9 @@ const ButtonTypeVariations = {
     border: 0.1rem solid var(--color-primary);
 
     &:hover {
-      background: var(--color-primary);
-      color: var(--color-text-in-primary);
+      background: var(--color-primary-light);
+      border: 0.1rem solid var(--color-primary);
+      color: var(--color-primary);
     }
   `,
   outlineError: css`

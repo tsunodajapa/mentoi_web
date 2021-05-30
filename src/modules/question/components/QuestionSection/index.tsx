@@ -1,5 +1,3 @@
-import { useEffect, useRef, useState } from 'react';
-
 import subjects from '@/data/subjects';
 
 import Carousel from '@/shared/components/Carousel';
@@ -10,10 +8,11 @@ import SectionBordered, {
   BorderTypes,
 } from '@/shared/components/SectionBordered';
 import InfiniteScroll from '@/shared/components/InfiniteScroll';
-import MakeQuestionWeb from '../MakeQuestionBox/Web';
 
+import { useAuth } from '@/shared/hooks/auth';
 import { useQuestion } from '../../hooks/question';
 
+import MakeQuestionWeb from '../MakeQuestionBox/Web';
 import { Container } from './styles';
 import { UserSection } from '../../../common/components/UserSection';
 
