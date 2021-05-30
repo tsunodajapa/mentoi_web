@@ -1,5 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Main as MainDefault } from '@/shared/components/Main/styles';
+
+interface AnswerContainerProps {
+  useCanAnswerQuestion: boolean;
+}
 
 export const Main = styled(MainDefault)`
   display: flex;
@@ -35,7 +39,7 @@ export const Main = styled(MainDefault)`
     > div {
       > section {
         width: 100%;
-        margin: 1.5rem;
+        margin: 1rem;
       }
       > div {
         display: none;
@@ -54,7 +58,7 @@ export const Main = styled(MainDefault)`
   }
 `;
 
-export const AnswersContainer = styled.div`
+export const AnswersContainer = styled.div<AnswerContainerProps>`
   padding: 3rem;
 
   > div {
@@ -65,6 +69,18 @@ export const AnswersContainer = styled.div`
       font-size: 1.4rem;
       border-radius: 1rem;
     }
+  }
+
+  @media (max-width: 425px) {
+    height: calc(100vh - 25rem);
+
+    ${({ useCanAnswerQuestion }) =>
+      useCanAnswerQuestion &&
+      css`
+        height: calc(100vh - 30rem);
+      `}
+
+    overflow: auto;
   }
 `;
 
@@ -121,13 +137,12 @@ export const AnswersFooter = styled.div`
   }
 
   @media (max-width: 425px) {
-    position: fixed;
-    bottom: 0;
-    left: 0;
     background: #fff;
-    width: 90%;
-    margin: 0 2.1rem;
+    width: 100%;
+    margin: 0;
     padding: 1.5rem;
+    border-top: 4px solid #dfefd9;
+    border-radius: 2.2rem;
 
     > form > div > div:nth-of-type(2) {
       width: 85%;

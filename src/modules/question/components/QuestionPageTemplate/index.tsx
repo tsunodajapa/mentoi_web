@@ -18,7 +18,6 @@ import SectionBordered, {
 import Button from '@/shared/components/Buttons/Button';
 import ButtonIcon from '@/shared/components/Buttons/ButtonIcon';
 import { TextArea } from '@/shared/components/FormElements';
-import getValidationErrors from '@/utils/getValidationErros';
 import { Circle } from '@/shared/components/Circle';
 import { useToast } from '@/shared/hooks/toast';
 import { useAuth } from '@/shared/hooks/auth';
@@ -80,9 +79,9 @@ const QuestionPageTemplate = ({ question }: QuestionPageTemplateProps) => {
           <SectionBordered border={BorderTypes.FULL}>
             {question && (
               <QuestionBox data={question}>
-                {!!answers.length && (
-                  <AnswersContainer>
-                    {answers.map(answer => (
+                <AnswersContainer useCanAnswerQuestion={useCanAnswerQuestion}>
+                  {!!answers.length &&
+                    answers.map(answer => (
                       <Content key={answer.id}>
                         <HeaderAnswer>
                           <div>
@@ -138,9 +137,8 @@ const QuestionPageTemplate = ({ question }: QuestionPageTemplateProps) => {
                         </div>
                       </Content>
                     ))}
-                    <InfiniteScroll getService={getAnswers} />
-                  </AnswersContainer>
-                )}
+                  <InfiniteScroll getService={getAnswers} />
+                </AnswersContainer>
                 {!answers.length && (
                   <span>
                     <RiEmotionSadLine /> Não há respostas ainda
@@ -188,11 +186,6 @@ const QuestionPageTemplate = ({ question }: QuestionPageTemplateProps) => {
             <UserSection />
           </div>
         </div>
-        {!answers.length && (
-          <span>
-            <RiEmotionSadLine /> Não há respostas ainda
-          </span>
-        )}
       </Main>
       <Modal
         isOpenModal={isOpenModal}

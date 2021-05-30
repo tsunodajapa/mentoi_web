@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { FiPaperclip } from 'react-icons/fi';
+import { FiPaperclip, FiUpload } from 'react-icons/fi';
 import {
   FaFilePowerpoint,
   FaFileExcel,
@@ -24,6 +24,7 @@ const IconsFile = {
 
 interface DropzoneProps {
   name: string;
+  label?: string;
 }
 
 type FilePreviwProps =
@@ -54,7 +55,7 @@ function whateFileType(fileName: string): string {
   }
 }
 
-const Dropzone = ({ name }: DropzoneProps) => {
+const Dropzone = ({ name, label }: DropzoneProps) => {
   const inputRef = useRef<InputRefProps>(null);
   const { fieldName, registerField, defaultValue = [] } = useField(name);
   const [selectedFilesUrl, setSelectedFilesUrl] = useState<FilePreviwProps[]>(
@@ -112,7 +113,20 @@ const Dropzone = ({ name }: DropzoneProps) => {
 
   return (
     <>
-      <Container {...getRootProps()} onClick={() => inputRef.current?.click()}>
+      {!!label && (
+        <label
+          htmlFor="documents"
+          style={{ marginTop: '0.8rem', display: 'block' }}
+        >
+          Anexo de documentos
+        </label>
+      )}
+      <Container
+        {...getRootProps()}
+        id="documents"
+        onClick={() => inputRef.current?.click()}
+        boxContent={!!label}
+      >
         <input
           {...getInputProps()}
           accept=".xlsx, .xls, image/*, .doc, .docx, .ppt, .pptx, .txt, .pdf"
@@ -120,7 +134,15 @@ const Dropzone = ({ name }: DropzoneProps) => {
           ref={inputRef}
         />
 
-        <FiPaperclip />
+        {label && (
+          <p>
+            <FiUpload />
+            Certificado, Declaração de Conclusão de Curso, Histórico Escolar ou
+            Carteira de Trabalho
+          </p>
+        )}
+
+        {!label && <FiPaperclip />}
       </Container>
 
       {selectedFilesUrl && (
@@ -146,7 +168,7 @@ const Dropzone = ({ name }: DropzoneProps) => {
       )}
 
       <Modal isOpenModal={isOpenModal} handleToggleModal={handleToggleModal}>
-        <FilesPreviewContainer>
+        <FilesPreviewContainer isModal>
           {selectedFilesUrl &&
             selectedFilesUrl.map(file => (
               <div key={`img-${file}`}>

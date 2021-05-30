@@ -1,11 +1,55 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Container = styled.div`
-  div {
+interface ContainerPros {
+  boxContent: boolean;
+}
+
+interface FilesPreviewContainerProps {
+  isModal?: boolean;
+}
+
+const boxContentStyles = css`
+  height: 20rem;
+  background: var(--color-primary-light);
+  border-radius: 1rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  outline: 0;
+
+  cursor: pointer;
+
+  p {
+    width: calc(100% - 6rem);
+    height: calc(100% - 6rem);
+    border-radius: 1rem;
+    border: 0.1rem dashed var(--color-primary);
+    padding: 0.5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    color: #333;
+
+    svg {
+      color: var(--color-primary);
+      width: 2.4rem;
+      height: 2.4rem;
+      margin-bottom: 0.8rem;
+    }
   }
 `;
 
-export const FilesPreviewContainer = styled.div`
+export const Container = styled.div<ContainerPros>`
+  ${({ boxContent }) => boxContent && boxContentStyles}
+`;
+
+export const FilesPreviewContainer = styled.div<FilesPreviewContainerProps>`
   display: flex;
   flex-wrap: wrap;
 
@@ -67,7 +111,12 @@ export const FilesPreviewContainer = styled.div`
   button:not(:nth-child(5n)) {
     margin-left: 1rem;
   }
-  > div:nth-child(n + 5) {
-    margin-top: 1rem;
-  }
+
+  ${({ isModal }) =>
+    isModal &&
+    css`
+      > div {
+        margin: 1rem;
+      }
+    `}
 `;

@@ -4,7 +4,7 @@ import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 
-import getValidationErrors from '@/utils/getValidationErros';
+import getValidationErrors from '@/shared/utils/getValidationErros';
 import { useAuth } from '@/shared/hooks/auth';
 import { useToast } from '@/shared/hooks/toast';
 
