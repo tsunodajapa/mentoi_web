@@ -6,7 +6,6 @@ export default createGlobalStyle`
     --color-primary: #64B447;
     --color-primary-transparent: rgba(100,180,71, 0.2);
     --color-primary-light: #DFEFD9;
-    --color-primary-light-2: rgba(100,180,71, 0.75);
     --color-primary-dark: #78a468;
     --color-text: #3D3D3D;
     --color-text-in-primary: #FFFFFF;
