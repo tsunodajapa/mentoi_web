@@ -20,7 +20,7 @@ import {
   createSolicitation,
 } from '@/modules/logouted/services/solicitationServices';
 
-const Feed = () => {
+const BecomeMentoi = () => {
   const formRef = useRef<FormHandles>(null);
 
   const router = useRouter();
@@ -155,4 +155,4 @@ const Feed = () => {
   );
 };
 
-export default Feed;
+export default BecomeMentoi;

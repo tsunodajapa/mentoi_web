@@ -12,6 +12,7 @@ import { FiLock, FiMail } from 'react-icons/fi';
 import Button from '@/shared/components/Buttons/Button';
 import { Input } from '@/shared/components/FormElements';
 import Logo from '@/assets/logo_mentoi.svg';
+import Link from 'next/link';
 import { Container } from './styles';
 import { CreateSessionValidator } from '../../validators/CreateSession';
 
@@ -81,12 +82,14 @@ const LoginModal = () => {
         />
 
         <Button type="submit" text="Entrar" />
+
+        <Link href="/forgot-password">Esqueceu a senha?</Link>
       </Form>
 
       <div>
         <span>Ainda não é um mentoi?</span>
         <br />
-        <a href="-#">CADASTRE-SE</a>
+        <Link href="/signup">CADASTRE-SE</Link>
       </div>
     </Container>
   );

@@ -26,6 +26,10 @@ export const Container = styled.div`
       width: 100%;
       margin: 1rem 0;
     }
+
+    > a {
+      color: var(--color-primary);
+    }
   }
 
   > div {

@@ -72,6 +72,6 @@ export const Container = styled.button<ContainerProps>`
   outline: none;
   text-decoration: none;
   border-radius: 1.5rem;
-  padding: 0.5rem 1.5rem;
+  padding: 0.2rem 1.5rem;
   transition: background-color 0.2s linear;
 `;
