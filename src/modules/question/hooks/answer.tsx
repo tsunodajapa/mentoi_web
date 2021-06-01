@@ -1,4 +1,5 @@
 import { useAuth, User } from '@/shared/hooks/auth';
+import { FilterToGet } from '@/shared/services/IFilterDTO';
 import { useRouter } from 'next/router';
 import { createContext, useCallback, useContext, useState } from 'react';
 import * as questionsServices from '../services/questionsServices';
@@ -19,7 +20,7 @@ export interface CreateAnswer {
 interface AnswerContextData {
   answers: Answer[];
   createAnswer(data: CreateAnswer): Promise<void>;
-  getAnswers(page: number): Promise<number>;
+  getAnswers(filters: FilterToGet): Promise<number>;
 }
 
 const AnswerContext = createContext<AnswerContextData>({} as AnswerContextData);
@@ -41,13 +42,13 @@ const AnswerProvider: React.FC = ({ children }) => {
   };
 
   const getAnswers = useCallback(
-    async (page: number) => {
+    async (filters: FilterToGet) => {
       const { id: questionId } = router.query;
 
       const answersFound = await questionsServices.getAnswers(
         questionId as string,
         {
-          page,
+          ...filters,
           pageSize: 10,
         },
       );

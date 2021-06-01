@@ -3,10 +3,8 @@ import { Form } from '@unform/web';
 import { useRef } from 'react';
 import Link from 'next/link';
 
-import { VscBell } from 'react-icons/vsc';
 import { IoSearch } from 'react-icons/io5';
 import { BsPersonFill, BsFillBellFill } from 'react-icons/bs';
-import { GoGear } from 'react-icons/go';
 
 import { Input } from '@/shared/components/FormElements';
 import ButtonIcon from '@/shared/components/Buttons/ButtonIcon';
@@ -17,6 +15,8 @@ import MentoiIcon from '@/assets/icon_mentoi.svg';
 import OnboardingTemplate from '@/shared/components/Onboarding/OnboardingTemplate';
 import { useAuth } from '@/shared/hooks/auth';
 import WindowSelect from '@/shared/components/WindowSelect';
+import { useRouter } from 'next/router';
+import concatUrlParams from '@/shared/utils/concatUrlParams';
 import { Container, Nav } from './styles';
 
 interface HeaderProps {
@@ -26,6 +26,13 @@ interface HeaderProps {
 const Header = ({ actualNameStep }: HeaderProps) => {
   const formRef = useRef<FormHandles>(null);
   const { signOut } = useAuth();
+  const router = useRouter();
+
+  function handelSubmit(data: { search: string }) {
+    const filter = concatUrlParams(router, data.search, 'q');
+
+    router.push(`/feed${filter}`, undefined, { shallow: true });
+  }
 
   return (
     <Container>
@@ -35,12 +42,7 @@ const Header = ({ actualNameStep }: HeaderProps) => {
             <Logo />
           </a>
         </Link>
-        <Form
-          onSubmit={() => {
-            console.log('TEste');
-          }}
-          ref={formRef}
-        >
+        <Form onSubmit={handelSubmit} ref={formRef}>
           <Input
             id="search"
             type="text"

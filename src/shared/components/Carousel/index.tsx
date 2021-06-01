@@ -1,3 +1,5 @@
+import concatUrlParams from '@/shared/utils/concatUrlParams';
+import { useRouter } from 'next/router';
 import { useEffect, useRef, useState, Children, ReactNode } from 'react';
 import { IoIosArrowDropright, IoIosArrowDropleft } from 'react-icons/io';
 import ButtonIcon from '../Buttons/ButtonIcon';
@@ -21,6 +23,8 @@ const Carousel = ({
 }: CarouselProps) => {
   const ChildrenCount = Children.count(children);
 
+  const router = useRouter();
+
   const wrapRef = useRef<HTMLDivElement>();
   const [selectedOption, setSelectedOption] = useState<boolean[]>([]);
   const [itemsLength, setItemsLength] = useState(ChildrenCount);
@@ -28,12 +32,22 @@ const Carousel = ({
 
   useEffect(() => {
     if (data) {
-      const itemsOptions = data.map(() => false);
+      const areaInterest = router.query.areaInterest as string;
+      const names = data.map(item => item.name);
+      let itemsOptions: boolean[];
 
-      setSelectedOption([...itemsOptions, true]);
+      if (areaInterest && names.includes(areaInterest)) {
+        itemsOptions = names.map(name => {
+          return name === areaInterest;
+        });
+      } else {
+        itemsOptions = data.map(() => false);
+      }
+      setSelectedOption([...itemsOptions, areaInterest === 'me']);
+
       setItemsLength(data.length);
     }
-  }, [data]);
+  }, [data, router.query.areaInterest]);
 
   useEffect(() => {
     const { scrollWidth, offsetWidth } = wrapRef.current;
@@ -51,10 +65,14 @@ const Carousel = ({
     wrapRef.current.scrollBy(value, 0);
   }
 
-  function handleOption(position: number): void {
-    const itemsOptios = selectedOption.map((_, index) => index === position);
+  function handleOption(position: number, name = ''): void {
+    const itemsOptions = selectedOption.map((_, index) => index === position);
 
-    setSelectedOption(itemsOptios);
+    const filter = concatUrlParams(router, name, 'areaInterest');
+
+    router.push(`/feed${filter}`, undefined, { shallow: true });
+
+    setSelectedOption(itemsOptions);
   }
 
   return (
@@ -73,7 +91,7 @@ const Carousel = ({
         {data && (
           <ButtonOption
             selected={selectedOption[itemsLength]}
-            onClick={() => handleOption(itemsLength)}
+            onClick={() => handleOption(itemsLength, 'me')}
           >
             AREA INTERESSE
           </ButtonOption>
@@ -83,7 +101,7 @@ const Carousel = ({
             key={item.name}
             color={item.color}
             selected={selectedOption[index]}
-            onClick={() => handleOption(index)}
+            onClick={() => handleOption(index, item.name)}
           >
             {item.name}
           </ButtonOption>

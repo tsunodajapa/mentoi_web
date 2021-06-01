@@ -23,6 +23,7 @@ import {
   Footer,
 } from '@/styles/pages/index';
 import SEO from '@/shared/components/SEO';
+import Link from 'next/link';
 
 const Main = () => {
   const { user } = useAuth();
@@ -119,7 +120,7 @@ const Main = () => {
             <span>Nós podemos te ajudar, cadastre e faça sua pergunta</span>
           </div>
 
-          <a href="#_">CADASTRE-SE</a>
+          <Link href="/signup">CADASTRE-SE</Link>
         </SectionFinal>
 
         <Footer>

@@ -107,7 +107,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   const signOut = () => {
     Cookies.remove('token');
     delete api.defaults.headers.Authorization;
-    window.location.pathname = '/';
+    window.location.href = '/';
 
     setUser({} as User);
   };

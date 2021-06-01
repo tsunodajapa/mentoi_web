@@ -1,4 +1,5 @@
 import { useAuth, User } from '@/shared/hooks/auth';
+import { FilterToGet } from '@/shared/services/IFilterDTO';
 import { createContext, useCallback, useContext, useState } from 'react';
 import * as questionsServices from '../services/questionsServices';
 
@@ -30,8 +31,12 @@ export interface Question {
 interface QuestionContextData {
   questions: Question[];
   createQuestion(message: FormData): Promise<void>;
-  getQuestions(page: number): Promise<number>;
+  getQuestions(filters: FilterToGet): Promise<number>;
   removeQuestion(id: string): void;
+}
+
+interface FilterQuestions extends FilterToGet {
+  areaInterest: string;
 }
 
 const QuestionContext = createContext<QuestionContextData>(
@@ -48,13 +53,21 @@ const QuestionProvider: React.FC = ({ children }) => {
     setQuestions(state => [{ ...question, user }, ...state]);
   };
 
-  const getQuestions = useCallback(async (page: number) => {
+  const getQuestions = useCallback(async (filters: FilterQuestions) => {
+    const userId =
+      filters.areaInterest === 'me' && user.id ? user.id : undefined;
+
     const questionsFound = await questionsServices.getQuestions({
-      page,
+      ...filters,
       pageSize: 10,
+      userId,
     });
 
-    setQuestions(state => [...state, ...questionsFound]);
+    if (filters.page === 1) {
+      setQuestions(questionsFound);
+    } else {
+      setQuestions(state => [...state, ...questionsFound]);
+    }
 
     return questionsFound.length;
   }, []);
