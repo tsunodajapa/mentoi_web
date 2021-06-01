@@ -8,7 +8,7 @@ export async function createQuestion(data: FormData): Promise<Question> {
 }
 
 export async function getQuestions(
-  params?: FilterToGet & { userId: string },
+  params?: FilterToGet & { userId?: string },
 ): Promise<Question[]> {
   return (
     await api.get<Question[]>('questions', {
