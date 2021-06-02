@@ -50,7 +50,7 @@ export const Container = styled(Header)`
         }
       }
 
-      > svg {
+      > button svg {
         width: 3.5rem;
         height: 3.5rem;
       }
@@ -78,6 +78,37 @@ export const Nav = styled.nav`
       width: 4.4rem;
       height: 2.4rem;
       margin-top: 0.2rem;
+    }
+  }
+`;
+
+export const SearchContent = styled.div`
+  justify-content: flex-start !important;
+
+  > button {
+    width: 2.8rem;
+    height: 2.8rem;
+
+    margin-right: 1rem;
+  }
+
+  form {
+    position: relative;
+
+    > div > div {
+      border: none;
+    }
+
+    > button {
+      position: absolute;
+      top: 0px;
+      right: 4px;
+
+      svg {
+        color: var(--color-red);
+        width: 3.5rem;
+        height: 3.5rem;
+      }
     }
   }
 `;

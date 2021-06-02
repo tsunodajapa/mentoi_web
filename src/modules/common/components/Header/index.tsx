@@ -1,10 +1,12 @@
+import { useRef, useState } from 'react';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
-import { useRef } from 'react';
 import Link from 'next/link';
 
 import { IoSearch } from 'react-icons/io5';
+import { BiArrowBack } from 'react-icons/bi';
 import { BsPersonFill, BsFillBellFill } from 'react-icons/bs';
+import { IoIosClose } from 'react-icons/io';
 
 import { Input } from '@/shared/components/FormElements';
 import ButtonIcon from '@/shared/components/Buttons/ButtonIcon';
@@ -17,7 +19,8 @@ import { useAuth } from '@/shared/hooks/auth';
 import WindowSelect from '@/shared/components/WindowSelect';
 import { useRouter } from 'next/router';
 import concatUrlParams from '@/shared/utils/concatUrlParams';
-import { Container, Nav } from './styles';
+import { formatWithValidation } from 'next/dist/next-server/lib/utils';
+import { Container, Nav, SearchContent } from './styles';
 
 interface HeaderProps {
   actualNameStep: string;
@@ -28,10 +31,22 @@ const Header = ({ actualNameStep }: HeaderProps) => {
   const { signOut } = useAuth();
   const router = useRouter();
 
+  const [showFilter, setShowFilter] = useState(false);
+
   function handelSubmit(data: { search: string }) {
     const filter = concatUrlParams(router, data.search, 'q');
 
     router.push(`/feed${filter}`, undefined, { shallow: true });
+  }
+
+  function handleShowFilter() {
+    setShowFilter(state => !state);
+  }
+
+  function handleClearFilter() {
+    formRef.current.reset();
+    formRef.current.submitForm();
+    setShowFilter(false);
   }
 
   return (
@@ -74,17 +89,41 @@ const Header = ({ actualNameStep }: HeaderProps) => {
         </Nav>
       </div>
 
-      <div>
+      {!showFilter && (
         <div>
-          <Link href="/feed">
-            <a>
-              <MentoiIcon />
-            </a>
-          </Link>
-          <span>{actualNameStep}</span>
+          <div>
+            <Link href="/feed">
+              <a>
+                <MentoiIcon />
+              </a>
+            </Link>
+            <span>{actualNameStep}</span>
+          </div>
+          <ButtonIcon
+            icon={IoSearch}
+            color="--color-text-in-primary"
+            onClick={handleShowFilter}
+          />
         </div>
-        <IoSearch />
-      </div>
+      )}
+
+      {showFilter && (
+        <SearchContent>
+          <ButtonIcon
+            icon={BiArrowBack}
+            color="--color-text-in-primary"
+            onClick={handleShowFilter}
+          />
+          <Form ref={formRef} onSubmit={handelSubmit}>
+            <Input id="search-mobile" name="search" placeholder="Buscar" />
+            <ButtonIcon
+              icon={IoIosClose}
+              color="--color-text-in-primary"
+              onClick={handleClearFilter}
+            />
+          </Form>
+        </SearchContent>
+      )}
     </Container>
   );
 };

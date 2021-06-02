@@ -21,9 +21,11 @@ export const Container = styled.div<StepProps>`
     width: 20%;
     display: initial;
 
-    section {
-      position: fixed;
-      width: min(22rem, 20%);
+    @media (min-width: 475px) {
+      section {
+        position: fixed;
+        width: min(22rem, 20%);
+      }
     }
   }
 
@@ -46,9 +48,9 @@ export const Container = styled.div<StepProps>`
     > div {
       width: 100% !important;
       display: block;
-      max-height: calc(100vh);
+      max-height: calc(100vh - 8rem);
       overflow: auto;
-      padding-bottom: 12rem;
+      padding-bottom: 2rem;
     }
   }
 `;
