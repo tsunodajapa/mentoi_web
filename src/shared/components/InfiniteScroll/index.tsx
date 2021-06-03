@@ -3,14 +3,14 @@ import { useEffect, useRef, useState } from 'react';
 
 interface InfiniteScrollProps {
   getService: Function;
-  filters?: String[];
 }
 
-const InfiniteScroll = ({ getService, filters }: InfiniteScrollProps) => {
+const InfiniteScroll = ({ getService }: InfiniteScrollProps) => {
   const divInfiteScrollRef = useRef<HTMLDivElement>();
   const [searchParams, setSearchParams] = useState({
     page: 0,
     q: null,
+    id: null,
   });
   const [notFoundQuestions, setNotFoundQuestions] = useState(false);
   const router = useRouter();
@@ -33,7 +33,7 @@ const InfiniteScroll = ({ getService, filters }: InfiniteScrollProps) => {
   }, [divInfiteScrollRef, notFoundQuestions]);
 
   useEffect(() => {
-    setSearchParams({ page: 1, q: null, ...router.query });
+    setSearchParams({ page: 1, q: null, ...router.query, id: null });
   }, [router.query]);
 
   useEffect(() => {
