@@ -1,6 +1,7 @@
 import { useField } from '@unform/core';
 import { useCallback, useEffect, useState, useRef } from 'react';
 import { ImCheckboxChecked, ImCheckboxUnchecked } from 'react-icons/im';
+import { IconBaseProps } from 'react-icons/lib';
 
 import {
   Container,
@@ -17,6 +18,7 @@ interface SelectProps {
   name: string;
   data: {
     name: string;
+    icon?: React.ComponentType<IconBaseProps>;
     key?: string;
     color?: string;
   }[];
@@ -25,6 +27,7 @@ interface SelectProps {
 
 interface Option {
   name: string;
+  icon?: React.ComponentType<IconBaseProps>;
   key?: string;
   color?: string;
   selected?: boolean;
@@ -39,8 +42,10 @@ const Select = ({
   multiSelect,
   placeHolder = 'Selecione',
 }: SelectProps) => {
+  const { fieldName, registerField, defaultValue } = useField(name);
+
   const [selectedOption, setSelectedOption] = useState<Option>({
-    name: placeHolder,
+    name: defaultValue || placeHolder,
   });
   const [multiSelectedOptions, setMultiSelectedOptions] = useState<Option[]>(
     [] as Option[],
@@ -51,8 +56,49 @@ const Select = ({
     'top',
   );
 
-  const { fieldName, registerField } = useField(name);
   const labelRef = useRef<HTMLLabelElement>(null);
+
+  useEffect(() => {
+    if (defaultValue && multiSelect) {
+      const selectedOptionsDefault = defaultValue.map(item => {
+        const { color } = data.find(itemFind => itemFind.name === item.name);
+        const selectedSize = item.name.split('').length + 2;
+
+        return {
+          name: item.name,
+          color,
+          selectedSize,
+        };
+      });
+
+      const dataSelected = data.map(item => {
+        const itemFound = defaultValue.find(
+          itemFind => item.name === itemFind.name,
+        );
+
+        if (itemFound) {
+          return {
+            ...item,
+            selected: true,
+          };
+        }
+
+        return item;
+      });
+
+      setOptions(dataSelected);
+      setMultiSelectedOptions(selectedOptionsDefault);
+    }
+
+    if (defaultValue && !multiSelect) {
+      const itemDefault = data.find(item => item.key === defaultValue);
+
+      setSelectedOption({
+        name: itemDefault.name,
+        key: defaultValue,
+      });
+    }
+  }, [defaultValue, data, multiSelect]);
 
   useEffect(() => {
     const maxOptionsPosition = labelRef.current.getBoundingClientRect().y + 250;
@@ -179,7 +225,12 @@ const Select = ({
 
         {!multiSelect && (
           <label ref={labelRef} htmlFor={id}>
-            {selectedOption && selectedOption.name}
+            {selectedOption &&
+              (selectedOption.icon ? (
+                <selectedOption.icon />
+              ) : (
+                selectedOption.name
+              ))}
           </label>
         )}
         {multiSelect && (
@@ -221,7 +272,7 @@ const Select = ({
                 <ImCheckboxUnchecked id={`option-unchecked-${item.name}`} />
               )}
 
-              {item.name}
+              {item.icon ? <item.icon /> : item.name}
             </button>
           ))}
         </Options>

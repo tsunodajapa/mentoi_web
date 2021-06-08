@@ -10,6 +10,7 @@ import SectionBordered, {
 import InfiniteScroll from '@/shared/components/InfiniteScroll';
 
 import { useAuth } from '@/shared/hooks/auth';
+import { useState } from 'react';
 import { useQuestion } from '../../hooks/question';
 
 import MakeQuestionWeb from '../MakeQuestionBox/Web';
@@ -22,6 +23,7 @@ interface QuestionSectionProps {
 
 const QuestionSection = ({ step }: QuestionSectionProps) => {
   const { getQuestions, questions } = useQuestion();
+  const [allowedFilters] = useState(['q', 'areaInterest']);
 
   return (
     <Container step={step}>
@@ -47,7 +49,10 @@ const QuestionSection = ({ step }: QuestionSectionProps) => {
               return <QuestionBox key={question.id} data={question} />;
             })}
         </SectionBordered>
-        <InfiniteScroll getService={getQuestions} />
+        <InfiniteScroll
+          getService={getQuestions}
+          allowedFilters={allowedFilters}
+        />
       </div>
       <div />
       <MakeQuestionMobile />

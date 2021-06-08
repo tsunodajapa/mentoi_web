@@ -3,17 +3,11 @@ import { FilterToGet } from '@/shared/services/IFilterDTO';
 import { Answer } from '../hooks/answer';
 import { Question } from '../hooks/question';
 
-interface IGetQuestions extends FilterToGet {
-  userId?: string;
-}
-
 export async function createQuestion(data: FormData): Promise<Question> {
   return (await api.post('questions', data)).data;
 }
 
-export async function getQuestions(
-  params?: IGetQuestions,
-): Promise<Question[]> {
+export async function getQuestions(params?: FilterToGet): Promise<Question[]> {
   return (
     await api.get<Question[]>('questions', {
       params,

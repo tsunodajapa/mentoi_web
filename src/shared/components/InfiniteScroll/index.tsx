@@ -1,16 +1,18 @@
 import { useRouter } from 'next/router';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface InfiniteScrollProps {
   getService: Function;
+  allowedFilters?: string[];
 }
 
-const InfiniteScroll = ({ getService }: InfiniteScrollProps) => {
+const InfiniteScroll = ({
+  getService,
+  allowedFilters = ['q'],
+}: InfiniteScrollProps) => {
   const divInfiteScrollRef = useRef<HTMLDivElement>();
   const [searchParams, setSearchParams] = useState({
     page: 0,
-    q: null,
-    id: null,
   });
   const [notFoundQuestions, setNotFoundQuestions] = useState(false);
   const router = useRouter();
@@ -33,8 +35,14 @@ const InfiniteScroll = ({ getService }: InfiniteScrollProps) => {
   }, [divInfiteScrollRef, notFoundQuestions]);
 
   useEffect(() => {
-    setSearchParams({ page: 1, q: null, ...router.query, id: null });
-  }, [router.query]);
+    const filters = Object.keys(router.query).reduce((prev, current) => {
+      return allowedFilters.includes(current)
+        ? { ...prev, [current]: router.query[current] }
+        : prev;
+    }, {});
+
+    setSearchParams({ page: 1, ...filters });
+  }, [router.query, allowedFilters]);
 
   useEffect(() => {
     async function searchQuestions() {

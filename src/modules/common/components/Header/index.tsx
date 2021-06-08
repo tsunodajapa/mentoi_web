@@ -28,13 +28,16 @@ interface HeaderProps {
 
 const Header = ({ actualNameStep }: HeaderProps) => {
   const formRef = useRef<FormHandles>(null);
-  const { signOut } = useAuth();
+  const { signOut, user } = useAuth();
   const router = useRouter();
 
   const [showFilter, setShowFilter] = useState(false);
 
   function handelSubmit(data: { search: string }) {
-    const filter = concatUrlParams(router, data.search, 'q');
+    const filter =
+      router.pathname === '/feed'
+        ? concatUrlParams(router, data.search, 'q')
+        : `?q=${data.search}`;
 
     router.push(`/feed${filter}`, undefined, { shallow: true });
   }
@@ -76,7 +79,7 @@ const Header = ({ actualNameStep }: HeaderProps) => {
             </li>
             <li>
               <WindowSelect id="signout-button" icon={BsPersonFill}>
-                <a href="#_">Ver Perfil</a>
+                <Link href={`/me/${user?.nickName}/edit`}>Editar Perfil</Link>
 
                 <button type="button" onClick={signOut}>
                   Sair

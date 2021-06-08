@@ -53,27 +53,20 @@ const QuestionProvider: React.FC = ({ children }) => {
     setQuestions(state => [{ ...question, user }, ...state]);
   };
 
-  const getQuestions = useCallback(
-    async (filters: FilterQuestions) => {
-      const userId =
-        filters.areaInterest === 'me' && user.id ? user.id : undefined;
+  const getQuestions = useCallback(async (filters: FilterQuestions) => {
+    const questionsFound = await questionsServices.getQuestions({
+      ...filters,
+      pageSize: 10,
+    });
 
-      const questionsFound = await questionsServices.getQuestions({
-        ...filters,
-        pageSize: 10,
-        userId,
-      });
+    if (filters.page === 1) {
+      setQuestions(questionsFound);
+    } else {
+      setQuestions(state => [...state, ...questionsFound]);
+    }
 
-      if (filters.page === 1) {
-        setQuestions(questionsFound);
-      } else {
-        setQuestions(state => [...state, ...questionsFound]);
-      }
-
-      return questionsFound.length;
-    },
-    [user.id],
-  );
+    return questionsFound.length;
+  }, []);
 
   const removeQuestion = (id: string) => {
     const questionsWithoutDeleted = questions.filter(

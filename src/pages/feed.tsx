@@ -1,4 +1,5 @@
 import Header from '@/modules/common/components/Header';
+import HeaderLogouted from '@/modules/logouted/components/Header';
 
 import { useState } from 'react';
 
@@ -8,8 +9,11 @@ import { QuestionProvider } from '@/modules/question/hooks/question';
 import { QuestionSection } from '@/modules/question/components/QuestionSection';
 import { Main } from '@/shared/components/Main/styles';
 import SEO from '@/shared/components/SEO';
+import { useAuth } from '@/shared/hooks/auth';
 
 const Feed = () => {
+  const { user } = useAuth();
+
   const [actualStep, setActualStep] = useState(0);
   const actualNameStep = [
     'ÁREA DE INTERESSE',
@@ -29,7 +33,8 @@ const Feed = () => {
         title="Plataforma Educacional para Professores e Alunos | Mentoi"
         description="Plataforma educacional para interação entre estudantes e professores com atuação verificada, garantindo responsabilidade e evitando respostas com erros ou Fake News."
       />
-      <Header actualNameStep={actualNameStep[actualStep]} />
+      {user && <Header actualNameStep={actualNameStep[actualStep]} />}
+      {!user && <HeaderLogouted />}
       <Main>
         <QuestionProvider>
           <QuestionSection step={actualStep} />

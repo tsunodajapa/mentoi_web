@@ -25,6 +25,7 @@ export const Main = styled(MainDefault)`
   form {
     z-index: 1000;
   }
+
   button {
     display: flex;
     flex-direction: column;

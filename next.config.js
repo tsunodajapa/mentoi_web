@@ -11,5 +11,5 @@ module.exports = {
   },
   env: {
     MENTOI_API_URL: process.env.MENTOI_API_URL
-  }
+  },
 };
