@@ -16,4 +16,10 @@ export const Section = styled.section`
     flex: 1;
     max-width: 80rem;
   }
+
+  @media (max-width: 425px) {
+    section {
+      margin-left: 0;
+    }
+  }
 `;

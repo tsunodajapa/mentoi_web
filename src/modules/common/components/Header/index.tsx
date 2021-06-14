@@ -19,8 +19,9 @@ import { useAuth } from '@/shared/hooks/auth';
 import WindowSelect from '@/shared/components/WindowSelect';
 import { useRouter } from 'next/router';
 import concatUrlParams from '@/shared/utils/concatUrlParams';
-import { formatWithValidation } from 'next/dist/next-server/lib/utils';
+
 import { Container, Nav, SearchContent } from './styles';
+import HamburgerMenu from '../HamburgerMenu';
 
 interface HeaderProps {
   actualNameStep: string;
@@ -102,11 +103,14 @@ const Header = ({ actualNameStep }: HeaderProps) => {
             </Link>
             <span>{actualNameStep}</span>
           </div>
-          <ButtonIcon
-            icon={IoSearch}
-            color="--color-text-in-primary"
-            onClick={handleShowFilter}
-          />
+          {actualNameStep === 'PERFIL' && <HamburgerMenu />}
+          {actualNameStep !== 'PERFIL' && (
+            <ButtonIcon
+              icon={IoSearch}
+              color="--color-text-in-primary"
+              onClick={handleShowFilter}
+            />
+          )}
         </div>
       )}
 
