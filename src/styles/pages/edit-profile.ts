@@ -1,15 +1,11 @@
 import styled from 'styled-components';
 import { Main as MainDefault } from '@/shared/components/Main/styles';
 
-interface StepProps {
-  step: number;
-}
-
 export const Main = styled(MainDefault)`
   margin-top: -10px;
 `;
 
-export const Section = styled.section<StepProps>`
+export const Section = styled.section`
   display: flex;
   justify-content: center;
   min-height: calc(100vh - 5.1rem);

@@ -15,8 +15,10 @@ import { UpdateUserValidator } from '@/modules/logouted/validators/UpdateUser';
 import getValidationErrors from '@/shared/utils/getValidationErros';
 import { useToast } from '@/shared/hooks/toast';
 import { format, parseISO } from 'date-fns';
+import Modal from '@/shared/components/Modal';
 import { Container, Line } from './styles';
 import * as userServices from '../../../logouted/services/userServices';
+import ChangePasswordModal from '../ChangePasswordModal';
 
 const ChangeUserForm = () => {
   const { user, updateUser } = useAuth();
@@ -24,10 +26,14 @@ const ChangeUserForm = () => {
 
   const formRef = useRef<FormHandles>(null);
   const [initialData, setInitialData] = useState({});
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  function handleToggleModal() {
+    setIsOpenModal(!isOpenModal);
+  }
 
   useEffect(() => {
     if (user) {
-      console.log(user);
       const areasInterest = user.areasInterest?.map(
         areaInterest => areaInterest.name,
       );
@@ -97,8 +103,6 @@ const ChangeUserForm = () => {
         title,
         description,
       });
-
-      // setActualStep(1);
     }
   }
 
@@ -167,7 +171,14 @@ const ChangeUserForm = () => {
 
       <h2>Segurança</h2>
 
-      <Button text="Clique aqui para alterar a Senha" />
+      <Button
+        type="button"
+        text="Clique aqui para alterar a Senha"
+        onClick={handleToggleModal}
+      />
+      <Modal isOpenModal={isOpenModal} handleToggleModal={handleToggleModal}>
+        <ChangePasswordModal />
+      </Modal>
     </Container>
   );
 };

@@ -1,23 +1,12 @@
-import { useState } from 'react';
-import { GiGears } from 'react-icons/gi';
-
 import Header from '@/modules/common/components/Header';
 import SEO from '@/shared/components/SEO';
 import { Main, Section } from '@/styles/pages/edit-profile';
-import ChangeProfileForm from '@/modules/common/components/ChangeProfileForm';
+
 import ChangeUserForm from '@/modules/common/components/ChangeUserForm';
-import ChangePasswordForm from '@/modules/common/components/ChangePasswordForm';
-import SectionBordered, {
-  BorderTypes,
-} from '@/shared/components/SectionBordered';
+
+import SectionBordered from '@/shared/components/SectionBordered';
 
 const EditProfile = () => {
-  const [actualStep, setActualStep] = useState(1);
-
-  function handleChangeStep(step: number) {
-    setActualStep(step);
-  }
-
   return (
     <>
       <SEO
@@ -26,30 +15,10 @@ const EditProfile = () => {
       />
       <Header actualNameStep="Editar Perfil" />
       <Main>
-        <Section step={actualStep}>
+        <Section>
           <SectionBordered>
-            {
-              {
-                1: <ChangeUserForm />,
-                2: <ChangePasswordForm />,
-              }[actualStep]
-            }
+            <ChangeUserForm />
           </SectionBordered>
-          {/* <aside>
-            <ul>
-              {['Perfil', 'Dados Pessoais', 'Segurança'].map((item, index) => (
-                <li key={index}>
-                  <button
-                    type="button"
-                    onClick={() => handleChangeStep(index + 1)}
-                  >
-                    {item}
-                  </button>
-                </li>
-              ))}
-            </ul>
-            <Link text="SEJA UM MENTOI" href="/become-mentoi" />
-          </aside> */}
         </Section>
       </Main>
     </>

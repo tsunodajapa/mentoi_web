@@ -17,7 +17,7 @@ export const Container = styled.div`
     margin-bottom: 0.8rem;
   }
 
-  form {
+  > form {
     > button {
       width: 10rem;
       display: block;
