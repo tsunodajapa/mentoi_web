@@ -1,7 +1,6 @@
 import { createContext, useState, useContext, useEffect } from 'react';
 import Cookies from 'js-cookie';
 
-import { useRouter } from 'next/router';
 import * as authServices from '../../modules/logouted/services/authServices';
 import api from '../services/api';
 
@@ -14,6 +13,7 @@ export interface User {
   verified?: boolean;
   scholarity: string;
   permission: string;
+  dateBirth?: string;
   areasInterest: {
     id: string;
     name: string;
@@ -64,8 +64,6 @@ export const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<User>();
   const [loading, setLoading] = useState(true);
 
-  const router = useRouter();
-
   useEffect(() => {
     async function loadUserFromCookies() {
       const token = Cookies.get('token');
@@ -79,7 +77,7 @@ export const AuthProvider: React.FC = ({ children }) => {
       setLoading(false);
     }
     loadUserFromCookies();
-  }, [router]);
+  }, []);
 
   const setAuthState = (token: string, userResponse: User) => {
     Cookies.set('token', token, { expires: 1 });

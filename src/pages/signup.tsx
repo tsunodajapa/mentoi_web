@@ -27,6 +27,7 @@ import LoginModal from '@/modules/logouted/components/LoginModal';
 import { CreateUserValidator } from '@/modules/logouted/validators/CreateUser';
 import { CreateUserData, useAuth } from '@/shared/hooks/auth';
 import SEO from '@/shared/components/SEO';
+import subtractYears from '@/shared/utils/subtractYears';
 
 const SignUp = () => {
   const formRef = useRef<FormHandles>(null);
@@ -45,19 +46,11 @@ const SignUp = () => {
     setActualStep(state => (state === 1 ? 2 : 1));
   }
 
-  const birthDateMax = useMemo(() => {
-    const someDate = new Date();
-    const numberOfYearToSubtract = 6;
-
-    someDate.setFullYear(someDate.getFullYear() - numberOfYearToSubtract);
-    return someDate;
-  }, []);
-
   async function handleSubmit(data: CreateUserData) {
     try {
       formRef.current?.setErrors({});
 
-      await CreateUserValidator(birthDateMax).validate(data, {
+      await CreateUserValidator(subtractYears(6)).validate(data, {
         abortEarly: false,
       });
 

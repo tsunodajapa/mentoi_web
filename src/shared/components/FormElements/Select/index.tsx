@@ -61,11 +61,11 @@ const Select = ({
   useEffect(() => {
     if (defaultValue && multiSelect) {
       const selectedOptionsDefault = defaultValue.map(item => {
-        const { color } = data.find(itemFind => itemFind.name === item.name);
-        const selectedSize = item.name.split('').length + 2;
+        const { color } = data.find(itemFind => itemFind.name === item);
+        const selectedSize = item.split('').length + 2;
 
         return {
-          name: item.name,
+          name: item,
           color,
           selectedSize,
         };

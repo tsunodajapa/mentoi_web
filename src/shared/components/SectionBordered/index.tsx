@@ -8,7 +8,7 @@ export enum BorderTypes {
 }
 
 interface SectionBorderedProps {
-  border: BorderTypes;
+  border?: BorderTypes;
   children: ReactNode;
 }
 

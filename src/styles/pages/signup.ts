@@ -257,28 +257,33 @@ export const Genero = styled.div`
   margin-bottom: 1.4rem;
   height: 3.8rem;
 
-  div > label {
-    width: 13rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  div {
+    flex: 1;
+    margin: 0 0.5rem;
 
-    padding: 0.5rem;
-    margin-top: 0.4rem;
-    border: 1px solid var(--color-text-complement);
-    border-radius: 0.5rem;
+    > label {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-    cursor: pointer;
-    color: var(--color-primary);
-    text-align: center;
+      padding: 0.5rem;
+      margin-top: 0.4rem;
+      border: 1px solid var(--color-text-complement);
+      border-radius: 0.5rem;
 
-    > svg {
-      margin-right: 0.4rem;
-    }
+      cursor: pointer;
+      color: var(--color-primary);
+      text-align: center;
 
-    &:hover {
-      border-color: var(--color-primary);
-      border-width: 0.2rem;
+      > svg {
+        margin-right: 0.4rem;
+      }
+
+      &:hover {
+        border-color: var(--color-primary);
+        border-width: 0.2rem;
+      }
     }
   }
 

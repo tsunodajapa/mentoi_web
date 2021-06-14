@@ -1,5 +1,5 @@
 import { useField } from '@unform/core';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { IconBaseProps } from 'react-icons';
 import { FiAlertCircle } from 'react-icons/fi';
 import { StyledComponent } from 'styled-components';
@@ -25,6 +25,11 @@ const Radio = ({
 }: RadioProps) => {
   const { fieldName, defaultValue, error, registerField } = useField(name);
   const radioRefs = useRef<HTMLInputElement[]>([]);
+  const [selectedRadio, setSelecteRadio] = useState('');
+
+  useEffect(() => {
+    setSelecteRadio(defaultValue);
+  }, [defaultValue]);
 
   useEffect(() => {
     registerField({
@@ -45,6 +50,10 @@ const Radio = ({
     });
   }, [fieldName, registerField]);
 
+  function handleChangeRadio(id: string) {
+    setSelecteRadio(id);
+  }
+
   return (
     <>
       <Label>
@@ -64,7 +73,8 @@ const Radio = ({
               id={id}
               name={fieldName}
               value={id}
-              defaultChecked={defaultValue === id}
+              checked={selectedRadio === id}
+              onChange={() => handleChangeRadio(id)}
             />
             <label htmlFor={id}>
               {Icon && <Icon />}

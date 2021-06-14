@@ -4,6 +4,10 @@ import { ErrorDefault } from '../styles';
 
 export const Label = styled.label`
   display: flex;
+
+  div + & {
+    margin-top: 0.5rem;
+  }
 `;
 
 export const Error = styled(ErrorDefault)`
