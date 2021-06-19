@@ -24,7 +24,7 @@ export default [
     color: '#B8D423',
   },
   {
-    name: 'CIÊNCIAS',
+    name: 'BIOLOGIA',
     color: '#B3413D',
   },
   {

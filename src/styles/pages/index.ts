@@ -1,17 +1,18 @@
-import styled from 'styled-components';
+import { Form as Unform } from '@unform/web';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.main`
-  max-width: 1080px;
   margin: 0 auto;
 
   color: var(--color-text-complement);
 
   h1 {
     color: var(--color-text);
+    line-height: 5.5rem;
   }
 
   h2 {
-    font-size: 3.6rem;
+    font-size: 4.6rem;
   }
 
   h3 {
@@ -27,41 +28,187 @@ export const Container = styled.main`
 `;
 
 export const SectionHome = styled.section`
+  height: 100vh;
+  padding: 0 9rem;
+
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 3rem 0;
+  flex-direction: column;
 
   > div {
-    width: 40%;
+    margin-right: 55px;
+    padding-top: 3rem;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
 
-    h1 {
-      font-size: 5.6rem;
-      font-weight: 700;
+    svg {
+      transform: scale(2);
+      margin-left: 5.8rem;
+      margin-bottom: 4rem;
     }
 
-    p {
-      margin: 1rem 4rem 1rem 0;
+    button {
       font-size: 1.8rem;
-      text-align: left;
+      margin: 0 0.8rem;
+      padding: 0.4rem 1.5rem;
     }
   }
 
-  @media (max-width: 700px) {
-    padding: 0.5rem 1.5rem;
+  article {
+    display: flex;
+    align-items: center;
 
-    > svg {
-      display: none;
+    > img {
+      height: 100vh;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: -1;
     }
 
     > div {
-      width: 100%;
+      width: min(40%, 510px);
+      display: flex;
+      flex-direction: column;
+
+      h1 {
+        font-size: 4.6rem;
+        font-weight: 700;
+      }
 
       p {
-        margin: 0;
+        position: relative;
+        margin: 2rem 4rem 1rem 10px;
+        font-size: 2.2rem;
+        text-align: left;
+        line-height: 3.2rem;
       }
+
+      p:after {
+        content: '';
+        position: absolute;
+        width: 3px;
+        height: 94%;
+        top: 0;
+        left: -10px;
+        margin-top: 7px;
+        background: var(--color-primary);
+      }
+
+      > button {
+        margin-right: auto;
+      }
+    }
+
+    @media (max-width: 1500px) and (min-height: 800px) {
+      img {
+        height: 80vh;
+      }
+    }
+
+    @media (max-width: 700px) {
+      padding: 0.5rem 1.5rem;
+
+      > svg {
+        display: none;
+      }
+
+      > div {
+        width: 100%;
+
+        p {
+          margin: 0;
+        }
+      }
+    }
+
+    @media (min-width: 1800px) {
+      > div {
+        width: 50%;
+
+        h1 {
+          font-size: 6.6rem;
+        }
+
+        p {
+          font-size: 3.5rem;
+          line-height: 3.5rem;
+        }
+
+        > button {
+          font-size: 1.8rem;
+          padding: 0.4rem 1.5rem;
+        }
+      }
+    }
+  }
+`;
+
+export const Form = styled(Unform)`
+  display: flex;
+  background: #fff;
+  padding: 8px;
+  margin-top: 2rem;
+  border-radius: 46px;
+  box-shadow: 1px -1px 10px 0px rgb(0 0 0 / 50%);
+
+  > div {
+    flex: 1;
+    margin-right: 15px;
+  }
+`;
+
+export const SectionContents = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: url('./background-how-use.jpg');
+
+  padding: 3rem 0;
+
+  article {
+    margin: 2rem auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    a {
+      display: flex;
+      align-items: center;
+
+      box-shadow: 0rem 0.3rem 1rem 0.2rem rgba(0, 0, 0, 0.15);
+      background: var(--color-background);
+      width: 28rem;
+      border: none;
+      border-radius: 1.8rem;
+      margin: 1.4rem;
+      padding: 1.4rem;
+      padding-left: 1.8rem;
+
+      font-weight: bold;
+      font-size: 2.4rem;
+      color: var(--color-text);
+      text-decoration: none;
+
+      svg {
+        transform: scale(1.2);
+      }
+
+      span {
+        flex: 1;
+        text-align: center;
+        text-decoration: none;
+      }
+    }
+
+    a:last-child {
+      background: var(--color-primary);
+      color: var(--color-text-in-primary);
+    }
+  }
+
+  @media (max-width: 880px) {
+    article {
+      margin: 0;
+      margin-top: 3rem;
     }
   }
 `;
@@ -70,7 +217,6 @@ export const SectionAbout = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: var(--color-primary-transparent);
 
   padding: 3rem 0;
 
@@ -120,26 +266,36 @@ export const Card = styled.div`
 
 export const SectionAboutSecurity = styled.section`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 3rem 0;
+  background: var(--color-primary);
+  border-radius: 1.8rem;
+  position: relative;
+
+  margin: 3rem auto;
+  padding: 1rem;
+  width: 65%;
 
   article {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 80%;
+    padding: 0 0.8rem;
 
-    margin-top: 3rem;
+    color: var(--color-text-in-primary);
 
-    svg {
-      margin: 1rem 4rem;
+    h3 {
+      color: var(--color-text-in-primary);
+      font-size: 3rem;
     }
 
     p {
-      width: 40%;
-      text-align: justify;
+      text-align: center;
       font-size: 1.8rem;
     }
+  }
+  svg {
+    position: absolute;
+    right: -78px;
+    top: -33px;
+    transform: scale(1.2);
+    margin: 1rem 4rem;
   }
 
   @media (max-width: 700px) {
@@ -151,6 +307,29 @@ export const SectionAboutSecurity = styled.section`
         width: 100%;
         padding: 1.5rem;
       }
+    }
+  }
+`;
+
+export const SectionEducator = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 65%;
+  margin: 5rem auto;
+
+  svg {
+    transform: scale(1.3);
+  }
+
+  article {
+    width: 61%;
+    margin-left: 3.8rem;
+
+    p {
+      text-align: center;
+      font-size: 1.8rem;
+      padding: 1.5rem;
     }
   }
 `;

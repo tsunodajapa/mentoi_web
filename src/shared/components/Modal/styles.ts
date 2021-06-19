@@ -17,7 +17,7 @@ export const Container = styled.div<ContainerProps>`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1001;
+  z-index: 9999;
 
   ${({ styles }) =>
     styles &&

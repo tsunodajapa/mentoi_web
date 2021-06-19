@@ -1,14 +1,9 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { ButtonTypeVariations } from '../Button/styles';
+import { Variant } from '../variant';
 
 interface ContainerProps {
-  variant?:
-    | 'primary'
-    | 'secondary'
-    | 'inlinePrimary'
-    | 'inlineSecondary'
-    | 'outlinePrimary'
-    | 'outlineSecondary';
+  variant?: Variant;
 }
 
 export const Container = styled.a<ContainerProps>`

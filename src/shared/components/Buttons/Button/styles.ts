@@ -1,14 +1,8 @@
 import styled, { css } from 'styled-components';
+import { Variant } from '../variant';
 
 interface ContainerProps {
-  variant?:
-    | 'primary'
-    | 'secondary'
-    | 'error'
-    | 'outlineError'
-    | 'outlinePrimary'
-    | 'inlinePrimary'
-    | 'inlineSecondary';
+  variant?: Variant;
 }
 
 export const ButtonTypeVariations = {
@@ -27,6 +21,11 @@ export const ButtonTypeVariations = {
     background: var(--color-secondary);
     color: var(--color-text-in-primary);
     border: 0.1rem solid;
+  `,
+  tertiary: css`
+    background: var(--color-background);
+    color: var(--color-primary);
+    border: 0.1rem solid var(--color-primary);
   `,
   error: css`
     background: var(--color-red);

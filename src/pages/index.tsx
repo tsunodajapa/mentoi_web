@@ -1,33 +1,114 @@
-import { useEffect } from 'react';
-import { useAuth } from '@/shared/hooks/auth';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useEffect, useRef, useState } from 'react';
+import { useAuth } from '@/shared/hooks/auth';
 
-import Background from '@/assets/background_home.svg';
 import BackgroundSecurity from '@/assets/background_security.svg';
+import BackgroundLaptop from '@/assets/background_laptop.svg';
+import Logo from '@/assets/logo_mentoi_two_line.svg';
 import IconHands from '@/assets/icon_hands.svg';
 import IconKnowledge from '@/assets/icon_knowledge.svg';
 import IconMortaboard from '@/assets/icon_mortaboard.svg';
-import Logo from '@/assets/logo_mentoi_two_line.svg';
+import IconAll from '@/assets/icon_all.svg';
+import IconArt from '@/assets/icon_art.svg';
+import IconBiology from '@/assets/icon_biology.svg';
+import IconChemistry from '@/assets/icon_chemistry.svg';
+import IconGeography from '@/assets/icon_geography.svg';
+import IconHistory from '@/assets/icon_history.svg';
+import IconMath from '@/assets/icon_math.svg';
+import IconPhysics from '@/assets/icon_physics.svg';
+import IconPortuguese from '@/assets/icon_portuguese.svg';
 
-import Header from '@/modules/logouted/components/Header';
-import InputAndSelect from '@/shared/components/FormElements/InputAndSelect';
 import Carousel from '@/shared/components/Carousel';
 
 import {
   Container,
   SectionHome,
+  SectionContents,
   SectionAbout,
   SectionAboutSecurity,
+  SectionEducator,
   SectionFinal,
   Card,
   Footer,
+  Form,
 } from '@/styles/pages/index';
 import SEO from '@/shared/components/SEO';
-import Link from 'next/link';
+import Button from '@/shared/components/Buttons/Button';
+import { Input } from '@/shared/components/FormElements';
+import { Header } from '@/modules/logouted/components/HeaderHome';
+
+import concatUrlParams from '@/shared/utils/concatUrlParams';
+
+interface SubjectType {
+  icon: any;
+  name: string;
+  link: string;
+}
+
+const Subjects: SubjectType[] = [
+  {
+    icon: IconPortuguese,
+    name: 'PORTUGUÊS',
+    link: 'PORTUGUÊS',
+  },
+  {
+    icon: IconGeography,
+    name: 'GEOGRAFIA',
+    link: 'GEOGRAFIA',
+  },
+  {
+    icon: IconArt,
+    name: 'ARTES',
+    link: 'ARTES',
+  },
+  {
+    icon: IconBiology,
+    name: 'BIOLOGIA',
+    link: 'BIOLOGIA',
+  },
+  {
+    icon: IconHistory,
+    name: 'HISTÓRIA',
+    link: 'HISTÓRIA',
+  },
+  {
+    icon: IconChemistry,
+    name: 'QUÍMICA',
+    link: 'QUÍMICA',
+  },
+  {
+    icon: IconMath,
+    name: 'MATEMÁTOCA',
+    link: 'MATEMÁTOCA',
+  },
+  {
+    icon: IconPhysics,
+    name: 'FÍSICA',
+    link: 'FÍSICA',
+  },
+  {
+    icon: IconAll,
+    name: 'TODAS',
+    link: null,
+  },
+];
 
 const Main = () => {
   const { user } = useAuth();
   const router = useRouter();
+
+  const divInfiteScrollRef = useRef();
+  const [hasHeaderBackground, setHasHeaderBackground] = useState(false);
+
+  function handelSubmit(data: { search: string }) {
+    const filter =
+      router.pathname === '/feed'
+        ? concatUrlParams(router, data.search, 'q')
+        : `?q=${data.search}`;
+
+    router.push(`/feed${filter}`, undefined, { shallow: true });
+  }
 
   useEffect(() => {
     if (user) {
@@ -35,28 +116,76 @@ const Main = () => {
     }
   }, [user, router]);
 
+  useEffect(() => {
+    const intersectionObserver = new IntersectionObserver(
+      ([entries]) => {
+        const ratio = entries.intersectionRatio;
+
+        if (ratio === 1 || window.scrollY > 550) {
+          setHasHeaderBackground(true);
+        } else {
+          setHasHeaderBackground(false);
+        }
+      },
+      {
+        threshold: 1,
+      },
+    );
+
+    if (divInfiteScrollRef.current)
+      intersectionObserver.observe(divInfiteScrollRef.current);
+
+    return () => {
+      intersectionObserver.disconnect();
+    };
+  }, [divInfiteScrollRef]);
+
   return (
     <>
       <SEO
         title="Mentoi | Plataforma Educacional para Professores e Alunos"
         description="Plataforma educacional para interação entre estudantes e professores com atuação verificada, garantindo responsabilidade e evitando respostas com erros ou Fake News."
       />
-      <Header />
+      <Header hasHeaderBackground={hasHeaderBackground} />
       <Container>
         <SectionHome>
-          <div>
-            <h1>Aprenda com os melhores</h1>
-            <p>
-              Mentoi é uma plataforma educacional que possibilita a interação
-              entre estudantes e professores ou profissionais da área com
-              atuação verificada, garantindo responsabilidade nas respostas e
-              evitando respostas com erros ou Fake News
-            </p>
-
-            <InputAndSelect />
-          </div>
-          <Background />
+          <article>
+            <div>
+              <h1>Professores e estudantes unidos pela educação</h1>
+              <p>
+                Mentoi é uma plataforma educacional que possibilita a interação
+                e compartilhamento de informações entre estudantes e professores
+                ou profissionais da área com atuação verificada, garantindo
+                responsabilidade nas informações.
+              </p>
+              <Button text="SAIBA MAIS" />
+              <Form onSubmit={handelSubmit}>
+                <Input
+                  id="search"
+                  name="search"
+                  placeholder="Qual sua dúvida?"
+                />
+                <Button text="PESQUISAR" />
+              </Form>
+            </div>
+            <img src="./background-logo2.png" alt="" />
+          </article>
         </SectionHome>
+
+        <SectionContents>
+          <h2>CONTEÚDOS</h2>
+
+          <article ref={divInfiteScrollRef}>
+            {Subjects.map(({ icon: Icon, link, name }) => (
+              <Link href={`/feed${link ? `?areaInterest=${link}` : ''}`}>
+                <a>
+                  <Icon />
+                  <span>{name}</span>
+                </a>
+              </Link>
+            ))}
+          </article>
+        </SectionContents>
 
         <SectionAbout>
           <h2>COMO FUNCIONA</h2>
@@ -95,24 +224,36 @@ const Main = () => {
         </SectionAbout>
 
         <SectionAboutSecurity>
-          <h2>SEGURANÇA</h2>
-
           <article>
-            <BackgroundSecurity />
+            <h3>MATERIAIS VERIFICADOS</h3>
             <p>
-              Durante a pandemia de COVID-19, vários professores relataram
-              problemas com vídeo-aulas e respostas encontradas na internet. Em
-              muitos dos casos, são vídeos e textos produzidos por algúem sem
-              formação na área, onde os alunos se inspiram nesses materias que,
-              por conter erros, pode prejudicar a construção do conhecimento do
-              aluno.
-              <br />
-              Para evitar esse erros, no Mentoi os professores e profissionais
-              são verificados, sendo as respostas certificas por outros
-              professores e profissionais.
+              Quando os alunos procuram informações para trabalhos ou provas na
+              internet, é comum encontrarem respostas errôneas. Para evitar
+              esses erros, que podem prejudicar o aprendizado, no Mentoi os
+              professores e profissionais são verificados, sendo as respostas
+              certificadas por eles.
             </p>
           </article>
+          <BackgroundSecurity />
         </SectionAboutSecurity>
+
+        <SectionEducator>
+          <BackgroundLaptop />
+
+          <article>
+            <h2>PARA O EDUCADOR</h2>
+            <p>
+              Na plataforma Mentoi, o educador terá um espaço acolhedor para que
+              possa fazer o que sabe de melhor: educar! Terá o seu trabalho
+              reconhecido, ganhando recompensas, acesso a materiais exclusivos e
+              se firmando enqunato referência no assunto.
+            </p>
+            <p>
+              &quot;Se a educação sozinha não transforma a sociedade, sem ela
+              tampouco a sociedade muda.&quot;
+            </p>
+          </article>
+        </SectionEducator>
 
         <SectionFinal>
           <div>

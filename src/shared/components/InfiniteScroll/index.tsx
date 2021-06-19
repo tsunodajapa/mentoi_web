@@ -20,7 +20,6 @@ const InfiniteScroll = ({
   useEffect(() => {
     const intersectionObserver = new IntersectionObserver(async ([entries]) => {
       const ratio = entries.intersectionRatio;
-
       if (ratio > 0 && !notFoundQuestions) {
         setSearchParams(state => ({ ...state, page: state.page + 1 }));
       }
