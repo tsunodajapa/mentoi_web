@@ -104,40 +104,47 @@ export const SectionHome = styled.section`
         height: 80vh;
       }
     }
+  }
 
-    @media (max-width: 700px) {
-      padding: 0.5rem 1.5rem;
+  @media (max-width: 700px) {
+    padding: 0.5rem 1.5rem;
+    height: auto;
 
-      > svg {
-        display: none;
-      }
-
+    article {
       > div {
         width: 100%;
 
         p {
-          margin: 0;
+          margin: 2rem;
         }
       }
     }
 
-    @media (min-width: 1800px) {
-      > div {
-        width: 50%;
+    form {
+      margin-bottom: -30px;
+    }
 
-        h1 {
-          font-size: 6.6rem;
-        }
+    img {
+      display: none;
+    }
+  }
 
-        p {
-          font-size: 3.5rem;
-          line-height: 3.5rem;
-        }
+  @media (min-width: 1800px) {
+    > div {
+      width: 50%;
 
-        > button {
-          font-size: 1.8rem;
-          padding: 0.4rem 1.5rem;
-        }
+      h1 {
+        font-size: 6.6rem;
+      }
+
+      p {
+        font-size: 3.5rem;
+        line-height: 3.5rem;
+      }
+
+      > button {
+        font-size: 1.8rem;
+        padding: 0.4rem 1.5rem;
       }
     }
   }
@@ -209,6 +216,16 @@ export const SectionContents = styled.section`
     article {
       margin: 0;
       margin-top: 3rem;
+    }
+  }
+
+  @media (max-width: 440px) {
+    padding-top: 6rem;
+
+    article {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
   }
 `;
@@ -299,7 +316,10 @@ export const SectionAboutSecurity = styled.section`
   }
 
   @media (max-width: 700px) {
+    width: 90%;
+
     article {
+      width: 100%;
       flex-direction: column;
       align-items: center;
 
@@ -307,6 +327,12 @@ export const SectionAboutSecurity = styled.section`
         width: 100%;
         padding: 1.5rem;
       }
+    }
+    svg {
+      transform: translate(50%, 50%) scale(1.5);
+      opacity: 0.1;
+      top: -56px;
+      right: auto;
     }
   }
 `;
@@ -330,6 +356,18 @@ export const SectionEducator = styled.section`
       text-align: center;
       font-size: 1.8rem;
       padding: 1.5rem;
+    }
+  }
+
+  @media (max-width: 700px) {
+    max-width: 100%;
+
+    article {
+      width: 100%;
+      margin: 0 0.5rem;
+    }
+    svg {
+      display: none;
     }
   }
 `;

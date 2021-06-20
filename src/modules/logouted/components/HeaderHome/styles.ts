@@ -103,4 +103,39 @@ export const Container = styled.header<HeaderProps>`
     margin: 0 0.8rem;
     padding: 0.4rem 1.5rem;
   }
+
+  @media (max-width: 550px) {
+    padding: 4px;
+    align-items: center;
+
+    background: var(--color-background);
+    box-shadow: 0px -0.1rem 0.3rem 0.2rem rgba(0, 0, 0, 0.15);
+
+    svg {
+      margin: 0.5rem;
+      transform: scale(1);
+    }
+
+    form {
+      display: none;
+    }
+
+    > div {
+      margin-right: 0.5rem;
+    }
+
+    > div a,
+    button {
+      border: none;
+      padding: 0;
+      margin: 0 !important;
+      background: none;
+      font-weight: 700;
+      font-size: 1.8rem;
+    }
+
+    > div button {
+      color: var(--color-text);
+    }
+  }
 `;
