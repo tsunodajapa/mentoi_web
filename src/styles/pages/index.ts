@@ -162,6 +162,18 @@ export const Form = styled(Unform)`
     flex: 1;
     margin-right: 15px;
   }
+
+  button {
+    background: var(--color-primary);
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+
+    svg {
+      transform: scale(0.8);
+      color: var(--color-text-in-primary);
+    }
+  }
 `;
 
 export const SectionContents = styled.section`

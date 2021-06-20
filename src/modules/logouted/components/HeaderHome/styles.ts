@@ -125,17 +125,18 @@ export const Container = styled.header<HeaderProps>`
     }
 
     > div a,
-    button {
+    > div button {
       border: none;
       padding: 0;
       margin: 0 !important;
       background: none;
       font-weight: 700;
-      font-size: 1.8rem;
+      font-size: 1.5rem;
     }
 
     > div button {
       color: var(--color-text);
+      margin-right: 1rem !important;
     }
   }
 `;

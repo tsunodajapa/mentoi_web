@@ -27,11 +27,7 @@ const Header = () => {
           </Link>
 
           <div>
-            <LinkAction
-              href="/signup"
-              text="CADASTRO"
-              variant="outlineSecondary"
-            />
+            <LinkAction href="/signup" text="CADASTRO" />
             <Button text="ENTRAR" onClick={handleToggleModal} />
           </div>
         </div>

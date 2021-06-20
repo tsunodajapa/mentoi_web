@@ -39,6 +39,8 @@ import { Input } from '@/shared/components/FormElements';
 import { Header } from '@/modules/logouted/components/HeaderHome';
 
 import concatUrlParams from '@/shared/utils/concatUrlParams';
+import { IoSearch } from 'react-icons/io5';
+import ButtonIcon from '@/shared/components/Buttons/ButtonIcon';
 
 interface SubjectType {
   icon: any;
@@ -165,7 +167,7 @@ const Main = () => {
                   name="search"
                   placeholder="Qual sua dúvida?"
                 />
-                <Button text="PESQUISAR" />
+                <ButtonIcon icon={IoSearch} />
               </Form>
             </div>
             <img src="./background-logo2.png" alt="" />
