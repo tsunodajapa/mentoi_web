@@ -27,8 +27,12 @@ const Header = () => {
           </Link>
 
           <div>
-            <LinkAction href="/signup" text="CADASTRO" />
             <Button text="ENTRAR" onClick={handleToggleModal} />
+            <LinkAction
+              href="/signup"
+              text="CADASTRE-SE"
+              variant="outlinePrimary"
+            />
           </div>
         </div>
       </Container>

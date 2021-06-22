@@ -94,7 +94,7 @@ export const SectionHome = styled.section`
         background: var(--color-primary);
       }
 
-      > button {
+      > a {
         margin-right: auto;
       }
     }
@@ -142,7 +142,7 @@ export const SectionHome = styled.section`
         line-height: 3.5rem;
       }
 
-      > button {
+      > a {
         font-size: 1.8rem;
         padding: 0.4rem 1.5rem;
       }
@@ -448,6 +448,11 @@ export const Footer = styled.footer`
   ul {
     list-style-type: none;
     margin: 0 1rem;
+
+    li a {
+      text-decoration: none;
+      color: var(--color-text-complement);
+    }
 
     li + li {
       margin-top: 1rem;

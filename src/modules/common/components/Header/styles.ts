@@ -41,6 +41,7 @@ export const Container = styled(Header)`
 
         svg {
           transform: scale(1.5);
+          fill: var(--color-background);
         }
 
         span {

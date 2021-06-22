@@ -34,7 +34,7 @@ import {
   Form,
 } from '@/styles/pages/index';
 import SEO from '@/shared/components/SEO';
-import Button from '@/shared/components/Buttons/Button';
+import { Link as ActionLink } from '@/shared/components/Buttons/Link';
 import { Input } from '@/shared/components/FormElements';
 import { Header } from '@/modules/logouted/components/HeaderHome';
 
@@ -160,7 +160,7 @@ const Main = () => {
                 ou profissionais da área com atuação verificada, garantindo
                 responsabilidade nas informações.
               </p>
-              <Button text="SAIBA MAIS" />
+              <ActionLink text="SAIBA MAIS" href="/about-us" />
               <Form onSubmit={handelSubmit}>
                 <Input
                   id="search"
@@ -179,7 +179,10 @@ const Main = () => {
 
           <article ref={divInfiteScrollRef}>
             {Subjects.map(({ icon: Icon, link, name }) => (
-              <Link href={`/feed${link ? `?areaInterest=${link}` : ''}`}>
+              <Link
+                key={name}
+                href={`/feed${link ? `?areaInterest=${link}` : ''}`}
+              >
                 <a>
                   <Icon />
                   <span>{name}</span>
@@ -270,7 +273,9 @@ const Main = () => {
           <Logo />
           <div>
             <ul>
-              <li>Sobre nós</li>
+              <li>
+                <Link href="about-us">Sobre nós</Link>
+              </li>
               <li>Contato</li>
             </ul>
             <ul>

@@ -131,12 +131,18 @@ export const Container = styled.header<HeaderProps>`
       margin: 0 !important;
       background: none;
       font-weight: 700;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
     }
 
     > div button {
       color: var(--color-text);
       margin-right: 1rem !important;
+    }
+
+    > div button:hover {
+      border: none;
+      background: none;
+      color: var(--color-text);
     }
   }
 `;

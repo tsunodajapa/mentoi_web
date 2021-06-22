@@ -16,7 +16,13 @@ export const Container = styled(Header)`
       }
 
       > div button {
-        color: var(--color-primary);
+        color: var(--color-text);
+      }
+
+      > div button:hover {
+        border: none;
+        background: none;
+        color: var(--color-text);
       }
     }
   }
