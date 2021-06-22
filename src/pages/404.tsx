@@ -5,6 +5,8 @@ import { Container } from '@/styles/pages/404';
 const pages = () => {
   return (
     <Container>
+      <img src="./background-404-top.png" alt="background" />
+      <img src="./background-404-bottom.png" alt="background" />
       <Background404 />
       <h1>PÁGINA NÃO ENCONTRADA</h1>
       <Link href="/" text="RETORNAR À HOME" />

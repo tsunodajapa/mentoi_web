@@ -9,11 +9,28 @@ export const Container = styled.main`
   justify-content: center;
   align-items: center;
 
+  img {
+    position: absolute;
+    width: 30%;
+  }
+
+  img:nth-child(1) {
+    top: 0;
+    left: 0;
+  }
+  img:nth-child(2) {
+    bottom: 0;
+    right: 0;
+  }
+
   h1 {
     color: var(--color-text);
-    /* line-height: 5.5rem; */
     font-weight: bold;
     margin-top: -8rem;
+  }
+
+  a {
+    margin-top: 1.2rem;
   }
 
   @media (max-width: 700px) {
