@@ -20,6 +20,7 @@ export const Container = styled.div<StepProps>`
   > div:last-child {
     width: 20%;
     display: initial;
+    padding-top: 2rem;
 
     @media (min-width: 475px) {
       section {

@@ -10,10 +10,7 @@ const AboutUs = () => {
       <Header />
       <main>
         <section>
-          <span>SOBRE NÓS</span>
-          <h1>
-            Nós somos <br /> MENTOI
-          </h1>
+          <h1>Nós somos MENTOI</h1>
         </section>
         <section>
           <h2>Sobre o MENTOI</h2>

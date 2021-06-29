@@ -7,7 +7,7 @@ import { AiFillHome } from 'react-icons/ai';
 
 import ButtonIcon from '@/shared/components/Buttons/ButtonIcon';
 
-import { ContainerMobile } from './styles';
+import { Container } from './styles';
 
 interface FooterProps {
   changeStep: (step: number) => void;
@@ -38,7 +38,7 @@ const Footer = ({ changeStep }: FooterProps) => {
   }
 
   return (
-    <ContainerMobile>
+    <Container>
       <div>
         <ButtonIcon
           icon={AiFillHome}
@@ -68,7 +68,7 @@ const Footer = ({ changeStep }: FooterProps) => {
           onClick={() => handleChangeStep(4)}
         />
       </div>
-    </ContainerMobile>
+    </Container>
   );
 };
 

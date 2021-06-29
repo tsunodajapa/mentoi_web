@@ -14,6 +14,7 @@ export interface User {
   scholarity: string;
   permission: string;
   dateBirth?: string;
+  color: string;
   areasInterest: {
     id: string;
     name: string;

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import { Circle } from '@/shared/components/Circle';
 import { useAuth } from '@/shared/hooks/auth';
 import Modal from '@/shared/components/Modal';
+import UserImage from '@/modules/common/components/UserImage';
 import { Container, ModalHeader } from './styles';
 import MakeQuestionBox from '..';
 
@@ -18,7 +18,11 @@ const MakeQuestionWeb = () => {
     <>
       <Container type="button" onClick={handleToggleModal}>
         <div>
-          <Circle size={100} />
+          <UserImage
+            avatarUrl={user.avatarUrl}
+            name={user.name}
+            color={user.color}
+          />
         </div>
         QUAL SUA DÚVIDA?
       </Container>
@@ -31,7 +35,11 @@ const MakeQuestionWeb = () => {
         {user && (
           <ModalHeader>
             <div>
-              <Circle size={100} />
+              <UserImage
+                avatarUrl={user.avatarUrl}
+                name={user.name}
+                color={user.color}
+              />
             </div>
             <div>
               <strong>{user.displayName || user.name}</strong>

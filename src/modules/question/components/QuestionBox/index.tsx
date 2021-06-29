@@ -15,6 +15,7 @@ import Modal from '@/shared/components/Modal';
 import Button from '@/shared/components/Buttons/Button';
 import { useRouter } from 'next/router';
 import { useToast } from '@/shared/hooks/toast';
+import UserImage from '@/modules/common/components/UserImage';
 import { Circle } from '../../../../shared/components/Circle';
 
 import * as questionsServices from '../../services/questionsServices';
@@ -116,11 +117,11 @@ const QuestionBox = ({
           <Header>
             <div>
               <div>
-                {user.avatarUrl ? (
-                  <Image src={user.avatarUrl} alt={user.name} layout="fill" />
-                ) : (
-                  <Circle size={100} />
-                )}
+                <UserImage
+                  avatarUrl={user.avatarUrl}
+                  name={user.name}
+                  color={user.color}
+                />
               </div>
               <div>
                 <span>{user.displayName || user.name}</span>
@@ -158,6 +159,10 @@ const QuestionBox = ({
               )}
             </div>
           )}
+
+          {files.map(file => (
+            <img src={file.fileUrl} alt={file.fileName} />
+          ))}
         </Content>
         {children}
       </div>

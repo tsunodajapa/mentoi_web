@@ -16,16 +16,8 @@ export default [
     color: '#B3843D',
   },
   {
-    name: 'MATEMÁTICA',
-    color: '#5F559F',
-  },
-  {
     name: 'PORTUGUÊS',
     color: '#B8D423',
-  },
-  {
-    name: 'BIOLOGIA',
-    color: '#B3413D',
   },
   {
     name: 'FÍSICA',
@@ -34,5 +26,13 @@ export default [
   {
     name: 'ARTES',
     color: '#DB7D29',
+  },
+  {
+    name: 'MATEMÁTICA',
+    color: '#5F559F',
+  },
+  {
+    name: 'BIOLOGIA',
+    color: '#B3413D',
   },
 ];

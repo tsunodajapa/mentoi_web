@@ -7,11 +7,27 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   text: string;
   variant?: Variant;
   styles?: object;
+  color?: string;
+  selected?: boolean;
 };
 
-const Button = ({ text, variant, styles, ...rest }: ButtonProps) => {
+const Button = ({
+  text,
+  variant,
+  color,
+  styles,
+  selected,
+  ...rest
+}: ButtonProps) => {
   return (
-    <Container type="button" variant={variant} style={styles} {...rest}>
+    <Container
+      type="button"
+      variant={variant}
+      color={color}
+      style={styles}
+      selected={selected}
+      {...rest}
+    >
       {text}
     </Container>
   );

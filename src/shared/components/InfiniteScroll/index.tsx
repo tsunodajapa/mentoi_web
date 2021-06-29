@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface InfiniteScrollProps {
   getService: Function;
@@ -8,7 +8,7 @@ interface InfiniteScrollProps {
 
 const InfiniteScroll = ({
   getService,
-  allowedFilters = ['q'],
+  allowedFilters = [],
 }: InfiniteScrollProps) => {
   const divInfiteScrollRef = useRef<HTMLDivElement>();
   const [searchParams, setSearchParams] = useState({
@@ -16,6 +16,7 @@ const InfiniteScroll = ({
   });
   const [notFoundQuestions, setNotFoundQuestions] = useState(false);
   const router = useRouter();
+  const [allowedFiltersSearch] = useState(allowedFilters);
 
   useEffect(() => {
     const intersectionObserver = new IntersectionObserver(async ([entries]) => {
@@ -35,13 +36,13 @@ const InfiniteScroll = ({
 
   useEffect(() => {
     const filters = Object.keys(router.query).reduce((prev, current) => {
-      return allowedFilters.includes(current)
+      return allowedFiltersSearch.includes(current)
         ? { ...prev, [current]: router.query[current] }
         : prev;
     }, {});
 
     setSearchParams({ page: 1, ...filters });
-  }, [router.query, allowedFilters]);
+  }, [router, allowedFiltersSearch]);
 
   useEffect(() => {
     async function searchQuestions() {

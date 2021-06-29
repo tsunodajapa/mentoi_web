@@ -15,6 +15,7 @@ export const Container = styled.div<ContainerProps>`
     isQuestionPage
       ? css`
           margin: -0.4rem;
+          height: 101%;
         `
       : css`
           margin: 0.8rem 0.8rem 2.8rem 0.8rem;

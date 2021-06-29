@@ -1,8 +1,11 @@
 import styled, { css } from 'styled-components';
+import { transparentize } from 'polished';
 import { Variant } from '../variant';
 
 interface ContainerProps {
   variant?: Variant;
+  color?: String;
+  selected?: boolean;
 }
 
 export const ButtonTypeVariations = {
@@ -67,6 +70,35 @@ export const ButtonTypeVariations = {
 
 export const Container = styled.button<ContainerProps>`
   ${({ variant }) => ButtonTypeVariations[variant || 'primary']}
+
+  ${({ color }) =>
+    color &&
+    css`
+      background: none;
+      color: ${color};
+      border: 0.1rem solid ${color};
+
+      &:hover {
+        background: ${transparentize(0.8, color)};
+        border: 0.1rem solid ${color};
+        color: ${color};
+      }
+    `}
+
+  ${({ selected, color }) =>
+    selected &&
+    color &&
+    css`
+      background: ${color};
+      color: var(--color-text-in-primary);
+      border: 0.1rem solid ${color};
+
+      &:hover {
+        background: ${transparentize(0.8, color)};
+        border: 0.1rem solid ${color};
+        color: ${color};
+      }
+    `}
 
   outline: none;
   text-decoration: none;

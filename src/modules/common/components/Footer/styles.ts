@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ContainerMobile = styled.footer`
+export const Container = styled.footer`
   @media (min-width: 425px) {
     display: none;
   }

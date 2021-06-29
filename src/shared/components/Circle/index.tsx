@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 interface CircleProps {
   size: number;
+  color?: string;
 }
 
 export const Circle = styled.div<CircleProps>`
@@ -12,6 +13,10 @@ export const Circle = styled.div<CircleProps>`
     height: ${size}% !important;
   `}
 
-  background: var(--color-tertiary);
+  ${({ color }) =>
+    css`
+      background: ${color || 'var(--color-tertiary)'};
+    `}
+
   border-radius: 50%;
 `;

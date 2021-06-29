@@ -16,7 +16,7 @@ export const Header = styled.header`
     justify-content: space-between;
     align-items: center;
 
-    margin: 0 auto 1rem auto;
+    margin: 0 auto;
     padding: 0.8rem 0.5rem;
   }
 `;

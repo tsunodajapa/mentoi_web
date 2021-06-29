@@ -33,6 +33,10 @@ export const Container = styled.div<ContainerProps>`
     }
   }
 
+  > button {
+    width: 2.5rem;
+  }
+
   ${({ onlyWeb }) =>
     onlyWeb &&
     css`
@@ -47,8 +51,8 @@ export const ButtonOption = styled.button<ButtonOptionProps>`
   width: 14rem;
   min-width: 14rem;
 
-  padding: 0.5rem 1rem;
-  margin: 0 0.8rem;
+  padding: 0.5rem 1.5rem;
+  margin: 0 1.6rem;
 
   border: 0.2rem solid var(--color-primary);
   color: var(--color-primary);
@@ -87,7 +91,7 @@ export const ButtonOption = styled.button<ButtonOptionProps>`
   overflow: hidden;
 
   &:nth-child(1) {
-    width: 16rem;
-    min-width: 16rem;
+    width: 17rem;
+    min-width: 17rem;
   }
 `;

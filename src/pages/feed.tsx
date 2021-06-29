@@ -39,8 +39,8 @@ const Feed = () => {
         <QuestionProvider>
           <QuestionSection step={actualStep} />
         </QuestionProvider>
-        <Footer changeStep={handleChangeStep} />
       </Main>
+      {user && <Footer changeStep={handleChangeStep} />}
       {/* <Onboarding /> */}
     </>
   );

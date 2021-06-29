@@ -1,26 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { FiPaperclip, FiUpload } from 'react-icons/fi';
-import {
-  FaFilePowerpoint,
-  FaFileExcel,
-  FaFileWord,
-  FaFilePdf,
-  FaFileAlt,
-} from 'react-icons/fa';
+
 import { IoMdClose } from 'react-icons/io';
 
 import { useField } from '@unform/core';
+import whatFileType from '@/shared/utils/whatFileType';
 import { Container, FilesPreviewContainer } from './styles';
 import Modal from '../../Modal';
-
-const IconsFile = {
-  powerPoint: <FaFilePowerpoint />,
-  excel: <FaFileExcel />,
-  word: <FaFileWord />,
-  pdf: <FaFilePdf />,
-  default: <FaFileAlt />,
-};
+import { IconsFile } from '../../FilesPreview';
 
 interface DropzoneProps {
   name: string;
@@ -36,23 +24,6 @@ type FilePreviwProps =
 
 interface InputRefProps extends HTMLInputElement {
   acceptedFiles: File[];
-}
-
-function whateFileType(fileName: string): string {
-  const fileType = fileName.split('.')[1];
-
-  switch (true) {
-    case ['xlsx', 'xls'].includes(fileType):
-      return 'excel';
-    case ['ppt', 'pptx'].includes(fileType):
-      return 'powerPoint';
-    case ['doc', 'docx'].includes(fileType):
-      return 'word';
-    case ['pdf'].includes(fileType):
-      return 'pdf';
-    default:
-      return 'default';
-  }
 }
 
 const Dropzone = ({ name, label }: DropzoneProps) => {
@@ -72,7 +43,7 @@ const Dropzone = ({ name, label }: DropzoneProps) => {
       const filesPreview = onDropAcceptedFiles.map(file => {
         return file.type.includes('image')
           ? URL.createObjectURL(file)
-          : { type: whateFileType(file.name), name: file.name };
+          : { type: whatFileType(file.name), name: file.name };
       });
 
       if (selectedFilesUrl) {
