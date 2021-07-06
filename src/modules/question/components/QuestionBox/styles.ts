@@ -114,8 +114,7 @@ export const Content = styled.div`
     justify-content: space-between;
 
     margin-top: 1.6rem;
-    /* border-bottom: 0.1rem solid var(--color-primary-light); */
-    padding: 1rem 0;
+    padding: 1rem;
 
     div {
       display: flex;

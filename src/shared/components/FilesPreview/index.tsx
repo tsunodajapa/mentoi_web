@@ -6,8 +6,8 @@ import {
   FaFilePdf,
   FaFileAlt,
 } from 'react-icons/fa';
+import { AiOutlineDownload } from 'react-icons/ai';
 
-import { IoMdClose } from 'react-icons/io';
 import whatFileType from '@/shared/utils/whatFileType';
 import { Container } from './styles';
 
@@ -39,15 +39,15 @@ interface FilesPreviewPros {
 }
 
 const FilesPreview = ({ files }: FilesPreviewPros) => {
-  const [filesWithFormat, setFilesWithFormat] = useState<FilePreviw[]>();
+  const [filesWithFormat, setFilesWithFormat] = useState<FilePreviw[]>([]);
 
   useEffect(() => {
     const filesNormalized = files.map((file, index) =>
       file.mimeType.includes('image')
-        ? URL.createObjectURL(file)
+        ? file.fileUrl
         : {
             type: whatFileType(file.fileName),
-            name: file.fileName,
+            name: file.fileUrl,
             key: `img-${new Date().getTime()}-${index}`,
           },
     );
@@ -57,22 +57,25 @@ const FilesPreview = ({ files }: FilesPreviewPros) => {
 
   return (
     <Container>
-      {filesWithFormat.slice(0, 3).map(file => (
-        <div key={typeof file === 'string' ? file : file.key}>
-          {typeof file === 'string' ? (
-            <img src={file} alt="Point thumbnail" />
-          ) : (
-            IconsFile[file.type]
-          )}
-          <IoMdClose />
-        </div>
-      ))}
-
-      {/* {files.length > 3 && (
-        <button type="button" onClick={handleToggleModal}>
-          {`+${files.length - 3}`}
-        </button>
-      )} */}
+      <span>Clique para baixar</span>
+      <div>
+        {filesWithFormat.slice(0, 3).map(file => (
+          <a
+            href={typeof file === 'string' ? file : file.name}
+            key={typeof file === 'string' ? file : file.key}
+            download
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {typeof file === 'string' ? (
+              <img src={file} alt="Arquivo da questão" />
+            ) : (
+              IconsFile[file.type]
+            )}
+            <AiOutlineDownload />
+          </a>
+        ))}
+      </div>
     </Container>
   );
 };

@@ -24,7 +24,8 @@ export const Container = styled.div`
         position: relative;
         width: 3.5rem;
         height: 3.5rem;
-
+        min-width: 3.5rem;
+        min-height: 3.5rem;
         margin-right: 0.5rem;
       }
 

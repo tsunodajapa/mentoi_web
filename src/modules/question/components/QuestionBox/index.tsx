@@ -16,7 +16,7 @@ import Button from '@/shared/components/Buttons/Button';
 import { useRouter } from 'next/router';
 import { useToast } from '@/shared/hooks/toast';
 import UserImage from '@/modules/common/components/UserImage';
-import { Circle } from '../../../../shared/components/Circle';
+import FilesPreview from '@/shared/components/FilesPreview';
 
 import * as questionsServices from '../../services/questionsServices';
 
@@ -121,6 +121,7 @@ const QuestionBox = ({
                   avatarUrl={user.avatarUrl}
                   name={user.name}
                   color={user.color}
+                  gender={user.gender}
                 />
               </div>
               <div>
@@ -142,14 +143,14 @@ const QuestionBox = ({
               </WindowSelect>
             )}
           </Header>
-
           <span>{description}</span>
           {!children && (
             <div>
-              <div>
+              <div />
+              {/* <div>
                 <FaComment />
                 <span>2</span>
-              </div>
+              </div> */}
               {id && (
                 <Link
                   href={`questions/${id}`}
@@ -159,10 +160,7 @@ const QuestionBox = ({
               )}
             </div>
           )}
-
-          {files.map(file => (
-            <img src={file.fileUrl} alt={file.fileName} />
-          ))}
+          {children && <FilesPreview files={files} />}
         </Content>
         {children}
       </div>

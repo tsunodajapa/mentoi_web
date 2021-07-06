@@ -24,6 +24,7 @@ const AnswerTemplate = ({ answer }: AnswerTemplateProps) => {
               avatarUrl={answer.user.avatarUrl}
               name={answer.user.name}
               color={answer.user.color}
+              gender={answer.user.gender}
             />
           </div>
           <div>

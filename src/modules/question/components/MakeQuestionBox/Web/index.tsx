@@ -22,6 +22,7 @@ const MakeQuestionWeb = () => {
             avatarUrl={user.avatarUrl}
             name={user.name}
             color={user.color}
+            gender={user.gender}
           />
         </div>
         QUAL SUA DÚVIDA?
@@ -39,6 +40,7 @@ const MakeQuestionWeb = () => {
                 avatarUrl={user.avatarUrl}
                 name={user.name}
                 color={user.color}
+                gender={user.gender}
               />
             </div>
             <div>

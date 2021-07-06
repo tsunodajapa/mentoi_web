@@ -68,6 +68,7 @@ const AnswerFooter = () => {
                 avatarUrl={user.avatarUrl}
                 name={user.name}
                 color={user.color}
+                gender={user.gender}
               />
             </div>
 

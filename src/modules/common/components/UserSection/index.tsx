@@ -20,6 +20,7 @@ const UserSection = () => {
                 name={user.name}
                 color={user.color}
                 size={70}
+                gender={user.gender}
               />
             </div>
             <strong>{user.name}</strong>

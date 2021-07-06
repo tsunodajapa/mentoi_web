@@ -20,6 +20,7 @@ export interface User {
     name: string;
   }[];
   avatarUrl: string;
+  gender: 'MALE' | 'FEMALE' | 'OTHER';
 }
 
 export interface CreateUserData {

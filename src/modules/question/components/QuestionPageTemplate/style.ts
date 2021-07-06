@@ -55,7 +55,7 @@ export const Main = styled(MainDefault)`
 `;
 
 export const AnswersContainer = styled.div<AnswerContainerProps>`
-  padding: 3rem;
+  padding: 0 3rem;
 
   > div {
     border-top: 0.1rem solid var(--color-primary-light);
