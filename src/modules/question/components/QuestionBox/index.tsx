@@ -1,7 +1,5 @@
-import { ReactNode, useMemo, useState } from 'react';
-import Image from 'next/image';
+import { ReactNode, useMemo, useRef, useState } from 'react';
 
-import { FaComment } from 'react-icons/fa';
 import { HiOutlineDotsHorizontal } from 'react-icons/hi';
 import { MdDelete } from 'react-icons/md';
 
@@ -18,6 +16,7 @@ import { useToast } from '@/shared/hooks/toast';
 import UserImage from '@/modules/common/components/UserImage';
 import FilesPreview from '@/shared/components/FilesPreview';
 
+import { useEffect } from 'react';
 import * as questionsServices from '../../services/questionsServices';
 
 import {
@@ -26,6 +25,7 @@ import {
   Header,
   WindowSelectStyles,
   ModalContainer,
+  Description,
 } from './styles';
 import { Link } from '../../../../shared/components/Buttons/Link';
 
@@ -43,9 +43,21 @@ const QuestionBox = ({
   const { addToast } = useToast();
   const { questions, removeQuestion } = useQuestion();
   const router = useRouter();
+  const descriptionRef = useRef(null);
 
   const [titleColor, setTitleColor] = useState<[string, string]>();
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isTextEllipsis, setIsTextEllipsis] = useState(true);
+  const [textNeedEllipsis, setTextNeedEllipsis] = useState(false);
+
+  useEffect(() => {
+    if (descriptionRef.current) {
+      setTextNeedEllipsis(
+        descriptionRef.current.offsetHeight <
+          descriptionRef.current.scrollHeight,
+      );
+    }
+  }, []);
 
   const Title = useMemo(() => {
     if (areasInterest.length > 1) {
@@ -106,6 +118,10 @@ const QuestionBox = ({
     }
   }
 
+  function handleToggleSeeDescription() {
+    setIsTextEllipsis(oldState => !oldState);
+  }
+
   return (
     <Container titleColor={titleColor} isQuestionPage={!!children}>
       <div>
@@ -143,7 +159,18 @@ const QuestionBox = ({
               </WindowSelect>
             )}
           </Header>
-          <span>{description}</span>
+          <Description
+            ref={descriptionRef}
+            isTextEllipsis={isTextEllipsis}
+            textNeedEllipsis={textNeedEllipsis}
+          >
+            <p>{description}</p>
+            {textNeedEllipsis && (
+              <button type="button" onClick={handleToggleSeeDescription}>
+                {isTextEllipsis ? 'Ver mais' : 'Ver menos'}
+              </button>
+            )}
+          </Description>
           {!children && (
             <div>
               <div />
@@ -160,7 +187,7 @@ const QuestionBox = ({
               )}
             </div>
           )}
-          {children && <FilesPreview files={files} />}
+          {children && files.length && <FilesPreview files={files} />}
         </Content>
         {children}
       </div>

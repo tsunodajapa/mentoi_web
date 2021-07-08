@@ -80,7 +80,8 @@ const TextArea = ({
 
       <div
         style={{
-          minHeight: parentHeight,
+          maxHeight: children ? '300px' : null,
+          minHeight: !children ? parentHeight : null,
         }}
       >
         <textarea
@@ -92,6 +93,7 @@ const TextArea = ({
           rows={rows}
           style={{
             height: textAreaHeight,
+            overflow: !children ? 'hidden' : 'auto',
           }}
           onChange={onChangeHandler}
           {...rest}

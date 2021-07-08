@@ -5,6 +5,11 @@ interface ContainerProps {
   isQuestionPage: boolean;
 }
 
+interface DescriptionProps {
+  isTextEllipsis: boolean;
+  textNeedEllipsis: boolean;
+}
+
 export const Container = styled.div<ContainerProps>`
   background: var(--color-background);
 
@@ -346,4 +351,42 @@ export const ModalContainer = styled.div`
   p {
     margin: 2rem 0;
   }
+`;
+
+export const Description = styled.div<DescriptionProps>`
+  > button {
+    display: flex;
+    border: none;
+    color: var(--color-primary);
+    position: relative;
+
+    justify-content: flex-end;
+    background: none;
+  }
+
+  ${({ isTextEllipsis }) =>
+    isTextEllipsis &&
+    css`
+      > p {
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+      }
+      > button {
+        background: linear-gradient(to left, #fff, #ffffff00);
+        margin-top: -1.8rem;
+        margin-left: auto;
+        padding-left: 7rem;
+        width: 100%;
+      }
+    `}
+
+  ${({ textNeedEllipsis }) =>
+    textNeedEllipsis &&
+    css`
+      > p {
+        overflow: hidden;
+      }
+    `}
 `;

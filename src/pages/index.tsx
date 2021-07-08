@@ -81,8 +81,8 @@ const Subjects: SubjectType[] = [
   },
   {
     icon: IconMath,
-    name: 'MATEMÁTOCA',
-    link: 'MATEMÁTOCA',
+    name: 'MATEMÁTICA',
+    link: 'MATEMÁTICA',
   },
   {
     icon: IconPhysics,

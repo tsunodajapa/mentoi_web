@@ -19,6 +19,10 @@ export async function showQuestion(id: string): Promise<Question> {
   return (await api.get<Question>(`questions/${id}`)).data;
 }
 
+export async function deleteQuestion(id: string): Promise<void> {
+  return api.delete(`questions/${id}`);
+}
+
 export async function createAnswer(
   id: string,
   data: { text: string },
@@ -33,6 +37,9 @@ export async function getAnswers(
   return (await api.get<Answer[]>(`questions/${id}/answers`, { params })).data;
 }
 
-export async function deleteQuestion(id: string): Promise<void> {
-  return api.delete(`questions/${id}`);
+export async function deleteAnswer(
+  id: string,
+  answerId: string,
+): Promise<void> {
+  return api.delete(`questions/${id}/answers/${answerId}`);
 }

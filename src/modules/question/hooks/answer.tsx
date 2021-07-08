@@ -21,6 +21,7 @@ interface AnswerContextData {
   answers: Answer[];
   createAnswer(data: CreateAnswer): Promise<void>;
   getAnswers(filters: FilterToGet): Promise<number>;
+  removeAnswer(id: string): Promise<void>;
 }
 
 const AnswerContext = createContext<AnswerContextData>({} as AnswerContextData);
@@ -60,8 +61,20 @@ const AnswerProvider: React.FC = ({ children }) => {
     [router.query],
   );
 
+  const removeAnswer = async (id: string): Promise<void> => {
+    const { id: questionId } = router.query;
+
+    await questionsServices.deleteAnswer(questionId as string, id);
+
+    const answerWithoutDeleted = answers.filter(answer => answer.id !== id);
+
+    setAnswers(answerWithoutDeleted);
+  };
+
   return (
-    <AnswerContext.Provider value={{ createAnswer, getAnswers, answers }}>
+    <AnswerContext.Provider
+      value={{ createAnswer, getAnswers, removeAnswer, answers }}
+    >
       {children}
     </AnswerContext.Provider>
   );

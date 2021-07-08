@@ -7,8 +7,7 @@ export const Container = styled.div`
 
   display: flex;
   justify-content: space-between;
-  margin: 0 4rem;
-  padding: 2rem 0;
+  padding: 2rem;
 
   > form {
     flex: 1;
