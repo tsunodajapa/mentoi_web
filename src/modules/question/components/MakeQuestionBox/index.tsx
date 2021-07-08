@@ -85,7 +85,7 @@ const MakeQuestionBox = ({ alternativeId = 'web' }: MakeQuestionBoxProps) => {
         rows={10}
         placeholder="PERGUNTA"
       >
-        <Dropzone name="files" />
+        <Dropzone name="files" limitFiles={3} />
       </TextArea>
 
       <Select

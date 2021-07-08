@@ -6,13 +6,16 @@ import { IoMdClose } from 'react-icons/io';
 
 import { useField } from '@unform/core';
 import whatFileType from '@/shared/utils/whatFileType';
+import { useToast } from '@/shared/hooks/toast';
 import { Container, FilesPreviewContainer } from './styles';
 import Modal from '../../Modal';
 import { IconsFile } from '../../FilesPreview';
+import ButtonIcon from '../../Buttons/ButtonIcon';
 
 interface DropzoneProps {
   name: string;
   label?: string;
+  limitFiles?: number;
 }
 
 type FilePreviwProps =
@@ -26,8 +29,10 @@ interface InputRefProps extends HTMLInputElement {
   acceptedFiles: File[];
 }
 
-const Dropzone = ({ name, label }: DropzoneProps) => {
+const Dropzone = ({ name, label, limitFiles }: DropzoneProps) => {
   const inputRef = useRef<InputRefProps>(null);
+  const containerRef = useRef(null);
+  const { addToast } = useToast();
   const { fieldName, registerField, defaultValue = [] } = useField(name);
   const [selectedFilesUrl, setSelectedFilesUrl] = useState<FilePreviwProps[]>(
     defaultValue,
@@ -38,28 +43,52 @@ const Dropzone = ({ name, label }: DropzoneProps) => {
     setIsOpenModal(!isOpenModal);
   }
 
-  const onDrop = useCallback(
-    (onDropAcceptedFiles: File[]) => {
-      const filesPreview = onDropAcceptedFiles.map(file => {
-        return file.type.includes('image')
-          ? URL.createObjectURL(file)
-          : { type: whatFileType(file.name), name: file.name };
+  function handleRemoveImage(indexFile: number) {
+    console.log(indexFile);
+    const imagesWithoutRemoved = selectedFilesUrl.filter(
+      (_, index) => index !== indexFile,
+    );
+
+    setSelectedFilesUrl(imagesWithoutRemoved);
+    inputRef.current.acceptedFiles = inputRef.current.acceptedFiles.filter(
+      (_, index) => index !== indexFile,
+    );
+  }
+
+  const onDrop = (onDropAcceptedFiles: File[]) => {
+    console.log(onDropAcceptedFiles);
+    if (limitFiles < onDropAcceptedFiles.length + selectedFilesUrl.length) {
+      addToast({
+        type: 'error',
+        title: 'Limite de arquivos atingido!',
+        description: 'Você pode enviar no máximo 3 arquivos por pergunta.',
       });
+      return;
+    }
 
-      if (selectedFilesUrl) {
-        setSelectedFilesUrl(oldState => [...oldState, ...filesPreview]);
-      } else {
-        setSelectedFilesUrl([...filesPreview]);
-      }
+    const filesPreview = onDropAcceptedFiles.map(file => {
+      return file.type.includes('image')
+        ? URL.createObjectURL(file)
+        : { type: whatFileType(file.name), name: file.name };
+    });
 
-      if (inputRef.current) {
-        !inputRef.current.acceptedFiles
-          ? (inputRef.current.acceptedFiles = onDropAcceptedFiles)
-          : inputRef.current.acceptedFiles.push(...onDropAcceptedFiles);
-      }
-    },
-    [selectedFilesUrl],
-  );
+    if (selectedFilesUrl) {
+      setSelectedFilesUrl(oldState => [...oldState, ...filesPreview]);
+    } else {
+      setSelectedFilesUrl([...filesPreview]);
+    }
+
+    if (inputRef.current) {
+      !inputRef.current.acceptedFiles
+        ? (inputRef.current.acceptedFiles = onDropAcceptedFiles)
+        : inputRef.current.acceptedFiles.push(...onDropAcceptedFiles);
+
+      // bug do dropzone que não tira o foco depois que seleciona o arquivo
+      inputRef.current.value = '';
+      inputRef.current.blur();
+      containerRef.current.blur();
+    }
+  };
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: '.xlsx, .xls, image/*, .doc, .docx, .ppt, .pptx, .txt, .pdf',
@@ -97,6 +126,7 @@ const Dropzone = ({ name, label }: DropzoneProps) => {
         id="documents"
         onClick={() => inputRef.current?.click()}
         boxContent={!!label}
+        ref={containerRef}
       >
         <input
           {...getInputProps()}
@@ -120,13 +150,16 @@ const Dropzone = ({ name, label }: DropzoneProps) => {
         <FilesPreviewContainer>
           {selectedFilesUrl.slice(0, 3).map((file, index) => (
             // eslint-disable-next-line react/no-array-index-key
-            <div key={`img-${new Date().getTime()}-${index}`}>
+            <div key={`img-${Date.now()}-${index}`}>
               {typeof file === 'string' ? (
                 <img src={file} alt="Point thumbnail" />
               ) : (
                 IconsFile[file.type]
               )}
-              <IoMdClose />
+              <ButtonIcon
+                onClick={() => handleRemoveImage(index)}
+                icon={IoMdClose}
+              />
             </div>
           ))}
 
@@ -141,14 +174,17 @@ const Dropzone = ({ name, label }: DropzoneProps) => {
       <Modal isOpenModal={isOpenModal} handleToggleModal={handleToggleModal}>
         <FilesPreviewContainer isModal>
           {selectedFilesUrl &&
-            selectedFilesUrl.map(file => (
-              <div key={`img-${file}`}>
+            selectedFilesUrl.map((file, index) => (
+              <div key={`img-${index}-${Date.now()}`}>
                 {typeof file === 'string' ? (
                   <img src={file} alt="Anexo" />
                 ) : (
                   IconsFile[file.type]
                 )}
-                <IoMdClose />
+                <ButtonIcon
+                  onClick={() => handleRemoveImage(index)}
+                  icon={IoMdClose}
+                />
               </div>
             ))}
         </FilesPreviewContainer>

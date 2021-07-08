@@ -59,7 +59,7 @@ export const FilesPreviewContainer = styled.div<FilesPreviewContainerProps>`
 
   img,
   div,
-  button {
+  > button {
     position: relative;
     width: 50px;
     height: 50px;
@@ -73,7 +73,7 @@ export const FilesPreviewContainer = styled.div<FilesPreviewContainerProps>`
     border-radius: 0.8rem;
   }
 
-  button:after {
+  > button:after {
     content: '';
     width: 50px;
     height: 50px;
@@ -89,20 +89,27 @@ export const FilesPreviewContainer = styled.div<FilesPreviewContainerProps>`
     justify-content: center;
     align-items: center;
 
-    svg:first-child {
+    > svg:first-child {
       width: 75% !important;
       height: 75%;
       margin-left: 0 !important;
     }
 
-    svg:last-child {
+    button {
       position: absolute;
       top: -8px;
       right: -11px;
       background: var(--color-red);
       border-radius: 50%;
-      transform: scale(0.8);
       cursor: pointer;
+      z-index: 1003;
+
+      > svg {
+        width: 2rem !important;
+        height: 100% !important;
+        color: #fff;
+        margin-left: 0 !important;
+      }
     }
   }
 
