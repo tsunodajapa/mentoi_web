@@ -187,7 +187,7 @@ const QuestionBox = ({
               )}
             </div>
           )}
-          {children && files.length && <FilesPreview files={files} />}
+          {children && !!files.length && <FilesPreview files={files} />}
         </Content>
         {children}
       </div>

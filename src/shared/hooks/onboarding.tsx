@@ -4,14 +4,16 @@ import { createContext, useCallback, useContext, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
 export interface OnboardingStep {
+  idComponent?: string;
   id: string;
   title: string;
   description?: string;
-  cardStyles: Omit<ItemProps, 'isVisible'>;
-  modalStyles: ModalStyles;
+  cardStyles?: Omit<ItemProps, 'isVisible'>;
+  modalStyles?: ModalStyles;
 }
 
 interface OnboardingTemplate {
+  id: string;
   title: string;
   description?: string;
   component: any;
@@ -31,7 +33,12 @@ const OnboardingProvider: React.FC = ({ children }) => {
   const [steps, setSteps] = useState<OnboardingStep[]>([]);
 
   const addOnboarding = useCallback(
-    ({ title, description, component }: OnboardingTemplate) => {
+    ({
+      id: idComponent,
+      title,
+      description,
+      component,
+    }: OnboardingTemplate) => {
       const id = uuid();
 
       const { offsetTop, offsetLeft, clientWidth, clientHeight } = component;
@@ -51,7 +58,7 @@ const OnboardingProvider: React.FC = ({ children }) => {
         width,
         height,
         top,
-        left,
+        left: left - 8,
       };
 
       const topModal =
@@ -62,12 +69,13 @@ const OnboardingProvider: React.FC = ({ children }) => {
       const modalStyles = {
         position: 'absolute',
         background: 'none',
-        top: topModal,
+        top: +String(topModal).replace('-', ''),
         left: left + clientWidth - 300,
       };
 
       const Onboarding = {
         id,
+        idComponent,
         title,
         description,
         cardStyles,

@@ -354,6 +354,8 @@ export const ModalContainer = styled.div`
 `;
 
 export const Description = styled.div<DescriptionProps>`
+  flex-direction: column;
+
   > button {
     display: flex;
     border: none;

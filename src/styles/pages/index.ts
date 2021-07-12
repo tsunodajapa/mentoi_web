@@ -361,8 +361,8 @@ export const SectionEducator = styled.section`
   }
 
   article {
-    width: 61%;
-    margin-left: 3.8rem;
+    width: 60%;
+    padding-left: 3.8rem;
 
     p {
       text-align: center;

@@ -15,6 +15,7 @@ const Feed = () => {
   const { user } = useAuth();
 
   const [actualStep, setActualStep] = useState(0);
+
   const actualNameStep = [
     'ÁREA DE INTERESSE',
     'ATUALIZAÇÕES',
@@ -41,7 +42,23 @@ const Feed = () => {
         </QuestionProvider>
       </Main>
       {user && <Footer changeStep={handleChangeStep} />}
-      {/* <Onboarding /> */}
+      {/* <Onboarding
+        qtd={6}
+        adtionalSteps={[
+          {
+            step: 'first',
+            title: 'Bem-vindo!',
+            description:
+              'Neste primiero acesso, iremos te mostrar as funcionalidades da plataforma Mentoi',
+          },
+          {
+            step: 'last',
+            title: 'Autonomia',
+            description:
+              'Agora que já aprendeu como o site funciona, navegue por ele e aproveite o ambiente familiar da plataforma para aprender com os melhores professores e profissionais disponíveis',
+          },
+        ]}
+      /> */}
     </>
   );
 };

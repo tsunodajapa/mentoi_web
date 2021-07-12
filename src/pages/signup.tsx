@@ -158,7 +158,12 @@ const SignUp = () => {
                   placeholder="Digite seu nome completo"
                 />
 
-                <Input id="nickName" name="nickName" label="Nick name" />
+                <Input
+                  id="nickName"
+                  name="nickName"
+                  label="Nick name"
+                  placeholder="Digite um usuário único "
+                />
 
                 <Input
                   type="date"

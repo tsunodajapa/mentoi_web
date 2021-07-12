@@ -23,11 +23,12 @@ export const Container = styled.div<ContainerProps>`
     styles &&
     css`
       position: ${styles.position} !important;
-      width: ${styles.position && 'auto'} !important;
+      width: ${styles.position && '30rem'} !important;
       height: ${styles.position && 'auto'} !important;
       background: ${styles.background} !important;
-      top: ${styles.top}px !important;
-      left: ${styles.left}px !important;
+      top: ${styles.top ? `${styles.top}px` : '50%'} !important;
+      left: ${styles.left ? `${styles.left}px` : '50%'} !important;
+      transform: ${!styles.left && css`translate(-50%, -50%);`};
     `}
 
   background: rgba(0, 0, 0, 0.9);

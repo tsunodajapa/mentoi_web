@@ -2,12 +2,14 @@ import { ReactNode, useEffect, useRef } from 'react';
 import { useOnboarding } from '@/shared/hooks/onboarding';
 
 interface OnboardingTemplateProps {
+  id: string;
   title: string;
   description: string;
   children: ReactNode;
 }
 
 const OnboardingTemplate = ({
+  id,
   title,
   description,
   children,
@@ -17,13 +19,24 @@ const OnboardingTemplate = ({
 
   useEffect(() => {
     addOnboarding({
+      id,
       title,
       description,
       component: ref.current,
     });
-  }, [addOnboarding, title, description]);
+  }, [addOnboarding, title, description, id]);
 
-  return <div ref={ref}>{children}</div>;
+  return (
+    <div
+      data-title="Welcome!"
+      data-intro="Hello World! "
+      id={id}
+      ref={ref}
+      style={{ padding: '5px', borderRadius: '15px' }}
+    >
+      {children}
+    </div>
+  );
 };
 
 export default OnboardingTemplate;

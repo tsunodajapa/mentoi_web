@@ -13,6 +13,7 @@ export const Item = styled.div<ItemProps>`
   border-radius: 0.8rem;
   position: fixed;
   box-shadow: 0px 0px 40px 2px, rgb(33 33 33 / 50%) 0px 0px 0px 5000px;
+  z-index: 9999;
 
   ${({ width, height, top, left }) =>
     css`
@@ -31,6 +32,7 @@ export const Item = styled.div<ItemProps>`
 
 export const Container = styled.div`
   display: flex;
+  align-items: center;
   flex-direction: column;
   flex: 1;
 
@@ -62,7 +64,7 @@ export const Main = styled.div`
 export const Footer = styled.div`
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   flex: 1;
 
   span {

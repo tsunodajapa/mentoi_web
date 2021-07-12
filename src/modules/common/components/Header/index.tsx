@@ -61,32 +61,39 @@ const Header = ({ actualNameStep }: HeaderProps) => {
             <Logo />
           </a>
         </Link>
-        <Form onSubmit={handelSubmit} ref={formRef}>
-          <Input
-            id="search"
-            type="text"
-            name="search"
-            placeholder="PESQUISAR"
-            icon={IoSearch}
-          />
-        </Form>
+        <OnboardingTemplate
+          id="search-onboarding-template-step-1"
+          title="Pesquisar"
+          description="Para encontrar uma pergunta já feita, você pode pesquisar usando palavras-chave"
+        >
+          <Form onSubmit={handelSubmit} ref={formRef}>
+            <Input
+              id="search"
+              type="text"
+              name="search"
+              placeholder="PESQUISAR"
+              icon={IoSearch}
+            />
+          </Form>
+        </OnboardingTemplate>
 
         <Nav>
           <ul>
-            <li>
-              <OnboardingTemplate title="Teste" description="teste mensagem 1">
-                <ButtonIcon icon={BsFillBellFill} />
-              </OnboardingTemplate>
-            </li>
-            <li>
-              <WindowSelect id="signout-button" icon={BsPersonFill}>
-                <Link href={`/me/${user?.nickName}/edit`}>Editar Perfil</Link>
+            <OnboardingTemplate
+              id="profile-edit-onboarding-template-step-2"
+              title="Meu Perfil"
+              description="Aqui você pode alterar seus dados cadastrais e sair da plataforma"
+            >
+              <li>
+                <WindowSelect id="signout-button" icon={BsPersonFill}>
+                  <Link href={`/me/${user?.nickName}/edit`}>Editar Perfil</Link>
 
-                <button type="button" onClick={signOut}>
-                  Sair
-                </button>
-              </WindowSelect>
-            </li>
+                  <button type="button" onClick={signOut}>
+                    Sair
+                  </button>
+                </WindowSelect>
+              </li>
+            </OnboardingTemplate>
           </ul>
           {/* <ButtonIcon icon={IoChatbubblesOutline} /> */}
           {/* <ButtonIcon icon={GoGear} /> */}

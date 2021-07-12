@@ -46,8 +46,16 @@ export const Row = styled.div`
 
   min-height: 4rem;
 
+  display: flex;
+  flex-direction: column;
+
   span {
     font-weight: bold;
     font-size: 1.4rem;
+  }
+
+  span:last-child {
+    text-align: center;
+    color: var(--color-primary);
   }
 `;

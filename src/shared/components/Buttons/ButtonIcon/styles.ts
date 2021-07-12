@@ -31,4 +31,8 @@ export const Container = styled.button<ContainerProps>`
     height: 2.8rem;
     transition: background-color 0.2s linear;
   }
+
+  &:disabled > svg {
+    color: var(--color-text-complement) !important;
+  }
 `;

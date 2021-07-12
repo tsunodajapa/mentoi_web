@@ -30,9 +30,21 @@ const QuestionSection = ({ step }: QuestionSectionProps) => {
         {user && (
           <>
             <SectionBordered>
-              <MakeQuestionWeb />
+              <OnboardingTemplate
+                id="make-question-onboarding-template-step-3"
+                title="Faça uma pergunta"
+                description="Caso não encontre uma pergunta, você pode faze-la clicando aqui."
+              >
+                <MakeQuestionWeb />
+              </OnboardingTemplate>
             </SectionBordered>
-            <Carousel data={subjects} onlyWeb />
+            <OnboardingTemplate
+              id="filters-question-onboarding-template-step-4"
+              title="Conteúdo"
+              description="Aqui você pode filtrar as perguntas do feed por conteúdo."
+            >
+              <Carousel data={subjects} onlyWeb />
+            </OnboardingTemplate>
           </>
         )}
         <SectionBordered>
@@ -41,9 +53,24 @@ const QuestionSection = ({ step }: QuestionSectionProps) => {
               if (!index) {
                 return (
                   <OnboardingTemplate
+                    id="feed-question-onboarding-template-step-5"
                     key={question.id}
-                    title="Teste Card"
-                    description="teste mensagem 2"
+                    title="Feed"
+                    description="Aqui você pode acessar as perguntas feitas por outros usuários. As perguntas estão marcadas por conteúdo.
+                    "
+                  >
+                    <QuestionBox data={question} />
+                  </OnboardingTemplate>
+                );
+              }
+              if (index === 2) {
+                return (
+                  <OnboardingTemplate
+                    key={question.id}
+                    id="feed-2-question-onboarding-template-step-6"
+                    title="Feed teste 2"
+                    description="Aqui você pode acessar as perguntas feitas por outros usuários. As perguntas estão marcadas por conteúdo.
+                    "
                   >
                     <QuestionBox data={question} />
                   </OnboardingTemplate>

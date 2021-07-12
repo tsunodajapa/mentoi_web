@@ -13,7 +13,7 @@ const UserSection = () => {
         <ContentBox>
           <Profile>
             <div>
-              <ProgressCircle percentage={90} />
+              <ProgressCircle percentage={100} />
 
               <UserImage
                 avatarUrl={user.avatarUrl}
@@ -29,9 +29,11 @@ const UserSection = () => {
 
           <Row>
             <span>Avaliações</span>
+            <span>EM BREVE</span>
           </Row>
           <Row>
             <span>Prêmios</span>
+            <span>EM BREVE</span>
           </Row>
         </ContentBox>
       )}
