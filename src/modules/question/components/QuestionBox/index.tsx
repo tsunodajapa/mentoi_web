@@ -31,12 +31,14 @@ import { Link } from '../../../../shared/components/Buttons/Link';
 
 interface QuestionBoxProps {
   data: Question;
+  idAlternative?: string;
 
   children?: ReactNode;
 }
 
 const QuestionBox = ({
   data: { id, description, title, areasInterest, files, user, elapsedTime },
+  idAlternative,
   children,
 }: QuestionBoxProps) => {
   const { user: userLogged } = useAuth();
@@ -148,7 +150,7 @@ const QuestionBox = ({
             <span>{elapsedTime}</span>
             {userLogged && user.nickName === userLogged.nickName && (
               <WindowSelect
-                id={`window-select-${id}`}
+                id={idAlternative || `window-select-${id}`}
                 icon={HiOutlineDotsHorizontal}
                 styles={WindowSelectStyles}
                 size={1.4}

@@ -30,8 +30,10 @@ export interface Question {
 
 interface QuestionContextData {
   questions: Question[];
+  myCreatedQuestions: Question[];
   createQuestion(message: FormData): Promise<void>;
   getQuestions(filters: FilterToGet): Promise<number>;
+  getMyCreatedQuestions(filters: FilterToGet): Promise<number>;
   removeQuestion(id: string): void;
 }
 
@@ -45,12 +47,14 @@ const QuestionContext = createContext<QuestionContextData>(
 
 const QuestionProvider: React.FC = ({ children }) => {
   const [questions, setQuestions] = useState<Question[]>([]);
+  const [myCreatedQuestions, setMyCreatedQuestions] = useState<Question[]>([]);
   const { user } = useAuth();
 
   const createQuestion = async (data: FormData) => {
     const question = await questionsServices.createQuestion(data);
 
     setQuestions(state => [{ ...question, user }, ...state]);
+    setMyCreatedQuestions(state => [{ ...question, user }, ...state]);
   };
 
   const getQuestions = useCallback(async (filters: FilterQuestions) => {
@@ -68,17 +72,50 @@ const QuestionProvider: React.FC = ({ children }) => {
     return questionsFound.length;
   }, []);
 
+  const getMyCreatedQuestions = useCallback(
+    async (filters: FilterQuestions) => {
+      if (!user) return 1;
+
+      const questionsFound = await questionsServices.getQuestions({
+        ...filters,
+        userId: user.id,
+        pageSize: 10,
+      });
+
+      if (filters.page === 1) {
+        setMyCreatedQuestions(questionsFound);
+      } else {
+        setMyCreatedQuestions(state => [...state, ...questionsFound]);
+      }
+
+      return questionsFound.length;
+    },
+    [user],
+  );
+
   const removeQuestion = (id: string) => {
     const questionsWithoutDeleted = questions.filter(
       question => question.id !== id,
     );
 
+    const myCreatedQuestionsWithoutDeleted = myCreatedQuestions.filter(
+      question => question.id !== id,
+    );
+
     setQuestions(questionsWithoutDeleted);
+    setMyCreatedQuestions(myCreatedQuestionsWithoutDeleted);
   };
 
   return (
     <QuestionContext.Provider
-      value={{ createQuestion, getQuestions, removeQuestion, questions }}
+      value={{
+        createQuestion,
+        getQuestions,
+        removeQuestion,
+        getMyCreatedQuestions,
+        questions,
+        myCreatedQuestions,
+      }}
     >
       {children}
     </QuestionContext.Provider>

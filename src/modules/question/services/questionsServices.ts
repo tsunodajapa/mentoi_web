@@ -7,7 +7,9 @@ export async function createQuestion(data: FormData): Promise<Question> {
   return (await api.post('questions', data)).data;
 }
 
-export async function getQuestions(params?: FilterToGet): Promise<Question[]> {
+export async function getQuestions(
+  params?: FilterToGet & { userId?: string },
+): Promise<Question[]> {
   return (
     await api.get<Question[]>('questions', {
       params,

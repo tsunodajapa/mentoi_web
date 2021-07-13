@@ -27,13 +27,7 @@ const OnboardingTemplate = ({
   }, [addOnboarding, title, description, id]);
 
   return (
-    <div
-      data-title="Welcome!"
-      data-intro="Hello World! "
-      id={id}
-      ref={ref}
-      style={{ padding: '5px', borderRadius: '15px' }}
-    >
+    <div id={id} ref={ref} style={{ padding: '5px', borderRadius: '15px' }}>
       {children}
     </div>
   );

@@ -17,6 +17,14 @@ export const Container = styled.div<StepProps>`
     display: initial;
   }
 
+  > div:nth-child(4) {
+    margin: auto;
+    text-align: center;
+    font-size: 3rem;
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
   > div:last-child {
     width: 20%;
     display: initial;

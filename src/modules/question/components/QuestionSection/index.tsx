@@ -21,7 +21,12 @@ interface QuestionSectionProps {
 }
 
 const QuestionSection = ({ step }: QuestionSectionProps) => {
-  const { getQuestions, questions } = useQuestion();
+  const {
+    getQuestions,
+    questions,
+    getMyCreatedQuestions,
+    myCreatedQuestions,
+  } = useQuestion();
   const { user } = useAuth();
 
   return (
@@ -56,21 +61,7 @@ const QuestionSection = ({ step }: QuestionSectionProps) => {
                     id="feed-question-onboarding-template-step-5"
                     key={question.id}
                     title="Feed"
-                    description="Aqui você pode acessar as perguntas feitas por outros usuários. As perguntas estão marcadas por conteúdo.
-                    "
-                  >
-                    <QuestionBox data={question} />
-                  </OnboardingTemplate>
-                );
-              }
-              if (index === 2) {
-                return (
-                  <OnboardingTemplate
-                    key={question.id}
-                    id="feed-2-question-onboarding-template-step-6"
-                    title="Feed teste 2"
-                    description="Aqui você pode acessar as perguntas feitas por outros usuários. As perguntas estão marcadas por conteúdo.
-                    "
+                    description="Aqui você pode acessar as perguntas feitas por outros usuários. As perguntas estão marcadas por conteúdo."
                   >
                     <QuestionBox data={question} />
                   </OnboardingTemplate>
@@ -84,9 +75,24 @@ const QuestionSection = ({ step }: QuestionSectionProps) => {
           allowedFilters={['q', 'areaInterest']}
         />
       </div>
-      <div />
+      <div>
+        <SectionBordered>
+          {myCreatedQuestions &&
+            myCreatedQuestions.map(question => (
+              <QuestionBox
+                key={question.id}
+                data={question}
+                idAlternative={`my-${question.id}`}
+              />
+            ))}
+        </SectionBordered>
+        <InfiniteScroll
+          getService={getMyCreatedQuestions}
+          allowedFilters={[]}
+        />
+      </div>
       <MakeQuestionMobile />
-      <div />
+      <div>EM BREVE</div>
       <div>
         <UserSection />
         {!user && <FiltersBox />}

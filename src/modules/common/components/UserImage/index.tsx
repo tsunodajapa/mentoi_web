@@ -9,8 +9,6 @@ import Avatar5 from '@/assets/avatar_5.svg';
 import Avatar6 from '@/assets/avatar_6.svg';
 import Avatar7 from '@/assets/avatar_7.svg';
 
-import { useEffect } from 'react';
-import { useState } from 'react';
 import { Container } from './styles';
 
 interface UserImageProps {
@@ -30,18 +28,15 @@ const UserImage = ({
   size = 100,
   gender,
 }: UserImageProps) => {
-  let AvatarComponent = () => <></>;
+  const AvatarNumber = {
+    MALE: () => Math.floor(Math.random() * 3),
+    FEMALE: () => Math.floor(Math.random() * 3) + 3,
+    OTHER: () => 7,
+  }[gender];
+
+  const AvatarComponent = Avatar[AvatarNumber()];
+
   const avatarSize = (85 / 100) * size;
-
-  useEffect(() => {
-    const AvatarNumber = {
-      MALE: () => Math.floor(Math.random() * 3),
-      FEMALE: () => Math.floor(Math.random() * 3) + 3,
-      OTHER: () => 7,
-    }[gender];
-
-    AvatarComponent = Avatar[AvatarNumber()];
-  }, [gender]);
 
   if (avatarUrl) {
     return <Image src={avatarUrl} alt={name} layout="fill" />;
