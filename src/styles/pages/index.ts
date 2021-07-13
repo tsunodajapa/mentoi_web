@@ -95,7 +95,7 @@ export const SectionHome = styled.section`
       }
 
       > a {
-        margin-right: auto;
+        width: fit-content;
       }
     }
 
@@ -422,7 +422,7 @@ export const SectionFinal = styled.section`
     text-align: center;
 
     a {
-      margin-top: 1rem;
+      margin: 1rem;
     }
   }
 `;
