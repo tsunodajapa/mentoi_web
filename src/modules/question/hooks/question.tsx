@@ -33,6 +33,7 @@ interface QuestionContextData {
   myCreatedQuestions: Question[];
   createQuestion(message: FormData): Promise<void>;
   getQuestions(filters: FilterToGet): Promise<number>;
+  addQuestions(questionsRecevied: Question[]): void;
   getMyCreatedQuestions(filters: FilterToGet): Promise<number>;
   removeQuestion(id: string): void;
 }
@@ -93,6 +94,10 @@ const QuestionProvider: React.FC = ({ children }) => {
     [user],
   );
 
+  const addQuestions = useCallback((questionsRecevied: Question[]): void => {
+    setQuestions(questionsRecevied);
+  }, []);
+
   const removeQuestion = (id: string) => {
     const questionsWithoutDeleted = questions.filter(
       question => question.id !== id,
@@ -113,6 +118,7 @@ const QuestionProvider: React.FC = ({ children }) => {
         getQuestions,
         removeQuestion,
         getMyCreatedQuestions,
+        addQuestions,
         questions,
         myCreatedQuestions,
       }}

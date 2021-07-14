@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import subjects from '@/data/subjects';
 
 import Carousel from '@/shared/components/Carousel';
@@ -9,7 +11,7 @@ import InfiniteScroll from '@/shared/components/InfiniteScroll';
 
 import { useAuth } from '@/shared/hooks/auth';
 
-import { useQuestion } from '../../hooks/question';
+import { Question, useQuestion } from '../../hooks/question';
 
 import MakeQuestionWeb from '../MakeQuestionBox/Web';
 import { Container } from './styles';
@@ -18,16 +20,22 @@ import FiltersBox from '../FiltersBox';
 
 interface QuestionSectionProps {
   step: number;
+  questions: Question[];
 }
 
-const QuestionSection = ({ step }: QuestionSectionProps) => {
+const QuestionSection = ({ step, questions }: QuestionSectionProps) => {
   const {
     getQuestions,
-    questions,
+    addQuestions,
     getMyCreatedQuestions,
+    questions: questionsByState,
     myCreatedQuestions,
   } = useQuestion();
   const { user } = useAuth();
+
+  useEffect(() => {
+    addQuestions(questions);
+  }, [addQuestions, questions]);
 
   return (
     <Container step={step}>
@@ -53,8 +61,8 @@ const QuestionSection = ({ step }: QuestionSectionProps) => {
           </>
         )}
         <SectionBordered>
-          {questions &&
-            questions.map((question, index) => {
+          {questionsByState &&
+            questionsByState.map((question, index) => {
               if (!index) {
                 return (
                   <OnboardingTemplate
@@ -73,6 +81,7 @@ const QuestionSection = ({ step }: QuestionSectionProps) => {
         <InfiniteScroll
           getService={getQuestions}
           allowedFilters={['q', 'areaInterest']}
+          initialPage={2}
         />
       </div>
       <div>
