@@ -7,9 +7,9 @@ export default async function optimizeImageFile(file: File): Promise<File> {
   imageObj.src = URL.createObjectURL(file);
 
   return new Promise(resolve => {
-    imageObj.onload = (event: Event) => {
+    imageObj.onload = (event: Event & any) => {
       const { width, height } = event.path[0];
-      console.log(event);
+
       const ratio = width / height;
       const maxRatio = MAX_SIZE_IMG_W / MAX_SIZE_IMG_H;
 

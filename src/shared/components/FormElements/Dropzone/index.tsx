@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { FiPaperclip, FiUpload } from 'react-icons/fi';
 
