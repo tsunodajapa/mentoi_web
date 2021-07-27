@@ -7,6 +7,7 @@ import { IoMdClose } from 'react-icons/io';
 import { useField } from '@unform/core';
 import whatFileType from '@/shared/utils/whatFileType';
 import { useToast } from '@/shared/hooks/toast';
+import optimizeImageFile from '@/shared/utils/optimizeImageFile';
 import { Container, FilesPreviewContainer } from './styles';
 import Modal from '../../Modal';
 import { IconsFile } from '../../FilesPreview';
@@ -44,7 +45,6 @@ const Dropzone = ({ name, label, limitFiles }: DropzoneProps) => {
   }
 
   function handleRemoveImage(indexFile: number) {
-    console.log(indexFile);
     const imagesWithoutRemoved = selectedFilesUrl.filter(
       (_, index) => index !== indexFile,
     );
@@ -55,8 +55,7 @@ const Dropzone = ({ name, label, limitFiles }: DropzoneProps) => {
     );
   }
 
-  const onDrop = (onDropAcceptedFiles: File[]) => {
-    console.log(onDropAcceptedFiles);
+  const onDrop = async (onDropAcceptedFiles: File[]) => {
     if (limitFiles < onDropAcceptedFiles.length + selectedFilesUrl.length) {
       addToast({
         type: 'error',
@@ -79,9 +78,15 @@ const Dropzone = ({ name, label, limitFiles }: DropzoneProps) => {
     }
 
     if (inputRef.current) {
+      const files = await Promise.all(
+        onDropAcceptedFiles.map(file => {
+          return file.type.includes('image') ? optimizeImageFile(file) : file;
+        }),
+      );
+
       !inputRef.current.acceptedFiles
-        ? (inputRef.current.acceptedFiles = onDropAcceptedFiles)
-        : inputRef.current.acceptedFiles.push(...onDropAcceptedFiles);
+        ? (inputRef.current.acceptedFiles = files)
+        : inputRef.current.acceptedFiles.push(...files);
 
       // bug do dropzone que não tira o foco depois que seleciona o arquivo
       inputRef.current.value = '';
