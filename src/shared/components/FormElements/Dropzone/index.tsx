@@ -50,9 +50,12 @@ const Dropzone = ({ name, label, limitFiles }: DropzoneProps) => {
     );
 
     setSelectedFilesUrl(imagesWithoutRemoved);
-    inputRef.current.acceptedFiles = inputRef.current.acceptedFiles.filter(
-      (_, index) => index !== indexFile,
-    );
+
+    if (inputRef.current) {
+      inputRef.current.acceptedFiles = inputRef.current.acceptedFiles.filter(
+        (_, index) => index !== indexFile,
+      );
+    }
   }
 
   const onDrop = async (onDropAcceptedFiles: File[]) => {
