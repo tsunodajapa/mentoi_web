@@ -66,7 +66,5 @@ export const getServerSideProps: GetServerSideProps = async () => {
     pageSize: 10,
   });
 
-  console.log('aqui');
-
   return { props: { questions } };
 };

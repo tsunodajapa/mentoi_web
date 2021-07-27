@@ -81,7 +81,7 @@ const QuestionSection = ({ step, questions }: QuestionSectionProps) => {
         <InfiniteScroll
           getService={getQuestions}
           allowedFilters={['q', 'areaInterest']}
-          initialPage={2}
+          initialPage={1}
         />
       </div>
       <div>

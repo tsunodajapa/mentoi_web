@@ -250,8 +250,8 @@ const Main = () => {
             <p>
               Na plataforma Mentoi, o educador terá um espaço acolhedor para que
               possa fazer o que sabe de melhor: educar! Terá o seu trabalho
-              reconhecido, ganhando recompensas, acesso a materiais exclusivos e
-              se firmando enqunato referência no assunto.
+              reconhecido, ganhando recompensas, ser pago por tutoriais e se
+              destacar como referência no assunto.
             </p>
             <p>
               &quot;Se a educação sozinha não transforma a sociedade, sem ela
