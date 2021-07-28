@@ -51,13 +51,22 @@ const AnswerFooter = () => {
 
   if (!useCanAnswerQuestion || !user) {
     return (
-      <Container>
-        <Button
-          type="button"
-          onClick={handleToggleModal}
-          text="QUERO RESPONDER"
-        />
-      </Container>
+      <>
+        <Container>
+          <Button
+            type="button"
+            onClick={handleToggleModal}
+            text="QUERO RESPONDER"
+          />
+        </Container>
+        <Modal
+          isOpenModal={isOpenModal}
+          handleToggleModal={handleToggleModal}
+          styles={{ width: '40rem' }}
+        >
+          <ModalBeAMentoi />
+        </Modal>
+      </>
     );
   }
 
@@ -81,17 +90,9 @@ const AnswerFooter = () => {
               placeholder="RESPONDER"
             />
           </div>
-
           <Button type="submit" text="PUBLICAR" />
         </Form>
       </Container>
-      <Modal
-        isOpenModal={isOpenModal}
-        handleToggleModal={handleToggleModal}
-        styles={{ width: '40rem' }}
-      >
-        <ModalBeAMentoi />
-      </Modal>
     </>
   );
 };
