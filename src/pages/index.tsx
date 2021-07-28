@@ -43,54 +43,54 @@ import { IoSearch } from 'react-icons/io5';
 import ButtonIcon from '@/shared/components/Buttons/ButtonIcon';
 
 interface SubjectType {
-  icon: any;
+  icon: JSX.Element;
   name: string;
   link: string;
 }
 
 const Subjects: SubjectType[] = [
   {
-    icon: IconPortuguese,
+    icon: <IconPortuguese />,
     name: 'PORTUGUÊS',
     link: 'PORTUGUÊS',
   },
   {
-    icon: IconGeography,
+    icon: <IconGeography />,
     name: 'GEOGRAFIA',
     link: 'GEOGRAFIA',
   },
   {
-    icon: IconArt,
+    icon: <IconArt />,
     name: 'ARTES',
     link: 'ARTES',
   },
   {
-    icon: IconBiology,
+    icon: <IconBiology />,
     name: 'BIOLOGIA',
     link: 'BIOLOGIA',
   },
   {
-    icon: IconHistory,
+    icon: <IconHistory />,
     name: 'HISTÓRIA',
     link: 'HISTÓRIA',
   },
   {
-    icon: IconChemistry,
+    icon: <IconChemistry />,
     name: 'QUÍMICA',
     link: 'QUÍMICA',
   },
   {
-    icon: IconMath,
+    icon: <IconMath />,
     name: 'MATEMÁTICA',
     link: 'MATEMÁTICA',
   },
   {
-    icon: IconPhysics,
+    icon: <IconPhysics />,
     name: 'FÍSICA',
     link: 'FÍSICA',
   },
   {
-    icon: IconAll,
+    icon: <IconAll />,
     name: 'TODAS',
     link: null,
   },
@@ -184,7 +184,7 @@ const Main = () => {
                 href={`/feed${link ? `?areaInterest=${link}` : ''}`}
               >
                 <a>
-                  <Icon />
+                  {Icon}
                   <span>{name}</span>
                 </a>
               </Link>

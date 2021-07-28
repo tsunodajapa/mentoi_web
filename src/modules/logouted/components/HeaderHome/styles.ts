@@ -6,7 +6,8 @@ interface HeaderProps {
 
 const HeaderForm = css`
   background: #fff;
-  width: 25%;
+  width: 30%;
+  height: 4rem;
 
   display: flex;
   align-items: center;
@@ -17,8 +18,6 @@ const HeaderForm = css`
   border: 0.2rem solid var(--color-primary);
 
   color: var(--color-text-complement);
-
-  margin-bottom: 0.5rem;
 
   > div div {
     border: none;
@@ -49,8 +48,8 @@ const HeaderForm = css`
 
   > button svg {
     margin-right: 0.2rem;
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 3.2rem;
+    height: 3.2rem;
     padding: 0.5rem;
     font-weight: 700;
     background-color: var(--color-primary);
@@ -68,6 +67,7 @@ export const Container = styled.header<HeaderProps>`
   padding-top: 3rem;
   display: flex;
   justify-content: space-between;
+
   background-image: linear-gradient(90deg, white 43%, #00000000 33%);
 
   > svg {
@@ -83,18 +83,27 @@ export const Container = styled.header<HeaderProps>`
   ${({ hasHeaderBackground }) =>
     hasHeaderBackground &&
     css`
+      align-items: center;
       background: var(--color-background);
-      padding-top: 1rem;
+      padding: 0.5rem 9rem;
       box-shadow: 0px -0.1rem 0.3rem 0.2rem rgba(0, 0, 0, 0.15);
 
       > svg {
-        transform: scale(1.4);
-        margin-bottom: 2rem;
+        transform: scale(1.2);
+        margin: 0rem;
+        width: 30%;
       }
 
       form {
         display: block;
         ${HeaderForm}
+      }
+
+      > div {
+        width: 30%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
       }
     `}
 
@@ -102,6 +111,8 @@ export const Container = styled.header<HeaderProps>`
     font-size: 1.8rem;
     margin: 0 0.8rem;
     padding: 0.4rem 1.5rem;
+    border-radius: 2.5rem;
+    border-width: 0.1rem;
   }
 
   @media (max-width: 550px) {
