@@ -45,7 +45,6 @@ const AnswerFooter = () => {
   }
 
   function handleToggleModal() {
-    console.log(isOpenModal);
     setIsOpenModal(!isOpenModal);
   }
 
