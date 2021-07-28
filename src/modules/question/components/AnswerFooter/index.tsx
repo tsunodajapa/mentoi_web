@@ -45,16 +45,19 @@ const AnswerFooter = () => {
   }
 
   function handleToggleModal() {
+    console.log(isOpenModal);
     setIsOpenModal(!isOpenModal);
   }
 
   if (!useCanAnswerQuestion || !user) {
     return (
-      <Button
-        type="button"
-        onClick={handleToggleModal}
-        text="QUERO RESPONDER"
-      />
+      <Container>
+        <Button
+          type="button"
+          onClick={handleToggleModal}
+          text="QUERO RESPONDER"
+        />
+      </Container>
     );
   }
 

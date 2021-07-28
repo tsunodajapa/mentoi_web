@@ -274,7 +274,7 @@ const Main = () => {
           <div>
             <ul>
               <li>
-                <Link href="about-us">Sobre nós</Link>
+                <Link href="/about-us">Sobre nós</Link>
               </li>
               <li>Contato</li>
             </ul>

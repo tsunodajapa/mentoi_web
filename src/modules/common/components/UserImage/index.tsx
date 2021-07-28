@@ -1,5 +1,6 @@
-import { Circle } from '@/shared/components/Circle';
+import { useEffect, useMemo } from 'react';
 import Image from 'next/image';
+import { Circle } from '@/shared/components/Circle';
 
 import Avatar1 from '@/assets/avatar_1.svg';
 import Avatar2 from '@/assets/avatar_2.svg';
@@ -19,7 +20,15 @@ interface UserImageProps {
   gender: 'MALE' | 'FEMALE' | 'OTHER';
 }
 
-const Avatar = [Avatar1, Avatar2, Avatar3, Avatar4, Avatar5, Avatar6, Avatar7];
+const Avatar = [
+  <Avatar1 />,
+  <Avatar2 />,
+  <Avatar3 />,
+  <Avatar4 />,
+  <Avatar5 />,
+  <Avatar6 />,
+  <Avatar7 />,
+];
 
 const UserImage = ({
   avatarUrl,
@@ -28,15 +37,13 @@ const UserImage = ({
   size = 100,
   gender,
 }: UserImageProps) => {
-  const AvatarNumber = {
-    MALE: () => Math.floor(Math.random() * 3),
-    FEMALE: () => Math.floor(Math.random() * 3) + 3,
-    OTHER: () => 7,
-  }[gender];
+  const avatarSize = useMemo(() => (85 / 100) * size, [size]);
 
-  const AvatarComponent = Avatar[AvatarNumber()];
-
-  const avatarSize = (85 / 100) * size;
+  const avatarNumber = useMemo(() => {
+    if (gender === 'MALE') return Math.floor(Math.random() * 3);
+    if (gender === 'FEMALE') return Math.floor(Math.random() * 3) + 3;
+    return 7;
+  }, [gender]);
 
   if (avatarUrl) {
     return <Image src={avatarUrl} alt={name} layout="fill" />;
@@ -45,7 +52,7 @@ const UserImage = ({
   return (
     <Container avatarSize={avatarSize}>
       <Circle size={size} color={color} />
-      <AvatarComponent />
+      {Avatar[avatarNumber]}
     </Container>
   );
 };
