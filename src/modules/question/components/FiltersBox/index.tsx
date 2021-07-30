@@ -20,7 +20,13 @@ const FiltersBox = () => {
   }, [router.query]);
 
   function handleOption(name = ''): void {
-    const filter = concatUrlParams(router, name, 'areaInterest');
+    const areaInterest = router.query.areaInterest as string;
+
+    const filter = concatUrlParams(
+      router,
+      areaInterest === name ? undefined : name,
+      'areaInterest',
+    );
 
     router.push(`/feed${filter}`, undefined, { shallow: true });
   }

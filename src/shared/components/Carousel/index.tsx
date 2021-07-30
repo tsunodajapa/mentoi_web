@@ -5,11 +5,14 @@ import { IoIosArrowDropright, IoIosArrowDropleft } from 'react-icons/io';
 import ButtonIcon from '../Buttons/ButtonIcon';
 import { Container, ButtonOption } from './styles';
 
+interface ItemProps {
+  name: string;
+  color?: string;
+  selected?: boolean;
+}
+
 interface CarouselProps {
-  data?: {
-    name: string;
-    color: string;
-  }[];
+  data?: ItemProps[];
   arrowVisible?: boolean;
   onlyWeb?: boolean;
   children?: ReactNode;
@@ -26,7 +29,7 @@ const Carousel = ({
   const router = useRouter();
 
   const wrapRef = useRef<HTMLDivElement>();
-  const [selectedOption, setSelectedOption] = useState<boolean[]>([]);
+  const [selectedOption, setSelectedOption] = useState<ItemProps[]>(data);
   const [itemsLength, setItemsLength] = useState(ChildrenCount);
   const [arrowVisibility, setArrowVisibility] = useState(false);
 
@@ -34,16 +37,20 @@ const Carousel = ({
     if (data) {
       const areaInterest = router.query.areaInterest as string;
       const names = data.map(item => item.name);
-      let itemsOptions: boolean[];
+      let itemsOptions: ItemProps[];
 
       if (areaInterest && names.includes(areaInterest)) {
-        itemsOptions = names.map(name => {
-          return name === areaInterest;
+        itemsOptions = data.map(item => {
+          return { ...item, selected: item.name === areaInterest };
         });
       } else {
-        itemsOptions = data.map(() => false);
+        itemsOptions = data.map(item => ({ ...item, selected: false }));
       }
-      setSelectedOption([...itemsOptions, areaInterest === 'me']);
+
+      setSelectedOption([
+        ...itemsOptions,
+        { name: 'AREA INTERESSE', selected: areaInterest === 'me' },
+      ]);
 
       setItemsLength(data.length);
     }
@@ -66,9 +73,16 @@ const Carousel = ({
   }
 
   function handleOption(position: number, name = ''): void {
-    const itemsOptions = selectedOption.map((_, index) => index === position);
+    const itemsOptions = selectedOption.map((item, index) => ({
+      ...item,
+      selected: index === position ? !item.selected : item.selected,
+    }));
 
-    const filter = concatUrlParams(router, name, 'areaInterest');
+    const filter = concatUrlParams(
+      router,
+      itemsOptions[position].selected ? name : undefined,
+      'areaInterest',
+    );
 
     router.push(`/feed${filter}`, undefined, { shallow: true });
 
@@ -88,25 +102,25 @@ const Carousel = ({
       )}
 
       <div ref={wrapRef}>
-        {data && (
+        {selectedOption && (
           <ButtonOption
-            selected={selectedOption[itemsLength]}
+            selected={selectedOption[itemsLength].selected}
             onClick={() => handleOption(itemsLength, 'me')}
           >
-            AREA INTERESSE
+            {selectedOption[itemsLength].name}
           </ButtonOption>
         )}
-        {data?.map((item, index) => (
+        {selectedOption?.map((item, index) => (
           <ButtonOption
             key={item.name}
             color={item.color}
-            selected={selectedOption[index]}
+            selected={item.selected}
             onClick={() => handleOption(index, item.name)}
           >
             {item.name}
           </ButtonOption>
         ))}
-        {!data && children}
+        {!selectedOption && children}
       </div>
 
       {arrowVisible && (
