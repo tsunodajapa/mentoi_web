@@ -7,6 +7,7 @@ import { Container, ButtonOption } from './styles';
 
 interface ItemProps {
   name: string;
+  route?: string;
   color?: string;
   selected?: boolean;
 }
@@ -24,13 +25,10 @@ const Carousel = ({
   onlyWeb = false,
   children,
 }: CarouselProps) => {
-  const ChildrenCount = Children.count(children);
-
   const router = useRouter();
 
   const wrapRef = useRef<HTMLDivElement>();
   const [selectedOption, setSelectedOption] = useState<ItemProps[]>(data);
-  const [itemsLength, setItemsLength] = useState(ChildrenCount);
   const [arrowVisibility, setArrowVisibility] = useState(false);
 
   useEffect(() => {
@@ -48,11 +46,13 @@ const Carousel = ({
       }
 
       setSelectedOption([
+        {
+          name: 'AREA INTERESSE',
+          route: 'me',
+          selected: areaInterest === 'me',
+        },
         ...itemsOptions,
-        { name: 'AREA INTERESSE', selected: areaInterest === 'me' },
       ]);
-
-      setItemsLength(data.length);
     }
   }, [data, router.query.areaInterest]);
 
@@ -60,6 +60,8 @@ const Carousel = ({
     const { scrollWidth, offsetWidth } = wrapRef.current;
 
     if (scrollWidth > offsetWidth) setArrowVisibility(true);
+
+    wrapRef.current.scrollBy(0, 0);
   }, []);
 
   function handleSlider(type: string): void {
@@ -102,20 +104,12 @@ const Carousel = ({
       )}
 
       <div ref={wrapRef}>
-        {selectedOption && (
-          <ButtonOption
-            selected={selectedOption[itemsLength].selected}
-            onClick={() => handleOption(itemsLength, 'me')}
-          >
-            {selectedOption[itemsLength].name}
-          </ButtonOption>
-        )}
         {selectedOption?.map((item, index) => (
           <ButtonOption
             key={item.name}
             color={item.color}
             selected={item.selected}
-            onClick={() => handleOption(index, item.name)}
+            onClick={() => handleOption(index, item.route || item.name)}
           >
             {item.name}
           </ButtonOption>
