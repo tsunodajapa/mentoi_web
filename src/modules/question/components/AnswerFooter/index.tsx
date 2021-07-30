@@ -34,12 +34,21 @@ const AnswerFooter = () => {
     try {
       formRef.current?.setErrors({});
 
+      if (!data.answer.trim()) {
+        addToast({
+          type: 'error',
+          title: 'Resposta não pode ser vazia',
+          description: 'Escreva uma resposta',
+        });
+        return;
+      }
+
       await createAnswer({ text: data.answer });
     } catch (error) {
       addToast({
         type: 'error',
-        title: 'Erro na autenticação',
-        description: 'Ocorreu um erro ao fazer login, cheque as credenciais',
+        title: 'Erro ao enviar resposta',
+        description: 'Tente novamente.',
       });
     }
   }
