@@ -72,9 +72,7 @@ const Select = ({
       });
 
       const dataSelected = data.map(item => {
-        const itemFound = defaultValue.find(
-          itemFind => item.name === itemFind.name,
-        );
+        const itemFound = defaultValue.find(itemFind => item.name === itemFind);
 
         if (itemFound) {
           return {
