@@ -78,6 +78,8 @@ const MakeQuestionBox = ({ alternativeId = 'web' }: MakeQuestionBoxProps) => {
     <FormQuestion onSubmit={handleSubmit} ref={formRef}>
       <Input id={`title-${alternativeId}`} name="title" placeholder="TÍTULO" />
 
+      {/* <Editor /> */}
+
       <TextArea
         name="description"
         id={`description-${alternativeId}`}

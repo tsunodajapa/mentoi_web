@@ -63,7 +63,7 @@ const LoginModal = () => {
       </div>
 
       <Form onSubmit={handleSubmit} ref={formRef}>
-        <h2>Faça seu logon</h2>
+        <h2>Faça seu login</h2>
 
         <Input
           id="email"

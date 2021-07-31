@@ -14,6 +14,10 @@ export async function updateUser(
   return (await api.put<User>(`users/${userId}`, data)).data;
 }
 
+export async function updateFragmentUser(token: string): Promise<User> {
+  return (await api.patch<User>(`users`, { token })).data;
+}
+
 export async function changePassword(
   userId: string,
   data: ChangePasswordData,
