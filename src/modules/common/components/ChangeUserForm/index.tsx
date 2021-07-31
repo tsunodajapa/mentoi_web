@@ -16,20 +16,31 @@ import getValidationErrors from '@/shared/utils/getValidationErros';
 import { useToast } from '@/shared/hooks/toast';
 import { format, parseISO } from 'date-fns';
 import Modal from '@/shared/components/Modal';
-import { Container, Line } from './styles';
+import { MdDelete } from 'react-icons/md';
+import { useRouter } from 'next/router';
 import * as userServices from '../../../logouted/services/userServices';
 import ChangePasswordModal from '../ChangePasswordModal';
+
+import { Container, Line, ModalContainer, SecuritySection } from './styles';
 
 const ChangeUserForm = () => {
   const { user, updateUser } = useAuth();
   const { addToast } = useToast();
+  const router = useRouter();
 
   const formRef = useRef<FormHandles>(null);
   const [initialData, setInitialData] = useState({});
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenModalDeleteAccount, setIsOpenModalDeleteAccount] = useState(
+    false,
+  );
 
   function handleToggleModal() {
     setIsOpenModal(!isOpenModal);
+  }
+
+  function handleToggleModalDeleteAccount() {
+    setIsOpenModalDeleteAccount(!isOpenModalDeleteAccount);
   }
 
   useEffect(() => {
@@ -106,6 +117,25 @@ const ChangeUserForm = () => {
     }
   }
 
+  async function handleDeleteAccount() {
+    try {
+      await userServices.deleteUser(user.id);
+
+      addToast({
+        type: 'success',
+        title: 'Usuário excluído com sucesso!',
+      });
+
+      router.push('/');
+    } catch (error) {
+      addToast({
+        type: 'error',
+        title: 'Ocorreu um erro ao excluir sua conta',
+        description: 'Não conseguimos delatar sua conta, tente novamente!',
+      });
+    }
+  }
+
   return (
     <Container>
       <h1>Configuração</h1>
@@ -171,13 +201,33 @@ const ChangeUserForm = () => {
 
       <h2>Segurança</h2>
 
-      <Button
-        type="button"
-        text="Clique aqui para alterar a Senha"
-        onClick={handleToggleModal}
-      />
+      <SecuritySection>
+        <Button
+          type="button"
+          text="Clique aqui para alterar a Senha"
+          onClick={handleToggleModal}
+        />
+
+        <Button
+          type="button"
+          text="Excluir conta"
+          onClick={handleToggleModalDeleteAccount}
+          variant="error"
+        />
+      </SecuritySection>
       <Modal isOpenModal={isOpenModal} handleToggleModal={handleToggleModal}>
         <ChangePasswordModal />
+      </Modal>
+
+      <Modal
+        isOpenModal={isOpenModalDeleteAccount}
+        handleToggleModal={handleToggleModalDeleteAccount}
+      >
+        <ModalContainer>
+          <MdDelete />
+          <p>Tem certeza que deseja excluir sua conta?</p>
+          <Button text="Confirmar" onClick={handleDeleteAccount} />
+        </ModalContainer>
       </Modal>
     </Container>
   );

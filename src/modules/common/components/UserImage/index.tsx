@@ -42,7 +42,7 @@ const UserImage = ({
   const avatarNumber = useMemo(() => {
     if (gender === 'MALE') return Math.floor(Math.random() * 3);
     if (gender === 'FEMALE') return Math.floor(Math.random() * 3) + 3;
-    return 7;
+    return 6;
   }, [gender]);
 
   if (avatarUrl) {

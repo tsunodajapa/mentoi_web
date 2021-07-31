@@ -47,7 +47,7 @@ const Carousel = ({
 
       setSelectedOption([
         {
-          name: 'AREA INTERESSE',
+          name: 'ÁREA INTERESSE',
           route: 'me',
           selected: areaInterest === 'me',
         },

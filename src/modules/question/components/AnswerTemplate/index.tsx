@@ -63,31 +63,37 @@ const AnswerTemplate = ({ answer }: AnswerTemplateProps) => {
           <div>
             <div>
               <UserImage
-                avatarUrl={answer.user.avatarUrl}
-                name={answer.user.name}
-                color={answer.user.color}
-                gender={answer.user.gender}
+                avatarUrl={answer.user ? answer.user.avatarUrl : null}
+                name={answer.user ? answer.user.name : 'Usuário não cadastrado'}
+                color={answer.user ? answer.user.color : '#D3D3D3'}
+                gender={answer.user ? answer.user.gender : 'OTHER'}
               />
             </div>
             <div>
-              <span>{answer.user.displayName || answer.user.name}</span>
-              <span>@{answer.user.nickName}</span>
+              <span>
+                {answer.user
+                  ? answer.user.displayName || answer.user.name
+                  : 'Usuário não cadastrado'}
+              </span>
+              <span>@{answer.user && answer.user.nickName}</span>
             </div>
           </div>
 
           <span>{answer.elapsedTime}</span>
-          {userLogged && answer.user.nickName === userLogged.nickName && (
-            <WindowSelect
-              id={`window-select-${answer.id}`}
-              icon={HiOutlineDotsHorizontal}
-              styles={WindowSelectStyles}
-              size={1.4}
-            >
-              <button type="button" onClick={handleToggleModal}>
-                Excluir
-              </button>
-            </WindowSelect>
-          )}
+          {answer.user &&
+            userLogged &&
+            answer.user.nickName === userLogged.nickName && (
+              <WindowSelect
+                id={`window-select-${answer.id}`}
+                icon={HiOutlineDotsHorizontal}
+                styles={WindowSelectStyles}
+                size={1.4}
+              >
+                <button type="button" onClick={handleToggleModal}>
+                  Excluir
+                </button>
+              </WindowSelect>
+            )}
         </HeaderAnswer>
 
         <span>{answer.text}</span>

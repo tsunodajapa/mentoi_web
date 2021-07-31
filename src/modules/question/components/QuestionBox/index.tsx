@@ -136,19 +136,24 @@ const QuestionBox = ({
             <div>
               <div>
                 <UserImage
-                  avatarUrl={user.avatarUrl}
-                  name={user.name}
-                  color={user.color}
-                  gender={user.gender}
+                  avatarUrl={user ? user.avatarUrl : null}
+                  name={user ? user.name : 'Usuário não cadastrado'}
+                  color={user ? user.color : '#D3D3D3'}
+                  gender={user ? user.gender : 'OTHER'}
                 />
               </div>
+
               <div>
-                <span>{user.displayName || user.name}</span>
-                <span>@{user.nickName}</span>
+                <span>
+                  {user
+                    ? user.displayName || user.name
+                    : 'Usuário não cadastrado'}
+                </span>
+                <span>@{user && user.nickName}</span>
               </div>
             </div>
             <span>{elapsedTime}</span>
-            {userLogged && user.nickName === userLogged.nickName && (
+            {user && userLogged && user.nickName === userLogged.nickName && (
               <WindowSelect
                 id={idAlternative || `window-select-${id}`}
                 icon={HiOutlineDotsHorizontal}

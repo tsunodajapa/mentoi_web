@@ -20,3 +20,7 @@ export async function changePassword(
 ): Promise<void> {
   await api.patch(`users/${userId}`, data);
 }
+
+export async function deleteUser(userId: string): Promise<void> {
+  await api.delete(`users/${userId}`);
+}

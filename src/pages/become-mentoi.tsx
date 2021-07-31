@@ -34,8 +34,6 @@ const BecomeMentoi = () => {
         abortEarly: false,
       });
 
-      console.log(data);
-
       if (!data.documents.length) {
         addToast({
           type: 'error',
@@ -64,7 +62,7 @@ const BecomeMentoi = () => {
         type: 'success',
         title: 'Solicitação enviada!',
         description:
-          'Sua solicitação foi enviada com sucesso, em breve estaremos retornado!',
+          'Sua solicitação foi enviada com sucesso, em breve estaremos retornando!',
       });
 
       router.push('feed');
@@ -123,7 +121,7 @@ const BecomeMentoi = () => {
             respostas.
           </p>
           <p>
-            &emsp;Entre para o time de guerreiros uqe lutam por uma educação de
+            &emsp;Entre para o time de guerreiros que lutam por uma educação de
             qualidade, se transformando em uma referência no assunto.
           </p>
           <h2>Seja um Mentoi</h2>
