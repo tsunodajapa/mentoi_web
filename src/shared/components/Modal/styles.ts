@@ -98,3 +98,22 @@ export const Container = styled.div<ContainerProps>`
     }
   }
 `;
+
+export const ModalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+  padding: 0.5rem 0;
+
+  svg {
+    color: var(--color-red);
+    transform: scale(2);
+    margin: 0.5rem;
+  }
+
+  p {
+    margin: 2rem 0;
+  }
+`;

@@ -38,7 +38,7 @@ const LoginModal = () => {
 
       await signIn(data);
 
-      router.push('feed');
+      router.push('/feed');
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         const erros = getValidationErrors(error);

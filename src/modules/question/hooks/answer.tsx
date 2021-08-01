@@ -8,6 +8,7 @@ export interface Answer {
   id: string;
   text: string;
   user: Omit<User, 'id' | 'email' | 'permission' | 'areasInterest'>;
+  questionId: string;
   elapsedTime: string;
   createdAt: Date;
   updatedAt: Date;
@@ -51,6 +52,7 @@ const AnswerProvider: React.FC = ({ children }) => {
         {
           ...filters,
           pageSize: 10,
+          status: 1,
         },
       );
 

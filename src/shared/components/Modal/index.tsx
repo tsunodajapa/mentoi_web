@@ -23,8 +23,8 @@ const Modal = ({
   return (
     <Container visible={isOpenModal} styles={styles}>
       <div>
-        {children}
         <ButtonIcon icon={IoMdClose} onClick={handleToggleModal} />
+        {children}
       </div>
     </Container>
   );

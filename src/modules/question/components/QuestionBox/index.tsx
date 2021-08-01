@@ -17,6 +17,7 @@ import UserImage from '@/modules/common/components/UserImage';
 import FilesPreview from '@/shared/components/FilesPreview';
 
 import { useEffect } from 'react';
+import { ModalContainer } from '@/shared/components/Modal/styles';
 import * as questionsServices from '../../services/questionsServices';
 
 import {
@@ -24,10 +25,10 @@ import {
   Content,
   Header,
   WindowSelectStyles,
-  ModalContainer,
   Description,
 } from './styles';
 import { Link } from '../../../../shared/components/Buttons/Link';
+import ModalComplaint from '../ModalComplaint';
 
 interface QuestionBoxProps {
   data: Question;
@@ -51,6 +52,7 @@ const QuestionBox = ({
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isTextEllipsis, setIsTextEllipsis] = useState(true);
   const [textNeedEllipsis, setTextNeedEllipsis] = useState(false);
+  const [isOpenComplaintModal, setIsOpenComplaintModal] = useState(false);
 
   useEffect(() => {
     if (descriptionRef.current) {
@@ -124,6 +126,10 @@ const QuestionBox = ({
     setIsTextEllipsis(oldState => !oldState);
   }
 
+  function handleToggleComplaintModal() {
+    setIsOpenComplaintModal(!isOpenComplaintModal);
+  }
+
   return (
     <Container titleColor={titleColor} isQuestionPage={!!children}>
       <div>
@@ -153,18 +159,23 @@ const QuestionBox = ({
               </div>
             </div>
             <span>{elapsedTime}</span>
-            {user && userLogged && user.nickName === userLogged.nickName && (
-              <WindowSelect
-                id={idAlternative || `window-select-${id}`}
-                icon={HiOutlineDotsHorizontal}
-                styles={WindowSelectStyles}
-                size={1.4}
-              >
+
+            <WindowSelect
+              id={idAlternative || `window-select-${id}`}
+              icon={HiOutlineDotsHorizontal}
+              styles={WindowSelectStyles}
+              size={1.4}
+            >
+              {user && userLogged && user.nickName === userLogged.nickName && (
                 <button type="button" onClick={handleToggleModal}>
                   Excluir
                 </button>
-              </WindowSelect>
-            )}
+              )}
+
+              <button type="button" onClick={handleToggleComplaintModal}>
+                Denunciar
+              </button>
+            </WindowSelect>
           </Header>
           <Description
             ref={descriptionRef}
@@ -206,6 +217,11 @@ const QuestionBox = ({
           <Button text="Confirmar" onClick={handleDeleteQuestion} />
         </ModalContainer>
       </Modal>
+      <ModalComplaint
+        questionId={id}
+        handleToggleModal={handleToggleComplaintModal}
+        isOpenModal={isOpenComplaintModal}
+      />
     </Container>
   );
 };

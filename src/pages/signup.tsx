@@ -1,4 +1,4 @@
-import { useState, useRef, useMemo } from 'react';
+import { useState, useRef } from 'react';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import Image from 'next/image';
@@ -67,7 +67,7 @@ const SignUp = () => {
         description: 'Você será redirecionado para nossa página inicial!',
       });
 
-      router.push('feed');
+      router.push('/feed');
     } catch (error) {
       let description: string;
       let title: string;

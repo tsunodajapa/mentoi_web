@@ -25,7 +25,7 @@ const QuestionPageTemplate = ({ question }: QuestionPageTemplateProps) => {
   const { answers, getAnswers } = useAnswer();
   const { user } = useAuth();
   const useCanAnswerQuestion = usePermission({
-    permissions: ['MENTOI'],
+    permissions: ['MENTOI', 'ADMIN'],
   });
 
   return (

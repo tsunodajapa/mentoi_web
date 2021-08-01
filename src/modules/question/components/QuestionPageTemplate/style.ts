@@ -61,7 +61,6 @@ export const AnswersContainer = styled.div<AnswerContainerProps>`
     border-top: 0.1rem solid var(--color-primary-light);
 
     > div:last-child > button {
-      padding: 0.4rem 1rem;
       font-size: 1.4rem;
       border-radius: 1rem;
     }

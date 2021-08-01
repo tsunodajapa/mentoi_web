@@ -18,10 +18,11 @@ import { format, parseISO } from 'date-fns';
 import Modal from '@/shared/components/Modal';
 import { MdDelete } from 'react-icons/md';
 import { useRouter } from 'next/router';
+import { ModalContainer } from '@/shared/components/Modal/styles';
 import * as userServices from '../../../logouted/services/userServices';
 import ChangePasswordModal from '../ChangePasswordModal';
 
-import { Container, Line, ModalContainer, SecuritySection } from './styles';
+import { Container, Line, SecuritySection } from './styles';
 
 const ChangeUserForm = () => {
   const { user, updateUser } = useAuth();

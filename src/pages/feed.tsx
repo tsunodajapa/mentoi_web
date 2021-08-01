@@ -64,6 +64,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const questions = await questionsServices.getQuestions({
     page: 1,
     pageSize: 10,
+    status: 1,
   });
 
   return { props: { questions } };

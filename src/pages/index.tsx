@@ -114,7 +114,7 @@ const Main = () => {
 
   useEffect(() => {
     if (user) {
-      router.push('feed');
+      router.push('/feed');
     }
   }, [user, router]);
 

@@ -3,6 +3,11 @@ import { FilterToGet } from '@/shared/services/IFilterDTO';
 import { Answer } from '../hooks/answer';
 import { Question } from '../hooks/question';
 
+interface ComplaintQuestion {
+  answerId?: string;
+  observation?: string;
+}
+
 export async function createQuestion(data: FormData): Promise<Question> {
   return (await api.post('questions', data)).data;
 }
@@ -44,4 +49,11 @@ export async function deleteAnswer(
   answerId: string,
 ): Promise<void> {
   return api.delete(`questions/${id}/answers/${answerId}`);
+}
+
+export async function complaint(
+  id: string,
+  data: ComplaintQuestion,
+): Promise<void> {
+  return api.post(`questions/${id}/complaint`, data);
 }

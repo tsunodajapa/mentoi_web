@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsResult } from 'next';
+import Error404 from '@/pages/404';
 
 import { Question } from '@/modules/question/hooks/question';
 import { useEffect } from 'react';
@@ -22,14 +23,23 @@ const QuestionPage = ({ question }: QuestionPageProps) => {
     document.body.style.overflowY = 'auto';
   }, []);
 
+  if (question && !question.status) {
+    return <Error404 />;
+  }
+
   return (
     <>
       {question && (
-        <SEO title={question.description} description={question.description} />
+        <>
+          <SEO
+            title={question.description}
+            description={question.description}
+          />
+          <AnswerProvider>
+            <QuestionPageTemplate question={question} />
+          </AnswerProvider>
+        </>
       )}
-      <AnswerProvider>
-        <QuestionPageTemplate question={question} />
-      </AnswerProvider>
     </>
   );
 };
@@ -40,6 +50,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const questions = await questionsServices.getQuestions({
     page: 1,
     pageSize: 15,
+    status: 1,
   });
 
   const paths = questions.map(question => ({ params: { id: question.id } }));

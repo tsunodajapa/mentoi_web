@@ -26,6 +26,7 @@ export interface Question {
   }[];
   user: Omit<User, 'id' | 'email' | 'permission' | 'areasInterest'>;
   elapsedTime: string;
+  status: 0 | 1;
 }
 
 interface QuestionContextData {
@@ -62,6 +63,7 @@ const QuestionProvider: React.FC = ({ children }) => {
     const questionsFound = await questionsServices.getQuestions({
       ...filters,
       pageSize: 10,
+      status: 1,
     });
 
     if (filters.page === 1) {

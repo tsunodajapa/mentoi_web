@@ -14,14 +14,15 @@ import Modal from '@/shared/components/Modal';
 import { MdDelete } from 'react-icons/md';
 import { useToast } from '@/shared/hooks/toast';
 
+import { ModalContainer } from '@/shared/components/Modal/styles';
 import { EvaluateContainer } from './styles';
 import {
   Content,
   Header as HeaderAnswer,
-  ModalContainer,
   WindowSelectStyles,
 } from '../QuestionBox/styles';
 import { Answer, useAnswer } from '../../hooks/answer';
+import ModalComplaint from '../ModalComplaint';
 
 interface AnswerTemplateProps {
   answer: Answer;
@@ -32,9 +33,14 @@ const AnswerTemplate = ({ answer }: AnswerTemplateProps) => {
   const { addToast } = useToast();
   const { removeAnswer } = useAnswer();
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenComplaintModal, setIsOpenComplaintModal] = useState(false);
 
   function handleToggleModal() {
     setIsOpenModal(!isOpenModal);
+  }
+
+  function handleToggleComplaintModal() {
+    setIsOpenComplaintModal(!isOpenComplaintModal);
   }
 
   async function handleDeleteAnswer() {
@@ -112,7 +118,9 @@ const AnswerTemplate = ({ answer }: AnswerTemplateProps) => {
             styles={{
               maxHeight: '2.8rem',
               alignSelf: 'flex-end',
+              padding: '0.4rem 1rem',
             }}
+            onClick={handleToggleComplaintModal}
           />
         </div>
       </Content>
@@ -123,6 +131,12 @@ const AnswerTemplate = ({ answer }: AnswerTemplateProps) => {
           <Button text="Confirmar" onClick={handleDeleteAnswer} />
         </ModalContainer>
       </Modal>
+      <ModalComplaint
+        questionId={answer.questionId}
+        answerId={answer.id}
+        handleToggleModal={handleToggleComplaintModal}
+        isOpenModal={isOpenComplaintModal}
+      />
     </>
   );
 };

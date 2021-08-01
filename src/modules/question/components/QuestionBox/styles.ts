@@ -213,7 +213,6 @@ export const AnswersContainer = styled.div`
     border-top: 0.1rem solid var(--color-primary-light);
 
     > div:last-child > button {
-      padding: 0.4rem 1rem;
       font-size: 1.4rem;
       border-radius: 1rem;
     }
@@ -331,25 +330,6 @@ export const EvaluateContainer = styled.div`
       margin-top: 0.8rem;
       font-size: 1.3rem;
     }
-  }
-`;
-
-export const ModalContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 100%;
-  padding: 0.5rem 0;
-
-  svg {
-    color: var(--color-red);
-    transform: scale(2);
-    margin: 0.5rem;
-  }
-
-  p {
-    margin: 2rem 0;
   }
 `;
 
