@@ -354,6 +354,7 @@ export const Description = styled.div<DescriptionProps>`
         display: -webkit-box;
         -webkit-line-clamp: 4;
         -webkit-box-orient: vertical;
+        white-space: pre-wrap;
       }
       > button {
         background: linear-gradient(to left, #fff, #ffffff00);
@@ -369,6 +370,7 @@ export const Description = styled.div<DescriptionProps>`
     css`
       > p {
         overflow: hidden;
+        white-space: pre-wrap;
       }
     `}
 `;
