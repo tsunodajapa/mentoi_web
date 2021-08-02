@@ -44,6 +44,7 @@ const AnswerFooter = () => {
       }
 
       await createAnswer({ text: data.answer });
+      formRef.current?.reset();
     } catch (error) {
       addToast({
         type: 'error',
