@@ -41,6 +41,7 @@ import { Header } from '@/modules/logouted/components/HeaderHome';
 import concatUrlParams from '@/shared/utils/concatUrlParams';
 import { IoSearch } from 'react-icons/io5';
 import ButtonIcon from '@/shared/components/Buttons/ButtonIcon';
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 
 interface SubjectType {
   icon: JSX.Element;
@@ -276,12 +277,32 @@ const Main = () => {
               <li>
                 <Link href="/about-us">Sobre nós</Link>
               </li>
-              <li>Contato</li>
-            </ul>
-            <ul>
-              <li>Ajuda</li>
-              <li>Regulamento</li>
-              <li>Política de privacidade</li>
+              <li>
+                <Link href="/privacy-policy">Política de privacidade</Link>
+              </li>
+              <li>
+                <a
+                  href="https://www.facebook.com/mentoiApp"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaFacebookF size={18} />
+                </a>
+                <a
+                  href="https://www.instagram.com/mentoi.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaInstagram size={20} />
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/mentoi/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaLinkedinIn size={20} />
+                </a>
+              </li>
             </ul>
           </div>
         </Footer>

@@ -78,3 +78,22 @@ export const AnswersContainer = styled.div<AnswerContainerProps>`
     overflow: auto;
   }
 `;
+
+export const BestAnswerTemplate = styled.div`
+  background: var(--color-primary-light);
+  border-radius: 1.5rem;
+  margin: 0.5rem;
+
+  > h3 {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    border-bottom: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    padding: 0.4rem;
+    width: 90%;
+    margin: 0.7rem auto;
+  }
+`;

@@ -8,21 +8,22 @@ type ButtonIconProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 
   visible?: boolean;
   color?: string;
+  selected?: boolean;
 };
 
 const ButtonIcon = ({
   icon: Icon,
   visible,
   color,
-  onClick,
+  selected,
   ...rest
 }: ButtonIconProps) => {
   return (
     <Container
       type="button"
       visible={visible}
-      onClick={onClick}
       color={color}
+      selected={selected}
       {...rest}
     >
       <Icon />

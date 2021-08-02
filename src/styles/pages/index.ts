@@ -377,6 +377,7 @@ export const SectionEducator = styled.section`
     article {
       width: 100%;
       margin: 0 0.5rem;
+      padding-left: 0;
     }
     svg {
       display: none;
@@ -448,14 +449,26 @@ export const Footer = styled.footer`
   ul {
     list-style-type: none;
     margin: 0 1rem;
+    display: flex;
+
+    li {
+      margin: 0 1rem;
+    }
 
     li a {
       text-decoration: none;
       color: var(--color-text-complement);
+
+      margin-right: 0.6rem;
+
+      & + a {
+        margin-right: 0.8rem;
+      }
     }
 
-    li + li {
-      margin-top: 1rem;
+    li:last-of-type {
+      display: flex;
+      justify-content: space-between;
     }
   }
 
@@ -466,6 +479,16 @@ export const Footer = styled.footer`
 
     ul {
       margin-top: 1rem;
+      display: block;
+
+      li:last-of-type {
+        display: flex;
+        justify-content: end;
+      }
+
+      li + li {
+        margin-top: 1.5rem;
+      }
     }
 
     svg {

@@ -26,7 +26,7 @@ export async function showQuestion(id: string): Promise<Question> {
   return (await api.get<Question>(`questions/${id}`)).data;
 }
 
-export async function deleteQuestion(id: string): Promise<void> {
+export async function deleteQuestion(id: string): Promise<boolean> {
   return api.delete(`questions/${id}`);
 }
 
@@ -47,7 +47,7 @@ export async function getAnswers(
 export async function deleteAnswer(
   id: string,
   answerId: string,
-): Promise<void> {
+): Promise<boolean> {
   return api.delete(`questions/${id}/answers/${answerId}`);
 }
 
@@ -56,4 +56,16 @@ export async function complaint(
   data: ComplaintQuestion,
 ): Promise<void> {
   return api.post(`questions/${id}/complaint`, data);
+}
+
+export async function evaluation(
+  id: string,
+  answerId: string,
+  data: { type: string },
+): Promise<void> {
+  return api.post(`questions/${id}/answers/${answerId}/evaluations`, data);
+}
+
+export async function getBestAnswer(id: string): Promise<Answer> {
+  return (await api.get(`questions/${id}/answers/best`)).data;
 }

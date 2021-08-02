@@ -2,6 +2,7 @@ import { useAuth, User } from '@/shared/hooks/auth';
 import { FilterToGet } from '@/shared/services/IFilterDTO';
 import { useRouter } from 'next/router';
 import { createContext, useCallback, useContext, useState } from 'react';
+import { ANSWERS_EVALUATIONS } from '../consts/AnswersEvaluations';
 import * as questionsServices from '../services/questionsServices';
 
 export interface Answer {
@@ -12,6 +13,11 @@ export interface Answer {
   elapsedTime: string;
   createdAt: Date;
   updatedAt: Date;
+  evaluations: {
+    id: string;
+    type: ANSWERS_EVALUATIONS;
+    answerId: string;
+  }[];
 }
 
 export interface CreateAnswer {

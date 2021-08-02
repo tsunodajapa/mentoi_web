@@ -15,6 +15,7 @@ import { MdDelete } from 'react-icons/md';
 import { useToast } from '@/shared/hooks/toast';
 
 import { ModalContainer } from '@/shared/components/Modal/styles';
+import { useEffect } from 'react';
 import { EvaluateContainer } from './styles';
 import {
   Content,
@@ -23,6 +24,8 @@ import {
 } from '../QuestionBox/styles';
 import { Answer, useAnswer } from '../../hooks/answer';
 import ModalComplaint from '../ModalComplaint';
+import { evaluation } from '../../services/questionsServices';
+import { ANSWERS_EVALUATIONS } from '../../consts/AnswersEvaluations';
 
 interface AnswerTemplateProps {
   answer: Answer;
@@ -33,7 +36,17 @@ const AnswerTemplate = ({ answer }: AnswerTemplateProps) => {
   const { addToast } = useToast();
   const { removeAnswer } = useAnswer();
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [
+    selectedEvaluation,
+    setSelectedEvaluation,
+  ] = useState<ANSWERS_EVALUATIONS>(null);
   const [isOpenComplaintModal, setIsOpenComplaintModal] = useState(false);
+
+  useEffect(() => {
+    if (answer.evaluations && answer.evaluations.length) {
+      setSelectedEvaluation(answer.evaluations[0].type);
+    }
+  }, [answer]);
 
   function handleToggleModal() {
     setIsOpenModal(!isOpenModal);
@@ -59,6 +72,21 @@ const AnswerTemplate = ({ answer }: AnswerTemplateProps) => {
         description:
           'Ocorreu um erro ao tentar apagar a resposta, tente novamente.',
       });
+    }
+  }
+
+  async function handleEvaluation(type: ANSWERS_EVALUATIONS) {
+    try {
+      setSelectedEvaluation(type);
+      await evaluation(answer.questionId, answer.id, { type });
+    } catch (error) {
+      addToast({
+        type: 'error',
+        title: 'Ocorreu um erro',
+        description:
+          'Ocorreu um erro ao avaliar essa resposta. Tente novamente',
+      });
+      setSelectedEvaluation(null);
     }
   }
 
@@ -106,9 +134,27 @@ const AnswerTemplate = ({ answer }: AnswerTemplateProps) => {
 
         <div>
           <EvaluateContainer>
-            <ButtonIcon icon={RiEmotionLine} color="--color-success" />
-            <ButtonIcon icon={RiEmotionHappyLine} color="--color-warning" />
-            <ButtonIcon icon={RiEmotionNormalLine} color="--color-error" />
+            <ButtonIcon
+              icon={RiEmotionLine}
+              color="--color-success"
+              title="Perfeito"
+              selected={selectedEvaluation === ANSWERS_EVALUATIONS.PERFECT}
+              onClick={() => handleEvaluation(ANSWERS_EVALUATIONS.PERFECT)}
+            />
+            <ButtonIcon
+              icon={RiEmotionHappyLine}
+              color="--color-tertiary"
+              title="Bom"
+              selected={selectedEvaluation === ANSWERS_EVALUATIONS.GOOD}
+              onClick={() => handleEvaluation(ANSWERS_EVALUATIONS.GOOD)}
+            />
+            <ButtonIcon
+              icon={RiEmotionNormalLine}
+              color="--color-error"
+              title="Ruim"
+              selected={selectedEvaluation === ANSWERS_EVALUATIONS.BAD}
+              onClick={() => handleEvaluation(ANSWERS_EVALUATIONS.BAD)}
+            />
             <span>Avalie a resposta</span>
           </EvaluateContainer>
 

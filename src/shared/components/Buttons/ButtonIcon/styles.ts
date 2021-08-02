@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 interface ContainerProps {
   visible?: boolean;
   color?: string;
+  selected?: boolean;
 }
 
 export const Container = styled.button<ContainerProps>`
@@ -25,11 +26,23 @@ export const Container = styled.button<ContainerProps>`
     ${({ color }) =>
       css`
         color: var(${color || '--color-text'});
+        transition: transform 0.7s ease-in-out;
+        &:hover {
+          transform: rotate(360deg);
+          transition: all 0.3s ease-in-out 0s;
+        }
+      `}
+
+    ${({ selected, color }) =>
+      selected &&
+      css`
+        border: 1px dotted var(${color || '--color-text'});
+        border-radius: 50%;
       `}
 
     width: 4.6rem;
     height: 2.8rem;
-    transition: background-color 0.2s linear;
+    transition: all 0.3s ease-in-out 0s;
   }
 
   &:disabled > svg {
