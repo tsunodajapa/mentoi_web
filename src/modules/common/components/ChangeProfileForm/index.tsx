@@ -97,8 +97,6 @@ const ChangeProfileForm = () => {
         title,
         description,
       });
-
-      // setActualStep(1);
     }
   }
 

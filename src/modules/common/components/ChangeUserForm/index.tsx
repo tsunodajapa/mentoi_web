@@ -25,9 +25,8 @@ import ChangePasswordModal from '../ChangePasswordModal';
 import { Container, Line, SecuritySection } from './styles';
 
 const ChangeUserForm = () => {
-  const { user, updateUser } = useAuth();
+  const { user, updateUser, signOut } = useAuth();
   const { addToast } = useToast();
-  const router = useRouter();
 
   const formRef = useRef<FormHandles>(null);
   const [initialData, setInitialData] = useState({});
@@ -127,7 +126,7 @@ const ChangeUserForm = () => {
         title: 'Usuário excluído com sucesso!',
       });
 
-      router.push('/');
+      signOut();
     } catch (error) {
       addToast({
         type: 'error',

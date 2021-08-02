@@ -100,10 +100,10 @@ export const Container = styled.header<HeaderProps>`
       }
 
       > div {
-        width: 30%;
         display: flex;
         justify-content: flex-end;
         align-items: center;
+        width: auto;
       }
     `}
 
