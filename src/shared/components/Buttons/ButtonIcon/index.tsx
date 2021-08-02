@@ -9,6 +9,7 @@ type ButtonIconProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   visible?: boolean;
   color?: string;
   selected?: boolean;
+  hasTransitionRotate?: boolean;
 };
 
 const ButtonIcon = ({
@@ -16,6 +17,7 @@ const ButtonIcon = ({
   visible,
   color,
   selected,
+  hasTransitionRotate,
   ...rest
 }: ButtonIconProps) => {
   return (
@@ -24,6 +26,7 @@ const ButtonIcon = ({
       visible={visible}
       color={color}
       selected={selected}
+      hasTransitionRotate={hasTransitionRotate}
       {...rest}
     >
       <Icon />

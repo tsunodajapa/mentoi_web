@@ -140,6 +140,7 @@ const AnswerTemplate = ({ answer }: AnswerTemplateProps) => {
               title="Perfeito"
               selected={selectedEvaluation === ANSWERS_EVALUATIONS.PERFECT}
               onClick={() => handleEvaluation(ANSWERS_EVALUATIONS.PERFECT)}
+              hasTransitionRotate
             />
             <ButtonIcon
               icon={RiEmotionHappyLine}
@@ -147,6 +148,7 @@ const AnswerTemplate = ({ answer }: AnswerTemplateProps) => {
               title="Bom"
               selected={selectedEvaluation === ANSWERS_EVALUATIONS.GOOD}
               onClick={() => handleEvaluation(ANSWERS_EVALUATIONS.GOOD)}
+              hasTransitionRotate
             />
             <ButtonIcon
               icon={RiEmotionNormalLine}
@@ -154,6 +156,7 @@ const AnswerTemplate = ({ answer }: AnswerTemplateProps) => {
               title="Ruim"
               selected={selectedEvaluation === ANSWERS_EVALUATIONS.BAD}
               onClick={() => handleEvaluation(ANSWERS_EVALUATIONS.BAD)}
+              hasTransitionRotate
             />
             <span>Avalie a resposta</span>
           </EvaluateContainer>

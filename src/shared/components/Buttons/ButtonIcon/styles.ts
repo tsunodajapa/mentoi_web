@@ -4,6 +4,7 @@ interface ContainerProps {
   visible?: boolean;
   color?: string;
   selected?: boolean;
+  hasTransitionRotate?: boolean;
 }
 
 export const Container = styled.button<ContainerProps>`
@@ -28,8 +29,15 @@ export const Container = styled.button<ContainerProps>`
         color: var(${color || '--color-text'});
         transition: transform 0.7s ease-in-out;
         &:hover {
-          transform: rotate(360deg);
           transition: all 0.3s ease-in-out 0s;
+        }
+      `}
+
+    ${({ hasTransitionRotate }) =>
+      hasTransitionRotate &&
+      css`
+        &:hover {
+          transform: rotate(360deg);
         }
       `}
 
