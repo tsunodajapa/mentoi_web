@@ -65,6 +65,11 @@ const TextArea = ({
       name: fieldName,
       ref: textAreaRef.current,
       path: 'value',
+      clearValue: () => {
+        setTextAreaHeight('auto');
+        setParentHeight('auto');
+        textAreaRef.current.value = '';
+      },
     });
   }, [fieldName, registerField]);
 

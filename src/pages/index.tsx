@@ -282,6 +282,15 @@ const Main = () => {
               </li>
               <li>
                 <a
+                  href="https://api.whatsapp.com/send?phone=5535984127102&text=Ol%C3%A1%2C%20Estou%20com%20d%C3%BAvida%20sobre..."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Contato
+                </a>
+              </li>
+              <li>
+                <a
                   href="https://www.facebook.com/mentoiApp"
                   target="_blank"
                   rel="noopener noreferrer"

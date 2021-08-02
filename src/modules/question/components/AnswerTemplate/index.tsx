@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Button from '@/shared/components/Buttons/Button';
 import ButtonIcon from '@/shared/components/Buttons/ButtonIcon';
 import {
@@ -19,6 +19,7 @@ import { useEffect } from 'react';
 import { EvaluateContainer } from './styles';
 import {
   Content,
+  Description,
   Header as HeaderAnswer,
   WindowSelectStyles,
 } from '../QuestionBox/styles';
@@ -34,6 +35,7 @@ interface AnswerTemplateProps {
 const AnswerTemplate = ({ answer }: AnswerTemplateProps) => {
   const { user: userLogged } = useAuth();
   const { addToast } = useToast();
+  const descriptionRef = useRef(null);
   const { removeAnswer } = useAnswer();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [
@@ -41,6 +43,8 @@ const AnswerTemplate = ({ answer }: AnswerTemplateProps) => {
     setSelectedEvaluation,
   ] = useState<ANSWERS_EVALUATIONS>(null);
   const [isOpenComplaintModal, setIsOpenComplaintModal] = useState(false);
+  const [isTextEllipsis, setIsTextEllipsis] = useState(true);
+  const [textNeedEllipsis, setTextNeedEllipsis] = useState(false);
 
   useEffect(() => {
     if (answer.evaluations && answer.evaluations.length) {
@@ -48,8 +52,21 @@ const AnswerTemplate = ({ answer }: AnswerTemplateProps) => {
     }
   }, [answer]);
 
+  useEffect(() => {
+    if (descriptionRef.current) {
+      setTextNeedEllipsis(
+        descriptionRef.current.offsetHeight <
+          descriptionRef.current.scrollHeight,
+      );
+    }
+  }, []);
+
   function handleToggleModal() {
     setIsOpenModal(!isOpenModal);
+  }
+
+  function handleToggleSeeDescription() {
+    setIsTextEllipsis(oldState => !oldState);
   }
 
   function handleToggleComplaintModal() {
@@ -130,7 +147,18 @@ const AnswerTemplate = ({ answer }: AnswerTemplateProps) => {
             )}
         </HeaderAnswer>
 
-        <span>{answer.text}</span>
+        <Description
+          ref={descriptionRef}
+          isTextEllipsis={isTextEllipsis}
+          textNeedEllipsis={textNeedEllipsis}
+        >
+          <p>{answer.text}</p>
+          {textNeedEllipsis && (
+            <button type="button" onClick={handleToggleSeeDescription}>
+              {isTextEllipsis ? 'Ver mais' : 'Ver menos'}
+            </button>
+          )}
+        </Description>
 
         <div>
           <EvaluateContainer>
