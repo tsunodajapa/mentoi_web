@@ -93,6 +93,14 @@ const AnswerTemplate = ({ answer }: AnswerTemplateProps) => {
   }
 
   async function handleEvaluation(type: ANSWERS_EVALUATIONS) {
+    if (!userLogged) {
+      addToast({
+        type: 'error',
+        title: 'Usuário não autenticado.',
+        description: 'Cadastre-se ou realize login para avaliar uma resposta.',
+      });
+    }
+
     try {
       setSelectedEvaluation(type);
       await evaluation(answer.questionId, answer.id, { type });
@@ -101,7 +109,7 @@ const AnswerTemplate = ({ answer }: AnswerTemplateProps) => {
         type: 'error',
         title: 'Ocorreu um erro',
         description:
-          'Ocorreu um erro ao avaliar essa resposta. Tente novamente',
+          'Ocorreu um erro ao avaliar essa resposta. Tente novamente.',
       });
       setSelectedEvaluation(null);
     }
