@@ -99,6 +99,7 @@ const AnswerTemplate = ({ answer }: AnswerTemplateProps) => {
         title: 'Usuário não autenticado.',
         description: 'Cadastre-se ou realize login para avaliar uma resposta.',
       });
+      return;
     }
 
     try {
