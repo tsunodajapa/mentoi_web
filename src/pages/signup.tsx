@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import Link from 'next/link';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import Image from 'next/image';
@@ -12,7 +13,14 @@ import Button from '@/shared/components/Buttons/Button';
 import { Input, Radio, Select } from '@/shared/components/FormElements';
 import Modal from '@/shared/components/Modal';
 
-import { Container, Left, Right, Genero, Footer } from '@/styles/pages/signup';
+import {
+  Container,
+  Left,
+  Right,
+  Genero,
+  Footer,
+  ContractSpan,
+} from '@/styles/pages/signup';
 
 import Logo from '@/assets/logo_mentoi_white.svg';
 import LogoWithColor from '@/assets/logo_mentoi_two_line.svg';
@@ -59,15 +67,19 @@ const SignUp = () => {
         delete data.dateBirth;
       }
 
-      await createUser(data);
+      if (actualStep === 2) {
+        await createUser(data);
 
-      addToast({
-        type: 'success',
-        title: 'Cadastro realizado!',
-        description: 'Você será redirecionado para nossa página inicial!',
-      });
+        addToast({
+          type: 'success',
+          title: 'Cadastro realizado!',
+          description: 'Você será redirecionado para nossa página inicial!',
+        });
 
-      router.push('/feed');
+        router.push('/feed');
+      } else {
+        setActualStep(2);
+      }
     } catch (error) {
       let description: string;
       let title: string;
@@ -216,8 +228,10 @@ const SignUp = () => {
                   multiSelect
                 />
 
-                {/* <input type="checkbox" name="" id="termos" />
-                <label htmlFor="termos">Concordo com os termos de uso</label> */}
+                <ContractSpan>
+                  Ao efetuar o cadastro você declara que leu e aceitou os
+                  <Link href="/contract">termos de uso.</Link>
+                </ContractSpan>
               </div>
             </div>
             <Footer>
@@ -243,18 +257,18 @@ const SignUp = () => {
                       onClick={handleToggleModal}
                     />
 
-                    <Button
-                      type="button"
-                      text="Próximo"
-                      onClick={handleChangeStep}
-                    />
+                    <Button type="submit" text="Próximo" />
                   </>
                 )}
               </div>
             </Footer>
           </Form>
 
-          <a>
+          <a
+            href="https://api.whatsapp.com/send?phone=5535984127102&text=Ol%C3%A1%2C%20Estou%20com%20d%C3%BAvida%20sobre..."
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Precisa de <b>AJUDA?</b>
           </a>
         </Right>

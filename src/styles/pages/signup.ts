@@ -189,16 +189,18 @@ export const Right = styled.div<StepProps>`
     }
   }
 
-  a {
+  > a {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    flex: 1;
+    margin-top: auto;
 
     color: var(--color-text);
     margin-bottom: 2rem;
     width: 100%;
     text-align: center;
+
+    text-decoration: none;
 
     b {
       margin-left: 0.4rem;
@@ -223,6 +225,15 @@ export const Right = styled.div<StepProps>`
       display: initial;
       margin-top: 0.5rem;
     }
+  }
+`;
+
+export const ContractSpan = styled.span`
+  font-size: 1.2rem;
+
+  a {
+    color: var(--color-primary);
+    margin-left: 0.4rem;
   }
 `;
 

@@ -4,7 +4,7 @@ import Header from '@/modules/logouted/components/Header';
 
 import LogoMentoi from '@/assets/icon_mentoi.svg';
 
-const AboutUs = () => {
+const PrivacyPolicy = () => {
   return (
     <Container>
       <Header />
@@ -330,4 +330,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default PrivacyPolicy;

@@ -256,7 +256,7 @@ const Main = () => {
             </p>
             <p>
               &quot;Se a educação sozinha não transforma a sociedade, sem ela
-              tampouco a sociedade muda.&quot;
+              tampouco a sociedade muda.&quot; FREIRE, Paulo
             </p>
           </article>
         </SectionEducator>
