@@ -21,9 +21,9 @@ export const Main = styled(MainDefault)`
     width: 30%;
     margin-top: 15px;
 
-    > section:last-child {
+    > aside:last-child {
       position: fixed;
-      width: min(22rem, 20%);
+      width: min(25rem, 20%);
     }
   }
 

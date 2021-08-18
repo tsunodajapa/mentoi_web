@@ -18,6 +18,8 @@ import FilesPreview from '@/shared/components/FilesPreview';
 
 import { useEffect } from 'react';
 import { ModalContainer } from '@/shared/components/Modal/styles';
+import { FaCheckCircle } from 'react-icons/fa';
+import UserDisplayName from '@/modules/common/components/UserDisplayName';
 import * as questionsServices from '../../services/questionsServices';
 
 import {
@@ -149,14 +151,13 @@ const QuestionBox = ({
                 />
               </div>
 
-              <div>
-                <span>
-                  {user
-                    ? user.displayName || user.name
-                    : 'Usuário não cadastrado'}
-                </span>
-                <span>@{user && user.nickName}</span>
-              </div>
+              <UserDisplayName
+                hasUser={!!user}
+                name={user.name}
+                displayName={user.displayName}
+                nickName={user.nickName}
+                type={user.type}
+              />
             </div>
             <span>{elapsedTime}</span>
 

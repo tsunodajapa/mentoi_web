@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { useAuth } from '@/shared/hooks/auth';
 import Modal from '@/shared/components/Modal';
 import UserImage from '@/modules/common/components/UserImage';
+import { FaCheckCircle } from 'react-icons/fa';
+import UserDisplayName from '@/modules/common/components/UserDisplayName';
 import { Container, ModalHeader } from './styles';
 import MakeQuestionBox from '..';
 
@@ -43,10 +45,14 @@ const MakeQuestionWeb = () => {
                 gender={user.gender}
               />
             </div>
-            <div>
-              <strong>{user.displayName || user.name}</strong>
-              <span>@{user.nickName}</span>
-            </div>
+
+            <UserDisplayName
+              hasUser={!!user}
+              name={user.name}
+              displayName={user.displayName}
+              nickName={user.nickName}
+              type={user.type}
+            />
           </ModalHeader>
         )}
         <MakeQuestionBox />

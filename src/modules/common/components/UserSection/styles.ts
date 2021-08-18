@@ -27,16 +27,6 @@ export const Profile = styled.div`
       min-height: 70% !important;
     }
   }
-
-  strong {
-    font-weight: bold;
-    font-size: 2rem;
-  }
-
-  span {
-    color: var(--color-text-complement);
-    font-size: 1.4rem;
-  }
 `;
 
 export const Row = styled.div`

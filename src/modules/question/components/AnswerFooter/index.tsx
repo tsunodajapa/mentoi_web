@@ -27,7 +27,7 @@ const AnswerFooter = () => {
   const { createAnswer } = useAnswer();
 
   const useCanAnswerQuestion = usePermission({
-    permissions: ['MENTOI'],
+    permissions: ['MENTOI', 'ADMIN'],
   });
 
   async function handleSubmitAnswer(data: { answer: string }) {

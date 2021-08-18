@@ -156,22 +156,6 @@ export const Header = styled.div`
       width: 4.5rem;
       height: 4.5rem;
     }
-
-    > div:nth-child(2) {
-      display: flex;
-      flex-direction: column;
-      margin-left: 1.5rem;
-
-      span:nth-child(1) {
-        font-weight: 700;
-        font-size: 1.8rem;
-      }
-
-      span:nth-child(2) {
-        color: var(--color-text-complement);
-        font-size: 1.4rem;
-      }
-    }
   }
 
   align-items: flex-start;

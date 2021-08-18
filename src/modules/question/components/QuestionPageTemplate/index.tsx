@@ -82,8 +82,10 @@ const QuestionPageTemplate = ({ question }: QuestionPageTemplateProps) => {
           )}
         </SectionBordered>
         <div>
-          <UserSection />
-          {!user && <FiltersBox />}
+          <aside>
+            <UserSection />
+            {!user && <FiltersBox />}
+          </aside>
         </div>
       </Main>
     </>

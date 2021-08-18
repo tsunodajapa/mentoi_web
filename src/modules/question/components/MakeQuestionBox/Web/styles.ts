@@ -41,14 +41,4 @@ export const ModalHeader = styled.div`
     display: flex;
     flex-direction: column;
   }
-
-  strong {
-    font-weight: bold;
-    font-size: 1.6rem;
-  }
-
-  span {
-    color: var(--color-text-complement);
-    font-size: 1.4rem;
-  }
 `;

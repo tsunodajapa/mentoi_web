@@ -21,6 +21,7 @@ export interface User {
   }[];
   avatarUrl: string;
   gender: 'MALE' | 'FEMALE' | 'OTHER';
+  type: string;
 }
 
 export interface CreateUserData {

@@ -16,6 +16,8 @@ import { useToast } from '@/shared/hooks/toast';
 
 import { ModalContainer } from '@/shared/components/Modal/styles';
 import { useEffect } from 'react';
+import { FaCheckCircle } from 'react-icons/fa';
+import UserDisplayName from '@/modules/common/components/UserDisplayName';
 import { EvaluateContainer } from './styles';
 import {
   Content,
@@ -129,14 +131,13 @@ const AnswerTemplate = ({ answer }: AnswerTemplateProps) => {
                 gender={answer.user ? answer.user.gender : 'OTHER'}
               />
             </div>
-            <div>
-              <span>
-                {answer.user
-                  ? answer.user.displayName || answer.user.name
-                  : 'Usuário não cadastrado'}
-              </span>
-              <span>@{answer.user && answer.user.nickName}</span>
-            </div>
+            <UserDisplayName
+              hasUser={!!answer.user}
+              name={answer.user.name}
+              displayName={answer.user.displayName}
+              nickName={answer.user.nickName}
+              type={answer.user.type}
+            />
           </div>
 
           <span>{answer.elapsedTime}</span>
