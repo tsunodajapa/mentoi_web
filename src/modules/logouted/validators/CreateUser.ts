@@ -5,6 +5,7 @@ export const CreateUserValidator = (birthDateMax: Date) =>
     name: Yup.string().trim('Nome Obrigatório').required('Nome Obrigatório'),
     nickName: Yup.string()
       .min(5, 'No mínimo 5 digitos')
+      .transform((curr, origin) => origin.trim())
       .matches(/^\S*$/u, 'Nick name não pode conter espaços')
       .required('Username Obrigatório'),
     dateBirth: Yup.date()
