@@ -29,7 +29,7 @@ const Toast = ({ message }: ToastProps) => {
     if (isRemove) {
       timer = setTimeout(() => {
         removeToast(message.id);
-      }, 700);
+      }, message.time);
     } else {
       timer = setTimeout(() => {
         setIsRemove(true);

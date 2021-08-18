@@ -8,10 +8,11 @@ export interface ToastMessage {
   type?: 'success' | 'error' | 'info';
   title: string;
   description?: string;
+  time: number;
 }
 
 interface ToastContextData {
-  addToast(message: Omit<ToastMessage, 'id'>): void;
+  addToast(message: Omit<ToastMessage, 'id' | 'time'>, time?: number): void;
   removeToast(id: string): void;
 }
 
@@ -20,7 +21,7 @@ const ToastContext = createContext<ToastContextData>({} as ToastContextData);
 const ToastProvider: React.FC = ({ children }) => {
   const [messages, setMessages] = useState<ToastMessage[]>([]);
   const addToast = useCallback(
-    ({ type, title, description }: Omit<ToastMessage, 'id'>) => {
+    ({ type, title, description }: Omit<ToastMessage, 'id'>, time = 700) => {
       const id = uuid();
 
       const toast = {
@@ -28,6 +29,7 @@ const ToastProvider: React.FC = ({ children }) => {
         type,
         title,
         description,
+        time,
       };
 
       setMessages(state => [...state, toast]);

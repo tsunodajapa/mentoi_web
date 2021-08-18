@@ -33,9 +33,10 @@ import { useToast } from '@/shared/hooks/toast';
 import LoginModal from '@/modules/logouted/components/LoginModal';
 
 import { CreateUserValidator } from '@/modules/logouted/validators/CreateUser';
-import { CreateUserData, useAuth } from '@/shared/hooks/auth';
+import { CreateUserData } from '@/shared/hooks/auth';
 import SEO from '@/shared/components/SEO';
 import subtractYears from '@/shared/utils/subtractYears';
+import * as authServices from '@/modules/logouted/services/authServices';
 
 const SignUp = () => {
   const formRef = useRef<FormHandles>(null);
@@ -44,7 +45,6 @@ const SignUp = () => {
 
   const router = useRouter();
   const { addToast } = useToast();
-  const { createUser } = useAuth();
 
   function handleToggleModal() {
     setIsOpenModal(!isOpenModal);
@@ -68,15 +68,19 @@ const SignUp = () => {
       }
 
       if (actualStep === 2) {
-        await createUser(data);
+        await authServices.createUser(data);
 
-        addToast({
-          type: 'success',
-          title: 'Cadastro realizado!',
-          description: 'Você será redirecionado para nossa página inicial!',
-        });
+        addToast(
+          {
+            type: 'success',
+            title: 'Estamos quase lá!',
+            description:
+              'Verifique sua caixa de entrada, para ativar sua conta!',
+          },
+          12000,
+        );
 
-        router.push('/feed');
+        router.push('/');
       } else {
         setActualStep(2);
       }

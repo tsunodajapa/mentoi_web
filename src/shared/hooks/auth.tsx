@@ -49,7 +49,6 @@ interface AuthContextData {
   user: User;
   loading: boolean;
   signIn(credentials: SignInCredentials): Promise<void>;
-  createUser(data: CreateUserData): Promise<void>;
   signOut(): void;
   updateUser(user: User): void;
 }
@@ -89,12 +88,6 @@ export const AuthProvider: React.FC = ({ children }) => {
     setUser(userResponse);
   };
 
-  const createUser = async (data: CreateUserData) => {
-    const { token, user: userResponse } = await authServices.createUser(data);
-
-    setAuthState(token, userResponse);
-  };
-
   const signIn = async ({ email, password }) => {
     const { token, user: userResponse } = await authServices.createSession({
       email,
@@ -118,7 +111,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, loading, createUser, signIn, signOut, updateUser }}
+      value={{ user, loading, signIn, signOut, updateUser }}
     >
       {children}
     </AuthContext.Provider>
