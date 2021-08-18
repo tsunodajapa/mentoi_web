@@ -15,6 +15,10 @@ export const Container = styled.div<StepProps>`
   > div:first-child {
     width: 75%;
     display: initial;
+
+    > section:first-child {
+      margin-bottom: 2rem;
+    }
   }
 
   > div:nth-child(4) {
@@ -31,16 +35,18 @@ export const Container = styled.div<StepProps>`
     padding-top: 2rem;
 
     @media (min-width: 475px) {
-      section {
+      > aside {
         position: fixed;
-        width: min(22rem, 20%);
+        width: min(25rem, 20%);
+
+        > div {
+          margin-bottom: 15px;
+        }
       }
     }
   }
 
   @media (max-width: 475px) {
-    /* padding-top: 5rem; */
-
     --selected-item: ${({ step }) => step};
     --total-items: 5;
 

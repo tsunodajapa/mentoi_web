@@ -39,7 +39,7 @@ const Toast = ({ message }: ToastProps) => {
     return () => {
       clearTimeout(timer);
     };
-  }, [removeToast, isRemove, message.id]);
+  }, [removeToast, isRemove, message.id, message.time]);
 
   return (
     <Container

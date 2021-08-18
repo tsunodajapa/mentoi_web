@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.section`
+export const Container = styled.div`
   background: transparent;
   border: 0.2rem solid var(--color-primary-light);
   border-radius: 1.5rem;

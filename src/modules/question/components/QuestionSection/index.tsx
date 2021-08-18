@@ -1,12 +1,11 @@
 import { useEffect } from 'react';
 
-import subjects from '@/data/subjects';
-
-import Carousel from '@/shared/components/Carousel';
 import MakeQuestionMobile from '@/modules/question/components/MakeQuestionBox/Mobile';
 import OnboardingTemplate from '@/shared/components/Onboarding/OnboardingTemplate';
 import QuestionBox from '@/modules/question/components/QuestionBox';
-import SectionBordered from '@/shared/components/SectionBordered';
+import SectionBordered, {
+  BorderTypes,
+} from '@/shared/components/SectionBordered';
 import InfiniteScroll from '@/shared/components/InfiniteScroll';
 
 import { useAuth } from '@/shared/hooks/auth';
@@ -42,7 +41,7 @@ const QuestionSection = ({ step, questions }: QuestionSectionProps) => {
       <div>
         {user && (
           <>
-            <SectionBordered>
+            <SectionBordered border={BorderTypes.BOTTOM}>
               <OnboardingTemplate
                 id="make-question-onboarding-template-step-3"
                 title="Faça uma pergunta"
@@ -51,16 +50,9 @@ const QuestionSection = ({ step, questions }: QuestionSectionProps) => {
                 <MakeQuestionWeb />
               </OnboardingTemplate>
             </SectionBordered>
-            <OnboardingTemplate
-              id="filters-question-onboarding-template-step-4"
-              title="Conteúdo"
-              description="Aqui você pode filtrar as perguntas do feed por conteúdo."
-            >
-              <Carousel data={subjects} onlyWeb />
-            </OnboardingTemplate>
           </>
         )}
-        <SectionBordered>
+        <SectionBordered border={BorderTypes.FULL}>
           {questionsByState &&
             questionsByState.map((question, index) => {
               if (!index) {
@@ -103,8 +95,10 @@ const QuestionSection = ({ step, questions }: QuestionSectionProps) => {
       <MakeQuestionMobile />
       <div>EM BREVE</div>
       <div>
-        <UserSection />
-        {!user && <FiltersBox />}
+        <aside>
+          <UserSection />
+          <FiltersBox />
+        </aside>
       </div>
     </Container>
   );
