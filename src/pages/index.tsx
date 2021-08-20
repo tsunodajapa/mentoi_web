@@ -197,7 +197,7 @@ const Main = () => {
           <h2>COMO FUNCIONA</h2>
 
           <article>
-            <Carousel arrowVisible={false}>
+            <Carousel>
               <Card>
                 <IconHands />
                 <h3>Dúvida</h3>
