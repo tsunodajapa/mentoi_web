@@ -16,13 +16,18 @@ const translateOpacityAnimationFrom = keyframes`
 `;
 
 const translateOpacityAnimationLeave = keyframes`
-  from {
+  0% {
     display: block;
     opacity: 1;
   }
-  to {
+  20% {
     opacity: 0;
-    display: none;
+  }
+  100% {
+    opacity: 0;
+    max-height: 0;
+    max-width: 0;
+    padding: 0;
   }
 `;
 
@@ -50,7 +55,7 @@ export const Container = styled.div<ContainerProps>`
   ${({ isAnimationLeave }) =>
     isAnimationLeave &&
     css`
-      animation: ${translateOpacityAnimationLeave} forwards 0.8s;
+      animation: ${translateOpacityAnimationLeave} forwards 3s;
     `}
 
   .cookieTitle a {
