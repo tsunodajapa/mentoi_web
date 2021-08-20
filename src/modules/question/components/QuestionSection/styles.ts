@@ -66,6 +66,12 @@ export const Container = styled.div<StepProps>`
       max-height: calc(100vh - 8rem);
       overflow: auto;
       padding-bottom: 2rem;
+
+      > aside {
+        > div:last-child {
+          display: none;
+        }
+      }
     }
   }
 `;

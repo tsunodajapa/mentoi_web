@@ -1,15 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-interface ContainerProps {
-  onlyWeb: boolean;
-}
-
-interface ButtonOptionProps {
-  color?: string;
-  selected: boolean;
-}
-
-export const Container = styled.div<ContainerProps>`
+export const Container = styled.div`
   display: flex;
   width: 100%;
   margin: 1rem 0;
@@ -31,67 +22,5 @@ export const Container = styled.div<ContainerProps>`
         display: none;
       }
     }
-  }
-
-  > button {
-    width: 2.5rem;
-  }
-
-  ${({ onlyWeb }) =>
-    onlyWeb &&
-    css`
-      @media (max-width: 475px) {
-        display: none;
-      }
-    `}
-`;
-
-export const ButtonOption = styled.button<ButtonOptionProps>`
-  background-color: transparent;
-  width: 14rem;
-  min-width: 14rem;
-
-  padding: 0.5rem 1.5rem;
-  margin: 0 1.6rem;
-
-  border: 0.2rem solid var(--color-primary);
-  color: var(--color-primary);
-  font-weight: 700;
-
-  &:hover {
-    background: var(--color-primary);
-    color: var(--color-text-in-primary);
-  }
-
-  ${({ color }) =>
-    color &&
-    css`
-      border-color: ${color};
-      color: ${color};
-
-      &:hover {
-        background: ${color};
-      }
-    `}
-
-  ${({ color, selected }) =>
-    selected &&
-    css`
-      border-color: ${color || css`var(--color-primary)`};
-      background-color: ${color || css`var(--color-primary)`};
-      color: var(--color-text-in-primary);
-    `}
-
-
-  border-radius: 1rem;
-  white-space: nowrap;
-  scroll-snap-align: start;
-  text-align: center;
-  text-overflow: ellipsis;
-  overflow: hidden;
-
-  &:nth-child(1) {
-    width: 17rem;
-    min-width: 17rem;
   }
 `;
