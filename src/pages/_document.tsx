@@ -70,27 +70,8 @@ export default class MyDocument extends Document {
           <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#64b447" />
           <meta name="msapplication-TileColor" content="#ffffff" />
 
-          {/* <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async />
-            
-          <script 
-            dangerouslySetInnerHTML={{
-              __html: `  
-                window.OneSignal = window.OneSignal || [];
-                OneSignal.push(function() {
-                  OneSignal.init({
-                    appId: "18825cdf-5ebb-4fca-9418-c8e526aa108d",
-                    safari_web_id: "web.onesignal.auto.5f80e2fb-b063-4ecb-90f7-0c7e45de9678",
-                    notifyButton: {
-                      enable: true,
-                    },
-                  });
-                });`
-            }}
-          /> */}
-          
-         
-
-          <script charSet="UTF-8" src="//web.webpushs.com/js/push/41f453f02544f42b84fb5a0d2a49d2ed_1.js" async></script>
+          <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async />
+      
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
             href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,500&display=swap"
