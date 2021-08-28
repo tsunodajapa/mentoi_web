@@ -70,7 +70,7 @@ export default class MyDocument extends Document {
           <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#64b447" />
           <meta name="msapplication-TileColor" content="#ffffff" />
 
-          <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async />
+          {/* <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async />
             
           <script 
             dangerouslySetInnerHTML={{
@@ -86,23 +86,11 @@ export default class MyDocument extends Document {
                   });
                 });`
             }}
-          />
-          <script 
-            dangerouslySetInnerHTML={{
-              __html: `var STONLY_WID = "88513ee3-e2c1-11eb-8dbf-062882f67cfe";`
-            }}
-          />
+          /> */}
           
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `!function(s,t,o,n,l,y,w,g){s.StonlyWidget||((w=s.StonlyWidget=function(){
-                w._api?w._api.apply(w,arguments):w.queue.push(arguments)}).queue=[],(y=t.createElement(o)).async=!0,
-                (g=new XMLHttpRequest).open("GET",n+"version?v="+Date.now(),!0),g.onreadystatechange=function(){
-                4===g.readyState&&(y.src=n+"stonly-widget.js?v="+(200===g.status?g.responseText:Date.now()),
-                (l=t.getElementsByTagName(o)[0]).parentNode.insertBefore(y,l))},g.send())
-                }(window,document,"script","https://stonly.com/js/widget/v2/");`
-            }}
-          />
+         
+
+          <script charSet="UTF-8" src="//web.webpushs.com/js/push/41f453f02544f42b84fb5a0d2a49d2ed_1.js" async></script>
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
             href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,500&display=swap"
