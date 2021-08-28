@@ -32,9 +32,6 @@ const Feed = ({ questions }) => {
           appId: '18825cdf-5ebb-4fca-9418-c8e526aa108d',
           safari_web_id:
             'web.onesignal.auto.5f80e2fb-b063-4ecb-90f7-0c7e45de9678',
-          notifyButton: {
-            enable: true,
-          },
 
           allowLocalhostAsSecureOrigin: true,
         });
