@@ -32,12 +32,18 @@ export const Container = styled.div<StepProps>`
   > div:last-child {
     width: 20%;
     display: initial;
-    padding-top: 2rem;
 
     @media (min-width: 475px) {
       > aside {
+        padding-top: 2rem;
+        overflow-y: auto;
+        max-height: calc(100vh - 7rem);
         position: fixed;
         width: min(25rem, 20%);
+
+        ::-webkit-scrollbar {
+          width: 5px;
+        }
 
         > div {
           margin-bottom: 15px;

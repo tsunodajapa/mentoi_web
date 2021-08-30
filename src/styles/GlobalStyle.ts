@@ -59,4 +59,27 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: var(--color-text-light);
+    margin: 1rem;
+    border-radius: 1.6rem;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-primary-dark);
+    border-radius: 1.6rem;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
+  }
 `;
