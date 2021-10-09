@@ -43,9 +43,11 @@ export default class MyDocument extends Document {
 
   render(): JSX.Element {
     return (
-      <Html lang="pt">
+      <Html lang="pt-br">
         <Head>
+          <link href="https://www.mentoi.app" rel="canonical" />
           <meta charSet="utf-8" content="text/html" />
+          <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
           <meta name="theme-color" content="#64B447" />
           <meta property="og:site_name" content="Mentoi" />
           <meta httpEquiv="content-language" content="pt-br" />

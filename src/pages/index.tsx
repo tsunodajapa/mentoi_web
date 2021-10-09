@@ -147,7 +147,7 @@ const Main = () => {
     <>
       <SEO
         title="Mentoi | Plataforma Educacional para Professores e Alunos"
-        description="Plataforma educacional para interação entre estudantes e professores com atuação verificada, garantindo responsabilidade e evitando respostas com erros ou Fake News."
+        description="Plataforma educacional para interação entre estudantes e professores com atuação verificada, evitando respostas com erros ou Fake News."
       />
       <Header hasHeaderBackground={hasHeaderBackground} />
       <Container>
