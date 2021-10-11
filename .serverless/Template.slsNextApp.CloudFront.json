@@ -8,7 +8,7 @@
   "priceClass": "PriceClass_All",
   "origins": [
     {
-      "url": "http://qjpwh1w-w8fe7cs.s3.us-east-1.amazonaws.com",
+      "url": "http://mentoi.app.s3.us-east-1.amazonaws.com",
       "private": true,
       "pathPatterns": {
         "_next/static/*": {

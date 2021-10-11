@@ -9,7 +9,7 @@
     "export": "next export"
   },
   "dependencies": {
-    "@sls-next/serverless-component": "1.19.0-alpha.37",
+    "@sls-next/serverless-component": "^3.4.0",
     "@svgr/webpack": "^5.5.0",
     "@unform/core": "^2.1.3",
     "@unform/web": "^2.1.3",
