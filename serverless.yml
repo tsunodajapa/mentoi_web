@@ -1,5 +1,5 @@
 slsNextApp:
-  component: '@sls-next/serverless-component@^3.4.0'
+  component: '@sls-next/serverless-component@1.19.0-alpha.37'
   name: mentoi
   org: myorg
   stage: integration
